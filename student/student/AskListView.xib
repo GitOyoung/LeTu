@@ -31,8 +31,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JI6-bx-ks4">
-                            <rect key="frame" x="8" y="29" width="304" height="29"/>
+                            <rect key="frame" x="8" y="20" width="304" height="39"/>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="cdf-eF-2kY"/>
+                            </constraints>
                             <segments>
                                 <segment title="全部"/>
                                 <segment title="语文"/>
@@ -47,7 +50,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="JI6-bx-ks4" secondAttribute="trailing" constant="8" id="BMM-1Z-Pt2"/>
                         <constraint firstAttribute="height" constant="65" id="hQR-Pj-5vL"/>
-                        <constraint firstItem="JI6-bx-ks4" firstAttribute="top" secondItem="SWV-Gd-0nB" secondAttribute="top" constant="29" id="pAo-DM-gK0"/>
+                        <constraint firstItem="JI6-bx-ks4" firstAttribute="top" secondItem="SWV-Gd-0nB" secondAttribute="top" constant="20" id="pAo-DM-gK0"/>
                         <constraint firstItem="JI6-bx-ks4" firstAttribute="leading" secondItem="SWV-Gd-0nB" secondAttribute="leading" constant="8" id="wcf-Gd-ba8"/>
                     </constraints>
                 </view>

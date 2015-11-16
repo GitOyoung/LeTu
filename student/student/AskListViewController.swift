@@ -16,9 +16,10 @@ class AskListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.titleView.backgroundColor = QKColor.themeBackgroundColor_1();
-        self.setMainSegment()
         // Do any additional setup after loading the view, typically from a nib.
+        self.titleView.backgroundColor = QKColor.themeBackgroundColor_1()
+        self.setMainSegment()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,19 +31,17 @@ class AskListViewController: UIViewController {
     {
         // 设置segment
         // 去掉segment颜色,现在整个segment都看不见
-//        mainSegment.tintColor = UIColor.clearColor()
-//        // 设置选中／非选中时，文字属性
-//        NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
-//            NSForegroundColorAttributeName:[QKColor themeBackgroundColor]};
-//        [_segment setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];
-//        NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
-//            NSForegroundColorAttributeName: [UIColor whiteColor]};
-//        [_segment setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
-//        // 设置选中／非选中时，背景图片
-//        UIImage *segmentSelected = [[UIImage imageNamed:@"white_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
-//        UIImage *segmentUnselected = [[UIImage imageNamed:@"blue_btn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
-//        [_segment setBackgroundImage:segmentUnselected forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        [_segment setBackgroundImage:segmentSelected forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-//        [_segment setBackgroundImage:segmentSelected forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+        mainSegment.tintColor = QKColor.clearColor()
+        // 设置选中／非选中时，文字属性
+        mainSegment.setTitleTextAttributes([NSForegroundColorAttributeName: QKColor.themeBackgroundColor_1(), NSFontAttributeName: UIFont.boldSystemFontOfSize(16)], forState: UIControlState.Selected)
+        mainSegment.setTitleTextAttributes([NSForegroundColorAttributeName:QKColor.whiteColor(), NSFontAttributeName: UIFont.boldSystemFontOfSize(16)], forState: UIControlState.Normal)
+        // 设置选中／非选中时，背景图片
+        var selectedImage = UIImage.init(named: "ask_white_btn")
+        selectedImage = selectedImage!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Stretch)
+        var unselectedImage = UIImage.init(named: "ask_blue_btn")
+        unselectedImage = unselectedImage?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Stretch)
+        mainSegment.setBackgroundImage(unselectedImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+        mainSegment.setBackgroundImage(selectedImage, forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
+        mainSegment.setBackgroundImage(selectedImage, forState: UIControlState.Highlighted, barMetrics: UIBarMetrics.Default)
     }
 }
