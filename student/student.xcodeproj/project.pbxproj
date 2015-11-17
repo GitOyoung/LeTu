@@ -7,33 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0DB9E51BFAFDBD00AE7402 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0DB9E41BFAFDBD00AE7402 /* HttpRequest.swift */; };
+		7B0DB9E71BFAFE7B00AE7402 /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0DB9E61BFAFE7B00AE7402 /* ServiceApi.swift */; };
+		A95550138487D3263FC71E4B /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A6B402CA684D4BC98051DB /* Pods.framework */; };
 		E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */; };
 		E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98A91661BF4B4E9008DB1A9 /* Main.storyboard */; };
 		E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98A91691BF4B4E9008DB1A9 /* Assets.xcassets */; };
 		E98A916D1BF4B4E9008DB1A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98A916B1BF4B4E9008DB1A9 /* LaunchScreen.storyboard */; };
 		E98A91781BF4B4E9008DB1A9 /* studentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91771BF4B4E9008DB1A9 /* studentTests.swift */; };
 		E98A91831BF4B4E9008DB1A9 /* studentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91821BF4B4E9008DB1A9 /* studentUITests.swift */; };
-		E98A91941BF4B7A6008DB1A9 /* EtaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91931BF4B7A6008DB1A9 /* EtaskListViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91951BF4B7CB008DB1A9 /* EtaskListView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919B1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A919E1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919D1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A31BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91A61BF4BD53008DB1A9 /* MeBeforeLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A51BF4BD53008DB1A9 /* MeBeforeLoginView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A81BF4BF58008DB1A9 /* StudentBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AC1BF4C0B0008DB1A9 /* EtaskDetailView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91AF1BF4C103008DB1A9 /* EtaskWorkonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AE1BF4C103008DB1A9 /* EtaskWorkonView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91B01BF4C20C008DB1A9 /* MeLoginView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91B31BF4C216008DB1A9 /* MeAfterLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91B21BF4C216008DB1A9 /* MeAfterLoginView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B41BF4C226008DB1A9 /* MeLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B61BF4C233008DB1A9 /* MeAfterLoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91B91BF4C2A9008DB1A9 /* AskNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91BB1BF4C2B3008DB1A9 /* AskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91BA1BF4C2B3008DB1A9 /* AskDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91BC1BF4C2BF008DB1A9 /* AskReplyViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		E98A91BF1BF4C2D1008DB1A9 /* AskNewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91C11BF4C2D9008DB1A9 /* AskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */; settings = {ASSET_TAGS = (); }; };
-		E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */; settings = {ASSET_TAGS = (); }; };
+		E98A91941BF4B7A6008DB1A9 /* EtaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91931BF4B7A6008DB1A9 /* EtaskListViewController.swift */; };
+		E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91951BF4B7CB008DB1A9 /* EtaskListView.xib */; };
+		E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919B1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift */; };
+		E98A919E1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919D1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift */; };
+		E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */; };
+		E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */; };
+		E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A31BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift */; };
+		E98A91A61BF4BD53008DB1A9 /* MeBeforeLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A51BF4BD53008DB1A9 /* MeBeforeLoginView.xib */; };
+		E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A81BF4BF58008DB1A9 /* StudentBaseViewController.swift */; };
+		E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AC1BF4C0B0008DB1A9 /* EtaskDetailView.xib */; };
+		E98A91AF1BF4C103008DB1A9 /* EtaskWorkonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AE1BF4C103008DB1A9 /* EtaskWorkonView.xib */; };
+		E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91B01BF4C20C008DB1A9 /* MeLoginView.xib */; };
+		E98A91B31BF4C216008DB1A9 /* MeAfterLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91B21BF4C216008DB1A9 /* MeAfterLoginView.xib */; };
+		E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B41BF4C226008DB1A9 /* MeLoginViewController.swift */; };
+		E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B61BF4C233008DB1A9 /* MeAfterLoginViewController.swift */; };
+		E98A91B91BF4C2A9008DB1A9 /* AskNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */; };
+		E98A91BB1BF4C2B3008DB1A9 /* AskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91BA1BF4C2B3008DB1A9 /* AskDetailViewController.swift */; };
+		E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91BC1BF4C2BF008DB1A9 /* AskReplyViewController.swift */; };
+		E98A91BF1BF4C2D1008DB1A9 /* AskNewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */; };
+		E98A91C11BF4C2D9008DB1A9 /* AskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */; };
+		E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17A6B402CA684D4BC98051DB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0DB9E41BFAFDBD00AE7402 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		7B0DB9E61BFAFE7B00AE7402 /* ServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
+		8D1E3547764A69FB3279A2AD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E98A915F1BF4B4E9008DB1A9 /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E98A91671BF4B4E9008DB1A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +94,7 @@
 		E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskNewView.xib; sourceTree = "<group>"; };
 		E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskDetailView.xib; sourceTree = "<group>"; };
 		E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskReplyView.xib; sourceTree = "<group>"; };
+		F81C6958CF9DC8A3B08FC0F7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95550138487D3263FC71E4B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +123,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08F29395B85FDACC3094D3A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F81C6958CF9DC8A3B08FC0F7 /* Pods.debug.xcconfig */,
+				8D1E3547764A69FB3279A2AD /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		34416C3B9138BA40DA839667 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17A6B402CA684D4BC98051DB /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B0DB9E31BFAFD8C00AE7402 /* http_service */ = {
+			isa = PBXGroup;
+			children = (
+				7B0DB9E41BFAFDBD00AE7402 /* HttpRequest.swift */,
+				7B0DB9E61BFAFE7B00AE7402 /* ServiceApi.swift */,
+			);
+			name = http_service;
+			sourceTree = "<group>";
+		};
 		E98A91561BF4B4E9008DB1A9 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +156,8 @@
 				E98A91761BF4B4E9008DB1A9 /* studentTests */,
 				E98A91811BF4B4E9008DB1A9 /* studentUITests */,
 				E98A91601BF4B4E9008DB1A9 /* Products */,
+				08F29395B85FDACC3094D3A4 /* Pods */,
+				34416C3B9138BA40DA839667 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +174,7 @@
 		E98A91611BF4B4E9008DB1A9 /* student */ = {
 			isa = PBXGroup;
 			children = (
+				7B0DB9E31BFAFD8C00AE7402 /* http_service */,
 				E98A91A71BF4BF42008DB1A9 /* common */,
 				E98A91921BF4B564008DB1A9 /* etask */,
 				E98A91911BF4B55F008DB1A9 /* ask */,
@@ -224,9 +262,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E98A91871BF4B4E9008DB1A9 /* Build configuration list for PBXNativeTarget "student" */;
 			buildPhases = (
+				8A2B205628B9458AF6C5C5BD /* Check Pods Manifest.lock */,
 				E98A915B1BF4B4E9008DB1A9 /* Sources */,
 				E98A915C1BF4B4E9008DB1A9 /* Frameworks */,
 				E98A915D1BF4B4E9008DB1A9 /* Resources */,
+				58D1BE69E2452BFA7281E34E /* Embed Pods Frameworks */,
+				97DB0F4DCF84A25CEE5102D0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -355,6 +396,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		58D1BE69E2452BFA7281E34E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A2B205628B9458AF6C5C5BD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		97DB0F4DCF84A25CEE5102D0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E98A915B1BF4B4E9008DB1A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -362,9 +451,11 @@
 			files = (
 				E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */,
 				E98A91BB1BF4C2B3008DB1A9 /* AskDetailViewController.swift in Sources */,
+				7B0DB9E71BFAFE7B00AE7402 /* ServiceApi.swift in Sources */,
 				E98A919E1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift in Sources */,
 				E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */,
 				E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */,
+				7B0DB9E51BFAFDBD00AE7402 /* HttpRequest.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */,
 				E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */,
@@ -509,6 +600,7 @@
 		};
 		E98A91881BF4B4E9008DB1A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F81C6958CF9DC8A3B08FC0F7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = student/Info.plist;
@@ -520,6 +612,7 @@
 		};
 		E98A91891BF4B4E9008DB1A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D1E3547764A69FB3279A2AD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = student/Info.plist;
@@ -596,6 +689,7 @@
 				E98A91891BF4B4E9008DB1A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E98A918A1BF4B4E9008DB1A9 /* Build configuration list for PBXNativeTarget "studentTests" */ = {
 			isa = XCConfigurationList;
@@ -604,6 +698,7 @@
 				E98A918C1BF4B4E9008DB1A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E98A918D1BF4B4E9008DB1A9 /* Build configuration list for PBXNativeTarget "studentUITests" */ = {
 			isa = XCConfigurationList;
@@ -612,6 +707,7 @@
 				E98A918F1BF4B4E9008DB1A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
