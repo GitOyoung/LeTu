@@ -40,7 +40,7 @@ class HttpRequest:NSObject {
         print("---------post request-------------")
 //        let url = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         
-        Alamofire.request(.POST, url, parameters: params as? [String : AnyObject], encoding: .JSON)
+        Alamofire.request(.POST, url, parameters: params as? [String : AnyObject])
             .responseJSON { response -> Void in
                 
                 let data = response.data
