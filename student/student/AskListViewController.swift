@@ -12,14 +12,19 @@ class AskListViewController: UIViewController {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var mainSegment: UISegmentedControl!
     
+    @IBOutlet weak var subSegmentView: UIView!
     @IBOutlet weak var subSegment: UISegmentedControl!
+    
+    @IBOutlet weak var tableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.titleView.backgroundColor = QKColor.themeBackgroundColor_1()
         self.setMainSegment()
-        
+        self.setSubSegment()
+        self.setSubSegmentView()
+        self.setAllAskList()
     }
     
     override func didReceiveMemoryWarning() {
@@ -27,8 +32,7 @@ class AskListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setMainSegment()
-    {
+    private func setMainSegment() {
         // 设置segment
         // 去掉segment颜色,现在整个segment都看不见
         mainSegment.tintColor = QKColor.clearColor()
@@ -43,5 +47,30 @@ class AskListViewController: UIViewController {
         mainSegment.setBackgroundImage(unselectedImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         mainSegment.setBackgroundImage(selectedImage, forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
         mainSegment.setBackgroundImage(selectedImage, forState: UIControlState.Highlighted, barMetrics: UIBarMetrics.Default)
+    }
+    
+    private func setSubSegment() {
+        subSegment.tintColor = QKColor.clearColor()
+        subSegment.setTitleTextAttributes([NSForegroundColorAttributeName: QKColor.themeBackgroundColor_1(), NSFontAttributeName: UIFont.systemFontOfSize(14)], forState: UIControlState.Selected)
+        subSegment.setTitleTextAttributes([NSForegroundColorAttributeName:QKColor.themeFontColor_2(), NSFontAttributeName: UIFont.systemFontOfSize(14)], forState: UIControlState.Normal)
+        var seperateImage = UIImage.init(named: "ask_seperate_line")
+        seperateImage = seperateImage!.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: UIImageResizingMode.Stretch)
+        subSegment.setDividerImage(seperateImage, forLeftSegmentState: UIControlState.Selected, rightSegmentState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
+        subSegment.setDividerImage(seperateImage, forLeftSegmentState: UIControlState.Selected, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+        subSegment.setDividerImage(seperateImage, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
+    }
+    
+    private func setSubSegmentView() {
+        let bottomLine = CALayer.init()
+        bottomLine.backgroundColor = QKColor.themeBackgroundColor_2().CGColor
+        bottomLine.frame = CGRectMake(0, subSegmentView.frame.height, UIScreen.mainScreen().bounds.size.width, 1.5)
+        subSegmentView.layer .addSublayer(bottomLine)
+    }
+    
+    private func setAllAskList() {
+        let allAsk = AskTableViewController()
+        allAsk.tableView.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.size.height)
+        tableView.addSubview(allAsk.tableView)
+        self.addChildViewController(allAsk)
     }
 }
