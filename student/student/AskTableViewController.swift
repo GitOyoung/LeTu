@@ -15,10 +15,9 @@ class AskTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // register table cell
-//        let bundle: NSBundle = NSBundle.mainBundle()
-//        let nib: UINib = UINib(nibName: "AskTableViewCell", bundle: bundle)
-//        tableView.registerNib(nib, forCellReuseIdentifier: "AskTableCell")
-        self.tableView!.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let bundle: NSBundle = NSBundle.mainBundle()
+        let nib: UINib = UINib(nibName: "AskTableViewCell", bundle: bundle)
+        tableView.registerNib(nib, forCellReuseIdentifier: "AskTableCell")
         
         tableView.tableFooterView = UIView(frame:CGRectZero)
         tableView.separatorColor = UIColor.blackColor()
@@ -48,12 +47,9 @@ class AskTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("AskTableCell", forIndexPath: indexPath) as! AskTableViewCell
-
-        //cell.titleLabel.text = dataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("AskTableCell", forIndexPath: indexPath) as! AskTableViewCell
+        cell.titleLabel.text = dataSource[indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
-        cell.textLabel?.text = dataSource[indexPath.row]
 
         return cell
     }

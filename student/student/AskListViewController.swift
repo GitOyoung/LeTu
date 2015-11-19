@@ -32,6 +32,23 @@ class AskListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func mainSegmentIndexChanged(sender: UISegmentedControl) {
+        print(sender.selectedSegmentIndex)
+        switch sender.selectedSegmentIndex
+        {
+        case 0:
+            print("选中：全部")
+        case 1:
+            print("选中：语文")
+        case 2:
+            print("选中：数学")
+        case 3:
+            print("选中：英语")
+        default:
+            break
+        }
+    }
+    
     private func setMainSegment() {
         // 设置segment
         // 去掉segment颜色,现在整个segment都看不见

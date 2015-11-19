@@ -35,6 +35,9 @@
                                 <segment title="英语"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="mainSegmentIndexChanged:" destination="-1" eventType="valueChanged" id="w8D-SL-Cwf"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <animations/>
@@ -69,7 +72,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ozp-5A-utw">
-                    <rect key="frame" x="0.0" y="106" width="320" height="413"/>
+                    <rect key="frame" x="0.0" y="106" width="320" height="462"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -79,7 +82,7 @@
             <constraints>
                 <constraint firstItem="Ozp-5A-utw" firstAttribute="top" secondItem="mH0-TL-dcY" secondAttribute="bottom" constant="1" id="0sy-5k-2qX"/>
                 <constraint firstItem="mH0-TL-dcY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4HR-be-DDc"/>
-                <constraint firstAttribute="bottom" secondItem="Ozp-5A-utw" secondAttribute="bottom" constant="49" id="HaT-xm-CgN"/>
+                <constraint firstAttribute="bottom" secondItem="Ozp-5A-utw" secondAttribute="bottom" id="HaT-xm-CgN"/>
                 <constraint firstAttribute="trailing" secondItem="SWV-Gd-0nB" secondAttribute="trailing" id="KfI-7r-1VG"/>
                 <constraint firstItem="mH0-TL-dcY" firstAttribute="top" secondItem="SWV-Gd-0nB" secondAttribute="bottom" id="dzJ-C5-EZ4"/>
                 <constraint firstItem="SWV-Gd-0nB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gqV-aA-vYs"/>

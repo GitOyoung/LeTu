@@ -193,12 +193,12 @@
 			isa = PBXGroup;
 			children = (
 				E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */,
-				E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */,
-				E98A91BA1BF4C2B3008DB1A9 /* AskDetailViewController.swift */,
-				E98A91BC1BF4C2BF008DB1A9 /* AskReplyViewController.swift */,
 				E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */,
+				E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */,
 				E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */,
+				E98A91BA1BF4C2B3008DB1A9 /* AskDetailViewController.swift */,
 				E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */,
+				E98A91BC1BF4C2BF008DB1A9 /* AskReplyViewController.swift */,
 				E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */,
 				160F48121BFCC9AB00796A49 /* AskTableViewController.swift */,
 				160F48141BFCCF1400796A49 /* AskTableViewCell.swift */,
