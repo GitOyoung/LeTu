@@ -7,9 +7,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EtaskListViewController" customModule="student" customModuleProvider="target">
             <connections>
                 <outlet property="mainSegment" destination="exe-h2-fMb" id="KXb-5b-KOf"/>
-                <outlet property="subSegment" destination="Gle-RM-Sc1" id="Oz0-iJ-CSS"/>
-                <outlet property="subSegmentView" destination="vys-yg-4Qr" id="CxY-sN-e1U"/>
+                <outlet property="searchBar" destination="JvX-iJ-vqg" id="3kY-e6-geQ"/>
                 <outlet property="tableView" destination="gc6-pk-KH0" id="HCS-UR-6CM"/>
+                <outlet property="tipsButton" destination="QvI-ao-Vdj" id="OPt-Uq-CzR"/>
+                <outlet property="tipsView" destination="dJ5-YY-Kr1" id="wkb-i1-5wB"/>
                 <outlet property="titleView" destination="sQl-Jl-is6" id="nJq-Ny-uXy"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0Ce-HH-TFt"/>
             </connections>
@@ -20,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQl-Jl-is6">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
                     <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exe-h2-fMb">
-                            <rect key="frame" x="8" y="25" width="304" height="29"/>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exe-h2-fMb">
+                            <rect key="frame" x="8" y="20" width="304" height="39"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="38" id="yNJ-dp-0Ps"/>
@@ -35,43 +36,68 @@
                                 <segment title="英语"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="mainSegmentIndexChanged:" destination="-1" eventType="valueChanged" id="hTp-no-vKg"/>
+                            </connections>
                         </segmentedControl>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-pZ-7eL">
+                            <rect key="frame" x="8" y="74" width="23" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="fuC-qN-129"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="button_sort">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <searchBar contentMode="redraw" placeholder="输入作业关键字" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvX-iJ-vqg">
+                            <rect key="frame" x="36" y="66" width="276" height="44"/>
+                            <animations/>
+                            <color key="barTintColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="exe-h2-fMb" secondAttribute="trailing" constant="8" id="DAJ-0r-OzR"/>
+                        <constraint firstItem="JvX-iJ-vqg" firstAttribute="trailing" secondItem="exe-h2-fMb" secondAttribute="trailing" id="Gp2-pS-9T1"/>
+                        <constraint firstItem="JvX-iJ-vqg" firstAttribute="leading" secondItem="TUv-pZ-7eL" secondAttribute="trailing" constant="5" id="PmU-0W-b5q"/>
+                        <constraint firstItem="JvX-iJ-vqg" firstAttribute="top" secondItem="exe-h2-fMb" secondAttribute="bottom" constant="8" id="XYz-nL-rj3"/>
                         <constraint firstItem="exe-h2-fMb" firstAttribute="leading" secondItem="sQl-Jl-is6" secondAttribute="leading" constant="8" id="ZI6-Gb-cSV"/>
-                        <constraint firstAttribute="height" constant="65" id="dN8-hA-oUX"/>
+                        <constraint firstAttribute="height" constant="110" id="dN8-hA-oUX"/>
                         <constraint firstItem="exe-h2-fMb" firstAttribute="top" secondItem="sQl-Jl-is6" secondAttribute="top" constant="20" id="hL7-zI-Vvr"/>
+                        <constraint firstItem="TUv-pZ-7eL" firstAttribute="leading" secondItem="exe-h2-fMb" secondAttribute="leading" id="ieo-Ep-aSX"/>
+                        <constraint firstItem="TUv-pZ-7eL" firstAttribute="top" secondItem="exe-h2-fMb" secondAttribute="bottom" constant="16" id="w92-6k-wJq"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vys-yg-4Qr">
-                    <rect key="frame" x="0.0" y="65" width="320" height="40"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJ5-YY-Kr1">
+                    <rect key="frame" x="0.0" y="110" width="320" height="38"/>
                     <subviews>
-                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gle-RM-Sc1">
-                            <rect key="frame" x="0.0" y="6" width="320" height="29"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvI-ao-Vdj">
+                            <rect key="frame" x="8" y="4" width="304" height="30"/>
                             <animations/>
-                            <segments>
-                                <segment title="排序"/>
-                                <segment title="我的提问"/>
-                                <segment title="我的回复"/>
-                            </segments>
-                        </segmentedControl>
+                        </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.033894042835272642" green="0.52809455538387984" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="0Bk-3u-Kav"/>
-                        <constraint firstItem="Gle-RM-Sc1" firstAttribute="centerY" secondItem="vys-yg-4Qr" secondAttribute="centerY" id="I9F-m7-fho"/>
-                        <constraint firstItem="Gle-RM-Sc1" firstAttribute="leading" secondItem="vys-yg-4Qr" secondAttribute="leading" id="Q6G-pG-TAJ"/>
-                        <constraint firstAttribute="trailing" secondItem="Gle-RM-Sc1" secondAttribute="trailing" id="fSQ-NQ-scH"/>
+                        <constraint firstItem="QvI-ao-Vdj" firstAttribute="leading" secondItem="dJ5-YY-Kr1" secondAttribute="leading" constant="8" id="HuV-fH-lwd"/>
+                        <constraint firstAttribute="trailing" secondItem="QvI-ao-Vdj" secondAttribute="trailing" constant="8" id="SYy-oJ-vg1"/>
+                        <constraint firstItem="QvI-ao-Vdj" firstAttribute="top" secondItem="dJ5-YY-Kr1" secondAttribute="top" constant="4" id="axz-j5-vka"/>
+                        <constraint firstItem="QvI-ao-Vdj" firstAttribute="height" secondItem="dJ5-YY-Kr1" secondAttribute="height" constant="-8" id="tHx-Zc-d34"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc6-pk-KH0">
-                    <rect key="frame" x="0.0" y="106" width="320" height="462"/>
+                    <rect key="frame" x="0.0" y="148" width="320" height="420"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <animations/>
@@ -79,16 +105,19 @@
             <constraints>
                 <constraint firstItem="sQl-Jl-is6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M4G-BL-AbZ"/>
                 <constraint firstAttribute="bottom" secondItem="gc6-pk-KH0" secondAttribute="bottom" id="PDr-VJ-B6t"/>
+                <constraint firstItem="dJ5-YY-Kr1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QKy-Nx-yih"/>
                 <constraint firstAttribute="trailing" secondItem="gc6-pk-KH0" secondAttribute="trailing" id="TPu-bt-7Pg"/>
                 <constraint firstAttribute="trailing" secondItem="sQl-Jl-is6" secondAttribute="trailing" id="ZOw-nB-gJP"/>
-                <constraint firstItem="vys-yg-4Qr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gTX-aF-5qQ"/>
-                <constraint firstItem="vys-yg-4Qr" firstAttribute="top" secondItem="sQl-Jl-is6" secondAttribute="bottom" id="oJq-dG-ezn"/>
-                <constraint firstAttribute="trailing" secondItem="vys-yg-4Qr" secondAttribute="trailing" id="s9a-yN-MOz"/>
+                <constraint firstItem="gc6-pk-KH0" firstAttribute="top" secondItem="dJ5-YY-Kr1" secondAttribute="bottom" id="bcG-bK-SbP"/>
+                <constraint firstItem="dJ5-YY-Kr1" firstAttribute="top" secondItem="sQl-Jl-is6" secondAttribute="bottom" id="fB8-5x-g6r"/>
+                <constraint firstAttribute="trailing" secondItem="dJ5-YY-Kr1" secondAttribute="trailing" id="t8h-W4-H97"/>
                 <constraint firstItem="sQl-Jl-is6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tvg-Fy-ID8"/>
                 <constraint firstItem="gc6-pk-KH0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="u07-Ec-Ozh"/>
-                <constraint firstItem="gc6-pk-KH0" firstAttribute="top" secondItem="vys-yg-4Qr" secondAttribute="bottom" constant="1" id="uQi-M1-IpT"/>
             </constraints>
             <point key="canvasLocation" x="280" y="343"/>
         </view>
     </objects>
+    <resources>
+        <image name="button_sort" width="23" height="29"/>
+    </resources>
 </document>
