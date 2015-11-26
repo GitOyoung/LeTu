@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EtaskListViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="mainSegment" destination="exe-h2-fMb" id="KXb-5b-KOf"/>
+                <outlet property="subSegment" destination="Gle-RM-Sc1" id="Oz0-iJ-CSS"/>
+                <outlet property="subSegmentView" destination="vys-yg-4Qr" id="CxY-sN-e1U"/>
+                <outlet property="tableView" destination="gc6-pk-KH0" id="HCS-UR-6CM"/>
+                <outlet property="titleView" destination="sQl-Jl-is6" id="nJq-Ny-uXy"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0Ce-HH-TFt"/>
             </connections>
         </placeholder>
@@ -14,20 +19,74 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电子作业列表" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubr-bM-gOZ">
-                    <rect key="frame" x="109" y="273" width="102" height="21"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQl-Jl-is6">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="exe-h2-fMb">
+                            <rect key="frame" x="8" y="25" width="304" height="29"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="38" id="yNJ-dp-0Ps"/>
+                            </constraints>
+                            <segments>
+                                <segment title="全部"/>
+                                <segment title="语文"/>
+                                <segment title="数学"/>
+                                <segment title="英语"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </segmentedControl>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="WNe-bg-Gl4"/>
+                        <constraint firstAttribute="trailing" secondItem="exe-h2-fMb" secondAttribute="trailing" constant="8" id="DAJ-0r-OzR"/>
+                        <constraint firstItem="exe-h2-fMb" firstAttribute="leading" secondItem="sQl-Jl-is6" secondAttribute="leading" constant="8" id="ZI6-Gb-cSV"/>
+                        <constraint firstAttribute="height" constant="65" id="dN8-hA-oUX"/>
+                        <constraint firstItem="exe-h2-fMb" firstAttribute="top" secondItem="sQl-Jl-is6" secondAttribute="top" constant="20" id="hL7-zI-Vvr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vys-yg-4Qr">
+                    <rect key="frame" x="0.0" y="65" width="320" height="40"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gle-RM-Sc1">
+                            <rect key="frame" x="0.0" y="6" width="320" height="29"/>
+                            <animations/>
+                            <segments>
+                                <segment title="排序"/>
+                                <segment title="我的提问"/>
+                                <segment title="我的回复"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0Bk-3u-Kav"/>
+                        <constraint firstItem="Gle-RM-Sc1" firstAttribute="centerY" secondItem="vys-yg-4Qr" secondAttribute="centerY" id="I9F-m7-fho"/>
+                        <constraint firstItem="Gle-RM-Sc1" firstAttribute="leading" secondItem="vys-yg-4Qr" secondAttribute="leading" id="Q6G-pG-TAJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Gle-RM-Sc1" secondAttribute="trailing" id="fSQ-NQ-scH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc6-pk-KH0">
+                    <rect key="frame" x="0.0" y="106" width="320" height="462"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Ubr-bM-gOZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PO7-rC-Hff"/>
-                <constraint firstItem="Ubr-bM-gOZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VKY-Kq-a8D"/>
+                <constraint firstItem="sQl-Jl-is6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="M4G-BL-AbZ"/>
+                <constraint firstAttribute="bottom" secondItem="gc6-pk-KH0" secondAttribute="bottom" id="PDr-VJ-B6t"/>
+                <constraint firstAttribute="trailing" secondItem="gc6-pk-KH0" secondAttribute="trailing" id="TPu-bt-7Pg"/>
+                <constraint firstAttribute="trailing" secondItem="sQl-Jl-is6" secondAttribute="trailing" id="ZOw-nB-gJP"/>
+                <constraint firstItem="vys-yg-4Qr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gTX-aF-5qQ"/>
+                <constraint firstItem="vys-yg-4Qr" firstAttribute="top" secondItem="sQl-Jl-is6" secondAttribute="bottom" id="oJq-dG-ezn"/>
+                <constraint firstAttribute="trailing" secondItem="vys-yg-4Qr" secondAttribute="trailing" id="s9a-yN-MOz"/>
+                <constraint firstItem="sQl-Jl-is6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tvg-Fy-ID8"/>
+                <constraint firstItem="gc6-pk-KH0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="u07-Ec-Ozh"/>
+                <constraint firstItem="gc6-pk-KH0" firstAttribute="top" secondItem="vys-yg-4Qr" secondAttribute="bottom" constant="1" id="uQi-M1-IpT"/>
             </constraints>
             <point key="canvasLocation" x="280" y="343"/>
         </view>

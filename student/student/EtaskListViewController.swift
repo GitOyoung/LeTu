@@ -8,10 +8,21 @@
 import UIKit
 
 class EtaskListViewController: UIViewController {
+
+    @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var mainSegment: UISegmentedControl!
+    
+    
+    @IBOutlet weak var subSegmentView: UIView!
+    @IBOutlet weak var subSegment: UISegmentedControl!
+    
+    @IBOutlet weak var tableView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.titleView.backgroundColor = QKColor.themeBackgroundColor_1();
+        
     }
     
     override func didReceiveMemoryWarning() {
