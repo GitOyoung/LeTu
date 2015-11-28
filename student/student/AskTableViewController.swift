@@ -9,10 +9,15 @@
 import UIKit
 
 class AskTableViewController: UITableViewController {
-    var dataSource = ["One","Two","Three","Four","Five"]
-
+    //var dataSource = ["One","Two","Three","Four","Five"]
+    var dataSource = [String]()
+    var subjectName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         
         // register table cell
         let bundle: NSBundle = NSBundle.mainBundle()
@@ -22,13 +27,19 @@ class AskTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame:CGRectZero)
         tableView.separatorColor = UIColor.blackColor()
 
+        //添加刷新
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "松开后自动刷新")
+        refreshData()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -99,4 +110,27 @@ class AskTableViewController: UITableViewController {
     }
     */
 
+    // MARK: Data refresh
+    //滚动视图开始拖动
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if (!self.refreshControl!.refreshing) {
+            self.refreshControl!.attributedTitle = NSAttributedString(string: "下拉刷新数据")
+        }
+    }
+    
+    func refreshData() {
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "数据加载中......")
+        switch subjectName {
+        case "YUWEN":
+            dataSource = ["一","二","三","四","五"]
+        case "SHUXUE":
+            dataSource = ["1","2","3","4","5"]
+        case "YINGYU":
+            dataSource = ["one","two","three","four","five"]
+        default:
+            dataSource = ["一","2","Three","四","5"]
+        }
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+    }
 }
