@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="mainSegment" destination="exe-h2-fMb" id="KXb-5b-KOf"/>
                 <outlet property="searchBar" destination="JvX-iJ-vqg" id="3kY-e6-geQ"/>
+                <outlet property="sortButton" destination="TUv-pZ-7eL" id="LWZ-aZ-dI2"/>
                 <outlet property="tableView" destination="gc6-pk-KH0" id="HCS-UR-6CM"/>
                 <outlet property="tipsButton" destination="QvI-ao-Vdj" id="OPt-Uq-CzR"/>
                 <outlet property="tipsView" destination="dJ5-YY-Kr1" id="wkb-i1-5wB"/>
@@ -41,18 +42,19 @@
                             </connections>
                         </segmentedControl>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-pZ-7eL">
-                            <rect key="frame" x="8" y="74" width="23" height="30"/>
+                            <rect key="frame" x="8" y="74" width="22" height="30"/>
                             <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fuC-qN-129"/>
                             </constraints>
-                            <state key="normal" backgroundImage="button_sort">
+                            <state key="normal" backgroundImage="paixu_show">
                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                         <searchBar contentMode="redraw" placeholder="输入作业关键字" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvX-iJ-vqg">
-                            <rect key="frame" x="36" y="66" width="276" height="44"/>
+                            <rect key="frame" x="35" y="66" width="277" height="44"/>
                             <animations/>
                             <color key="barTintColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                             <textInputTraits key="textInputTraits"/>
@@ -118,6 +120,6 @@
         </view>
     </objects>
     <resources>
-        <image name="button_sort" width="23" height="29"/>
+        <image name="paixu_show" width="22" height="22"/>
     </resources>
 </document>

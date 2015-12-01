@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class EtaskListViewController: UIViewController {
+class EtaskListViewController: UIViewController, HttpProtocol {
 
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var mainSegment: UISegmentedControl!
@@ -15,18 +15,23 @@ class EtaskListViewController: UIViewController {
     @IBOutlet weak var tipsView: UIView!
     @IBOutlet weak var tipsButton: UIButton!
     
+    @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
  
     
     @IBOutlet weak var tableView: UIView!
     
+    var http: HttpRequest?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.titleView.backgroundColor = QKColor.themeBackgroundColor_1();
-        self.setMainSegment();
-        self.setSearchBar();
-        self.setAllQuestionsList();
+        self.titleView.backgroundColor = QKColor.themeBackgroundColor_1()
+        http = HttpRequest()
+        http?.delegate = self
+        self.checkUser()
+        self.setMainSegment()
+        self.setSearchBar()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +58,8 @@ class EtaskListViewController: UIViewController {
     
     private func setSearchBar()
     {
-        searchBar.backgroundColor = UIColor.clearColor();
+        sortButton.layer.cornerRadius = 5
+        searchBar.backgroundColor = UIColor.clearColor()
     }
     
     private func setMainSegment() {
@@ -74,17 +80,56 @@ class EtaskListViewController: UIViewController {
         
         mainSegment.addTarget(self, action: Selector("mainSegmentIndexChanged:"), forControlEvents: UIControlEvents.ValueChanged);
     }
-    
- 
-    
-
-    
     private func setAllQuestionsList()
     {
         let allQs = EtaskTableViewController();
         allQs.tableView.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.size.height);
         tableView.addSubview(allQs.tableView);
         self.addChildViewController(allQs);
+    }
+    
+    
+    private func checkUser()
+    {
+        if LTConfig.defaultConfig().defaultUser == nil
+        {
+            self.getUserInfo()
+        }
+        
+    }
+    
+    func getUserInfo()
+    {
+        let url = ServiceApi.getLoginUrl()
+        let params = NSDictionary(objects: ["王小虎","123456"], forKeys: ["userName", "pwd"])
+        http?.postRequest(url, params: params)
+    }
+    
+    
+    func didreceiveResult(result: NSDictionary) {
+        print(result)
+        let isSuccess:Bool = result["isSuccess"] as! Bool
+        if isSuccess
+        {
+            let status: String = result["status"] as! String
+            let message:String = result["message"] as! String
+            print(message)
+            if status == "Y"
+            {
+                let student: Student = Student(info: result["user"] as? NSDictionary)
+                LTConfig.defaultConfig().defaultUser = student
+            }
+            else
+            {
+                LTConfig.defaultConfig().defaultUser = nil
+            }
+            
+            
+        }
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            self.setAllQuestionsList()
+        }
     }
     
     

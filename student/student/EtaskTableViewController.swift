@@ -8,31 +8,26 @@
 
 import UIKit
 
-typealias ETask = Int;  //此处需修改Int为实际的ETask类型
 
+class EtaskTableViewController: UITableViewController, HttpProtocol {
 
-class EtaskTableViewController: UITableViewController {
-
-   
+    var http: HttpRequest?
+    var dataSource: NSMutableArray?
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        http = HttpRequest()
+        http!.delegate = self
+        
+        self.updateDataSource()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1;
     }
 
@@ -50,7 +45,21 @@ class EtaskTableViewController: UITableViewController {
 
         return cell
     }
+    
+    func updateDataSource() {
+        let url = ServiceApi.getEtaskListUrl()
+        if LTConfig.defaultConfig().defaultUser != nil
+        {
+            
+            let student:Student = LTConfig.defaultConfig().defaultUser!
+            let params = NSDictionary(objects: [student.uuid as AnyObject,student.accessToken as! AnyObject], forKeys: ["userID", "accessToken"])
+            http?.postRequest(url, params: params)
+        }
+    }
 
+    func didreceiveResult(result: NSDictionary) {
+        print(result)
+    }
 
     /*
     // Override to support conditional editing of the table view.
