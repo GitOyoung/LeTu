@@ -25,7 +25,8 @@ class AskTableViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: "AskTableCell")
         
         tableView.tableFooterView = UIView(frame:CGRectZero)
-        tableView.separatorColor = UIColor.blackColor()
+        //tableView.separatorColor = UIColor.blackColor()
+        tableView.estimatedRowHeight = 44
 
         //添加刷新
         self.refreshControl = UIRefreshControl()
