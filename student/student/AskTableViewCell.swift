@@ -37,6 +37,8 @@ class AskTableViewCell: UITableViewCell {
         self.createdTimeLabel.text = (data.createdTime as? String)! + "  来自"
         self.classStudentNameLabel.text = data.classStudentName as? String
         self.titleLabel.text = data.title as? String
+        self.likeCountLable.text = String(data.likeCount)
+        self.commentCountLabel.text = String(data.commentCount)
         
         // set images
     }

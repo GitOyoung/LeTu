@@ -63,6 +63,17 @@ class AskTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("AskTableCell", forIndexPath: indexPath) as! AskTableViewCell
         cell.titleLabel.text = dataSource[indexPath.row]
         
+        if (subjectName=="") {
+            let acm = AskCellModel()
+            acm.etaskName = "阅读理解"
+            acm.createdTime = "2015-12-09"
+            acm.classStudentName = "三年五班 韩梅梅"
+            acm.title = "这文章中心思想？"
+            acm.isAdopted = true
+            acm.likeCount = 10
+            acm.commentCount = 10
+            cell.initCell(acm)
+        }
 
         return cell
     }
