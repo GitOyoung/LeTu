@@ -26,6 +26,7 @@ class AskTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame:CGRectZero)
         //tableView.separatorColor = UIColor.blackColor()
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.estimatedRowHeight = 44
 
         //添加刷新
