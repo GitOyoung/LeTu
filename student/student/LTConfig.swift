@@ -11,10 +11,8 @@ import UIKit
 class LTConfig: NSObject {
     
     static private var config: LTConfig?
-    static func defaultConfig() -> LTConfig
-    {
-        if config == nil
-        {
+    static func defaultConfig() -> LTConfig{
+        if config == nil{
             config = LTConfig()
         }
         return config!

@@ -101,7 +101,7 @@ class EtaskListViewController: UIViewController, HttpProtocol {
     func getUserInfo()
     {
         let url = ServiceApi.getLoginUrl()
-        let params = NSDictionary(objects: ["王小虎","123456"], forKeys: ["userName", "pwd"])
+        let params = NSDictionary(objects: ["xl5101","123456"], forKeys: ["userName", "pwd"])
         http?.postRequest(url, params: params)
     }
     

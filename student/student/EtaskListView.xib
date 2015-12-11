@@ -41,7 +41,7 @@
                                 <action selector="mainSegmentIndexChanged:" destination="-1" eventType="valueChanged" id="hTp-no-vKg"/>
                             </connections>
                         </segmentedControl>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-pZ-7eL">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-pZ-7eL">
                             <rect key="frame" x="8" y="74" width="22" height="30"/>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,7 +53,7 @@
                                 <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <searchBar contentMode="redraw" placeholder="输入作业关键字" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvX-iJ-vqg">
+                        <searchBar contentMode="redraw" misplaced="YES" placeholder="输入作业关键字" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvX-iJ-vqg">
                             <rect key="frame" x="35" y="66" width="277" height="44"/>
                             <animations/>
                             <color key="barTintColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
