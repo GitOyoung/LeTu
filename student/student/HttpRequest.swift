@@ -44,10 +44,17 @@ class HttpRequest:NSObject {
             .responseJSON { response -> Void in
                 
                 let data = response.data
+
+                do {
+                let jsonResult:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 
-                let jsonResult:NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                
-                self.delegate?.didreceiveResult(jsonResult)
+                    self.delegate?.didreceiveResult(jsonResult)
+                }
+                catch
+                {
+                    let string:NSString = NSString(data: data!, encoding: 4)!
+                    print(string)
+                }
         }
     }
     

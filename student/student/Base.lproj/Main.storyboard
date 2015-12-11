@@ -58,7 +58,7 @@
         <!--作业-->
         <scene sceneID="tqV-lZ-aP9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="328-hD-mSu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="328-hD-mSu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="作业" image="menu_task2" selectedImage="menu_task1" id="o41-Fc-Kwk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="01h-8S-EXc">
