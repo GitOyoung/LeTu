@@ -20,6 +20,15 @@ class AskTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountLable: UILabel!
     @IBOutlet weak var commentCountLabel: UILabel!
     
+    @IBOutlet weak var image1: UIImageView!
+    @IBOutlet weak var image2: UIImageView!
+    @IBOutlet weak var image3: UIImageView!
+    @IBOutlet weak var image4: UIImageView!
+    @IBOutlet weak var image5: UIImageView!
+    @IBOutlet weak var image6: UIImageView!
+    @IBOutlet weak var image7: UIImageView!
+    @IBOutlet weak var image8: UIImageView!
+    @IBOutlet weak var image9: UIImageView!
     
     func initCell(data: AskCellModel) {
         // set adopt
@@ -41,6 +50,49 @@ class AskTableViewCell: UITableViewCell {
         self.commentCountLabel.text = String(data.commentCount)
         
         // set images
+        image1.hidden = true
+        image2.hidden = true
+        image3.hidden = true
+        image4.hidden = true
+        image5.hidden = true
+        image6.hidden = true
+        image7.hidden = true
+        image8.hidden = true
+        image9.hidden = true
+        
+        for var index = 0; index < data.pictures.count; index++ {
+            let image = UIImage(named: data.pictures[index] as String)
+            switch index {
+            case 0:
+                image1.image = image
+                image1.hidden = false
+            case 1:
+                image2.image = image
+                image2.hidden = false
+            case 2:
+                image3.image = image
+                image3.hidden = false
+            case 3:
+                image4.image = image
+                image4.hidden = false
+            case 4:
+                image5.image = image
+                image5.hidden = false
+            case 5:
+                image6.image = image
+                image6.hidden = false
+            case 6:
+                image7.image = image
+                image7.hidden = false
+            case 7:
+                image8.image = image
+                image8.hidden = false
+            default:
+                image9.image = image
+                image9.hidden = false
+            }
+        }
+        
     }
     
     override func awakeFromNib() {

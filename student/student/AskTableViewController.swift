@@ -9,9 +9,9 @@
 import UIKit
 
 class AskTableViewController: UITableViewController {
-    //var dataSource = ["One","Two","Three","Four","Five"]
-    var dataSource = [String]()
-    var subjectName = ""
+    var askBL = AskBL()
+    var dataSource = NSMutableArray()
+    var subjectName:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,9 @@ class AskTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame:CGRectZero)
         //tableView.separatorColor = UIColor.blackColor()
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        tableView.estimatedRowHeight = 44
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 144
 
         //添加刷新
         self.refreshControl = UIRefreshControl()
@@ -51,33 +53,46 @@ class AskTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return dataSource.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataSource.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AskTableCell", forIndexPath: indexPath) as! AskTableViewCell
-        cell.titleLabel.text = dataSource[indexPath.row]
         
-        if (subjectName=="") {
-            let acm = AskCellModel()
-            acm.etaskName = "阅读理解"
-            acm.createdTime = "2015-12-09"
-            acm.classStudentName = "三年五班 韩梅梅"
-            acm.title = "这文章中心思想？"
-            acm.isAdopted = true
-            acm.likeCount = 10
-            acm.commentCount = 10
-            cell.initCell(acm)
-        }
-
+        var askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
+        
+        //let imageHeight = CGFloat(Float(tableView.frame.size.width) / Float(askCellModel.pictures.count) - 20.0)
+        //cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height+imageHeight)
+        
+        cell.initCell(askCellModel)
         return cell
     }
-
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var rowHeight = 111
+        var askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
+        switch askCellModel.pictures.count {
+        case 1,2,3:
+            rowHeight = 207
+        case 4,5,6:
+            rowHeight = 311
+        case 7,8,9:
+            rowHeight = 311
+        default:
+            rowHeight = 111
+        }
+        return CGFloat(rowHeight);
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -135,13 +150,13 @@ class AskTableViewController: UITableViewController {
         self.refreshControl!.attributedTitle = NSAttributedString(string: "数据加载中......")
         switch subjectName {
         case "YUWEN":
-            dataSource = ["一","二","三","四","五"]
+            dataSource = askBL.findYuwen()
         case "SHUXUE":
-            dataSource = ["1","2","3","4","5"]
+            dataSource = askBL.findShuxue()
         case "YINGYU":
-            dataSource = ["one","two","three","four","five"]
+            dataSource = askBL.findYingyu()
         default:
-            dataSource = ["一","2","Three","四","5"]
+            dataSource = askBL.findAll()
         }
         tableView.reloadData()
         refreshControl?.endRefreshing()

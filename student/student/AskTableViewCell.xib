@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AskTableCell" rowHeight="177" id="KGk-i7-Jjw" customClass="AskTableViewCell" customModule="student" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AskTableCell" rowHeight="413" id="KGk-i7-Jjw" customClass="AskTableViewCell" customModule="student" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="413"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="412.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阅读理解：《父亲》" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRl-fd-h3v">
@@ -77,13 +77,48 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOJ-PK-wOu">
-                        <rect key="frame" x="8" y="102" width="304" height="20"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOJ-PK-wOu">
+                        <rect key="frame" x="8" y="102" width="304" height="304"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mWa-yY-U48">
+                                <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PYJ-8C-aC4">
+                                <rect key="frame" x="104" y="0.0" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vxE-c7-PhN">
+                                <rect key="frame" x="208" y="0.0" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-PJ-hYo">
+                                <rect key="frame" x="0.0" y="104" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YCb-yL-MSB">
+                                <rect key="frame" x="104" y="104" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V65-iA-Khz">
+                                <rect key="frame" x="208" y="104" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NkP-Xd-hcj">
+                                <rect key="frame" x="104" y="208" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6u-Ld-oLb">
+                                <rect key="frame" x="208" y="208" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fB2-C9-Hop">
+                                <rect key="frame" x="0.0" y="208" width="96" height="96"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Yxu-H5-i2r"/>
-                        </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vg7-M0-zlG">
                         <rect key="frame" x="229" y="37" width="12" height="12"/>
@@ -178,11 +213,20 @@
                 <outlet property="commentCountLabel" destination="HHk-Cc-4ua" id="KJR-ar-ULe"/>
                 <outlet property="createdTimeLabel" destination="vBc-8f-tMi" id="CtD-6V-b5f"/>
                 <outlet property="etaskNameLabel" destination="RRl-fd-h3v" id="5vO-he-Vy7"/>
+                <outlet property="image1" destination="mWa-yY-U48" id="y2x-7k-pQj"/>
+                <outlet property="image2" destination="PYJ-8C-aC4" id="qw0-wV-Jjg"/>
+                <outlet property="image3" destination="vxE-c7-PhN" id="GZz-jn-Far"/>
+                <outlet property="image4" destination="vDY-PJ-hYo" id="ht8-rE-PS7"/>
+                <outlet property="image5" destination="YCb-yL-MSB" id="lHn-XS-eV5"/>
+                <outlet property="image6" destination="V65-iA-Khz" id="YOq-Sz-GLH"/>
+                <outlet property="image7" destination="fB2-C9-Hop" id="zDy-1l-pof"/>
+                <outlet property="image8" destination="NkP-Xd-hcj" id="vqE-jn-Lnn"/>
+                <outlet property="image9" destination="L6u-Ld-oLb" id="YAY-KP-nqw"/>
                 <outlet property="likeCountLable" destination="aTT-ZS-pYq" id="5uI-lS-m0r"/>
                 <outlet property="picturesView" destination="NOJ-PK-wOu" id="9l8-0V-yfM"/>
                 <outlet property="titleLabel" destination="qLX-BB-zQ6" id="pap-Mw-HSr"/>
             </connections>
-            <point key="canvasLocation" x="280" y="233.5"/>
+            <point key="canvasLocation" x="244" y="288.5"/>
         </tableViewCell>
     </objects>
     <resources>

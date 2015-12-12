@@ -11,6 +11,9 @@
 		160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F48121BFCC9AB00796A49 /* AskTableViewController.swift */; };
 		160F48161BFCCF1400796A49 /* AskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F48141BFCCF1400796A49 /* AskTableViewCell.swift */; };
 		160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160F48151BFCCF1400796A49 /* AskTableViewCell.xib */; };
+		166AF3081C1BFD4C001028C3 /* AskCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AF3071C1BFD4C001028C3 /* AskCellModel.swift */; };
+		166AF30C1C1BFD99001028C3 /* AskBL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AF30B1C1BFD99001028C3 /* AskBL.swift */; };
+		166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AF30D1C1BFDAD001028C3 /* AskDAO.swift */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
@@ -72,6 +75,9 @@
 		160F48121BFCC9AB00796A49 /* AskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskTableViewController.swift; sourceTree = "<group>"; };
 		160F48141BFCCF1400796A49 /* AskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskTableViewCell.swift; sourceTree = "<group>"; };
 		160F48151BFCCF1400796A49 /* AskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskTableViewCell.xib; sourceTree = "<group>"; };
+		166AF3071C1BFD4C001028C3 /* AskCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskCellModel.swift; sourceTree = "<group>"; };
+		166AF30B1C1BFD99001028C3 /* AskBL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskBL.swift; sourceTree = "<group>"; };
+		166AF30D1C1BFDAD001028C3 /* AskDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskDAO.swift; sourceTree = "<group>"; };
 		2A7BD90C62B542553D2358FB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -145,6 +151,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		166AF3091C1BFD74001028C3 /* BusinessLogicalLayer */ = {
+			isa = PBXGroup;
+			children = (
+				166AF30B1C1BFD99001028C3 /* AskBL.swift */,
+			);
+			name = BusinessLogicalLayer;
+			sourceTree = "<group>";
+		};
+		166AF30A1C1BFD85001028C3 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				166AF30D1C1BFDAD001028C3 /* AskDAO.swift */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
 		1AC900323358021ACE2A7D42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +187,7 @@
 		7BA51AB91C1B051400B72241 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				166AF3071C1BFD4C001028C3 /* AskCellModel.swift */,
 				7BA51ABA1C1B053700B72241 /* EtaskModel.swift */,
 				7BA51ABC1C1B05F100B72241 /* UserModel.swift */,
 			);
@@ -254,6 +277,8 @@
 		E98A91911BF4B55F008DB1A9 /* ask */ = {
 			isa = PBXGroup;
 			children = (
+				166AF30A1C1BFD85001028C3 /* DAO */,
+				166AF3091C1BFD74001028C3 /* BusinessLogicalLayer */,
 				E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */,
 				E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */,
 				E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */,
@@ -500,12 +525,14 @@
 				E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */,
 				E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
+				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
 				7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */,
 				E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */,
 				7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */,
 				E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */,
 				E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */,
 				E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */,
+				166AF30C1C1BFD99001028C3 /* AskBL.swift in Sources */,
 				E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */,
 				E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */,
 				160F48161BFCCF1400796A49 /* AskTableViewCell.swift in Sources */,
@@ -513,6 +540,7 @@
 				160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */,
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
 				E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */,
+				166AF3081C1BFD4C001028C3 /* AskCellModel.swift in Sources */,
 				E98A91941BF4B7A6008DB1A9 /* EtaskListViewController.swift in Sources */,
 				E98A91B91BF4C2A9008DB1A9 /* AskNewViewController.swift in Sources */,
 			);
