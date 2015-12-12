@@ -48,6 +48,8 @@ class EtaskModel: NSObject {
     var startTime:String?
     var endTime:String?
     
+    override init(){}
+    
     init(info:NSDictionary?) {
         super.init()
         etaskFormat(info)

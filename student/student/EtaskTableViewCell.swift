@@ -13,9 +13,13 @@ class EtaskTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var unitLabel: UILabel!
     @IBOutlet weak var statusImgView: UIImageView!
     
+    func initCell(data:EtaskModel) {
+        titleLabel.text = data.name!
+        detailLabel.text = data.subTitle!
+        typeLabel.text = data.summary!
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
