@@ -24,6 +24,8 @@ class EtaskTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        tableView.backgroundColor = QKColor.lightGrayColor()
+        
         dataSource = etaskBL.findAll()
     }
 
@@ -51,6 +53,7 @@ class EtaskTableViewController: UITableViewController {
         let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
         cell.initCell(etaskModel)
 
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     

@@ -66,10 +66,9 @@ class AskTableViewController: UITableViewController {
         
         var askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
         
-        //let imageHeight = CGFloat(Float(tableView.frame.size.width) / Float(askCellModel.pictures.count) - 20.0)
-        //cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height+imageHeight)
-        
         cell.initCell(askCellModel)
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     
