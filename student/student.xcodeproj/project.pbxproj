@@ -11,7 +11,8 @@
 		160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F48121BFCC9AB00796A49 /* AskTableViewController.swift */; };
 		160F48161BFCCF1400796A49 /* AskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160F48141BFCCF1400796A49 /* AskTableViewCell.swift */; };
 		160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 160F48151BFCCF1400796A49 /* AskTableViewCell.xib */; };
-
+		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
+		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
 		E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */; };
 		E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */; };
@@ -20,7 +21,6 @@
 		E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B5C1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift */; };
 		E3365B5F1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3365B5D1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib */; };
 		E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB736A1C06A26C00E76E55 /* EtaskTableViewController.swift */; };
-
 		E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */; };
 		E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98A91661BF4B4E9008DB1A9 /* Main.storyboard */; };
 		E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98A91691BF4B4E9008DB1A9 /* Assets.xcassets */; };
@@ -72,8 +72,9 @@
 		160F48121BFCC9AB00796A49 /* AskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskTableViewController.swift; sourceTree = "<group>"; };
 		160F48141BFCCF1400796A49 /* AskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskTableViewCell.swift; sourceTree = "<group>"; };
 		160F48151BFCCF1400796A49 /* AskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskTableViewCell.xib; sourceTree = "<group>"; };
-
 		2A7BD90C62B542553D2358FB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
+		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
 		E3365B581C0D29D9002DCCC6 /* LTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConfig.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		E3365B5C1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskTableViewCell.swift; sourceTree = "<group>"; };
 		E3365B5D1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EtaskTableViewCell.xib; sourceTree = "<group>"; };
 		E3FB736A1C06A26C00E76E55 /* EtaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskTableViewController.swift; sourceTree = "<group>"; };
-
 		E98A915F1BF4B4E9008DB1A9 /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E98A91671BF4B4E9008DB1A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,10 +115,8 @@
 		E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskNewView.xib; sourceTree = "<group>"; };
 		E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskDetailView.xib; sourceTree = "<group>"; };
 		E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskReplyView.xib; sourceTree = "<group>"; };
-
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +162,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7BA51AB91C1B051400B72241 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7BA51ABA1C1B053700B72241 /* EtaskModel.swift */,
+				7BA51ABC1C1B05F100B72241 /* UserModel.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		E3365B511C0C66A2002DCCC6 /* http */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,10 +187,8 @@
 				E98A91761BF4B4E9008DB1A9 /* studentTests */,
 				E98A91811BF4B4E9008DB1A9 /* studentUITests */,
 				E98A91601BF4B4E9008DB1A9 /* Products */,
-
 				21D53F7B63EC5F6F4530F45D /* Pods */,
 				1AC900323358021ACE2A7D42 /* Frameworks */,
-
 			);
 			sourceTree = "<group>";
 		};
@@ -202,9 +205,8 @@
 		E98A91611BF4B4E9008DB1A9 /* student */ = {
 			isa = PBXGroup;
 			children = (
-
+				7BA51AB91C1B051400B72241 /* model */,
 				E3365B511C0C66A2002DCCC6 /* http */,
-
 				E98A91A71BF4BF42008DB1A9 /* common */,
 				E98A91921BF4B564008DB1A9 /* etask */,
 				E98A91911BF4B55F008DB1A9 /* ask */,
@@ -252,7 +254,6 @@
 		E98A91911BF4B55F008DB1A9 /* ask */ = {
 			isa = PBXGroup;
 			children = (
-				166AF2FC1C128E85001028C3 /* Model */,
 				E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */,
 				E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */,
 				E98A91B81BF4C2A9008DB1A9 /* AskNewViewController.swift */,
@@ -302,14 +303,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E98A91871BF4B4E9008DB1A9 /* Build configuration list for PBXNativeTarget "student" */;
 			buildPhases = (
-
 				F2E051B498E36486902C177C /* Check Pods Manifest.lock */,
 				E98A915B1BF4B4E9008DB1A9 /* Sources */,
 				E98A915C1BF4B4E9008DB1A9 /* Frameworks */,
 				E98A915D1BF4B4E9008DB1A9 /* Resources */,
 				9662E2126B34585087A6581C /* Embed Pods Frameworks */,
 				9A6DD5CD0AE8DA28C158AEAE /* Copy Pods Resources */,
-
 			);
 			buildRules = (
 			);
@@ -367,9 +366,7 @@
 				TargetAttributes = {
 					E98A915E1BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
-
 						DevelopmentTeam = 8W263924Q3;
-
 					};
 					E98A91721BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -443,9 +440,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-
 		9662E2126B34585087A6581C /* Embed Pods Frameworks */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -460,28 +455,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-
 		9A6DD5CD0AE8DA28C158AEAE /* Copy Pods Resources */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-
 			name = "Copy Pods Resources";
-
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F2E051B498E36486902C177C /* Check Pods Manifest.lock */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -489,14 +478,11 @@
 			inputPaths = (
 			);
 			name = "Check Pods Manifest.lock";
-
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -508,15 +494,15 @@
 			files = (
 				E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */,
 				E98A91BB1BF4C2B3008DB1A9 /* AskDetailViewController.swift in Sources */,
-				7B0DB9E71BFAFE7B00AE7402 /* ServiceApi.swift in Sources */,
 				E98A919E1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift in Sources */,
 				E3365B5B1C0D2B11002DCCC6 /* Student.swift in Sources */,
 				E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */,
 				E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */,
 				E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */,
-				7B0DB9E51BFAFDBD00AE7402 /* HttpRequest.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
+				7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */,
 				E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */,
+				7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */,
 				E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */,
 				E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */,
 				E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */,
@@ -527,7 +513,6 @@
 				160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */,
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
 				E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */,
-				166AF2FE1C128EA9001028C3 /* AskCellModel.swift in Sources */,
 				E98A91941BF4B7A6008DB1A9 /* EtaskListViewController.swift in Sources */,
 				E98A91B91BF4C2A9008DB1A9 /* AskNewViewController.swift in Sources */,
 			);
@@ -667,13 +652,11 @@
 		};
 		E98A91881BF4B4E9008DB1A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-
 			baseConfigurationReference = F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-
 				INFOPLIST_FILE = student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student;
@@ -684,13 +667,11 @@
 		};
 		E98A91891BF4B4E9008DB1A9 /* Release */ = {
 			isa = XCBuildConfiguration;
-
 			baseConfigurationReference = 2A7BD90C62B542553D2358FB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-
 				INFOPLIST_FILE = student/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student;
