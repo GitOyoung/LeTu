@@ -76,12 +76,27 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zy5-9G-fgN">
+                    <rect key="frame" x="257" y="463" width="55" height="55"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="DlP-2H-ful"/>
+                        <constraint firstAttribute="width" constant="55" id="Yqy-AU-pFs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="提问" backgroundImage="hudong_tiwen"/>
+                    <connections>
+                        <action selector="submitNewQuestion:" destination="-1" eventType="touchUpInside" id="nZ9-sM-tGT"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Zy5-9G-fgN" secondAttribute="bottom" constant="50" id="09y-Kj-Xqe"/>
                 <constraint firstItem="Ozp-5A-utw" firstAttribute="top" secondItem="mH0-TL-dcY" secondAttribute="bottom" constant="1" id="0sy-5k-2qX"/>
                 <constraint firstItem="mH0-TL-dcY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4HR-be-DDc"/>
+                <constraint firstAttribute="trailing" secondItem="Zy5-9G-fgN" secondAttribute="trailing" constant="8" id="6Co-jR-Hqi"/>
                 <constraint firstAttribute="bottom" secondItem="Ozp-5A-utw" secondAttribute="bottom" constant="35" id="HaT-xm-CgN"/>
                 <constraint firstAttribute="trailing" secondItem="SWV-Gd-0nB" secondAttribute="trailing" id="KfI-7r-1VG"/>
                 <constraint firstItem="mH0-TL-dcY" firstAttribute="top" secondItem="SWV-Gd-0nB" secondAttribute="bottom" id="dzJ-C5-EZ4"/>
@@ -94,4 +109,7 @@
             <point key="canvasLocation" x="280" y="343"/>
         </view>
     </objects>
+    <resources>
+        <image name="hudong_tiwen" width="54" height="54"/>
+    </resources>
 </document>

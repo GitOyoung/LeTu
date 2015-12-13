@@ -45,14 +45,14 @@ class AskDAO {
             acm2.pictures = ["kewen_img2","kewen_img3"];
             
             let acm3 = AskCellModel()
-            acm3.etaskName = "Read & Write"
+            acm3.etaskName = "1＋1＝2？"
             acm3.createdTime = "2015-12-09"
             acm3.classStudentName = "三年五班 韩梅梅"
-            acm3.title = "Are you OK？"
+            acm3.title = "为什么1+1=2？"
             acm3.isAdopted = true
             acm3.likeCount = 12
             acm3.commentCount = 12
-            acm3.pictures = ["kewen_img1","kewen_img2","kewen_img3"];
+            acm3.pictures = ["kewen_img3","kewen_img2","kewen_img1"];
             
             let acm4 = AskCellModel()
             acm4.etaskName = "Read & Write"
@@ -105,5 +105,19 @@ class AskDAO {
         var yingyuList = NSMutableArray()
         yingyuList.addObject(self.askListData[1])
         return yingyuList
+    }
+    
+    /// 获取语文信息
+    func findYuwen() -> NSMutableArray {
+        var yuwenList = NSMutableArray()
+        yuwenList.addObject(self.askListData[0])
+        return yuwenList
+    }
+    
+    /// 获取数学信息
+    func findShuxue() -> NSMutableArray {
+        var shuxueList = NSMutableArray()
+        shuxueList.addObject(self.askListData[2])
+        return shuxueList
     }
 }

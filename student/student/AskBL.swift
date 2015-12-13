@@ -18,13 +18,13 @@ class AskBL {
     ///查询语文数据
     func findYuwen() -> NSMutableArray {
         var dao:AskDAO = AskDAO.sharedInstance
-        return dao.findAll()
+        return dao.findYuwen()
     }
     
     ///查询数学数据
     func findShuxue() -> NSMutableArray {
         var dao:AskDAO = AskDAO.sharedInstance
-        return dao.findAll()
+        return dao.findShuxue()
     }
     
     ///查询英语数据

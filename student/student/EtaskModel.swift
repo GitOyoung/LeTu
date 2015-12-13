@@ -28,7 +28,7 @@ extension NSDate{
 }
 
 class EtaskModel: NSObject {
-    var id:String?
+    var etaskID:String?
     var name:String?
     var subTitle:String?
     var summary:String?
@@ -59,7 +59,7 @@ class EtaskModel: NSObject {
     func etaskFormat(etaskInfo:NSDictionary?){
         if let info = etaskInfo {
             
-            id = info["etaskId"] as? String
+            etaskID = info["etaskId"] as? String
             name = info["name"] as? String
             subTitle = info["subTitleBook"] as? String
             summary = info["subTitleExeBook"] as? String
@@ -76,9 +76,11 @@ class EtaskModel: NSObject {
             unitPeriod = info["unitPeriod"] as? [String]
             term = info["term"] as? String
             termId = info["termId"] as? Int
-            startTime = NSDate().timeStampToString(info["startTime"]!["time"] as! String)
-            endTime = NSDate().timeStampToString(info["endTime"]!["time"] as! String)
-            
+            let startTimeDic = info["startTime"] as! NSDictionary
+            print(startTimeDic["time"])
+            startTime = NSDate().timeStampToString(String(startTimeDic["time"]))
+            let endTimeDic = info["endTime"] as! NSDictionary
+            endTime = NSDate().timeStampToString(String(endTimeDic["time"]))
         }
 
     }

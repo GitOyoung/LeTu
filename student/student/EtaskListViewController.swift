@@ -132,4 +132,9 @@ class EtaskListViewController: UIViewController, HttpProtocol {
         }
     }
     
+    @IBAction func jumpToNewEtaskView(sender: AnyObject) {
+        let newEtaskVC = NewEtaskListViewController()
+        self.presentViewController(newEtaskVC, animated: true, completion: nil)
+    }
+
 }

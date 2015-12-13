@@ -113,4 +113,8 @@ class AskListViewController: UIViewController {
         self.addChildViewController(tableViewController)
     }
 
+    @IBAction func submitNewQuestion(sender: AnyObject) {
+        let askNewVC = AskNewViewController()
+        self.presentViewController(askNewVC, animated: true, completion: nil)
+    }
 }

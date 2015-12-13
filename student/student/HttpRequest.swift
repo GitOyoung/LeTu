@@ -42,7 +42,7 @@ class HttpRequest:NSObject {
         
         Alamofire.request(.POST, url, parameters: params as? [String : AnyObject])
             .responseJSON { response -> Void in
-                
+                debugPrint(response)
                 let data = response.data
 
                 do {
