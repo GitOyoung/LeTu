@@ -14,29 +14,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="作业情况" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yg-5c-hhS">
-                    <rect key="frame" x="127" y="223" width="68" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnH-tD-QqW">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新作业" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-hh-wCp">
-                            <rect key="frame" x="134.5" y="20" width="51" height="21"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51" id="9PI-Yi-jqT"/>
-                                <constraint firstAttribute="width" constant="51" id="Sij-EI-Qx0"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fIo-7Y-kzH"/>
-                                <constraint firstAttribute="height" constant="21" id="mSh-qa-09v"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcG-ft-70j">
                             <rect key="frame" x="8" y="19" width="22" height="22"/>
                             <animations/>
@@ -49,6 +29,18 @@
                                 <action selector="goBack:" destination="-1" eventType="touchUpInside" id="Fgv-jy-7LW"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作业情况" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-hh-wCp">
+                            <rect key="frame" x="126" y="20" width="68" height="21"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="8gJ-wN-KJZ"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="fIo-7Y-kzH"/>
+                                <constraint firstAttribute="height" constant="21" id="mSh-qa-09v"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.0" green="0.50196078430000002" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,13 +54,41 @@
                         <constraint firstAttribute="bottom" secondItem="8xO-hh-wCp" secondAttribute="bottom" constant="8" id="wNb-br-Zmb"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-LG-bIt">
+                    <rect key="frame" x="8" y="530" width="75" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="Ocs-uk-L8r"/>
+                        <constraint firstAttribute="height" constant="30" id="icZ-9r-QEU"/>
+                    </constraints>
+                    <state key="normal" title="开始做作业"/>
+                    <connections>
+                        <action selector="startEtask:" destination="-1" eventType="touchUpInside" id="e0i-71-8te"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEU-Gm-RyW">
+                    <rect key="frame" x="207" y="530" width="105" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="105" id="8sZ-PG-0WW"/>
+                        <constraint firstAttribute="height" constant="30" id="Ltx-YJ-1id"/>
+                    </constraints>
+                    <state key="normal" title="查看已批改作业"/>
+                    <connections>
+                        <action selector="reviewEtask:" destination="-1" eventType="touchUpInside" id="Dsb-Wz-HUI"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="cnH-tD-QqW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="B49-lq-YQa"/>
+                <constraint firstAttribute="bottom" secondItem="IEU-Gm-RyW" secondAttribute="bottom" constant="8" id="Da5-JC-CMs"/>
                 <constraint firstItem="cnH-tD-QqW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N0a-vh-S8T"/>
+                <constraint firstAttribute="bottom" secondItem="3pH-LG-bIt" secondAttribute="bottom" constant="8" id="R5D-ix-TgY"/>
                 <constraint firstAttribute="trailing" secondItem="cnH-tD-QqW" secondAttribute="trailing" id="VGN-wH-TiJ"/>
+                <constraint firstItem="3pH-LG-bIt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="aIf-Ej-eaI"/>
+                <constraint firstAttribute="trailing" secondItem="IEU-Gm-RyW" secondAttribute="trailing" constant="8" id="jTL-EZ-PNk"/>
             </constraints>
             <point key="canvasLocation" x="240" y="328"/>
         </view>
