@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MeLoginViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="name" destination="bwZ-Hi-JQf" id="Y6P-Um-JYy"/>
+                <outlet property="password" destination="u1Z-4p-CNs" id="L6S-gx-wql"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Cqy-hO-OwJ"/>
             </connections>
         </placeholder>
@@ -13,7 +15,58 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpJ-vj-2bI">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <color key="backgroundColor" red="1" green="0.89725644339999999" blue="0.48542580340000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="65" id="VCj-CS-KWG"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwZ-Hi-JQf" userLabel="name">
+                    <rect key="frame" x="0.0" y="88" width="320" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="d8e-nB-lIa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u1Z-4p-CNs" userLabel="pwd">
+                    <rect key="frame" x="0.0" y="136" width="320" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="Ecl-cu-l1d"/>
+                        <constraint firstAttribute="height" constant="48" id="cVA-Zw-RPR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHr-AV-dHn">
+                    <rect key="frame" x="16" y="204" width="288" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.89725644339999999" blue="0.48542580340000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="9WM-Fm-edi"/>
+                    </constraints>
+                    <state key="normal" title="登录"/>
+                    <connections>
+                        <action selector="doLogin:" destination="-1" eventType="touchUpInside" id="pdi-Ac-MC0"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bwZ-Hi-JQf" secondAttribute="trailing" id="2dn-XD-okI"/>
+                <constraint firstAttribute="trailing" secondItem="SHr-AV-dHn" secondAttribute="trailing" constant="16" id="8nV-Xp-gg8"/>
+                <constraint firstAttribute="trailing" secondItem="u1Z-4p-CNs" secondAttribute="trailing" id="9My-Nk-sbQ"/>
+                <constraint firstItem="u1Z-4p-CNs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CZM-Fh-VxV"/>
+                <constraint firstItem="SHr-AV-dHn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Mw3-v3-pV2"/>
+                <constraint firstAttribute="trailing" secondItem="ZpJ-vj-2bI" secondAttribute="trailing" id="Rbr-RK-vXz"/>
+                <constraint firstItem="bwZ-Hi-JQf" firstAttribute="top" secondItem="ZpJ-vj-2bI" secondAttribute="bottom" constant="23" id="Rxx-fb-l19"/>
+                <constraint firstItem="SHr-AV-dHn" firstAttribute="top" secondItem="u1Z-4p-CNs" secondAttribute="bottom" constant="20" id="aeJ-xf-aeT"/>
+                <constraint firstItem="u1Z-4p-CNs" firstAttribute="top" secondItem="bwZ-Hi-JQf" secondAttribute="bottom" id="iLy-it-ruv"/>
+                <constraint firstItem="ZpJ-vj-2bI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ral-Wx-Fi7"/>
+                <constraint firstItem="ZpJ-vj-2bI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yga-eq-Hzs"/>
+                <constraint firstItem="bwZ-Hi-JQf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ynZ-Ud-xh5"/>
+            </constraints>
             <point key="canvasLocation" x="240" y="328"/>
         </view>
     </objects>

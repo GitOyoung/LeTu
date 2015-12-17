@@ -49,8 +49,6 @@
 		E98A919E1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919D1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift */; };
 		E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */; };
 		E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */; };
-		E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A31BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift */; };
-		E98A91A61BF4BD53008DB1A9 /* MeBeforeLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91A51BF4BD53008DB1A9 /* MeBeforeLoginView.xib */; };
 		E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91A81BF4BF58008DB1A9 /* StudentBaseViewController.swift */; };
 		E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AC1BF4C0B0008DB1A9 /* EtaskDetailView.xib */; };
 		E98A91AF1BF4C103008DB1A9 /* EtaskWorkonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91AE1BF4C103008DB1A9 /* EtaskWorkonView.xib */; };
@@ -132,8 +130,6 @@
 		E98A919D1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskDetailViewController.swift; sourceTree = "<group>"; };
 		E98A919F1BF4BCC8008DB1A9 /* AskListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskListViewController.swift; sourceTree = "<group>"; };
 		E98A91A11BF4BCD9008DB1A9 /* AskListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskListView.xib; sourceTree = "<group>"; };
-		E98A91A31BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeBeforeLoginViewController.swift; sourceTree = "<group>"; };
-		E98A91A51BF4BD53008DB1A9 /* MeBeforeLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeBeforeLoginView.xib; sourceTree = "<group>"; };
 		E98A91A81BF4BF58008DB1A9 /* StudentBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentBaseViewController.swift; sourceTree = "<group>"; };
 		E98A91AC1BF4C0B0008DB1A9 /* EtaskDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EtaskDetailView.xib; sourceTree = "<group>"; };
 		E98A91AE1BF4C103008DB1A9 /* EtaskWorkonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EtaskWorkonView.xib; sourceTree = "<group>"; };
@@ -322,10 +318,8 @@
 		E98A91901BF4B558008DB1A9 /* me */ = {
 			isa = PBXGroup;
 			children = (
-				E98A91A31BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift */,
 				E98A91B41BF4C226008DB1A9 /* MeLoginViewController.swift */,
 				E98A91B61BF4C233008DB1A9 /* MeAfterLoginViewController.swift */,
-				E98A91A51BF4BD53008DB1A9 /* MeBeforeLoginView.xib */,
 				E98A91B01BF4C20C008DB1A9 /* MeLoginView.xib */,
 				E98A91B21BF4C216008DB1A9 /* MeAfterLoginView.xib */,
 			);
@@ -502,7 +496,6 @@
 				166AF3281C205AE7001028C3 /* PanduanViewController.xib in Resources */,
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
 				E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */,
-				E98A91A61BF4BD53008DB1A9 /* MeBeforeLoginView.xib in Resources */,
 				E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */,
 				160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */,
 				E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */,
@@ -594,7 +587,6 @@
 				166AF3141C1C0E4F001028C3 /* EtaskDAO.swift in Sources */,
 				E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */,
 				E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */,
-				E98A91A41BF4BD43008DB1A9 /* MeBeforeLoginViewController.swift in Sources */,
 				166AF3161C1C17D1001028C3 /* HttpUtil.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
