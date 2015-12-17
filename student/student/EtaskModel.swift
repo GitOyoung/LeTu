@@ -47,6 +47,8 @@ class EtaskModel: NSObject {
     var termId:Int?
     var startTime:String?
     var endTime:String?
+    var classesId:Int?
+    var recordId:Int?
     
     override init(){}
     
@@ -59,28 +61,29 @@ class EtaskModel: NSObject {
     func etaskFormat(etaskInfo:NSDictionary?){
         if let info = etaskInfo {
             
-            etaskID = info["etaskId"] as? String
-            name = info["name"] as? String
-            subTitle = info["subTitleBook"] as? String
-            summary = info["subTitleExeBook"] as? String
-            bookInfo = info["bookInfo"] == nil ? "" : info["bookInfo"] as? String
-            bookInfoId = info["bookInfoId"] as? Int
-            exeBook = info["exeBook"]  == nil ? "" : info["exeBook"] as? String
-            exeBookId = info["exeBookId"] as? Int
-            grade = info["grade"] == nil ? "" : info["grade"] as? String
-            subject = info["subject"] as? String
-            subjectId = info["subjectId"] as? Int
-            teacherId = info["teacherId"] as? Int
-            exeUnitPeriod = info["exeUnitPeriod"] as? String
-            questionCount = info["questionCount"] as? Int
-            unitPeriod = info["unitPeriod"] as? [String]
-            term = info["term"] as? String
-            termId = info["termId"] as? Int
-            let startTimeDic = info["startTime"] as! NSDictionary
-            print(startTimeDic["time"])
+            etaskID = info["etask"]!["etaskId"] as? String
+            name = info["etask"]!["name"] as? String
+            subTitle = info["etask"]!["subTitleBook"] as? String
+            summary = info["etask"]!["subTitleExeBook"] as? String
+            bookInfo = info["etask"]!["bookInfo"] == nil ? "" : info["etask"]!["bookInfo"] as? String
+            bookInfoId = info["etask"]!["bookInfoId"] as? Int
+            exeBook = info["etask"]!["exeBook"]  == nil ? "" : info["etask"]!["exeBook"] as? String
+            exeBookId = info["etask"]!["exeBookId"] as? Int
+            grade = info["etask"]!["grade"] == nil ? "" : info["etask"]!["grade"] as? String
+            subject = info["etask"]!["subject"] as? String
+            subjectId = info["etask"]!["subjectId"] as? Int
+            teacherId = info["etask"]!["teacherId"] as? Int
+            exeUnitPeriod = info["etask"]!["exeUnitPeriod"] as? String
+            questionCount = info["etask"]!["questionCount"] as? Int
+            unitPeriod = info["etask"]!["unitPeriod"] as? [String]
+            term = info["etask"]!["term"] as? String
+            termId = info["etask"]!["termId"] as? Int
+            let startTimeDic = info["etask"]!["startTime"] as! NSDictionary
             startTime = NSDate().timeStampToString(String(startTimeDic["time"]))
-            let endTimeDic = info["endTime"] as! NSDictionary
+            let endTimeDic = info["etask"]!["endTime"] as! NSDictionary
             endTime = NSDate().timeStampToString(String(endTimeDic["time"]))
+            classesId = info["classesId"] as? Int
+            recordId = info["recordId"] as? Int
         }
 
     }

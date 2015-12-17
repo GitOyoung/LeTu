@@ -155,7 +155,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     func didreceiveResult(result:NSDictionary) {
         let resultData = result["data"] as! NSMutableArray
         for etask in resultData {
-            var e = EtaskModel(info: etask["etask"] as! NSDictionary)
+            var e = EtaskModel(info: etask as! NSDictionary)
             dataSource.addObject(e)
         }
         tableView.reloadData()
