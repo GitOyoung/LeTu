@@ -10,19 +10,26 @@ import UIKit
 
 class EtaskDetailViewController: UIViewController {
     
+    // MARK: properties
+    var etask:EtaskModel?
+    
     override func viewDidLoad() {
+        print("开始load etaskDetail")
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        print(etask)
+        if let etask = self.etask {
+            
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     ///按钮 － 开始做作业
     @IBAction func startEtask(sender: AnyObject) {
-        var etaskWorkonVC = EtaskWorkonViewController()
+        let etaskWorkonVC = EtaskWorkonViewController()
         self.presentViewController(etaskWorkonVC, animated: true, completion: nil)
     }
     

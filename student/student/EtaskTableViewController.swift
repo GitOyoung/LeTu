@@ -63,8 +63,11 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var etaskDetailVC = EtaskDetailViewController()
-        //self.navigationController?.pushViewController(etaskDetailVC, animated: true)
+        let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
+
+        let etaskDetailVC = EtaskDetailViewController()
+        etaskDetailVC.etask = etaskModel
+            
         self.presentViewController(etaskDetailVC, animated: true, completion: nil)
     }
     
