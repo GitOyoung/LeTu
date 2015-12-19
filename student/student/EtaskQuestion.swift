@@ -10,17 +10,23 @@ import UIKit
 
 class EtaskQuestion: NSObject {
     
-    var type:QuestionTypeEnum
+    var type:String
     var ordinal:Int
-    var questionBody:String
+    var questionBody:String?
     var options:[[String: String]]?
     
     init(data:NSDictionary) {
-        self.type = QuestionTypeEnum(rawValue: data["type"] as! String)!
-        self.ordinal = data["ordinal"] as! Int
-        self.questionBody = data["question"] as! String
+        
+        let ptype:Int = data["type"] as! Int
         let rawOptions = data["option"]
-        print(rawOptions)
+        print("===========")
+        print(ptype)
+//        self.type = QuestionTypeEnum(rawValue: "\(ptype)" )!.displayTitle()
+        self.type = String(ptype)
+        self.ordinal = data["ordinal"] as! Int
+        self.questionBody = data["question"] as? String
+        self.options = rawOptions as? [[String:String]]
+        
         super.init()
     }
     

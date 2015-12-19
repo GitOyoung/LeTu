@@ -66,7 +66,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
         let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
         let etaskWorkonViewController = EtaskWorkonViewController()
         etaskWorkonViewController.etask = etaskModel
-        
+        print("etask list jump to etaskWorkOn")
 
 //        let etaskDetailVC = EtaskDetailViewController()
 //        etaskDetailVC.etask = etaskModel
@@ -121,7 +121,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
 
     // MARK: 刷新数据
     func requestData(pageIndex: Int) {
-        var http: HttpRequest = HttpRequest()
+        let http: HttpRequest = HttpRequest()
         http.delegate = self
         let url = ServiceApi.getSearchEtaskListUrl()
         if LTConfig.defaultConfig().defaultUser != nil
@@ -158,7 +158,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     func didreceiveResult(result:NSDictionary) {
         let resultData = result["data"] as! NSMutableArray
         for etask in resultData {
-            var e = EtaskModel(info: etask as! NSDictionary)
+            let e = EtaskModel(info: etask as? NSDictionary)
             dataSource.addObject(e)
         }
         tableView.reloadData()
