@@ -21,6 +21,7 @@ class EtaskQuestion: NSObject {
         self.questionBody = data["question"] as! String
         let rawOptions = data["option"]
         print(rawOptions)
+        super.init()
     }
     
     

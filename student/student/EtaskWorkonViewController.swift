@@ -13,7 +13,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     // MARK: properties
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
-    var questions:[EtaskQuestion]?
+    var questions = [EtaskQuestion]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,11 +96,12 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         print("etask detail")
         let questionsData = result["etaskQuestions"] as! Array<NSDictionary>
         print("共有\(questionsData.count)个问题")
-        if questionsData.count > 0 {
-            
-         
-        }
+        for currentQuestionData in questionsData {
+            var currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+            questions += [currentQuestion]
 
+        }
+         
         
     }
 }
