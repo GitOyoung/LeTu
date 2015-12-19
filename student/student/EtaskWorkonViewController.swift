@@ -8,14 +8,17 @@
 
 import UIKit
 
-class EtaskWorkonViewController: UIViewController {
-    
+class EtaskWorkonViewController: UIViewController, HttpProtocol {
+
+    // MARK: properties
     @IBOutlet weak var contentView: UIView!
+    var etask:EtaskModel?
+    var questions:[EtaskQuestion]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.initQuestions()
+        //self.initQuestions()
+        self.loadQuestions()
     }
     
     ///初始化题目
@@ -44,6 +47,29 @@ class EtaskWorkonViewController: UIViewController {
         self.contentView.bringSubviewToFront(self.contentView.subviews[0])
     }
     
+    func loadQuestions() {
+        if let etask = self.etask {
+            // 获取电子作业详情地址
+            let url: String = ServiceApi.getEtaskDetailUrl()
+            // 判断是否已经有用户，如果有则发送请求
+            if LTConfig.defaultConfig().defaultUser != nil{
+                
+                let student:Student = LTConfig.defaultConfig().defaultUser!
+                
+                let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":student.uuid,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":student.accessToken!]
+                let http:HttpRequest = HttpRequest()
+                
+                http.delegate? = self
+                
+                http.postRequest(url, params: params)
+                
+            }
+            
+            
+        }
+       
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,5 +90,17 @@ class EtaskWorkonViewController: UIViewController {
     ///按钮 － 返回
     @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func didreceiveResult(result: NSDictionary) {
+        print("etask detail")
+        let questionsData = result["etaskQuestions"] as! Array<NSDictionary>
+        print("共有\(questionsData.count)个问题")
+        if questionsData.count > 0 {
+            
+         
+        }
+
+        
     }
 }

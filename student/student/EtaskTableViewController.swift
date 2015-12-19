@@ -64,11 +64,14 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
+        let etaskWorkonViewController = EtaskWorkonViewController()
+        etaskWorkonViewController.etask = etaskModel
+        
 
-        let etaskDetailVC = EtaskDetailViewController()
-        etaskDetailVC.etask = etaskModel
-            
-        self.presentViewController(etaskDetailVC, animated: true, completion: nil)
+//        let etaskDetailVC = EtaskDetailViewController()
+//        etaskDetailVC.etask = etaskModel
+        
+        self.presentViewController(etaskWorkonViewController, animated: true, completion: nil)
     }
     
     /*

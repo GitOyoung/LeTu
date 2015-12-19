@@ -62,6 +62,8 @@
 		E98A91BF1BF4C2D1008DB1A9 /* AskNewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */; };
 		E98A91C11BF4C2D9008DB1A9 /* AskDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */; };
 		E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */; };
+		E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58CD1C24CD5A008364C2 /* EtaskQuestion.swift */; settings = {ASSET_TAGS = (); }; };
+		E99F58D01C24CD88008364C2 /* QuestionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +145,8 @@
 		E98A91BE1BF4C2D1008DB1A9 /* AskNewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskNewView.xib; sourceTree = "<group>"; };
 		E98A91C01BF4C2D9008DB1A9 /* AskDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskDetailView.xib; sourceTree = "<group>"; };
 		E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskReplyView.xib; sourceTree = "<group>"; };
+		E99F58CD1C24CD5A008364C2 /* EtaskQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskQuestion.swift; sourceTree = "<group>"; };
+		E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTypeEnum.swift; sourceTree = "<group>"; };
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,6 +247,8 @@
 				166AF3071C1BFD4C001028C3 /* AskCellModel.swift */,
 				7BA51ABA1C1B053700B72241 /* EtaskModel.swift */,
 				7BA51ABC1C1B05F100B72241 /* UserModel.swift */,
+				E99F58CD1C24CD5A008364C2 /* EtaskQuestion.swift */,
+				E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -590,6 +596,7 @@
 				166AF3161C1C17D1001028C3 /* HttpUtil.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
+				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
 				7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */,
 				E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */,
@@ -603,6 +610,7 @@
 				E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */,
 				E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */,
 				160F48161BFCCF1400796A49 /* AskTableViewCell.swift in Sources */,
+				E99F58D01C24CD88008364C2 /* QuestionTypeEnum.swift in Sources */,
 				160F480F1BF8E00900796A49 /* QKColor.swift in Sources */,
 				160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */,
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
