@@ -64,6 +64,8 @@
 		E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */; };
 		E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58CD1C24CD5A008364C2 /* EtaskQuestion.swift */; settings = {ASSET_TAGS = (); }; };
 		E99F58D01C24CD88008364C2 /* QuestionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */; settings = {ASSET_TAGS = (); }; };
+		E99F58D31C24ED79008364C2 /* QuestionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */; settings = {ASSET_TAGS = (); }; };
+		E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +149,8 @@
 		E98A91C21BF4C2E4008DB1A9 /* AskReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskReplyView.xib; sourceTree = "<group>"; };
 		E99F58CD1C24CD5A008364C2 /* EtaskQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskQuestion.swift; sourceTree = "<group>"; };
 		E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTypeEnum.swift; sourceTree = "<group>"; };
+		E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTitleView.swift; sourceTree = "<group>"; };
+		E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DanxuanAnswerControl.swift; sourceTree = "<group>"; };
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -355,6 +359,7 @@
 		E98A91921BF4B564008DB1A9 /* etask */ = {
 			isa = PBXGroup;
 			children = (
+				E99F58D11C24ED23008364C2 /* uicomponents */,
 				166AF3201C20581E001028C3 /* QuestionType */,
 				166AF3121C1C0E41001028C3 /* DAO */,
 				166AF30F1C1C0E06001028C3 /* BusinessLogicLayer */,
@@ -382,6 +387,15 @@
 				E3365B5A1C0D2B11002DCCC6 /* Student.swift */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		E99F58D11C24ED23008364C2 /* uicomponents */ = {
+			isa = PBXGroup;
+			children = (
+				E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */,
+				E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */,
+			);
+			name = uicomponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -584,6 +598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E99F58D31C24ED79008364C2 /* QuestionTitleView.swift in Sources */,
 				E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */,
 				166AF32B1C206438001028C3 /* LianxianViewController.swift in Sources */,
 				E98A91BB1BF4C2B3008DB1A9 /* AskDetailViewController.swift in Sources */,
@@ -608,6 +623,7 @@
 				E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */,
 				166AF30C1C1BFD99001028C3 /* AskBL.swift in Sources */,
 				E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */,
+				E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */,
 				E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */,
 				160F48161BFCCF1400796A49 /* AskTableViewCell.swift in Sources */,
 				E99F58D01C24CD88008364C2 /* QuestionTypeEnum.swift in Sources */,

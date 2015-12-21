@@ -10,15 +10,18 @@ import UIKit
 
 class DanxuanViewController: UIViewController {
 
+    var question:EtaskQuestion?
+    
+    // MARK: properties
+    @IBOutlet weak var questionTitleView: QuestionTitleView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setQuestionTitle(question)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -32,4 +35,17 @@ class DanxuanViewController: UIViewController {
     }
     */
 
+    func setQuestionTitle(question:EtaskQuestion?) {
+
+        questionTitleView.backgroundColor = QKColor.whiteColor()
+        
+        if let question = question {
+            questionTitleView.ordinalLabel.text = String(question.ordinal)
+            questionTitleView.titleLabel.text = question.type.displayTitle()
+        } else {
+            questionTitleView.ordinalLabel.text = "9"
+            questionTitleView.titleLabel.text = "测试题型"
+        }
+
+    }
 }

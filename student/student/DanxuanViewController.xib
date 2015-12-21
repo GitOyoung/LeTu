@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8191"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DanxuanViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="questionTitleView" destination="Cuj-Ag-qfD" id="62f-rN-1qR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,16 +15,31 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.单选题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZl-52-Efl">
-                    <rect key="frame" x="118" y="185" width="63" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cuj-Ag-qfD" customClass="QuestionTitleView" customModule="student" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                    <color key="backgroundColor" red="1" green="0.89725644339999999" blue="0.48542580340000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="CHU-jo-qr0"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-hR-gkH">
+                    <rect key="frame" x="0.0" y="432" width="320" height="48"/>
+                    <color key="backgroundColor" red="1" green="0.89725644339999999" blue="0.48542580340000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="1eb-st-RyJ"/>
+                    </constraints>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Cuj-Ag-qfD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3An-du-4nn"/>
+                <constraint firstAttribute="trailing" secondItem="Cuj-Ag-qfD" secondAttribute="trailing" id="H5L-L5-hti"/>
+                <constraint firstAttribute="trailing" secondItem="ORp-hR-gkH" secondAttribute="trailing" id="XXz-aM-u4n"/>
+                <constraint firstItem="Cuj-Ag-qfD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gpn-V0-U1y"/>
+                <constraint firstItem="ORp-hR-gkH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mt3-wI-lTV"/>
+                <constraint firstAttribute="bottom" secondItem="ORp-hR-gkH" secondAttribute="bottom" id="zuB-Ya-LVv"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
