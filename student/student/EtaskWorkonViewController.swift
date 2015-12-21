@@ -17,8 +17,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initQuestions()
-        //self.loadQuestions()
+        //self.initQuestions()
+        self.loadQuestions()
     }
     
     ///初始化题目

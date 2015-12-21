@@ -41,7 +41,7 @@ class DanxuanViewController: UIViewController {
         
         if let question = question {
             questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
+            questionTitleView.titleLabel.text = question.type
         } else {
             questionTitleView.ordinalLabel.text = "9"
             questionTitleView.titleLabel.text = "测试题型"
