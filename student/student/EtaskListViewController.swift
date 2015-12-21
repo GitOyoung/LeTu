@@ -107,7 +107,6 @@ class EtaskListViewController: UIViewController, HttpProtocol {
     
     
     func didreceiveResult(result: NSDictionary) {
-        print(result)
         let isSuccess:Bool = result["isSuccess"] as! Bool
         if isSuccess
         {

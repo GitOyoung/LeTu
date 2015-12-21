@@ -14,7 +14,7 @@ enum QuestionTypeEnum:String {
     
     func displayTitle() -> String {
         switch self {
-          case .DanXuan:
+        case .DanXuan:
             return "单项选择题"
         case .PanDuan:
             return "判断题"
@@ -22,6 +22,8 @@ enum QuestionTypeEnum:String {
                 return "连线题"
         case .TianKong:
                 return "填空题"
+        default:
+             return "默认"
         }
     }
     

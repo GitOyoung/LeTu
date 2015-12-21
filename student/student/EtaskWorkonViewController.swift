@@ -59,13 +59,10 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":student.uuid,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":student.accessToken!]
                 let http:HttpRequest = HttpRequest()
                 
-                http.delegate? = self
+                http.delegate = self
                 
                 http.postRequest(url, params: params)
-                
             }
-            
-            
         }
        
     }
@@ -92,16 +89,15 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //题目集合
     func didreceiveResult(result: NSDictionary) {
-        print("etask detail")
-        let questionsData = result["etaskQuestions"] as! Array<NSDictionary>
+        let etask:NSDictionary = (result["data"] as? NSDictionary)!
+        
+        let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
         print("共有\(questionsData.count)个问题")
         for currentQuestionData in questionsData {
-            var currentQuestion = EtaskQuestion.init(data: currentQuestionData)
-            questions += [currentQuestion]
-
+            let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+            questions.append(currentQuestion)
         }
-         
-        
     }
 }

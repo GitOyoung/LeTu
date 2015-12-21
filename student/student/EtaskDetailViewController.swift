@@ -51,7 +51,7 @@ class EtaskDetailViewController: UIViewController,HttpProtocol {
     
     ///按钮 － 查看已批改作业
     @IBAction func reviewEtask(sender: AnyObject) {
-        var etaskWorkonVC = EtaskWorkonViewController()
+        let etaskWorkonVC = EtaskWorkonViewController()
         self.presentViewController(etaskWorkonVC, animated: true, completion: nil)
     }
     
