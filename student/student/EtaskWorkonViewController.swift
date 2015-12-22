@@ -98,6 +98,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         for currentQuestionData in questionsData {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
+            print(currentQuestion.type)
         }
     }
 }
