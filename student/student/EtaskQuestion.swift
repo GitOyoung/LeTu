@@ -13,7 +13,7 @@ class EtaskQuestion: NSObject {
     var type:String
     var ordinal:Int
     var questionBody:String?
-    var options:[[String: String]]?
+    var options:[[String: AnyObject]]?
     
     init(data:NSDictionary) {
 
@@ -22,10 +22,10 @@ class EtaskQuestion: NSObject {
         type = QuestionTypeEnum(rawValue: "\(ptype)" )!.displayTitle()
         ordinal = data["ordinal"] as! Int
         questionBody = data["question"] as? String
-        options = rawOptions as? [[String:String]]
+        options = rawOptions as? [[String:AnyObject]]
         print("===========")
-        printQuestion()
         super.init()
+        printQuestion()
     }
     
     func printQuestion() {
