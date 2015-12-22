@@ -16,19 +16,16 @@ class EtaskQuestion: NSObject {
     var options:[[String: String]]?
     
     init(data:NSDictionary) {
-        
+
         let ptype:Int = data["type"] as! Int
         let rawOptions = data["option"]
-//        self.type = QuestionTypeEnum(rawValue: "\(ptype)" )!.displayTitle()
-        self.type = String(ptype)
-        self.ordinal = data["ordinal"] as! Int
-        self.questionBody = data["question"] as? String
-        self.options = rawOptions as? [[String:String]]
-
-        super.init()
+        type = QuestionTypeEnum(rawValue: "\(ptype)" )!.displayTitle()
+        ordinal = data["ordinal"] as! Int
+        questionBody = data["question"] as? String
+        options = rawOptions as? [[String:String]]
         print("===========")
         printQuestion()
-
+        super.init()
     }
     
     func printQuestion() {
