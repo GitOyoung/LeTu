@@ -74,11 +74,13 @@ class DanxuanViewController: UIViewController {
     //TODO: 需要确认一下排序的问题
     func setQuestionOptions(){
         var str = ""
+        let ary = ["A.","B.","C.","D."]
         for (index,option) in etaskQuestionOptions.enumerate(){
-            let ary = ["A","B","C","D"]
+            
             let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)!
             let attributedString = try? NSAttributedString(data: html_str, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil)
-            str +=  ary[index] + (attributedString?.string)!
+            str +=  ary[index] + (attributedString?.string)!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
+            
         }
         optionsLabel.text = str
     }
@@ -90,7 +92,6 @@ class DanxuanViewController: UIViewController {
         let screenWidth = screenBounds.size.width
         let offsetWidth = Int(screenWidth) - etaskQuestionOptions.count*44
         let offsetHeight = Int(answerPad.frame.height)
-        print(offsetHeight)
         for (index,_) in etaskQuestionOptions.enumerate(){
             
             frame.origin.x = CGFloat((44 + offsetWidth/(etaskQuestionOptions.count+1))*index + offsetWidth/(etaskQuestionOptions.count+1))
@@ -100,6 +101,8 @@ class DanxuanViewController: UIViewController {
             let button = UIButton(frame: frame)
             button.setTitle(ary[index], forState: .Normal)
             button.backgroundColor = UIColor.blueColor()
+            button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            answerButtonsAry.append(button)
             answerPad.addSubview(button)
         }
     }
@@ -114,5 +117,14 @@ class DanxuanViewController: UIViewController {
         }
     }
     
+    //MARK:选择选项按钮
+    func didClickOptionButton(button: UIButton){
+        let index = answerButtonsAry.indexOf(button)
+        let option = etaskQuestionOptions[index!]
+        print("选择\(index)按钮")
+        print("选项\(option.option)")
+        print("选项\(option.optionIndex)")
+        print("选项\(option.answer)")
+    }
     
 }
