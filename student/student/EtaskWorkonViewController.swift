@@ -17,8 +17,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.initQuestions()
-        self.loadQuestions()
+        self.initQuestions()
+        //self.loadQuestions()
     }
     
     ///初始化题目
@@ -98,7 +98,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         for currentQuestionData in questionsData {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
-            print(currentQuestion.type)
+            
+            let question1 = DanxuanViewController()
+            self.addChildViewController(question1)
+            self.contentView.addSubview(question1.view)
+          
         }
     }
 }

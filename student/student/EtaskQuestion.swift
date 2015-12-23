@@ -17,18 +17,16 @@ enum QuestionStatus: String{
 
     func getStatus() -> String{
         switch self {
-        case .NotStart:
-            return "未开始"
-        case .NotFinish:
-            return "未完成"
-        case .NotCorrect:
-            return "未批改"
-        case .NotRevise:
-            return "未订正"
-        case .Finish:
-            return "已完成"
-        default:
-            return "默认"
+            case .NotStart:
+                return "未开始"
+            case .NotFinish:
+                return "未完成"
+            case .NotCorrect:
+                return "未批改"
+            case .NotRevise:
+                return "未订正"
+            case .Finish:
+                return "已完成"
         }
     }
 }

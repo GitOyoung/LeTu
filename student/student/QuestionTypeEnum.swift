@@ -24,34 +24,32 @@ enum QuestionTypeEnum:String {
     
     func displayTitle() -> String {
         switch self {
-        case .DanXuan:
-            return "单项选择题"
-        case .DuoXuan:
-            return "多选题"
-        case .PanDuan:
-            return "判断题"
-        case .LianXian:
-            return "连线题"
-        case .XuanZeTianKong:
-            return "选择填空题"
-        case .PaiXu:
-            return "排序题"
-        case.TingLiXuanZe:
-            return "听力选择题"
-        case .KouSuan:
-            return "口算题"
-        case .TianKong:
-            return "填空题"
-        case .YuYinGenDu:
-            return "语音跟读题"
-        case .TingLiTianKong:
-            return "听力填空题"
-        case .JianDa:
-            return "简答题"
-        case .LangDu:
-            return "朗读题"
-        default:
-             return "默认"
+            case .DanXuan:
+                return "单项选择题"
+            case .DuoXuan:
+                return "多选题"
+            case .PanDuan:
+                return "判断题"
+            case .LianXian:
+                return "连线题"
+            case .XuanZeTianKong:
+                return "选择填空题"
+            case .PaiXu:
+                return "排序题"
+            case.TingLiXuanZe:
+                return "听力选择题"
+            case .KouSuan:
+                return "口算题"
+            case .TianKong:
+                return "填空题"
+            case .YuYinGenDu:
+                return "语音跟读题"
+            case .TingLiTianKong:
+                return "听力填空题"
+            case .JianDa:
+                return "简答题"
+            case .LangDu:
+                return "朗读题"
         }
     }
     
