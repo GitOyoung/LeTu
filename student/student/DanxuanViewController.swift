@@ -11,6 +11,7 @@ import UIKit
 class DanxuanViewController: UIViewController {
 
     var question:EtaskQuestion?
+    var etaskQuestionOptions = [EtaskQuestionOption]()
     
     // MARK: properties
     @IBOutlet weak var questionTitleView: QuestionTitleView!
@@ -26,8 +27,9 @@ class DanxuanViewController: UIViewController {
         super.viewDidLoad()
         setQuestionTitle(question)
         setQuestionBody(question)
-        setQuestionOptions(question)
-        setAnswerButtons(question)
+        getEtaskQuestionOptions(question)
+        setQuestionOptions()
+        setAnswerButtons()
         scrollContentHeight.constant = 600
         scrollView.contentSize.height = 600
     }
@@ -62,46 +64,55 @@ class DanxuanViewController: UIViewController {
     
     func setQuestionBody(question:EtaskQuestion?){
         if let question = question {
-            let attributedStr = NSMutableAttributedString(string: question.questionBody!)
+            let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
+            let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
             questionBodyLabel.attributedText = attributedStr
         }
     }
 
     
     //TODO: 需要确认一下排序的问题
-    func setQuestionOptions(question:EtaskQuestion?){
-        if let question = question {
-            if let options = question.options {
-                var htmlStr = ""
-                for option in options {
-                    let optionStr = option["option"] as! String
-                    htmlStr = htmlStr + optionStr
+    func setQuestionOptions(){
+        var str = ""
+        for (index,option) in etaskQuestionOptions.enumerate(){
+            let ary = ["A","B","C","D"]
+            let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)!
+            let attributedString = try? NSAttributedString(data: html_str, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil)
+            str +=  ary[index] + (attributedString?.string)!
+        }
+        optionsLabel.text = str
+    }
+    
+    func setAnswerButtons(){
+        var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        let ary = ["A","B","C","D"]
+        let screenBounds:CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenBounds.size.width
+        let offsetWidth = Int(screenWidth) - etaskQuestionOptions.count*44
+        let offsetHeight = Int(answerPad.frame.height)
+        print(offsetHeight)
+        for (index,_) in etaskQuestionOptions.enumerate(){
+            
+            frame.origin.x = CGFloat((44 + offsetWidth/(etaskQuestionOptions.count+1))*index + offsetWidth/(etaskQuestionOptions.count+1))
+            frame.origin.y = CGFloat((offsetHeight-44)/2)
+            frame.size.height = CGFloat(offsetHeight/2)
+            
+            let button = UIButton(frame: frame)
+            button.setTitle(ary[index], forState: .Normal)
+            button.backgroundColor = UIColor.blueColor()
+            answerPad.addSubview(button)
+        }
+    }
+    //题目选项实例化
+    func getEtaskQuestionOptions(question:EtaskQuestion?){
+        if let question = question{
+            if let options = question.options{
+                for option in options{
+                    etaskQuestionOptions.append(EtaskQuestionOption(option: option)!)
                 }
-                
-                htmlStr = htmlStr + htmlStr
-                htmlStr = htmlStr + htmlStr
-                
-                optionsLabel.text = htmlStr
             }
         }
     }
     
-    func setAnswerButtons(question:EtaskQuestion?){
-        if let question = question {
-            if let options = question.options {
-                var frame = CGRect(x: 16, y: 8, width: 44, height: 44)
-                for (index, option) in options.enumerate() {
-                    let button = UIButton()
-                    
-                    frame.origin.x = CGFloat(16 + 44 * (index + 8))
-                    
-                    button.frame = frame
-                    button.setTitle(String(index), forState: .Normal)
-                    answerPad.addSubview(button)
-                }
-            }
-            
-        }
-    }
     
 }

@@ -51,9 +51,8 @@ class EtaskQuestion: NSObject {
         options = rawOptions as? [[String:AnyObject]]
         id = data["questionId"] as! String
         status = QuestionStatus(rawValue: "\(questionStatus)")!.getStatus()
-        print("===========")
         super.init()
-        printQuestion()
+//        printQuestion()
     }
     
     func printQuestion() {
