@@ -33,7 +33,7 @@ enum QuestionStatus: String{
 
 class EtaskQuestion: NSObject {
     
-    var type:String
+    var type:QuestionTypeEnum
     var ordinal:Int
     var questionBody:String?
     var options:[[String: AnyObject]]?
@@ -45,7 +45,7 @@ class EtaskQuestion: NSObject {
         let ptype:Int = data["type"] as! Int
         let rawOptions = data["option"]
         let questionStatus = data["status"] as! Int
-        type = QuestionTypeEnum(rawValue: "\(ptype)" )!.displayTitle()
+        type = QuestionTypeEnum(rawValue: "\(ptype)" )!
         ordinal = data["ordinal"] as! Int
         questionBody = data["question"] as? String
         options = rawOptions as? [[String:AnyObject]]
