@@ -17,8 +17,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initQuestions()
-        //self.loadQuestions()
+        //self.initQuestions()
+        self.loadQuestions()
     }
     
     ///初始化题目
@@ -85,7 +85,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     }
 
     ///按钮 － 返回
-    @IBAction func goBack(sender: AnyObject) {
+@IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -99,10 +99,24 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
             
-            let question1 = DanxuanViewController()
-            self.addChildViewController(question1)
-            self.contentView.addSubview(question1.view)
-          
+            switch currentQuestion.type {
+                case .DanXuan:
+                    let danxuanController = DanxuanViewController()
+                    danxuanController.question = currentQuestion
+                    self.addChildViewController(danxuanController)
+                    self.contentView.addSubview(danxuanController.view)
+                 case .LianXian:
+                    let lianxianViewController = LianxianViewController()
+                    lianxianViewController.question = currentQuestion
+                    self.addChildViewController(lianxianViewController)
+                    self.contentView.addSubview(lianxianViewController.view)
+                
+                default:
+                    print("暂时的default")
+                
+            }
         }
+        self.contentView.bringSubviewToFront(self.contentView.subviews[0])
+        
     }
 }

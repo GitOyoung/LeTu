@@ -9,6 +9,8 @@
 import UIKit
 
 class LianxianViewController: UIViewController {
+    
+    var question:EtaskQuestion?
 
     override func viewDidLoad() {
         super.viewDidLoad()

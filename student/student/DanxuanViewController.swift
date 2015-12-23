@@ -14,16 +14,27 @@ class DanxuanViewController: UIViewController {
     
     // MARK: properties
     @IBOutlet weak var questionTitleView: QuestionTitleView!
+    @IBOutlet weak var questionBodyLabel: UILabel!
+    @IBOutlet weak var optionsLabel: UILabel!
+    @IBOutlet weak var answerPad: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+    var answerButtonsAry = [UIButton]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(question)
+        setQuestionBody(question)
+        setQuestionOptions(question)
+        setAnswerButtons(question)
+        scrollContentHeight.constant = 600
+        scrollView.contentSize.height = 600
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
     /*
     // MARK: - Navigation
@@ -48,4 +59,49 @@ class DanxuanViewController: UIViewController {
         }
 
     }
+    
+    func setQuestionBody(question:EtaskQuestion?){
+        if let question = question {
+            let attributedStr = NSMutableAttributedString(string: question.questionBody!)
+            questionBodyLabel.attributedText = attributedStr
+        }
+    }
+
+    
+    //TODO: 需要确认一下排序的问题
+    func setQuestionOptions(question:EtaskQuestion?){
+        if let question = question {
+            if let options = question.options {
+                var htmlStr = ""
+                for option in options {
+                    let optionStr = option["option"] as! String
+                    htmlStr = htmlStr + optionStr
+                }
+                
+                htmlStr = htmlStr + htmlStr
+                htmlStr = htmlStr + htmlStr
+                
+                optionsLabel.text = htmlStr
+            }
+        }
+    }
+    
+    func setAnswerButtons(question:EtaskQuestion?){
+        if let question = question {
+            if let options = question.options {
+                var frame = CGRect(x: 16, y: 8, width: 44, height: 44)
+                for (index, option) in options.enumerate() {
+                    let button = UIButton()
+                    
+                    frame.origin.x = CGFloat(16 + 44 * (index + 8))
+                    
+                    button.frame = frame
+                    button.setTitle(String(index), forState: .Normal)
+                    answerPad.addSubview(button)
+                }
+            }
+            
+        }
+    }
+    
 }
