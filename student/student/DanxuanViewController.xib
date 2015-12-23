@@ -79,6 +79,7 @@
                 <constraint firstItem="1Ia-tN-pFI" firstAttribute="top" secondItem="Cuj-Ag-qfD" secondAttribute="bottom" id="3S2-cm-5Pw"/>
                 <constraint firstAttribute="trailing" secondItem="gn1-e2-ZPA" secondAttribute="trailing" id="B5G-Zf-CNn"/>
                 <constraint firstAttribute="trailing" secondItem="Cuj-Ag-qfD" secondAttribute="trailing" id="H5L-L5-hti"/>
+                <constraint firstItem="1Ia-tN-pFI" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Q8l-1O-7Gt"/>
                 <constraint firstItem="ORp-hR-gkH" firstAttribute="top" secondItem="gn1-e2-ZPA" secondAttribute="bottom" id="XL3-Zf-uEb"/>
                 <constraint firstAttribute="trailing" secondItem="ORp-hR-gkH" secondAttribute="trailing" id="XXz-aM-u4n"/>
                 <constraint firstItem="gn1-e2-ZPA" firstAttribute="top" secondItem="Cuj-Ag-qfD" secondAttribute="bottom" id="beG-Vy-581"/>
@@ -90,6 +91,13 @@
                 <constraint firstAttribute="bottom" secondItem="ORp-hR-gkH" secondAttribute="bottom" id="zuB-Ya-LVv"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="3S2-cm-5Pw"/>
+                    <exclude reference="dAA-Y4-01m"/>
+                    <exclude reference="gsV-BZ-JFO"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
