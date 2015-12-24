@@ -101,6 +101,7 @@ class DanxuanViewController: UIViewController {
             let button = UIButton(frame: frame)
             button.setTitle(ary[index], forState: .Normal)
             button.backgroundColor = UIColor.blueColor()
+            button.layer.cornerRadius = 5
             button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
             answerButtonsAry.append(button)
             answerPad.addSubview(button)
