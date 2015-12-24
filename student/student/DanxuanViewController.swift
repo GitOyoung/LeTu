@@ -32,6 +32,7 @@ class DanxuanViewController: UIViewController {
         setAnswerButtons()
         scrollContentHeight.constant = 600
         scrollView.contentSize.height = 600
+        setScrollEable()
     }
 
     override func didReceiveMemoryWarning() {
@@ -127,5 +128,14 @@ class DanxuanViewController: UIViewController {
         print("选项\(option.optionIndex)")
         print("选项\(option.answer)")
     }
+    //计算scrollView和屏幕的高度
     
+    func setScrollEable(){
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPad.frame.size.height
+        let contentHeight = questionBodyLabel.frame.size.height + optionsLabel.frame.size.height
+        if offsetHeight > contentHeight{
+            scrollView.scrollEnabled = false
+        }
+    }
 }

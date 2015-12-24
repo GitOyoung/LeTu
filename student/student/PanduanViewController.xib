@@ -10,6 +10,7 @@
                 <outlet property="questionBodyLabel" destination="fWf-7Q-8tQ" id="VaM-QO-ko6"/>
                 <outlet property="questionOptionLabel" destination="1zy-gA-0Zt" id="suC-PR-dlQ"/>
                 <outlet property="questionTitleView" destination="Nrl-Hq-IjU" id="k9V-pB-0mC"/>
+                <outlet property="scrollView" destination="6Ux-3H-fbq" id="ZGP-rI-PbO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

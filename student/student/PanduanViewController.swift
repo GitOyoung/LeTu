@@ -19,6 +19,7 @@ class PanduanViewController: UIViewController {
     @IBOutlet weak var answerPadView: UIView!
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var questionOptionLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class PanduanViewController: UIViewController {
         getEtaskQuestionOptions(question)
         setQuestionOption()
         setAnswerButton()
+        setScrollEable()
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,14 +116,15 @@ class PanduanViewController: UIViewController {
         print("选项：\(option.option)")
         print("\(option.optionIndex)")
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //判断scrollView是否允许滚动
+    func setScrollEable(){
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPadView.frame.size.height
+        let contentHeight = questionBodyLabel.frame.size.height + questionOptionLabel.frame.size.height
+        if offsetHeight > contentHeight{
+            scrollView.scrollEnabled = false
+        }
+        
     }
-    */
-
 }

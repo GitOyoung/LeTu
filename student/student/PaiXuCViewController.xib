@@ -9,6 +9,7 @@
                 <outlet property="answerPadView" destination="qfX-kn-RS9" id="mMX-L4-Kfg"/>
                 <outlet property="questionOptionTableView" destination="Fho-8d-tfD" id="X6N-Rt-FdV"/>
                 <outlet property="questionTitleView" destination="Gbz-B3-oNW" id="RL3-qU-XKy"/>
+                <outlet property="scrollView" destination="NJC-BK-KIR" id="8Du-09-nS7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -14,12 +14,14 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
     var question:EtaskQuestion?
     var etaskQuestionOptions = [EtaskQuestionOption]()
     var etaskQuestionOptionTitles = [String]()
+    var cellTotalHeight:CGFloat = 0
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
 
     @IBOutlet weak var questionOptionTableView: UITableView!
     
     @IBOutlet weak var answerPadView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +31,9 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
         setAnswerButtons()
         questionOptionTableView.delegate = self
         questionOptionTableView.dataSource = self
-
         questionOptionTableView.setEditing(true, animated: true)
+        questionOptionTableView.scrollEnabled = false
+        setScrollEable()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +70,7 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
             headerlabel.numberOfLines = 0
             headerlabel.text = (try? NSAttributedString(data: headerlabeltext!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil))?.string
             headerView.addSubview(headerlabel)
+            cellTotalHeight += headerView.frame.size.height
             questionOptionTableView?.tableHeaderView = headerView
         }
     
@@ -88,9 +92,9 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
         let cellText = self.etaskQuestionOptionTitles[indexPath.row].dataUsingEncoding(NSUTF8StringEncoding)
         let attributedString = try? NSAttributedString(data: cellText!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
         cell.textLabel?.text = attributedString?.string
+        cellTotalHeight += (cell.textLabel?.frame.size.height)!
         return cell
     }
-    
 
     //隐藏删除按钮
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -161,5 +165,16 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
     func didClickCancelButton(){
         print("取消")
     }
+    
+    //判断scrollView是否允许滚动
+    func setScrollEable(){
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPadView.frame.size.height
+        print(offsetHeight)
+        print(cellTotalHeight)
+        if offsetHeight > cellTotalHeight{
+            scrollView.scrollEnabled = false
+        }
 
+    }
 }
