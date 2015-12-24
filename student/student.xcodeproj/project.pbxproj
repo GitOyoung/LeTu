@@ -30,6 +30,8 @@
 		7B7D4C851C2AB7D600527BA0 /* EtaskQuestionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D4C841C2AB7D600527BA0 /* EtaskQuestionOption.swift */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
+		8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */; };
+		8FEE5AC01C2B88E80027CC41 /* MBPHUDUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
 		E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */; };
 		E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */; };
@@ -111,6 +113,8 @@
 		7B7D4C841C2AB7D600527BA0 /* EtaskQuestionOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskQuestionOption.swift; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultUtil.swift; sourceTree = "<group>"; };
+		8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBPHUDUtil.swift; sourceTree = "<group>"; };
 		E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
 		E3365B581C0D29D9002DCCC6 /* LTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConfig.swift; sourceTree = "<group>"; };
@@ -331,10 +335,10 @@
 		E98A91901BF4B558008DB1A9 /* me */ = {
 			isa = PBXGroup;
 			children = (
-				E98A91B41BF4C226008DB1A9 /* MeLoginViewController.swift */,
+				E98A91B21BF4C216008DB1A9 /* MeAfterLoginView.xib */,
 				E98A91B61BF4C233008DB1A9 /* MeAfterLoginViewController.swift */,
 				E98A91B01BF4C20C008DB1A9 /* MeLoginView.xib */,
-				E98A91B21BF4C216008DB1A9 /* MeAfterLoginView.xib */,
+				E98A91B41BF4C226008DB1A9 /* MeLoginViewController.swift */,
 			);
 			name = me;
 			sourceTree = "<group>";
@@ -388,6 +392,8 @@
 				160F480E1BF8E00900796A49 /* QKColor.swift */,
 				E3365B581C0D29D9002DCCC6 /* LTConfig.swift */,
 				E3365B5A1C0D2B11002DCCC6 /* Student.swift */,
+				8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */,
+				8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
+				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
 				7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */,
 				E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */,
@@ -625,6 +632,7 @@
 				166AF32F1C2073E5001028C3 /* XuanzetiankongViewController.swift in Sources */,
 				E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */,
 				166AF30C1C1BFD99001028C3 /* AskBL.swift in Sources */,
+				8FEE5AC01C2B88E80027CC41 /* MBPHUDUtil.swift in Sources */,
 				E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */,
 				E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */,
 				E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */,

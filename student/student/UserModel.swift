@@ -32,11 +32,26 @@ class UserModel: NSObject {
             school = user["school"] as? String
             schoolId = user["schoolID"] == nil ? 0 : user["schoolID"] as? Int
             phone = user["parentMobile"] as? String
-            grade = (user["grades"] as? String)! + (user["classr"] as? String)!
+            grade = user["grades"] as? String
             realName = user["realName"] as? String
             name = user["userName"] == nil ? "" : user["userName"] as! String
             userId = user["uuid"] as? Int
         }
         
+    }
+    
+    func toDictionary() ->NSDictionary{
+        let dic:NSDictionary = NSDictionary(dictionary:[
+            "accessToken":token! as String,
+            "avatarsUrl":imgUrl! as String,
+            "school":school! as String,
+            "schoolId":Int(schoolId!),
+            "parentMobile":phone! as String,
+            "grades":grade! as String,
+            "realName":realName! as String,
+            "userName":name! as String,
+            "uuid":String(userId!)
+            ])
+        return dic
     }
 }
