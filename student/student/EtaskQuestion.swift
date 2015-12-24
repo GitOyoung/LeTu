@@ -52,7 +52,7 @@ class EtaskQuestion: NSObject {
         id = data["questionId"] as! String
         status = QuestionStatus(rawValue: "\(questionStatus)")!.getStatus()
         super.init()
-//        printQuestion()
+        printQuestion()
     }
     
     func printQuestion() {

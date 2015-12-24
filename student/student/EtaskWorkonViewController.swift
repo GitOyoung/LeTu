@@ -110,8 +110,12 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     lianxianViewController.question = currentQuestion
                     self.addChildViewController(lianxianViewController)
                     self.contentView.addSubview(lianxianViewController.view)
-                
-                default:
+                case .PanDuan:
+                    let panduanViewController = PanduanViewController()
+                    panduanViewController.question = currentQuestion
+                    self.addChildViewController(panduanViewController)
+                    self.contentView.addSubview(panduanViewController.view)
+            default:
                     print("暂时的default")
                 
             }
