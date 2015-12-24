@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EtaskWorkonViewController" customModule="student" customModuleProvider="target">
@@ -54,7 +54,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7aA-Du-0pS" userLabel="contentView">
                     <rect key="frame" x="0.0" y="49" width="320" height="470"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hS1-AQ-btO">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
@@ -112,15 +112,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="hS1-AQ-btO" secondAttribute="trailing" id="2T8-rR-vV3"/>
-                <constraint firstItem="7aA-Du-0pS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4eS-Xk-atE"/>
+                <constraint firstItem="hS1-AQ-btO" firstAttribute="top" secondItem="7aA-Du-0pS" secondAttribute="bottom" id="Cmb-vW-Z6q"/>
+                <constraint firstItem="7aA-Du-0pS" firstAttribute="top" secondItem="V0N-NZ-sMu" secondAttribute="bottom" id="D2U-ju-IvI"/>
                 <constraint firstItem="V0N-NZ-sMu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EP0-Kk-tzh"/>
+                <constraint firstAttribute="trailing" secondItem="7aA-Du-0pS" secondAttribute="trailing" id="Lf0-Jl-p6d"/>
                 <constraint firstAttribute="trailing" secondItem="V0N-NZ-sMu" secondAttribute="trailing" id="M6c-SH-1FP"/>
-                <constraint firstItem="hS1-AQ-btO" firstAttribute="top" secondItem="7aA-Du-0pS" secondAttribute="bottom" id="O5v-kL-X9P"/>
                 <constraint firstItem="V0N-NZ-sMu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RMj-ch-KiQ"/>
-                <constraint firstItem="hS1-AQ-btO" firstAttribute="top" secondItem="7aA-Du-0pS" secondAttribute="bottom" id="Ue5-Z1-igc"/>
                 <constraint firstItem="hS1-AQ-btO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XiN-po-WMk"/>
-                <constraint firstItem="7aA-Du-0pS" firstAttribute="top" secondItem="V0N-NZ-sMu" secondAttribute="bottom" id="h1v-a5-ciF"/>
-                <constraint firstAttribute="trailing" secondItem="7aA-Du-0pS" secondAttribute="trailing" id="iah-mp-R38"/>
+                <constraint firstItem="7aA-Du-0pS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YSN-Ov-kn7"/>
                 <constraint firstAttribute="bottom" secondItem="hS1-AQ-btO" secondAttribute="bottom" id="p4H-JX-gDd"/>
             </constraints>
             <point key="canvasLocation" x="240" y="328"/>

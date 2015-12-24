@@ -69,23 +69,20 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func preQuestion(sender: AnyObject) {
-        //self.contentView.bringSubviewToFront(self.contentView.subviews.last!)
         self.contentView.exchangeSubviewAtIndex(0, withSubviewAtIndex: self.contentView.subviews.count-1)
         self.contentView.insertSubview(self.contentView.subviews.last!, atIndex: 1)
     }
     
     @IBAction func nextQuestion(sender: AnyObject) {
-        //self.contentView.sendSubviewToBack(self.contentView.subviews.first!)
         self.contentView.exchangeSubviewAtIndex(0, withSubviewAtIndex: 1)
         self.contentView.insertSubview(self.contentView.subviews[1], atIndex: self.contentView.subviews.count)
     }
 
     ///按钮 － 返回
-@IBAction func goBack(sender: AnyObject) {
+    @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -99,32 +96,44 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
             
+            let frame = CGRect(x: 0, y: 0, width: self.contentView.frame.size.width, height: self.contentView.frame.height)
+            
             switch currentQuestion.type {
                 case .DanXuan:
                     let danxuanController = DanxuanViewController()
                     danxuanController.question = currentQuestion
                     self.addChildViewController(danxuanController)
+                    danxuanController.view.frame = frame
                     self.contentView.addSubview(danxuanController.view)
                  case .LianXian:
                     let lianxianViewController = LianxianViewController()
                     lianxianViewController.question = currentQuestion
                     self.addChildViewController(lianxianViewController)
+                    lianxianViewController.view.frame = frame
+
+                    lianxianViewController.view.hidden = true
+                    
                     self.contentView.addSubview(lianxianViewController.view)
                 case .PanDuan:
                     let panduanViewController = PanduanViewController()
                     panduanViewController.question = currentQuestion
                     self.addChildViewController(panduanViewController)
+                    panduanViewController.view.frame = frame
+                    panduanViewController.view.hidden = true
                     self.contentView.addSubview(panduanViewController.view)
                 case .PaiXu:
                     let paixuViewController = PaiXuCViewController()
                     paixuViewController.question = currentQuestion
                     self.addChildViewController(paixuViewController)
+                    paixuViewController.view.frame = frame
+                    paixuViewController.view.hidden = true
                     self.contentView.addSubview(paixuViewController.view)
                 default:
                         print("暂时的default")
                 
             }
         }
+        
         self.contentView.bringSubviewToFront(self.contentView.subviews[0])
         
     }
