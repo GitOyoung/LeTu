@@ -210,7 +210,6 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     
     func didreceiveResult(result: NSDictionary) {
-        print(result)
         let isSuccess:Bool = result["isSuccess"] as! Bool
         if isSuccess
         {
@@ -306,9 +305,15 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let etaskDetailVC = EtaskDetailViewController()
-        //self.navigationController?.pushViewController(etaskDetailVC, animated: true)
-        self.presentViewController(etaskDetailVC, animated: true, completion: nil)
+        let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
+        let etaskWorkonViewController = EtaskWorkonViewController()
+        etaskWorkonViewController.etask = etaskModel
+        print("etask list jump to etaskWorkOn")
+        
+        //        let etaskDetailVC = EtaskDetailViewController()
+        //        etaskDetailVC.etask = etaskModel
+        
+        self.presentViewController(etaskWorkonViewController, animated: true, completion: nil)
     }
     
     private var isDrag: Bool = false

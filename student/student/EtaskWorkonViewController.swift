@@ -8,14 +8,17 @@
 
 import UIKit
 
-class EtaskWorkonViewController: UIViewController {
-    
+class EtaskWorkonViewController: UIViewController, HttpProtocol {
+
+    // MARK: properties
     @IBOutlet weak var contentView: UIView!
+    var etask:EtaskModel?
+    var questions = [EtaskQuestion]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.initQuestions()
+        //self.initQuestions()
+        self.loadQuestions()
     }
     
     ///初始化题目
@@ -44,6 +47,26 @@ class EtaskWorkonViewController: UIViewController {
         self.contentView.bringSubviewToFront(self.contentView.subviews[0])
     }
     
+    func loadQuestions() {
+        if let etask = self.etask {
+            // 获取电子作业详情地址
+            let url: String = ServiceApi.getEtaskDetailUrl()
+            // 判断是否已经有用户，如果有则发送请求
+            if LTConfig.defaultConfig().defaultUser != nil{
+                
+                let student:Student = LTConfig.defaultConfig().defaultUser!
+                
+                let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":student.uuid,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":student.accessToken!]
+                let http:HttpRequest = HttpRequest()
+                
+                http.delegate = self
+                
+                http.postRequest(url, params: params)
+            }
+        }
+       
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,7 +85,47 @@ class EtaskWorkonViewController: UIViewController {
     }
 
     ///按钮 － 返回
-    @IBAction func goBack(sender: AnyObject) {
+@IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //题目集合
+    func didreceiveResult(result: NSDictionary) {
+        let etask:NSDictionary = (result["data"] as? NSDictionary)!
+        
+        let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
+        print("共有\(questionsData.count)个问题")
+        for currentQuestionData in questionsData {
+            let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+            questions.append(currentQuestion)
+            
+            switch currentQuestion.type {
+                case .DanXuan:
+                    let danxuanController = DanxuanViewController()
+                    danxuanController.question = currentQuestion
+                    self.addChildViewController(danxuanController)
+                    self.contentView.addSubview(danxuanController.view)
+                 case .LianXian:
+                    let lianxianViewController = LianxianViewController()
+                    lianxianViewController.question = currentQuestion
+                    self.addChildViewController(lianxianViewController)
+                    self.contentView.addSubview(lianxianViewController.view)
+                case .PanDuan:
+                    let panduanViewController = PanduanViewController()
+                    panduanViewController.question = currentQuestion
+                    self.addChildViewController(panduanViewController)
+                    self.contentView.addSubview(panduanViewController.view)
+                case .PaiXu:
+                    let paixuViewController = PaiXuCViewController()
+                    paixuViewController.question = currentQuestion
+                    self.addChildViewController(paixuViewController)
+                    self.contentView.addSubview(paixuViewController.view)
+                default:
+                        print("暂时的default")
+                
+            }
+        }
+        self.contentView.bringSubviewToFront(self.contentView.subviews[0])
+        
     }
 }

@@ -71,9 +71,16 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let etaskDetailVC = EtaskDetailViewController()
-        //self.navigationController?.pushViewController(etaskDetailVC, animated: true)
-        self.presentViewController(etaskDetailVC, animated: true, completion: nil)
+
+        let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
+        let etaskWorkonViewController = EtaskWorkonViewController()
+        etaskWorkonViewController.etask = etaskModel
+        print("etask list jump to etaskWorkOn")
+
+//        let etaskDetailVC = EtaskDetailViewController()
+//        etaskDetailVC.etask = etaskModel
+        
+        self.presentViewController(etaskWorkonViewController, animated: true, completion: nil)
     }
     
  
@@ -115,21 +122,11 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     }
     
     func didreceiveResult(result:NSDictionary) {
-        print(result)
-        if (result["isSuccess"] as! Bool) {
-            newTaskCount = 0
-            let resultData = result["data"] as! NSMutableArray
-            for etask in resultData {
-                let e = EtaskModel(info: etask["etask"] as? NSDictionary)
-                dataSource.addObject(e)
-                if e.isNewTask() {
-                    newTaskCount++;
-                }
-            }
-            if newTaskCount > 0 {
-                NSNotificationCenter.defaultCenter().postNotificationName("NewTaskShowed", object: newTaskCount)
-            }
-            tableView.reloadData()
+
+        let resultData = result["data"] as! NSMutableArray
+        for etask in resultData {
+            let e = EtaskModel(info: etask as? NSDictionary)
+            dataSource.addObject(e)
         }
     }
 }

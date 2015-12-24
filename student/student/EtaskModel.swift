@@ -77,7 +77,8 @@ class EtaskModel: NSObject {
     var startTime:String?
     var endTime:String?
     var status: EtaskStatus = .New
-    
+    var classesId:Int?
+    var recordId:Int?
     
     override init(){}
     
@@ -118,7 +119,10 @@ class EtaskModel: NSObject {
                 
                 
             }
+            classesId = info["classesId"] as? Int
+            recordId = info["recordId"] as? Int
             status = EtaskStatus(status: info["status"] as! Int)
+
         }
 
     }

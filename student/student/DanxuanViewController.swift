@@ -10,17 +10,33 @@ import UIKit
 
 class DanxuanViewController: UIViewController {
 
+    var question:EtaskQuestion?
+    var etaskQuestionOptions = [EtaskQuestionOption]()
+    
+    // MARK: properties
+    @IBOutlet weak var questionTitleView: QuestionTitleView!
+    @IBOutlet weak var questionBodyLabel: UILabel!
+    @IBOutlet weak var optionsLabel: UILabel!
+    @IBOutlet weak var answerPad: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+    var answerButtonsAry = [UIButton]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setQuestionTitle(question)
+        setQuestionBody(question)
+        getEtaskQuestionOptions(question)
+        setQuestionOptions()
+        setAnswerButtons()
+        scrollContentHeight.constant = 600
+        scrollView.contentSize.height = 600
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -32,4 +48,84 @@ class DanxuanViewController: UIViewController {
     }
     */
 
+    func setQuestionTitle(question:EtaskQuestion?) {
+
+        questionTitleView.backgroundColor = QKColor.whiteColor()
+        
+        if let question = question {
+            questionTitleView.ordinalLabel.text = String(question.ordinal)
+            questionTitleView.titleLabel.text = question.type.displayTitle()
+        } else {
+            questionTitleView.ordinalLabel.text = "9"
+            questionTitleView.titleLabel.text = "测试题型"
+        }
+
+    }
+    
+    func setQuestionBody(question:EtaskQuestion?){
+        if let question = question {
+            let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
+            let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+            questionBodyLabel.attributedText = attributedStr
+        }
+    }
+
+    
+    //TODO: 需要确认一下排序的问题
+    func setQuestionOptions(){
+        var str = ""
+        let ary = ["A.","B.","C.","D."]
+        for (index,option) in etaskQuestionOptions.enumerate(){
+            
+            let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)!
+            let attributedString = try? NSAttributedString(data: html_str, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil)
+            str +=  ary[index] + (attributedString?.string)!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
+            
+        }
+        optionsLabel.text = str
+    }
+    
+    func setAnswerButtons(){
+        var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        let ary = ["A","B","C","D"]
+        let screenBounds:CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenBounds.size.width
+        let offsetWidth = Int(screenWidth) - etaskQuestionOptions.count*44
+        let offsetHeight = Int(answerPad.frame.height)
+        for (index,_) in etaskQuestionOptions.enumerate(){
+            
+            frame.origin.x = CGFloat((44 + offsetWidth/(etaskQuestionOptions.count+1))*index + offsetWidth/(etaskQuestionOptions.count+1))
+            frame.origin.y = CGFloat((offsetHeight-44)/2)
+            frame.size.height = CGFloat(offsetHeight/2)
+            
+            let button = UIButton(frame: frame)
+            button.setTitle(ary[index], forState: .Normal)
+            button.backgroundColor = UIColor.blueColor()
+            button.layer.cornerRadius = 5
+            button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
+            answerButtonsAry.append(button)
+            answerPad.addSubview(button)
+        }
+    }
+    //题目选项实例化
+    func getEtaskQuestionOptions(question:EtaskQuestion?){
+        if let question = question{
+            if let options = question.options{
+                for option in options{
+                    etaskQuestionOptions.append(EtaskQuestionOption(option: option)!)
+                }
+            }
+        }
+    }
+    
+    //MARK:选择选项按钮
+    func didClickOptionButton(button: UIButton){
+        let index = answerButtonsAry.indexOf(button)
+        let option = etaskQuestionOptions[index!]
+        print("选择\(index)按钮")
+        print("选项\(option.option)")
+        print("选项\(option.optionIndex)")
+        print("选项\(option.answer)")
+    }
+    
 }

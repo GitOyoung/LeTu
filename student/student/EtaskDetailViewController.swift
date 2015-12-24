@@ -8,16 +8,39 @@
 
 import UIKit
 
-class EtaskDetailViewController: UIViewController {
+class EtaskDetailViewController: UIViewController,HttpProtocol {
+    
+    // MARK: properties
+    var etask:EtaskModel?
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        if let etask = self.etask {
+          // 获取电子作业详情地址
+            let url: String = ServiceApi.getEtaskDetailUrl()
+            // 判断是否已经有用户，如果有则发送请求
+            if LTConfig.defaultConfig().defaultUser != nil{
+        
+                let student:Student = LTConfig.defaultConfig().defaultUser!
+                
+                let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":student.uuid,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":student.accessToken!]
+                let http:HttpRequest = HttpRequest()
+                
+                http.delegate? = self
+                
+                http.postRequest(url, params: params)
+                
+            }
+            
+            
+        }
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     ///按钮 － 开始做作业
@@ -35,5 +58,10 @@ class EtaskDetailViewController: UIViewController {
     ///按钮 － 左上角返回
     @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func didreceiveResult(result: NSDictionary) {
+        print("etask detail")
+        print(result)
     }
 }

@@ -7,7 +7,7 @@
         <!--我的-->
         <scene sceneID="dAE-lP-CYM">
             <objects>
-                <viewController id="ODA-r1-Atf" customClass="MeBeforeLoginViewController" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ODA-r1-Atf" customClass="MeAfterLoginViewController" customModule="student" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="menu_my2" selectedImage="menu_my1" id="ykF-XB-c9A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuK-Vc-5BR" userLabel="First Responder" sceneMemberID="firstResponder"/>
