@@ -27,6 +27,35 @@ extension NSDate{
 
 }
 
+enum EtaskStatus : Int{
+    case New      //未开始
+    case Unfinished      //未完成
+    case Uncorrecting   //未批改
+    case Uncorrected    //未订正
+    case Finished       //已完成
+    init(status: Int) {
+        switch status
+        {
+        case 0: self = .New
+        case 1: self = .Unfinished
+        case 2: self = .Uncorrecting
+        case 3: self = .Uncorrected
+        case 4: self = .Finished
+        default: self = .New
+        }
+    }
+}
+
+enum EtaskLevel : Int
+{
+    case Unknown
+    case Bad
+    case Good
+    case Great
+}
+
+
+
 class EtaskModel: NSObject {
     var etaskID:String?
     var name:String?
@@ -47,6 +76,8 @@ class EtaskModel: NSObject {
     var termId:Int?
     var startTime:String?
     var endTime:String?
+    var status: EtaskStatus = .New
+    
     
     override init(){}
     
@@ -57,32 +88,43 @@ class EtaskModel: NSObject {
     
     //渲染电子作业格式
     func etaskFormat(etaskInfo:NSDictionary?){
-        if let info = etaskInfo {
-            
-            etaskID = info["etaskId"] as? String
-            name = info["name"] as? String
-            subTitle = info["subTitleBook"] as? String
-            summary = info["subTitleExeBook"] as? String
-            bookInfo = info["bookInfo"] == nil ? "" : info["bookInfo"] as? String
-            bookInfoId = info["bookInfoId"] as? Int
-            exeBook = info["exeBook"]  == nil ? "" : info["exeBook"] as? String
-            exeBookId = info["exeBookId"] as? Int
-            grade = info["grade"] == nil ? "" : info["grade"] as? String
-            subject = info["subject"] as? String
-            subjectId = info["subjectId"] as? Int
-            teacherId = info["teacherId"] as? Int
-            exeUnitPeriod = info["exeUnitPeriod"] as? String
-            questionCount = info["questionCount"] as? Int
-            unitPeriod = info["unitPeriod"] as? [String]
-            term = info["term"] as? String
-            termId = info["termId"] as? Int
-            let startTimeDic = info["startTime"] as! NSDictionary
-            print(startTimeDic["time"])
-            startTime = NSDate().timeStampToString(String(startTimeDic["time"]))
-            let endTimeDic = info["endTime"] as! NSDictionary
-            endTime = NSDate().timeStampToString(String(endTimeDic["time"]))
+        if let info = etaskInfo
+        {
+            print(info)
+            if let etask = info["etask"]
+            {
+                etaskID = etask["etaskId"] as? String
+                name = etask["name"] as? String
+                subTitle = etask["subTitleBook"] as? String
+                summary = etask["subTitleExeBook"] as? String
+                bookInfo = etask["bookInfo"] == nil ? "" : info["bookInfo"] as? String
+                bookInfoId = etask["bookInfoId"] as? Int
+                exeBook = etask["exeBook"]  == nil ? "" : info["exeBook"] as? String
+                exeBookId = etask["exeBookId"] as? Int
+                grade = etask["grade"] == nil ? "" : info["grade"] as? String
+                subject = etask["subject"] as? String
+                subjectId = etask["subjectId"] as? Int
+                teacherId = etask["teacherId"] as? Int
+                exeUnitPeriod = etask["exeUnitPeriod"] as? String
+                questionCount = etask["questionCount"] as? Int
+                unitPeriod = etask["unitPeriod"] as? [String]
+                term = etask["term"] as? String
+                termId = etask["termId"] as? Int
+                let startTimeDic = etask["startTime"] as! NSDictionary
+                print(startTimeDic["time"])
+                startTime = NSDate().timeStampToString(String(startTimeDic["time"]))
+                let endTimeDic = etask["endTime"] as! NSDictionary
+                endTime = NSDate().timeStampToString(String(endTimeDic["time"]))
+                
+                
+            }
+            status = EtaskStatus(status: info["status"] as! Int)
         }
 
+    }
+    
+    func isNewTask() -> Bool {
+        return status == .New
     }
     
 }

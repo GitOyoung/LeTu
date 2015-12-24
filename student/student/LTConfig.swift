@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//乐在学途本地设置
 class LTConfig: NSObject {
     
     static private var config: LTConfig?

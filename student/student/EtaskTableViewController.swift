@@ -13,6 +13,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
 
     var dataSource = NSMutableArray()
     var subjectName:String = ""
+    var newTaskCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
         
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.contentInset = UIEdgeInsetsMake(5, 10, 10, 10)
         
         //tableView.backgroundColor = QKColor.lightGrayColor()
         
@@ -53,69 +55,32 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
         let etaskModel: EtaskModel = dataSource[indexPath.section] as! EtaskModel
         
         cell.initCell(etaskModel)
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 10
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10;
+        return 10
+    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return 100
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var etaskDetailVC = EtaskDetailViewController()
+        let etaskDetailVC = EtaskDetailViewController()
         //self.navigationController?.pushViewController(etaskDetailVC, animated: true)
         self.presentViewController(etaskDetailVC, animated: true, completion: nil)
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
     // MARK: 刷新数据
     func requestData(pageIndex: Int) {
-        var http: HttpRequest = HttpRequest()
+        let http: HttpRequest = HttpRequest()
         http.delegate = self
         let url = ServiceApi.getSearchEtaskListUrl()
         if LTConfig.defaultConfig().defaultUser != nil
@@ -150,11 +115,21 @@ class EtaskTableViewController: UITableViewController, HttpProtocol {
     }
     
     func didreceiveResult(result:NSDictionary) {
-        let resultData = result["data"] as! NSMutableArray
-        for etask in resultData {
-            var e = EtaskModel(info: etask["etask"] as! NSDictionary)
-            dataSource.addObject(e)
+        print(result)
+        if (result["isSuccess"] as! Bool) {
+            newTaskCount = 0
+            let resultData = result["data"] as! NSMutableArray
+            for etask in resultData {
+                let e = EtaskModel(info: etask["etask"] as? NSDictionary)
+                dataSource.addObject(e)
+                if e.isNewTask() {
+                    newTaskCount++;
+                }
+            }
+            if newTaskCount > 0 {
+                NSNotificationCenter.defaultCenter().postNotificationName("NewTaskShowed", object: newTaskCount)
+            }
+            tableView.reloadData()
         }
-        tableView.reloadData()
     }
 }
