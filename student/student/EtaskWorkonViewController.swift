@@ -115,8 +115,13 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     panduanViewController.question = currentQuestion
                     self.addChildViewController(panduanViewController)
                     self.contentView.addSubview(panduanViewController.view)
-            default:
-                    print("暂时的default")
+                case .PaiXu:
+                    let paixuViewController = PaiXuCViewController()
+                    paixuViewController.question = currentQuestion
+                    self.addChildViewController(paixuViewController)
+                    self.contentView.addSubview(paixuViewController.view)
+                default:
+                        print("暂时的default")
                 
             }
         }

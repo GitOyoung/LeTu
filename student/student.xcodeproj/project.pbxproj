@@ -28,6 +28,8 @@
 		166AF32F1C2073E5001028C3 /* XuanzetiankongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166AF32D1C2073E5001028C3 /* XuanzetiankongViewController.swift */; };
 		166AF3301C2073E5001028C3 /* XuanzetiankongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 166AF32E1C2073E5001028C3 /* XuanzetiankongViewController.xib */; };
 		7B7D4C851C2AB7D600527BA0 /* EtaskQuestionOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D4C841C2AB7D600527BA0 /* EtaskQuestionOption.swift */; };
+		7B99386D1C2BB0C800AFCD12 /* PaiXuCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */; };
+		7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
 		8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */; };
@@ -111,6 +113,8 @@
 		166AF32E1C2073E5001028C3 /* XuanzetiankongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuanzetiankongViewController.xib; sourceTree = "<group>"; };
 		2A7BD90C62B542553D2358FB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7B7D4C841C2AB7D600527BA0 /* EtaskQuestionOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskQuestionOption.swift; sourceTree = "<group>"; };
+		7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiXuCViewController.swift; sourceTree = "<group>"; };
+		7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaiXuCViewController.xib; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultUtil.swift; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				166AF3211C205A92001028C3 /* DanxuanViewController.swift */,
+				7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */,
+				7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */,
 				166AF3221C205A92001028C3 /* DanxuanViewController.xib */,
 				166AF3251C205AE7001028C3 /* PanduanViewController.swift */,
 				166AF3261C205AE7001028C3 /* PanduanViewController.xib */,
@@ -522,6 +528,7 @@
 				E98A91BF1BF4C2D1008DB1A9 /* AskNewView.xib in Resources */,
 				166AF32C1C206438001028C3 /* LianxianViewController.xib in Resources */,
 				E98A91B31BF4C216008DB1A9 /* MeAfterLoginView.xib in Resources */,
+				7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */,
 				166AF3281C205AE7001028C3 /* PanduanViewController.xib in Resources */,
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
 				E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */,
@@ -620,6 +627,7 @@
 				166AF3161C1C17D1001028C3 /* HttpUtil.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
+				7B99386D1C2BB0C800AFCD12 /* PaiXuCViewController.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
