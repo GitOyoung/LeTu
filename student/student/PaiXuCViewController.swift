@@ -13,7 +13,6 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
     // MARK: propeties
     var question:EtaskQuestion?
     var etaskQuestionOptions = [EtaskQuestionOption]()
-    var etaskQuestionOptionTitles = [String]()
     var cellTotalHeight:CGFloat = 0
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
@@ -27,7 +26,7 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         setQuestionTitle(question)
         setQuestionBody(question)
-        getEtaskQuestionOptions(question)
+        etaskQuestionOptions = (question?.options!)!
         setAnswerButtons()
         questionOptionTableView.delegate = self
         questionOptionTableView.dataSource = self
@@ -82,14 +81,14 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return etaskQuestionOptionTitles.count
+        return etaskQuestionOptions.count
     }
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "optionCell")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        let cellText = self.etaskQuestionOptionTitles[indexPath.row].dataUsingEncoding(NSUTF8StringEncoding)
+        let cellText = self.etaskQuestionOptions[indexPath.row].option!.dataUsingEncoding(NSUTF8StringEncoding)
         let attributedString = try? NSAttributedString(data: cellText!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
         cell.textLabel?.text = attributedString?.string
         cellTotalHeight += (cell.textLabel?.frame.size.height)!
@@ -104,32 +103,18 @@ class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         if sourceIndexPath != destinationIndexPath{
             //获取移动行对应的值
-            let itemValue:String = etaskQuestionOptionTitles[sourceIndexPath.row]
+            let itemValue:EtaskQuestionOption = etaskQuestionOptions[sourceIndexPath.row]
             //删除移动的值
-            etaskQuestionOptionTitles.removeAtIndex(sourceIndexPath.row)
+            etaskQuestionOptions.removeAtIndex(sourceIndexPath.row)
             //如果移动区域大于现有行数，直接在最后添加移动的值
-            if destinationIndexPath.row > etaskQuestionOptionTitles.count{
-                etaskQuestionOptionTitles.append(itemValue)
+            if destinationIndexPath.row > etaskQuestionOptions.count{
+                etaskQuestionOptions.append(itemValue)
             }else{
                 //没有超过最大行数，则在目标位置添加刚才删除的值
-                etaskQuestionOptionTitles.insert(itemValue, atIndex:destinationIndexPath.row)
+                etaskQuestionOptions.insert(itemValue, atIndex:destinationIndexPath.row)
             }
         }
     }
-    
-    //题目选项实例化
-    func getEtaskQuestionOptions(question:EtaskQuestion?){
-        if let question = question{
-            if let options = question.options{
-                for option in options{
-                    let etaskQuestionOption = EtaskQuestionOption(option: option)!
-                    etaskQuestionOptions.append(etaskQuestionOption)
-                    etaskQuestionOptionTitles.append(etaskQuestionOption.option!)
-                }
-            }
-        }
-    }
-
    
     func setAnswerButtons(){
         var frame = CGRect(x: 0, y: 0, width: 44, height: 44)

@@ -12,7 +12,6 @@ class PanduanViewController: UIViewController {
     
     //MARK:properties
     var question:EtaskQuestion?
-    var etaskQuestionOptions = [EtaskQuestionOption]()
     var answerButtonsAry = [UIButton]()
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
@@ -27,7 +26,6 @@ class PanduanViewController: UIViewController {
 
         setQuestionTitle(question)
         setQuestionBody(question)
-        getEtaskQuestionOptions(question)
         setQuestionOption()
         setAnswerButton()
         setScrollEable()
@@ -64,7 +62,7 @@ class PanduanViewController: UIViewController {
     //设置题目选项
     func setQuestionOption(){
         var str = ""
-        for option in etaskQuestionOptions{
+        for option in (question?.options!)!{
             let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)
             let attributedString = try? NSAttributedString(data: html_str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
             str += (attributedString?.string)!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
@@ -74,15 +72,16 @@ class PanduanViewController: UIViewController {
     
     //设置对错按钮
     func setAnswerButton(){
+        let options = question?.options
         var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
-        let offsetWidth = Int(screenWidth) - etaskQuestionOptions.count*44
+        let offsetWidth = Int(screenWidth) - options!.count*44
         let offsetHeight = Int(answerPadView.frame.height)
         var buttonImage = ""
-        for (index,_) in etaskQuestionOptions.enumerate(){
+        for (index,_) in options!.enumerate(){
             
-            frame.origin.x = CGFloat((44 + offsetWidth/(etaskQuestionOptions.count+1))*index + offsetWidth/(etaskQuestionOptions.count+1))
+            frame.origin.x = CGFloat((44 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
             frame.origin.y = CGFloat((offsetHeight-44)/2)
             frame.size.height = CGFloat(offsetHeight/2)
             
@@ -98,23 +97,12 @@ class PanduanViewController: UIViewController {
         }
     }
     
-    //题目选项实例化
-    func getEtaskQuestionOptions(question:EtaskQuestion?){
-        if let question = question{
-            if let options = question.options{
-                for option in options{
-                    etaskQuestionOptions.append(EtaskQuestionOption(option: option)!)
-                }
-            }
-        }
-    }
-    
     //选择对错按钮事件
     func didClickOptionButton(button:UIButton){
         let index = answerButtonsAry.indexOf(button)!
-        let option = etaskQuestionOptions[index]
-        print("选项：\(option.option)")
-        print("\(option.optionIndex)")
+        let option = question?.options![index]
+        print("选项：\(option!.option)")
+        print("\(option!.optionIndex)")
     }
     
     //判断scrollView是否允许滚动

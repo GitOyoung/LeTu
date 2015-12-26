@@ -36,23 +36,36 @@ class EtaskQuestion: NSObject {
     var type:QuestionTypeEnum
     var ordinal:Int
     var questionBody:String?
-    var options:[[String: AnyObject]]?
+    var options:[EtaskQuestionOption]?
     var id:String
     var status: String
     
     init(data:NSDictionary) {
 
         let ptype:Int = data["type"] as! Int
-        let rawOptions = data["option"]
         let questionStatus = data["status"] as! Int
         type = QuestionTypeEnum(rawValue: "\(ptype)" )!
         ordinal = data["ordinal"] as! Int
         questionBody = data["question"] as? String
-        options = rawOptions as? [[String:AnyObject]]
         id = data["questionId"] as! String
         status = QuestionStatus(rawValue: "\(questionStatus)")!.getStatus()
         super.init()
+        options = self.getEtaskQuestionOptions(data)
         printQuestion()
+    }
+    
+    //获取题目的所有选项(options)
+    func getEtaskQuestionOptions(data:NSDictionary?) ->[EtaskQuestionOption] {
+        var etaskQuestionOptions = [EtaskQuestionOption]()
+        if let question = data{
+            if let questionOptions = question["option"] as? [[String:AnyObject]]{
+                for option in questionOptions{
+                    etaskQuestionOptions.append(EtaskQuestionOption(option: option)!)
+                }
+            }
+        }
+        
+        return etaskQuestionOptions
     }
     
     func printQuestion() {
@@ -62,9 +75,9 @@ class EtaskQuestion: NSObject {
         print("序号:\(self.ordinal)")
         print("内容:\(self.questionBody)")
         print("选项:")
-        if let options = self.options {
-            for option in options {
-                print(option)
+        if let questionOptions = self.options{
+            for option in questionOptions{
+                print("\(option.option)")
             }
         }
     }
