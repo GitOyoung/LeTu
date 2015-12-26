@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XuanzetiankongViewController: UIViewController {
+class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK properties
     var question:EtaskQuestion?
@@ -19,12 +19,13 @@ class XuanzetiankongViewController: UIViewController {
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
     //问题以及结果
-    @IBOutlet weak var answersCollectionView: UICollectionView!
-    
+    @IBOutlet weak var questionPointView: UIView!
     
     @IBOutlet weak var answerPad: UIView!
     //可以被选择的对象
     @IBOutlet weak var answerPadOptionsCollectionView: UICollectionView!
+    
+    let optionCellIdentifier = "optionCell"
     
     
     
@@ -33,6 +34,9 @@ class XuanzetiankongViewController: UIViewController {
         super.viewDidLoad()
         setQuestionTitle(question)
         setQuestionBody(question)
+        answerPadOptionsCollectionView.dataSource = self
+        answerPadOptionsCollectionView.delegate = self
+        answerPadOptionsCollectionView.registerNib(UINib(nibName: "XuanzetiankongOptionCell", bundle: nil), forCellWithReuseIdentifier:optionCellIdentifier )
         
 
     }
@@ -64,6 +68,53 @@ class XuanzetiankongViewController: UIViewController {
             questionBodyLabel.attributedText = attributedStr
         }
     }
+    
+    // MARK UICollectionView相关的方法
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let question = question {
+            if let options = question.options {
+                print("选择填空：共有\(options.count)个选项")
+                return options.count
+            } else {
+                print("问题\(question.id)没有options")
+                return 0
+            }
+        } else {
+            print("没有问题，所以没有options")
+            return 0
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let doHaveQuestion = question!
+        let doHaveptions = doHaveQuestion.options!
+        
+        let option = doHaveptions[indexPath.row]
+        let optionCell = collectionView.dequeueReusableCellWithReuseIdentifier(optionCellIdentifier, forIndexPath: indexPath) as! XuanzetiankongOptionCell
+        optionCell.optionLabel.text = option.option
+        optionCell.optionLabel.sizeToFit()
+        
+        return optionCell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let doHaveQuestion = question!
+        let doHaveptions = doHaveQuestion.options!
+        let option = doHaveptions[indexPath.row]
+        let myString: NSString = option.option! as NSString
+        var size: CGSize = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(17.0)])
+        size.height = 50
+        return size
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
 
 
 }

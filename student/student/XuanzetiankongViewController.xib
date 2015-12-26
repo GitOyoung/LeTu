@@ -8,9 +8,9 @@
             <connections>
                 <outlet property="answerPad" destination="sUH-FI-1fF" id="iHC-X3-Tem"/>
                 <outlet property="answerPadOptionsCollectionView" destination="EU2-SO-8sB" id="ppV-ia-qRe"/>
-                <outlet property="answersCollectionView" destination="S2X-Mc-Za1" id="dPW-8S-APY"/>
                 <outlet property="contentView" destination="oER-ku-bUJ" id="ZZF-Ro-g6E"/>
                 <outlet property="questionBodyLabel" destination="5zF-Kv-FMh" id="65A-zA-6y1"/>
+                <outlet property="questionPointView" destination="XBy-hA-JCI" id="OD9-aK-MHG"/>
                 <outlet property="questionTitleView" destination="yuK-zN-dZw" id="4iu-7b-ZeY"/>
                 <outlet property="scrollView" destination="Nnm-UQ-0ap" id="0ja-d2-AwO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,11 +26,12 @@
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EU2-SO-8sB">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ydc-fO-poL">
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OAe-oC-bez">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
                             </collectionViewFlowLayout>
                         </collectionView>
                     </subviews>
@@ -62,33 +63,30 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S2X-Mc-Za1">
-                                    <rect key="frame" x="0.0" y="44.5" width="320" height="240.5"/>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Q5t-sb-Suw">
-                                        <size key="itemSize" width="50" height="50"/>
-                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </collectionViewFlowLayout>
-                                </collectionView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-hA-JCI">
+                                    <rect key="frame" x="8" y="36" width="304" height="200"/>
+                                    <color key="backgroundColor" red="1" green="0.89725644339999999" blue="0.48542580340000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="12F-WI-Pbj"/>
+                                        <constraint firstAttribute="width" constant="304" id="m06-db-CdT"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="m06-db-CdT"/>
+                                        </mask>
+                                    </variation>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="S2X-Mc-Za1" secondAttribute="bottom" constant="16" id="2ge-I1-iog"/>
+                                <constraint firstAttribute="trailing" secondItem="XBy-hA-JCI" secondAttribute="trailing" constant="8" id="3bT-b5-mnQ"/>
+                                <constraint firstItem="XBy-hA-JCI" firstAttribute="leading" secondItem="oER-ku-bUJ" secondAttribute="leading" constant="8" id="IPg-YW-teb"/>
                                 <constraint firstAttribute="height" constant="301" id="MfJ-j7-ytQ"/>
-                                <constraint firstItem="S2X-Mc-Za1" firstAttribute="leading" secondItem="oER-ku-bUJ" secondAttribute="leading" id="Nep-8v-pDy"/>
-                                <constraint firstAttribute="trailing" secondItem="S2X-Mc-Za1" secondAttribute="trailing" id="drE-Dw-tUk"/>
                                 <constraint firstItem="5zF-Kv-FMh" firstAttribute="top" secondItem="oER-ku-bUJ" secondAttribute="top" constant="8" id="fEr-Ez-NCr"/>
-                                <constraint firstAttribute="bottom" secondItem="S2X-Mc-Za1" secondAttribute="bottom" id="jVy-js-gmJ"/>
+                                <constraint firstItem="XBy-hA-JCI" firstAttribute="top" secondItem="5zF-Kv-FMh" secondAttribute="bottom" constant="7.5" id="meq-As-hea"/>
                                 <constraint firstAttribute="trailing" secondItem="5zF-Kv-FMh" secondAttribute="trailing" constant="8" id="qjD-y5-dT7"/>
                                 <constraint firstItem="5zF-Kv-FMh" firstAttribute="leading" secondItem="oER-ku-bUJ" secondAttribute="leading" constant="8" id="qmM-GG-f9D"/>
-                                <constraint firstItem="S2X-Mc-Za1" firstAttribute="top" secondItem="5zF-Kv-FMh" secondAttribute="bottom" constant="16" id="rT2-nO-g2L"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="jVy-js-gmJ"/>
-                                </mask>
-                            </variation>
                         </view>
                     </subviews>
                     <constraints>

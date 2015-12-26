@@ -80,6 +80,8 @@
 		E99F58D31C24ED79008364C2 /* QuestionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */; };
 		E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */; };
 		E99F59131C2E981E008364C2 /* QuestionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E99F591A1C2EBA22008364C2 /* XuanzetiankongOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E99F591B1C2EBA22008364C2 /* XuanzetiankongOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +181,8 @@
 		E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTitleView.swift; sourceTree = "<group>"; };
 		E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DanxuanAnswerControl.swift; sourceTree = "<group>"; };
 		E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionBaseViewController.swift; sourceTree = "<group>"; };
+		E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XuanzetiankongOptionCell.swift; sourceTree = "<group>"; };
+		E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuanzetiankongOptionCell.xib; sourceTree = "<group>"; };
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -255,6 +259,8 @@
 				166AF32A1C206438001028C3 /* LianxianViewController.xib */,
 				166AF32D1C2073E5001028C3 /* XuanzetiankongViewController.swift */,
 				166AF32E1C2073E5001028C3 /* XuanzetiankongViewController.xib */,
+				E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */,
+				E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */,
 			);
 			name = QuestionType;
 			sourceTree = "<group>";
@@ -558,6 +564,7 @@
 				7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */,
 				166AF3281C205AE7001028C3 /* PanduanViewController.xib in Resources */,
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
+				E99F591B1C2EBA22008364C2 /* XuanzetiankongOptionCell.xib in Resources */,
 				E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */,
 				E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */,
 				160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */,
@@ -661,6 +668,7 @@
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
+				E99F591A1C2EBA22008364C2 /* XuanzetiankongOptionCell.swift in Sources */,
 				E3B545F71C22C524001EE63C /* MainViewController.swift in Sources */,
 				7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */,
 				E3E9BEF31C2BCE1900DF28F9 /* ArrowMenu.swift in Sources */,
