@@ -123,6 +123,13 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     paixuViewController.view.frame = frame
                     self.addChildViewController(paixuViewController)
                     self.contentView.addSubview(paixuViewController.view)
+                case .XuanZeTianKong:
+                    let viewController = XuanzetiankongViewController()
+                    viewController.question = currentQuestion
+                    viewController.view.frame = frame
+                    self.addChildViewController(viewController)
+                    self.contentView.addSubview(viewController.view)
+
                 default:
                         print("暂时的default")
                 

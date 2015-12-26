@@ -39,16 +39,6 @@ class DanxuanViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     func setQuestionTitle(question:EtaskQuestion?) {
 
         questionTitleView.backgroundColor = QKColor.whiteColor()
@@ -108,15 +98,20 @@ class DanxuanViewController: UIViewController {
             answerPad.addSubview(button)
         }
     }
-    //题目选项实例化
-    func getEtaskQuestionOptions(question:EtaskQuestion?){
+    
+    //获取题目的所有选项(options)
+    func getEtaskQuestionOptions(question:EtaskQuestion?) ->[EtaskQuestionOption] {
+      var options = [EtaskQuestionOption]()
+
         if let question = question{
             if let options = question.options{
                 for option in options{
-                    etaskQuestionOptions.append(EtaskQuestionOption(option: option)!)
+                    options.append(EtaskQuestionOption(option: option)!)
                 }
             }
         }
+    
+       return options
     }
     
     //MARK:选择选项按钮

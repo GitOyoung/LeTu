@@ -79,6 +79,7 @@
 		E99F58D01C24CD88008364C2 /* QuestionTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */; };
 		E99F58D31C24ED79008364C2 /* QuestionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */; };
 		E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */; };
+		E99F59131C2E981E008364C2 /* QuestionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,7 @@
 		E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTypeEnum.swift; sourceTree = "<group>"; };
 		E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTitleView.swift; sourceTree = "<group>"; };
 		E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DanxuanAnswerControl.swift; sourceTree = "<group>"; };
+		E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionBaseViewController.swift; sourceTree = "<group>"; };
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				166AF3211C205A92001028C3 /* DanxuanViewController.swift */,
+				E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */,
 				7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */,
 				7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */,
 				166AF3221C205A92001028C3 /* DanxuanViewController.xib */,
@@ -678,6 +681,7 @@
 				7B7D4C851C2AB7D600527BA0 /* EtaskQuestionOption.swift in Sources */,
 				160F480F1BF8E00900796A49 /* QKColor.swift in Sources */,
 				E3E9BEF61C2BDB9800DF28F9 /* StatusView.swift in Sources */,
+				E99F59131C2E981E008364C2 /* QuestionBaseViewController.swift in Sources */,
 				160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */,
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
 				E3EBE6281C26A9580050F02E /* BubbleView.swift in Sources */,
