@@ -11,7 +11,6 @@ import UIKit
 class DanxuanViewController: UIViewController {
 
     var question:EtaskQuestion?
-    var etaskQuestionOptions = [EtaskQuestionOption]()
     
     // MARK: properties
     @IBOutlet weak var questionTitleView: QuestionTitleView!
@@ -27,7 +26,6 @@ class DanxuanViewController: UIViewController {
         super.viewDidLoad()
         setQuestionTitle(question)
         setQuestionBody(question)
-        getEtaskQuestionOptions(question)
         setQuestionOptions()
         setAnswerButtons()
         scrollContentHeight.constant = 600
@@ -66,7 +64,7 @@ class DanxuanViewController: UIViewController {
     func setQuestionOptions(){
         var str = ""
         let ary = ["A.","B.","C.","D."]
-        for (index,option) in etaskQuestionOptions.enumerate(){
+        for (index,option) in (question?.options!.enumerate())!{
             
             let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)!
             let attributedString = try? NSAttributedString(data: html_str, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil)
@@ -81,11 +79,12 @@ class DanxuanViewController: UIViewController {
         let ary = ["A","B","C","D"]
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
-        let offsetWidth = Int(screenWidth) - etaskQuestionOptions.count*44
+        let options = question?.options!
+        let offsetWidth = Int(screenWidth) - (question?.options!.count)!*44
         let offsetHeight = Int(answerPad.frame.height)
-        for (index,_) in etaskQuestionOptions.enumerate(){
+        for (index,_) in (question?.options!.enumerate())!{
             
-            frame.origin.x = CGFloat((44 + offsetWidth/(etaskQuestionOptions.count+1))*index + offsetWidth/(etaskQuestionOptions.count+1))
+            frame.origin.x = CGFloat((44 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
             frame.origin.y = CGFloat((offsetHeight-44)/2)
             frame.size.height = CGFloat(offsetHeight/2)
             
@@ -99,29 +98,14 @@ class DanxuanViewController: UIViewController {
         }
     }
     
-    //获取题目的所有选项(options)
-    func getEtaskQuestionOptions(question:EtaskQuestion?) ->[EtaskQuestionOption] {
-      var options = [EtaskQuestionOption]()
-
-        if let question = question{
-            if let options = question.options{
-                for option in options{
-                    options.append(EtaskQuestionOption(option: option)!)
-                }
-            }
-        }
-    
-       return options
-    }
-    
     //MARK:选择选项按钮
     func didClickOptionButton(button: UIButton){
         let index = answerButtonsAry.indexOf(button)
-        let option = etaskQuestionOptions[index!]
+        let option = question?.options![index!]
         print("选择\(index)按钮")
-        print("选项\(option.option)")
-        print("选项\(option.optionIndex)")
-        print("选项\(option.answer)")
+        print("选项\(option!.option)")
+        print("选项\(option!.optionIndex)")
+        print("选项\(option!.answer)")
     }
     //计算scrollView和屏幕的高度
     

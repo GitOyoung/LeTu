@@ -6,7 +6,7 @@
 //  Copyright © 2015年 singlu. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class QuestionBaseViewController: UIViewController {
 
