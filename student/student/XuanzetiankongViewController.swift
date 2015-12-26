@@ -28,6 +28,7 @@ class XuanzetiankongViewController: UIViewController {
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(question)
