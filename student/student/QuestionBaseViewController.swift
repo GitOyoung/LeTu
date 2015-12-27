@@ -10,4 +10,6 @@ import UIKit
 
 class QuestionBaseViewController: UIViewController {
 
+    var question:EtaskQuestion?
+
 }

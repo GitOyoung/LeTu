@@ -92,6 +92,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         
         let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
         print("共有\(questionsData.count)个问题")
+        print(questionsData)
         for currentQuestionData in questionsData {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
@@ -129,7 +130,12 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     viewController.view.frame = frame
                     self.addChildViewController(viewController)
                     self.contentView.addSubview(viewController.view)
-
+                case .TingLiTianKong:
+                    let viewController = TingLiTiankongViewController()
+                    viewController.question = currentQuestion
+                    viewController.view.frame = frame
+                    self.addChildViewController(viewController)
+                    self.contentView.addSubview(viewController.view)
                 default:
                         print("暂时的default")
                 

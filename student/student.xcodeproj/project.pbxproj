@@ -82,6 +82,8 @@
 		E99F59131C2E981E008364C2 /* QuestionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E99F591A1C2EBA22008364C2 /* XuanzetiankongOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */; settings = {ASSET_TAGS = (); }; };
 		E99F591B1C2EBA22008364C2 /* XuanzetiankongOptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E9AB6E4A1C2F64C200AD1C80 /* TingLiTiankongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB6E481C2F64C200AD1C80 /* TingLiTiankongViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E9AB6E4B1C2F64C200AD1C80 /* TingLiTiankongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +185,8 @@
 		E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionBaseViewController.swift; sourceTree = "<group>"; };
 		E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XuanzetiankongOptionCell.swift; sourceTree = "<group>"; };
 		E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XuanzetiankongOptionCell.xib; sourceTree = "<group>"; };
+		E9AB6E481C2F64C200AD1C80 /* TingLiTiankongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TingLiTiankongViewController.swift; sourceTree = "<group>"; };
+		E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TingLiTiankongViewController.xib; sourceTree = "<group>"; };
 		F5670F7DD0BB736829B053F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F79F60162D9117FBADC31C41 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -248,8 +252,8 @@
 		166AF3201C20581E001028C3 /* QuestionType */ = {
 			isa = PBXGroup;
 			children = (
-				166AF3211C205A92001028C3 /* DanxuanViewController.swift */,
 				E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */,
+				166AF3211C205A92001028C3 /* DanxuanViewController.swift */,
 				7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */,
 				7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */,
 				166AF3221C205A92001028C3 /* DanxuanViewController.xib */,
@@ -261,6 +265,8 @@
 				166AF32E1C2073E5001028C3 /* XuanzetiankongViewController.xib */,
 				E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */,
 				E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */,
+				E9AB6E481C2F64C200AD1C80 /* TingLiTiankongViewController.swift */,
+				E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */,
 			);
 			name = QuestionType;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				166AF31A1C1D64C1001028C3 /* NewEtaskListViewController.xib in Resources */,
 				E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */,
 				E98A91AF1BF4C103008DB1A9 /* EtaskWorkonView.xib in Resources */,
+				E9AB6E4B1C2F64C200AD1C80 /* TingLiTiankongViewController.xib in Resources */,
 				E98A91C11BF4C2D9008DB1A9 /* AskDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +665,7 @@
 				166AF3141C1C0E4F001028C3 /* EtaskDAO.swift in Sources */,
 				E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */,
 				E37F727F1C2A6E40002FF8BE /* ProgressBar.swift in Sources */,
+				E9AB6E4A1C2F64C200AD1C80 /* TingLiTiankongViewController.swift in Sources */,
 				E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */,
 				E37F72821C2A9D0C002FF8BE /* UIPopMenuButton.swift in Sources */,
 				E3E9BEF41C2BCE1900DF28F9 /* ArrowView.swift in Sources */,

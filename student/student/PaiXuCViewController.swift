@@ -8,10 +8,9 @@
 
 import UIKit
 
-class PaiXuCViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITableViewDataSource {
    
     // MARK: propeties
-    var question:EtaskQuestion?
     var etaskQuestionOptions = [EtaskQuestionOption]()
     var cellTotalHeight:CGFloat = 0
     

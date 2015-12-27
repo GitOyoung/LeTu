@@ -8,10 +8,9 @@
 
 import UIKit
 
-class PanduanViewController: UIViewController {
+class PanduanViewController: QuestionBaseViewController {
     
     //MARK:properties
-    var question:EtaskQuestion?
     var answerButtonsAry = [UIButton]()
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
@@ -71,7 +70,7 @@ class PanduanViewController: UIViewController {
     }
     
     //设置对错按钮
-    func setAnswerButton(){
+    func setAnswerButton() {
         let options = question?.options
         var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
@@ -79,7 +78,7 @@ class PanduanViewController: UIViewController {
         let offsetWidth = Int(screenWidth) - options!.count*44
         let offsetHeight = Int(answerPadView.frame.height)
         var buttonImage = ""
-        for (index,_) in options!.enumerate(){
+        for (index,_) in options!.enumerate() {
             
             frame.origin.x = CGFloat((44 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
             frame.origin.y = CGFloat((offsetHeight-44)/2)

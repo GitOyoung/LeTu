@@ -8,9 +8,7 @@
 
 import UIKit
 
-class DanxuanViewController: UIViewController {
-
-    var question:EtaskQuestion?
+class DanxuanViewController: QuestionBaseViewController {
     
     // MARK: properties
     @IBOutlet weak var questionTitleView: QuestionTitleView!

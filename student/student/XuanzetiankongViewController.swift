@@ -8,11 +8,9 @@
 
 import UIKit
 
-class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class XuanzetiankongViewController: QuestionBaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK properties
-    var question:EtaskQuestion?
-
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
 
@@ -27,9 +25,6 @@ class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource
     
     let optionCellIdentifier = "optionCell"
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(question)
@@ -37,20 +32,15 @@ class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource
         answerPadOptionsCollectionView.dataSource = self
         answerPadOptionsCollectionView.delegate = self
         answerPadOptionsCollectionView.registerNib(UINib(nibName: "XuanzetiankongOptionCell", bundle: nil), forCellWithReuseIdentifier:optionCellIdentifier )
-        
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
     func setQuestionTitle(question:EtaskQuestion?) {
-        
         questionTitleView.backgroundColor = QKColor.whiteColor()
-        
         if let question = question {
             questionTitleView.ordinalLabel.text = String(question.ordinal)
             questionTitleView.titleLabel.text = question.type.displayTitle()
@@ -58,7 +48,6 @@ class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource
             questionTitleView.ordinalLabel.text = "9"
             questionTitleView.titleLabel.text = "测试题型"
         }
-        
     }
     
     func setQuestionBody(question:EtaskQuestion?){
@@ -97,7 +86,6 @@ class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource
         let optionCell = collectionView.dequeueReusableCellWithReuseIdentifier(optionCellIdentifier, forIndexPath: indexPath) as! XuanzetiankongOptionCell
         optionCell.optionLabel.text = option.option
         optionCell.optionLabel.sizeToFit()
-        
         return optionCell
     }
     
@@ -112,9 +100,6 @@ class XuanzetiankongViewController: UIViewController, UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
     }
-    
-
 
 }

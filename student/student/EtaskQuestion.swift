@@ -39,6 +39,7 @@ class EtaskQuestion: NSObject {
     var options:[EtaskQuestionOption]?
     var id:String
     var status: String
+    let speechUrlHtmlData:String? //听力相关题目的语音url
     
     init(data:NSDictionary) {
 
@@ -49,6 +50,14 @@ class EtaskQuestion: NSObject {
         questionBody = data["question"] as? String
         id = data["questionId"] as! String
         status = QuestionStatus(rawValue: "\(questionStatus)")!.getStatus()
+        
+        
+        if let speechUrlRawData = data["speechUrl"] {
+           speechUrlHtmlData = speechUrlRawData as? String
+        } else {
+            speechUrlHtmlData = nil
+        }
+        
         super.init()
         options = self.getEtaskQuestionOptions(data)
         printQuestion()
@@ -68,12 +77,16 @@ class EtaskQuestion: NSObject {
         return etaskQuestionOptions
     }
     
+    
     func printQuestion() {
+        print("===================================================")
         print("ID：\(id)")
         print("类型:\(self.type)")
         print("状态：\(status)")
         print("序号:\(self.ordinal)")
         print("内容:\(self.questionBody)")
+        print("语音:\(self.speechUrlHtmlData)")
+
         print("选项:")
         if let questionOptions = self.options{
             for option in questionOptions{
