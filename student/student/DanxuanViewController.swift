@@ -22,7 +22,7 @@ class DanxuanViewController: QuestionBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setQuestionTitle(question)
+        setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         setQuestionOptions()
         setAnswerButtons()
@@ -33,20 +33,6 @@ class DanxuanViewController: QuestionBaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func setQuestionTitle(question:EtaskQuestion?) {
-
-        questionTitleView.backgroundColor = QKColor.whiteColor()
-        
-        if let question = question {
-            questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
-        } else {
-            questionTitleView.ordinalLabel.text = "9"
-            questionTitleView.titleLabel.text = "测试题型"
-        }
-
     }
     
     func setQuestionBody(question:EtaskQuestion?){

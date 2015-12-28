@@ -100,36 +100,36 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 98)
 
             switch currentQuestion.type {
-                case .DanXuan:
-                    let danxuanController = DanxuanViewController()
-                    danxuanController.question = currentQuestion
-                    danxuanController.view.frame = frame
-                    self.addChildViewController(danxuanController)
-                    self.contentView.addSubview(danxuanController.view)
-                case .LianXian:
-                    let lianxianViewController = LianxianViewController()
-                    lianxianViewController.question = currentQuestion
-                    lianxianViewController.view.frame = frame
-                    self.addChildViewController(lianxianViewController)
-                    self.contentView.addSubview(lianxianViewController.view)
-                case .PanDuan:
-                    let panduanViewController = PanduanViewController()
-                    panduanViewController.question = currentQuestion
-                    panduanViewController.view.frame = frame
-                    self.addChildViewController(panduanViewController)
-                    self.contentView.addSubview(panduanViewController.view)
-                case .PaiXu:
-                    let paixuViewController = PaiXuCViewController()
-                    paixuViewController.question = currentQuestion
-                    paixuViewController.view.frame = frame
-                    self.addChildViewController(paixuViewController)
-                    self.contentView.addSubview(paixuViewController.view)
-                case .XuanZeTianKong:
-                    let viewController = XuanzetiankongViewController()
-                    viewController.question = currentQuestion
-                    viewController.view.frame = frame
-                    self.addChildViewController(viewController)
-                    self.contentView.addSubview(viewController.view)
+//                case .DanXuan:
+//                    let danxuanController = DanxuanViewController()
+//                    danxuanController.question = currentQuestion
+//                    danxuanController.view.frame = frame
+//                    self.addChildViewController(danxuanController)
+//                    self.contentView.addSubview(danxuanController.view)
+//                case .LianXian:
+//                    let lianxianViewController = LianxianViewController()
+//                    lianxianViewController.question = currentQuestion
+//                    lianxianViewController.view.frame = frame
+//                    self.addChildViewController(lianxianViewController)
+//                    self.contentView.addSubview(lianxianViewController.view)
+//                case .PanDuan:
+//                    let panduanViewController = PanduanViewController()
+//                    panduanViewController.question = currentQuestion
+//                    panduanViewController.view.frame = frame
+//                    self.addChildViewController(panduanViewController)
+//                    self.contentView.addSubview(panduanViewController.view)
+//                case .PaiXu:
+//                    let paixuViewController = PaiXuCViewController()
+//                    paixuViewController.question = currentQuestion
+//                    paixuViewController.view.frame = frame
+//                    self.addChildViewController(paixuViewController)
+//                    self.contentView.addSubview(paixuViewController.view)
+//                case .XuanZeTianKong:
+//                    let viewController = XuanzetiankongViewController()
+//                    viewController.question = currentQuestion
+//                    viewController.view.frame = frame
+//                    self.addChildViewController(viewController)
+//                    self.contentView.addSubview(viewController.view)
                 case .TingLiTianKong:
                     let viewController = TingLiTiankongViewController()
                     viewController.question = currentQuestion

@@ -60,7 +60,7 @@ class EtaskQuestion: NSObject {
         
         super.init()
         options = self.getEtaskQuestionOptions(data)
-        printQuestion()
+//        printQuestion()
     }
     
     //获取题目的所有选项(options)

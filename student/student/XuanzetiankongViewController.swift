@@ -27,7 +27,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setQuestionTitle(question)
+        setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         answerPadOptionsCollectionView.dataSource = self
         answerPadOptionsCollectionView.delegate = self
@@ -38,17 +38,6 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         super.didReceiveMemoryWarning()
     }
     
-
-    func setQuestionTitle(question:EtaskQuestion?) {
-        questionTitleView.backgroundColor = QKColor.whiteColor()
-        if let question = question {
-            questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
-        } else {
-            questionTitleView.ordinalLabel.text = "9"
-            questionTitleView.titleLabel.text = "测试题型"
-        }
-    }
     
     func setQuestionBody(question:EtaskQuestion?){
         if let question = question {
@@ -96,6 +85,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         let myString: NSString = option.option! as NSString
         var size: CGSize = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(17.0)])
         size.height = 50
+        size.width = 50
         return size
     }
     
