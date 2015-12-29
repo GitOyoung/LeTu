@@ -23,6 +23,7 @@ class MeAfterLoginViewController: UIViewController {
         nameButton.layer.borderWidth = 1
         nameButton.layer.cornerRadius = 6
         headImageView.layer.cornerRadius = 40.5
+        headImageView.clipsToBounds = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,6 +34,11 @@ class MeAfterLoginViewController: UIViewController {
         presentViewController(MeLoginViewController(), animated: true, completion: nil)
     }
     
+    @IBAction func logoutButtonTouchUpInside(sender: UIButton) {
+        NSUserDefaultUtil.saveUser(nil)
+        loadUserData()
+    }
+    
     func loadUserData(){
         let user:UserModel? = NSUserDefaultUtil.getUser()
         if(user == nil){
@@ -41,6 +47,7 @@ class MeAfterLoginViewController: UIViewController {
             nameButton.enabled = true
             schoolLabel.text = nil
             subjectLabel.text = nil
+            logoutButton.hidden = true
         }else{
             //            let imageUrlString = user?.imgUrl
             let imageUrlString = "https://www.baidu.com/img/bd_logo1.png"
@@ -53,6 +60,7 @@ class MeAfterLoginViewController: UIViewController {
             nameButton.enabled = false
             schoolLabel.text = user?.school
             subjectLabel.text = ""//TODO
+            logoutButton.hidden = false
         }
     }
     

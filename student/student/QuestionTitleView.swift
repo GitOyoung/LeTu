@@ -41,5 +41,17 @@ class QuestionTitleView: UIView {
         
     }
     
+    
+    func setData(question:EtaskQuestion?) {
+        backgroundColor = QKColor.whiteColor()
+        if let question = question {
+            ordinalLabel.text = String(question.ordinal)
+            titleLabel.text = question.type.displayTitle()
+        } else {
+            ordinalLabel.text = "9"
+            titleLabel.text = "测试题型"
+        }
+    }
+    
 
 }

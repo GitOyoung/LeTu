@@ -37,6 +37,7 @@ class EtaskQuestion: NSObject {
     var ordinal:Int
     var questionBody:String?
     var options:[EtaskQuestionOption]?
+    var optionLine:NSDictionary?
     var id:String
     var status: String
     let speechUrlHtmlData:String? //听力相关题目的语音url
@@ -60,6 +61,7 @@ class EtaskQuestion: NSObject {
         
         super.init()
         options = self.getEtaskQuestionOptions(data)
+        optionLine = data["optionLine"] as? NSDictionary
         printQuestion()
     }
     

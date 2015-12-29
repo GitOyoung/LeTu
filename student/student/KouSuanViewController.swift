@@ -1,26 +1,21 @@
 //
-//  LianxianViewController.swift
+//  KouSuanViewController.swift
 //  student
 //
-//  Created by Jiang, Xinxing on 15/12/15.
+//  Created by luania on 15/12/29.
 //  Copyright © 2015年 singlu. All rights reserved.
 //
 
 import UIKit
 
-class LianxianViewController: UIViewController {
-    
-    @IBOutlet weak var questionTitleView:QuestionTitleView!
+class KouSuanViewController: QuestionBaseViewController {
+
     @IBOutlet weak var questionBodyLabel: UILabel!
-    @IBOutlet weak var lianXianView: LianXianView!
-    
-    var question:EtaskQuestion?
-    
+    @IBOutlet weak var questionTitleView: QuestionTitleView!
     override func viewDidLoad() {
         super.viewDidLoad()
         questionTitleView.setData(question)
         setQuestionBody(question)
-        lianXianView.setQuestion(question)
     }
     
     func setQuestionBody(question:EtaskQuestion?){
@@ -30,14 +25,4 @@ class LianxianViewController: UIViewController {
             questionBodyLabel.attributedText = attributedStr
         }
     }
-    
 }
-
-
-
-
-
-
-
-
-

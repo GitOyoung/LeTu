@@ -136,12 +136,17 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     viewController.view.frame = frame
                     self.addChildViewController(viewController)
                     self.contentView.addSubview(viewController.view)
+                case .KouSuan:
+                    let viewController = KouSuanViewController()
+                    viewController.question = currentQuestion
+                    viewController.view.frame = frame
+                    self.addChildViewController(viewController)
+                    self.contentView.addSubview(viewController.view)
                 default:
                         print("暂时的default")
                 
             }
         }
         self.contentView.bringSubviewToFront(self.contentView.subviews[0] )
-        
     }
 }

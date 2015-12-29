@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LianxianViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="lianXianView" destination="ZRx-Sa-M7D" id="u0u-Vx-Fij"/>
+                <outlet property="questionBodyLabel" destination="B6l-BU-CQb" id="GUc-uq-Fb4"/>
+                <outlet property="questionTitleView" destination="NRc-uB-oTF" id="Rzi-rW-mG6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,16 +17,85 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3.连线题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCQ-oO-SyM">
-                    <rect key="frame" x="110" y="236" width="66" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRc-uB-oTF" customClass="QuestionTitleView" customModule="student" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                    <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="RNk-NW-ql6"/>
+                    </constraints>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4n4-IP-NN6">
+                    <rect key="frame" x="0.0" y="48" width="320" height="432"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIu-q1-Xv0">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="550"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="questionBody" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6l-BU-CQb">
+                                    <rect key="frame" x="8" y="8" width="304" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="224" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ZRx-Sa-M7D" customClass="LianXianView" customModule="student" customModuleProvider="target">
+                                    <rect key="frame" x="48" y="60.5" width="224" height="200"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiK-iw-vnB">
+                                    <rect key="frame" x="44" y="68" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-De-3Ub">
+                                    <rect key="frame" x="44" y="120" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAY-cH-1wS">
+                                    <rect key="frame" x="44" y="179" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akj-3z-bGb">
+                                    <rect key="frame" x="44" y="232" width="46" height="30"/>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="B6l-BU-CQb" firstAttribute="leading" secondItem="pIu-q1-Xv0" secondAttribute="leading" constant="8" id="BmF-HU-cpq"/>
+                                <constraint firstAttribute="height" constant="550" id="IQV-dH-3OT"/>
+                                <constraint firstAttribute="trailing" secondItem="ZRx-Sa-M7D" secondAttribute="trailing" constant="48" id="KOC-45-mgy"/>
+                                <constraint firstItem="ZRx-Sa-M7D" firstAttribute="leading" secondItem="pIu-q1-Xv0" secondAttribute="leading" constant="48" id="Ut8-c7-bvL"/>
+                                <constraint firstAttribute="trailing" secondItem="B6l-BU-CQb" secondAttribute="trailing" constant="8" id="Vwv-hp-hjr"/>
+                                <constraint firstItem="ZRx-Sa-M7D" firstAttribute="top" secondItem="B6l-BU-CQb" secondAttribute="bottom" constant="32" id="a5H-Bs-C4X"/>
+                                <constraint firstItem="B6l-BU-CQb" firstAttribute="top" secondItem="pIu-q1-Xv0" secondAttribute="top" constant="8" id="yh3-ux-Egq"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="subviews">
+                                    <exclude reference="wiK-iw-vnB"/>
+                                    <exclude reference="ksC-De-3Ub"/>
+                                    <exclude reference="aAY-cH-1wS"/>
+                                    <exclude reference="Akj-3z-bGb"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="pIu-q1-Xv0" secondAttribute="bottom" constant="-118" id="2fX-xw-qoG"/>
+                        <constraint firstItem="pIu-q1-Xv0" firstAttribute="leading" secondItem="4n4-IP-NN6" secondAttribute="leading" id="duR-ID-wFh"/>
+                        <constraint firstItem="pIu-q1-Xv0" firstAttribute="top" secondItem="4n4-IP-NN6" secondAttribute="top" id="eMP-bv-4oH"/>
+                        <constraint firstAttribute="trailing" secondItem="pIu-q1-Xv0" secondAttribute="trailing" id="fie-cL-2XZ"/>
+                    </constraints>
+                </scrollView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="4n4-IP-NN6" firstAttribute="top" secondItem="NRc-uB-oTF" secondAttribute="bottom" id="Adj-pZ-coI"/>
+                <constraint firstAttribute="bottom" secondItem="4n4-IP-NN6" secondAttribute="bottom" id="H6f-6o-v9d"/>
+                <constraint firstItem="4n4-IP-NN6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mp3-1O-3kQ"/>
+                <constraint firstItem="NRc-uB-oTF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZAG-a7-pIG"/>
+                <constraint firstAttribute="trailing" secondItem="NRc-uB-oTF" secondAttribute="trailing" id="ajI-dA-XLs"/>
+                <constraint firstItem="pIu-q1-Xv0" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="cxb-q9-bCT"/>
+                <constraint firstItem="NRc-uB-oTF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="nBC-nQ-eRn"/>
+                <constraint firstAttribute="trailing" secondItem="4n4-IP-NN6" secondAttribute="trailing" id="rFZ-as-hps"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
