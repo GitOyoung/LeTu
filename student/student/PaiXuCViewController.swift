@@ -13,6 +13,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     // MARK: propeties
     var etaskQuestionOptions = [EtaskQuestionOption]()
     var cellTotalHeight:CGFloat = 0
+    var answerButtons = [UIButton]()
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
 
@@ -20,6 +21,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     
     @IBOutlet weak var answerPadView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,38 +103,50 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     }
    
     func setAnswerButtons(){
-        var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
-        let offsetWidth = Int(screenWidth) - 88
+        let offsetWidth = Int(screenWidth) - 96
         let offsetHeight = Int(answerPadView.frame.height)
         
         frame.origin.x = CGFloat(offsetWidth/2 - 10)
-        frame.origin.y = CGFloat((offsetHeight - 44)/2)
+        frame.origin.y = CGFloat((offsetHeight - 42)/2)
         let submitButton = UIButton(frame: frame)
         submitButton.setTitle("确定", forState: .Normal)
         submitButton.backgroundColor = UIColor.blueColor()
         submitButton.layer.cornerRadius = 5
-        submitButton.addTarget(self, action: "didClickSubmitButton", forControlEvents: UIControlEvents.TouchUpInside)
-        frame.origin.x = CGFloat(offsetWidth/2 + 54)
+        submitButton.addTarget(self, action: "didClickSubmitButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        frame.origin.x = CGFloat(offsetWidth/2 + 58)
+        answerButtons.append(submitButton)
         let cancelButton = UIButton(frame: frame)
         cancelButton.setTitle("取消", forState: .Normal)
         cancelButton.backgroundColor = UIColor.blueColor()
         cancelButton.layer.cornerRadius = 5
-        cancelButton.addTarget(self, action: "didClickCancelButton", forControlEvents: UIControlEvents.TouchUpInside)
-
+        cancelButton.addTarget(self, action: "didClickCancelButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        answerButtons.append(cancelButton)
         answerPadView.addSubview(submitButton)
         answerPadView.addSubview(cancelButton)
 
 
     }
     
-    func didClickSubmitButton(){
+    func didClickSubmitButton(button:UIButton){
+        changeButtonBackground()
+        button.backgroundColor = UIColor.grayColor()
         print("确定")
     }
     
-    func didClickCancelButton(){
+    func didClickCancelButton(button:UIButton){
+        changeButtonBackground()
+        button.backgroundColor = UIColor.grayColor()
         print("取消")
+    }
+    
+    //改变按钮颜色
+    func changeButtonBackground(){
+        for button in answerButtons{
+            button.backgroundColor = UIColor.blueColor()
+        }
     }
     
     //判断scrollView是否允许滚动

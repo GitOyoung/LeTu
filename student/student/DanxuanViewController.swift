@@ -59,17 +59,17 @@ class DanxuanViewController: QuestionBaseViewController {
     }
     
     func setAnswerButtons(){
-        var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
         let ary = ["A","B","C","D"]
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
         let options = question?.options!
-        let offsetWidth = Int(screenWidth) - (question?.options!.count)!*44
+        let offsetWidth = Int(screenWidth) - (question?.options!.count)!*48
         let offsetHeight = Int(answerPad.frame.height)
         for (index,_) in (question?.options!.enumerate())!{
             
-            frame.origin.x = CGFloat((44 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
-            frame.origin.y = CGFloat((offsetHeight-44)/2)
+            frame.origin.x = CGFloat((48 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
+            frame.origin.y = CGFloat((offsetHeight-42)/2)
             frame.size.height = CGFloat(offsetHeight/2)
             
             let button = UIButton(frame: frame)
@@ -86,6 +86,10 @@ class DanxuanViewController: QuestionBaseViewController {
     func didClickOptionButton(button: UIButton){
         let index = answerButtonsAry.indexOf(button)
         let option = question?.options![index!]
+        for button in answerButtonsAry{
+            button.backgroundColor = UIColor.blueColor()
+        }
+        button.backgroundColor = UIColor.grayColor()
         print("选择\(index)按钮")
         print("选项\(option!.option)")
         print("选项\(option!.optionIndex)")

@@ -119,6 +119,9 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //题目添加到contentView内
     func addViewControllerInContentView(viewController:UIViewController){
+        for view in self.contentView.subviews{
+            view.removeFromSuperview()
+        }
         self.addChildViewController(viewController)
         self.contentView.addSubview(viewController.view)
     }

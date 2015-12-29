@@ -56,7 +56,7 @@ class EtaskQuestion: NSObject {
         if let speechUrlRawData = data["speechUrl"] {
            speechUrlHtmlData = speechUrlRawData as? String
         } else {
-            speechUrlHtmlData = nil
+            speechUrlHtmlData = ""
         }
         
         super.init()
