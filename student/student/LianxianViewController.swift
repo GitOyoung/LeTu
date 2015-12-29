@@ -8,13 +8,11 @@
 
 import UIKit
 
-class LianxianViewController: UIViewController {
+class LianxianViewController: QuestionBaseViewController {
     
     @IBOutlet weak var questionTitleView:QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var lianXianView: LianXianView!
-    
-    var question:EtaskQuestion?
     
     override func viewDidLoad() {
         super.viewDidLoad()
