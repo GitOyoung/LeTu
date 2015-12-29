@@ -14,39 +14,15 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
     var questions = [EtaskQuestion]()
+    var questionControllers = [UIViewController]()
+    var currentQuestionController = UIViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.initQuestions()
         self.loadQuestions()
     }
     
-    ///初始化题目
-    func initQuestions() {
-        
-        let question1 = DanxuanViewController()
-        self.addChildViewController(question1)
-        self.contentView.addSubview(question1.view)
-        //self.contentView.insertSubview(question1.view, belowSubview: self.contentView)
-        
-        let question2 = PanduanViewController()
-        self.addChildViewController(question2)
-        self.contentView.addSubview(question2.view)
-        //self.contentView.insertSubview(question2.view, belowSubview: question1.view)
-        
-        let question3 = LianxianViewController()
-        self.addChildViewController(question3)
-        self.contentView.addSubview(question3.view)
-        //self.contentView.insertSubview(question3.view, belowSubview: question2.view)
-        
-        let question4 = XuanzetiankongViewController()
-        self.addChildViewController(question4)
-        self.contentView.addSubview(question4.view)
-        //self.contentView.insertSubview(question4.view, belowSubview: question3.view)
-        
-        self.contentView.bringSubviewToFront(self.contentView.subviews[0])
-    }
-    
+    //加载题目
     func loadQuestions() {
         if let etask = self.etask {
             // 获取电子作业详情地址
@@ -71,14 +47,22 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         super.didReceiveMemoryWarning()
     }
     
+    //上一题
     @IBAction func preQuestion(sender: AnyObject) {
-        self.contentView.exchangeSubviewAtIndex(0, withSubviewAtIndex: self.contentView.subviews.count-1)
-        self.contentView.insertSubview(self.contentView.subviews.last!, atIndex: 1)
+        let index = questionControllers.indexOf(currentQuestionController)
+        if index! >= 1{
+            let preQuestionController = questionControllers[index!-1]
+            addViewControllerInContentView(preQuestionController)
+        }
     }
     
+    //下一题
     @IBAction func nextQuestion(sender: AnyObject) {
-        self.contentView.exchangeSubviewAtIndex(0, withSubviewAtIndex: 1)
-        self.contentView.insertSubview(self.contentView.subviews[1], atIndex: self.contentView.subviews.count)
+        let index = questionControllers.indexOf(currentQuestionController)
+        if index!+1 < questionControllers.count{
+            let nextQuestionController = questionControllers[index!+1]
+            addViewControllerInContentView(nextQuestionController)
+        }
     }
 
     ///按钮 － 返回
@@ -89,64 +73,60 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     //题目集合
     func didreceiveResult(result: NSDictionary) {
         let etask:NSDictionary = (result["data"] as? NSDictionary)!
-        
         let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
         print("共有\(questionsData.count)个问题")
-        print(questionsData)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 98)
         for currentQuestionData in questionsData {
             let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
             questions.append(currentQuestion)
-            
-            let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 98)
-
             switch currentQuestion.type {
                 case .DanXuan:
                     let danxuanController = DanxuanViewController()
                     danxuanController.question = currentQuestion
                     danxuanController.view.frame = frame
-                    self.addChildViewController(danxuanController)
-                    self.contentView.addSubview(danxuanController.view)
+                    questionControllers.append(danxuanController)
                 case .LianXian:
                     let lianxianViewController = LianxianViewController()
                     lianxianViewController.question = currentQuestion
                     lianxianViewController.view.frame = frame
-                    self.addChildViewController(lianxianViewController)
-                    self.contentView.addSubview(lianxianViewController.view)
+                    questionControllers.append(lianxianViewController)
                 case .PanDuan:
                     let panduanViewController = PanduanViewController()
                     panduanViewController.question = currentQuestion
                     panduanViewController.view.frame = frame
-                    self.addChildViewController(panduanViewController)
-                    self.contentView.addSubview(panduanViewController.view)
+                    questionControllers.append(panduanViewController)
                 case .PaiXu:
                     let paixuViewController = PaiXuCViewController()
                     paixuViewController.question = currentQuestion
                     paixuViewController.view.frame = frame
-                    self.addChildViewController(paixuViewController)
-                    self.contentView.addSubview(paixuViewController.view)
+                    questionControllers.append(paixuViewController)
                 case .XuanZeTianKong:
                     let viewController = XuanzetiankongViewController()
                     viewController.question = currentQuestion
                     viewController.view.frame = frame
-                    self.addChildViewController(viewController)
-                    self.contentView.addSubview(viewController.view)
+                    questionControllers.append(viewController)
                 case .TingLiTianKong:
                     let viewController = TingLiTiankongViewController()
                     viewController.question = currentQuestion
                     viewController.view.frame = frame
-                    self.addChildViewController(viewController)
-                    self.contentView.addSubview(viewController.view)
+                    questionControllers.append(viewController)
                 case .KouSuan:
                     let viewController = KouSuanViewController()
                     viewController.question = currentQuestion
                     viewController.view.frame = frame
-                    self.addChildViewController(viewController)
-                    self.contentView.addSubview(viewController.view)
+                    questionControllers.append(viewController)
                 default:
                         print("暂时的default")
                 
             }
         }
-        self.contentView.bringSubviewToFront(self.contentView.subviews[0] )
+        addViewControllerInContentView(questionControllers.first!)
+    }
+    
+    //题目添加到contentView内
+    func addViewControllerInContentView(viewController:UIViewController){
+        currentQuestionController = viewController
+        self.addChildViewController(viewController)
+        self.contentView.addSubview(viewController.view)
     }
 }
