@@ -18,7 +18,10 @@ class EtaskQuestionOption: NSObject {
     
     init?(option:NSDictionary?) {
         if let option = option{
-            self.option = option["option"] as? String
+            let html_str = option["option"] as? String
+            let nsDataStr = html_str?.dataUsingEncoding(NSUTF8StringEncoding)
+            let attributedStr = try! NSAttributedString(data: nsDataStr!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+            self.option = attributedStr.string
             self.optionIndex = option["optionIndex"] as? Int
             self.answer = option["answer"] as? String
         }

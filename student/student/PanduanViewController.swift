@@ -23,7 +23,7 @@ class PanduanViewController: QuestionBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setQuestionTitle(question)
+        setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         setQuestionOption()
         setAnswerButton()
@@ -36,18 +36,6 @@ class PanduanViewController: QuestionBaseViewController {
     }
     
     // MARK: actions
-    func setQuestionTitle(question:EtaskQuestion?){
-        questionTitleView.backgroundColor = QKColor.whiteColor()
-        
-        if let question = question {
-            questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
-        } else {
-            questionTitleView.ordinalLabel.text = "9"
-            questionTitleView.titleLabel.text = "测试题型"
-        }
-
-    }
     
     //设置题目主干
     func setQuestionBody(question: EtaskQuestion?){

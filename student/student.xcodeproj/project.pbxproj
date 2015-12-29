@@ -32,6 +32,7 @@
 		7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
+		8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0067FD1C322BF800406357 /* QuestionAudioView.swift */; };
 		8F3A05211C321D21008F41F6 /* KouSuanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */; };
 		8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */; };
 		8F8DCC311C31235D007A2640 /* LianXianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8DCC301C31235D007A2640 /* LianXianView.swift */; };
@@ -133,6 +134,7 @@
 		7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaiXuCViewController.xib; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		8F0067FD1C322BF800406357 /* QuestionAudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionAudioView.swift; sourceTree = "<group>"; };
 		8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanViewController.swift; sourceTree = "<group>"; };
 		8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanViewController.xib; sourceTree = "<group>"; };
 		8F8DCC301C31235D007A2640 /* LianXianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LianXianView.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				E99F58D21C24ED79008364C2 /* QuestionTitleView.swift */,
 				E99F58D61C24FB25008364C2 /* DanxuanAnswerControl.swift */,
 				8F8DCC301C31235D007A2640 /* LianXianView.swift */,
+				8F0067FD1C322BF800406357 /* QuestionAudioView.swift */,
 			);
 			name = uicomponents;
 			sourceTree = "<group>";
@@ -531,7 +534,7 @@
 				TargetAttributes = {
 					E98A915E1BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 3KWDVWHCFW;
+						DevelopmentTeam = 8W263924Q3;
 					};
 					E98A91721BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -685,6 +688,7 @@
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
 				7B99386D1C2BB0C800AFCD12 /* PaiXuCViewController.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
+				8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
 				E99F591A1C2EBA22008364C2 /* XuanzetiankongOptionCell.swift in Sources */,

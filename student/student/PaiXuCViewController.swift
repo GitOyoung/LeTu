@@ -23,7 +23,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setQuestionTitle(question)
+        setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         etaskQuestionOptions = (question?.options!)!
         setAnswerButtons()
@@ -40,22 +40,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     }
     
 
-    //MARK: actions 
-    
-    func setQuestionTitle(question:EtaskQuestion?) {
-        
-        questionTitleView.backgroundColor = QKColor.whiteColor()
-        
-        if let question = question {
-            questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
-        } else {
-            questionTitleView.ordinalLabel.text = "9"
-            questionTitleView.titleLabel.text = "测试题型"
-        }
-        
-    }
-    
+    //MARK: actions
     //设置题目题干
     func setQuestionBody(question:EtaskQuestion?){
         if let question = question{
