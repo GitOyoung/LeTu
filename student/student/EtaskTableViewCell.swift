@@ -25,6 +25,10 @@ class EtaskTableViewCell: UITableViewCell {
     
     func setupStatusContent(data: EtaskModel?)
     {
+        for view in statusView.subviews
+        {
+            view.removeFromSuperview()
+        }
         if let d = data
         {
             switch d.status
