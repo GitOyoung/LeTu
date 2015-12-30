@@ -26,7 +26,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     @IBOutlet weak var refreshTip: UILabel!
     
     
-    var http: HttpRequest?
+    let http: HttpRequest = HttpRequest()
     
     //    
  
@@ -51,13 +51,13 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.titleView.backgroundColor = QKColor.themeBackgroundColor_1()
-        http = HttpRequest()
-        http?.delegate = self
+        http.delegate = self
         setMainSegment()
         setSearchBar()
         setupTableView()
         setupScrollView()
         setupButton()
+        requestData(0)
     }
     
     func setupButton()
@@ -194,65 +194,31 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     private func checkUser()
     {
-        if LTConfig.defaultConfig().defaultUser == nil
+        if NSUserDefaultUtil.getUser() == nil
         {
-            self.getUserInfo()
+            let meLoginViewController = MeLoginViewController()
+            self.presentViewController(meLoginViewController, animated: true, completion: nil)
         }
         
     }
     
-    func getUserInfo()
-    {
-        let url = ServiceApi.getLoginUrl()
-        let params = NSDictionary(objects: ["xl5101","123456"], forKeys: ["userName", "pwd"])
-        http?.postRequest(url, params: params)
-    }
-    
-    
     func didreceiveResult(result: NSDictionary) {
         let isSuccess:Bool = result["isSuccess"] as! Bool
-        if isSuccess
-        {
-            let message:String = result["message"] as! String
-            print(message)
-            if message != ""
-            {
-                let status: String = result["status"] as! String
-                if status == "Y"
-                {
-                    let student: Student = Student(info: result["user"] as? NSDictionary)
-                    LTConfig.defaultConfig().defaultUser = student
-                }
-                else
-                {
-                    LTConfig.defaultConfig().defaultUser = nil
-                }
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    self.requestData(0)
+        if isSuccess {
+            var count = 0
+            let data:[NSDictionary] = result["data"] as! [NSDictionary]
+            for etask in data{
+                let currentEtask = EtaskModel(info: etask)
+                dataSource.addObject(currentEtask)
+                if currentEtask.isNewTask(){
+                    count += 1
                 }
             }
-            else
-            {
-                let data = result["data"] as! NSMutableArray
-                var count: Int = 0
-                dataSource.removeAllObjects()
-                for d in data {
-                    let e = EtaskModel(info: d as? NSDictionary)
-                    dataSource.addObject(e)
-                    if e.isNewTask() {
-                        count++;
-                    }
-                    print(d)
-                }
-  
-                
-                newTaskCount = count
-             
-                endRefresh()
-                tableView.reloadData()
-                
-            }
-            
+            newTaskCount = count
+            endRefresh()
+            tableView.reloadData()
+        }else{
+            self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
         }
 
     }
@@ -389,12 +355,10 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     // MARK: 刷新数据
     func requestData(pageIndex: Int) {
-        let http: HttpRequest = HttpRequest()
-        http.delegate = self
         let url = ServiceApi.getSearchEtaskListUrl()
-        if LTConfig.defaultConfig().defaultUser != nil
+        let user:UserModel? = NSUserDefaultUtil.getUser()
+        if user != nil
         {
-            let student:Student = LTConfig.defaultConfig().defaultUser!
             /*
             userId	Long	是		用户ID
             orderDate	Integer	是	1	是否按作业开始日期排序类型 (1:是 0:否)
@@ -410,7 +374,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             accessToken
             */
             var params = [String:AnyObject]()
-            params["userId"] = student.uuid
+            params["userId"] = user!.userId!
             params["orderDate"] = 1
             params["status"] = 0
             params["subject"] = mainSegment.selectedSegmentIndex
@@ -418,8 +382,10 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             params["etaskType"] = 0
             params["pageIndex"] = pageIndex
             params["pageSize"] = 10
-            params["accessToken"] = student.accessToken
+            params["accessToken"] = user!.token!
             http.postRequest(url, params: params)
+        }else{
+            self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
         }
     }
     

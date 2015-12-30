@@ -35,7 +35,8 @@ class UserModel: NSObject {
             grade = user["grades"] as? String
             realName = user["realName"] as? String
             name = user["userName"] == nil ? "" : user["userName"] as! String
-            userId = user["uuid"] as? Int
+            let uuid:Int = (user["uuid"]?.integerValue)!
+            userId = uuid
         }
         
     }

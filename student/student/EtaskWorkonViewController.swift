@@ -27,16 +27,19 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             // 获取电子作业详情地址
             let url: String = ServiceApi.getEtaskDetailUrl()
             // 判断是否已经有用户，如果有则发送请求
-            if LTConfig.defaultConfig().defaultUser != nil{
+            if NSUserDefaultUtil.getUser() != nil{
                 
-                let student:Student = LTConfig.defaultConfig().defaultUser!
+                let user:UserModel = NSUserDefaultUtil.getUser()!
                 
-                let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":student.uuid,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":student.accessToken!]
+                let params:NSDictionary = ["etaskId":etask.etaskID!, "userId":user.userId!,"classesId":etask.classesId!,"recordId":etask.recordId!,"accessToken":user.token!]
                 let http:HttpRequest = HttpRequest()
                 
                 http.delegate = self
                 
                 http.postRequest(url, params: params)
+            }else{
+                let meLoginViewController = MeLoginViewController()
+                self.presentViewController(meLoginViewController, animated: true, completion: nil)
             }
         }
        
@@ -75,16 +78,22 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //题目集合
     func didreceiveResult(result: NSDictionary) {
-        let etask:NSDictionary = (result["data"] as? NSDictionary)!
-        let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
-        print("共有\(questionsData.count)个问题")
-        for currentQuestionData in questionsData {
-            let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
-            questions.append(currentQuestion)
+        let code:String = result["code"] as! String
+        if code == "20004"{
+            let meLoginViewController = MeLoginViewController()
+            self.presentViewController(meLoginViewController, animated: true, completion: nil)
+        }else{
+            let etask:NSDictionary = (result["data"] as? NSDictionary)!
+            let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
+            print("共有\(questionsData.count)个问题")
+            for currentQuestionData in questionsData {
+                let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+                questions.append(currentQuestion)
+            }
+            currentQuestion = questions.first!
+            let currentQuestionController = jumpToQuestionController(currentQuestion!)
+            addViewControllerInContentView(currentQuestionController)
         }
-        currentQuestion = questions.first!
-        let currentQuestionController = jumpToQuestionController(currentQuestion!)
-        addViewControllerInContentView(currentQuestionController)
     }
     
     //判断应该跳往哪个题目页面

@@ -8,20 +8,22 @@
 
 import UIKit
 
-class MeLoginViewController: UIViewController,HttpProtocol{
+class MeLoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol{
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    var http:HttpRequest?
+    let http = HttpRequest()
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 6
         setLoginButtonUnClickable()
-        http = HttpRequest()
-        http?.delegate = self
+        http.delegate = self
+        nameTextField.delegate = self
+        pwdTextField.delegate = self
     }
     
     @IBAction func cancelButtonTouchUpInside(sender: AnyObject) {
@@ -65,9 +67,36 @@ class MeLoginViewController: UIViewController,HttpProtocol{
     func postLogin(name:String,pwd:String){
         let url = ServiceApi.getLoginUrl()
         let params = NSDictionary(objects: [name,pwd], forKeys: ["userName", "pwd"])
-        http?.postRequest(url, params: params)
+        http.postRequest(url, params: params)
     }
     
+    //MARK: UITextField
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if pwdTextField.text!.isEmpty{
+            count = 0
+            if count < 1 {
+                pwdTextField.becomeFirstResponder()
+                count += 1
+            }else{
+                textField.resignFirstResponder()
+            }
+        }else{
+            textField.resignFirstResponder()
+        }
+        
+        if nameTextField.text!.isEmpty{
+            count = 0
+            if count < 1 {
+                nameTextField.becomeFirstResponder()
+                count += 1
+            }else{
+                pwdTextField.resignFirstResponder()
+            }
+        }
+        
+        return true
+    }
+
     func didreceiveResult(result: NSDictionary) {
         let message:String = result["message"] as! String
         print(message)
