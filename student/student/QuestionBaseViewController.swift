@@ -35,4 +35,16 @@ class QuestionBaseViewController: UIViewController {
         let timeStr = NSString(format: "%02d:%02d", minutes,seconds) as String
         return timeStr
     }
+    //MARK: 有多少(),{%%}
+    func matchStringSymbol(str:String) -> Int{
+        var strArray = [String]()
+        if str.containsString("（") || str.containsString("("){
+            for chr in str.characters{
+                if chr == "（" || chr == "("{
+                    strArray.append(chr.debugDescription)
+                }
+            }
+        }
+        return strArray.count
+    }
 }

@@ -58,6 +58,7 @@ class DanxuanViewController: QuestionBaseViewController {
         optionsLabel.text = str
     }
     
+    //选择题选项按钮
     func setAnswerButtons(){
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
         let ary = ["A","B","C","D"]
