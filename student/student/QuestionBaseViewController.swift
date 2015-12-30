@@ -11,5 +11,40 @@ import UIKit
 class QuestionBaseViewController: UIViewController {
 
     var question:EtaskQuestion?
-
+    
+    
+    //MARK: set quesstion Title
+    func setQuestionTitle(questionTitleView:QuestionTitleView) {
+        
+        questionTitleView.backgroundColor = QKColor.whiteColor()
+        
+        if let question = question {
+            questionTitleView.ordinalLabel.text = String(question.ordinal)
+            questionTitleView.titleLabel.text = question.type.displayTitle()
+        } else {
+            questionTitleView.ordinalLabel.text = "9"
+            questionTitleView.titleLabel.text = "测试题型"
+        }
+        
+    }
+    //MARK: time format
+    func timeFormat(time:NSTimeInterval)->String{
+        let currentTime = Int(time)
+        let minutes = currentTime/60
+        let seconds = currentTime - minutes * 60
+        let timeStr = NSString(format: "%02d:%02d", minutes,seconds) as String
+        return timeStr
+    }
+    //MARK: 有多少(),{%%}
+    func matchStringSymbol(str:String) -> Int{
+        var strArray = [String]()
+        if str.containsString("（") || str.containsString("("){
+            for chr in str.characters{
+                if chr == "（" || chr == "("{
+                    strArray.append(chr.debugDescription)
+                }
+            }
+        }
+        return strArray.count
+    }
 }

@@ -64,7 +64,9 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="Y6M-Ch-gy2"/>
                             </constraints>
-                            <state key="normal" title="上一题"/>
+                            <state key="normal" title="上一题">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="preQuestion:" destination="-1" eventType="touchUpInside" id="Tc5-Jf-65G"/>
                             </connections>
@@ -74,7 +76,9 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="XvY-i2-BDK"/>
                             </constraints>
-                            <state key="normal" title="下一题"/>
+                            <state key="normal" title="下一题">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="nextQuestion:" destination="-1" eventType="touchUpInside" id="ZLL-Xx-oOI"/>
                             </connections>
@@ -84,17 +88,21 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="low-HR-EAk"/>
                             </constraints>
-                            <state key="normal" title="保存云端"/>
+                            <state key="normal" title="保存云端">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-wN-F0w">
                             <rect key="frame" x="85" y="10" width="60" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="B07-m1-NTs"/>
                             </constraints>
-                            <state key="normal" title="保存本地"/>
+                            <state key="normal" title="保存本地">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.029872891124857685" green="0.43245156066134149" blue="0.99448328906169792" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="YRx-hd-Vem" firstAttribute="centerY" secondItem="hS1-AQ-btO" secondAttribute="centerY" id="Al9-lo-T0q"/>
                         <constraint firstItem="eif-Zb-gTs" firstAttribute="centerY" secondItem="hS1-AQ-btO" secondAttribute="centerY" id="Pvr-Z5-rFh"/>
@@ -109,7 +117,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.99840477750000001" green="0.99840477750000001" blue="0.99840477750000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="hS1-AQ-btO" secondAttribute="trailing" id="2T8-rR-vV3"/>
                 <constraint firstItem="hS1-AQ-btO" firstAttribute="top" secondItem="7aA-Du-0pS" secondAttribute="bottom" id="Cmb-vW-Z6q"/>

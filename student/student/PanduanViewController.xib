@@ -66,7 +66,7 @@
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObB-fd-exI">
                     <rect key="frame" x="0.0" y="411" width="320" height="68"/>
-                    <color key="backgroundColor" red="0.99840477750000001" green="0.93451136639999999" blue="0.19591666660000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="bLZ-uj-1Cg"/>
                     </constraints>

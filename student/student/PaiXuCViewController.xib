@@ -27,7 +27,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfX-kn-RS9">
                     <rect key="frame" x="0.0" y="412" width="320" height="68"/>
-                    <color key="backgroundColor" red="0.99840477750000001" green="0.93451136639999999" blue="0.19591666660000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJC-BK-KIR">
                     <rect key="frame" x="0.0" y="48" width="320" height="364"/>

@@ -23,7 +23,7 @@ class PanduanViewController: QuestionBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setQuestionTitle(question)
+        setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         setQuestionOption()
         setAnswerButton()
@@ -36,18 +36,6 @@ class PanduanViewController: QuestionBaseViewController {
     }
     
     // MARK: actions
-    func setQuestionTitle(question:EtaskQuestion?){
-        questionTitleView.backgroundColor = QKColor.whiteColor()
-        
-        if let question = question {
-            questionTitleView.ordinalLabel.text = String(question.ordinal)
-            questionTitleView.titleLabel.text = question.type.displayTitle()
-        } else {
-            questionTitleView.ordinalLabel.text = "9"
-            questionTitleView.titleLabel.text = "测试题型"
-        }
-
-    }
     
     //设置题目主干
     func setQuestionBody(question: EtaskQuestion?){
@@ -72,24 +60,24 @@ class PanduanViewController: QuestionBaseViewController {
     //设置对错按钮
     func setAnswerButton() {
         let options = question?.options
-        var frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
-        let offsetWidth = Int(screenWidth) - options!.count*44
+        let offsetWidth = Int(screenWidth) - options!.count*48
         let offsetHeight = Int(answerPadView.frame.height)
         var buttonImage = ""
         for (index,_) in options!.enumerate() {
             
-            frame.origin.x = CGFloat((44 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
-            frame.origin.y = CGFloat((offsetHeight-44)/2)
+            frame.origin.x = CGFloat((48 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
+            frame.origin.y = CGFloat((offsetHeight-42)/2)
             frame.size.height = CGFloat(offsetHeight/2)
             
             let button = UIButton(frame: frame)
             buttonImage = index == 0 ? "rightAnswer" : "wrongAnswer"
             button.setImage(UIImage(named: buttonImage), forState: .Normal)
-            button.backgroundColor = UIColor.grayColor()
+            button.backgroundColor = UIColor.blueColor()
             button.layer.borderWidth = 0.5
-            button.layer.cornerRadius = 5
+            button.layer.cornerRadius = 6
             button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
             answerButtonsAry.append(button)
             answerPadView.addSubview(button)
@@ -100,6 +88,10 @@ class PanduanViewController: QuestionBaseViewController {
     func didClickOptionButton(button:UIButton){
         let index = answerButtonsAry.indexOf(button)!
         let option = question?.options![index]
+        for button in answerButtonsAry{
+            button.backgroundColor = UIColor.blueColor()
+        }
+        button.backgroundColor = UIColor.grayColor()
         print("选项：\(option!.option)")
         print("\(option!.optionIndex)")
     }

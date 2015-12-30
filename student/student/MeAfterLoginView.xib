@@ -42,7 +42,7 @@
                                                     <rect key="frame" x="46" y="48" width="274" height="0.5"/>
                                                     <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="nKW-rw-Vjl"/>
+                                                        <constraint firstAttribute="height" constant="1" id="nKW-rw-Vjl"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_schools" translatesAutoresizingMaskIntoConstraints="NO" id="aCE-6b-uO6" userLabel="icon">
@@ -61,7 +61,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So2-E1-x0O" userLabel="school">
                                                     <rect key="frame" x="310" y="25" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -86,7 +86,7 @@
                                                     <rect key="frame" x="0.0" y="48" width="320" height="0.5"/>
                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="GpD-Xh-VRq"/>
+                                                        <constraint firstAttribute="height" constant="1" id="GpD-Xh-VRq"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_kemu" translatesAutoresizingMaskIntoConstraints="NO" id="vYf-KM-4V5" userLabel="icon">
@@ -105,7 +105,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxo-o3-RyK" userLabel="subjects">
                                                     <rect key="frame" x="310" y="25" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -136,14 +136,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xmp-tu-rgl" userLabel="group_divider">
-                                    <rect key="frame" x="0.0" y="313" width="320" height="0.5"/>
+                                    <rect key="frame" x="0.0" y="313" width="320" height="1"/>
                                     <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="0.5" id="3fa-uQ-AfQ"/>
+                                        <constraint firstAttribute="height" constant="1" id="3fa-uQ-AfQ"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p05-g1-cev" userLabel="other_group">
-                                    <rect key="frame" x="0.0" y="313" width="320" height="147"/>
+                                    <rect key="frame" x="0.0" y="313.5" width="320" height="147"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGI-mu-U2S" userLabel="advice_line">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -152,7 +152,7 @@
                                                     <rect key="frame" x="46" y="48" width="274" height="0.5"/>
                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="YgJ-Ok-fF3"/>
+                                                        <constraint firstAttribute="height" constant="1" id="YgJ-Ok-fF3"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_yijian" translatesAutoresizingMaskIntoConstraints="NO" id="ppX-pb-M7D" userLabel="icon">
@@ -197,7 +197,7 @@
                                                     <rect key="frame" x="46" y="48" width="274" height="0.5"/>
                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="QP5-r7-7Oq"/>
+                                                        <constraint firstAttribute="height" constant="1" id="QP5-r7-7Oq"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_good" translatesAutoresizingMaskIntoConstraints="NO" id="v5H-yk-TUi" userLabel="icon">
@@ -242,7 +242,7 @@
                                                     <rect key="frame" x="0.0" y="48" width="320" height="0.5"/>
                                                     <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="0.5" id="cMX-6q-u0R"/>
+                                                        <constraint firstAttribute="height" constant="1" id="cMX-6q-u0R"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_shezhi" translatesAutoresizingMaskIntoConstraints="NO" id="gD7-a1-AEQ" userLabel="icon">
@@ -271,7 +271,7 @@
                                                 <constraint firstItem="xzE-vI-bSM" firstAttribute="leading" secondItem="vL3-5z-ASt" secondAttribute="leading" id="2LN-5M-zqE"/>
                                                 <constraint firstItem="gD7-a1-AEQ" firstAttribute="leading" secondItem="vL3-5z-ASt" secondAttribute="leading" constant="16" id="3Yv-Mh-1b2"/>
                                                 <constraint firstItem="qgC-fw-Fr1" firstAttribute="centerY" secondItem="vL3-5z-ASt" secondAttribute="centerY" id="3gc-gu-Hgn"/>
-                                                <constraint firstAttribute="bottom" secondItem="xzE-vI-bSM" secondAttribute="bottom" constant="0.5" id="8xM-pp-tEq"/>
+                                                <constraint firstAttribute="bottom" secondItem="xzE-vI-bSM" secondAttribute="bottom" id="8xM-pp-tEq"/>
                                                 <constraint firstAttribute="trailing" secondItem="xzE-vI-bSM" secondAttribute="trailing" id="IgW-nQ-GVj"/>
                                                 <constraint firstAttribute="height" constant="49" id="Q0O-0B-34e"/>
                                                 <constraint firstItem="gD7-a1-AEQ" firstAttribute="centerY" secondItem="vL3-5z-ASt" secondAttribute="centerY" id="dFs-vO-ICr"/>
@@ -296,7 +296,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIu-Pz-mW6">
-                                    <rect key="frame" x="16" y="480" width="288" height="40"/>
+                                    <rect key="frame" x="16" y="480.5" width="288" height="40"/>
                                     <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="FZf-IU-5Un"/>
@@ -305,6 +305,9 @@
                                     <state key="normal" title="退出登录">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="logoutButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="0NP-ac-fGy"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c3N-Hh-rhD">
                                     <rect key="frame" x="119" y="40" width="81" height="81"/>
@@ -378,7 +381,7 @@
             <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <nil key="highlightedColor"/>
             <point key="canvasLocation" x="471" y="265.5"/>
         </label>

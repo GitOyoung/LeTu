@@ -46,8 +46,7 @@ class HttpRequest:NSObject {
                 let data = response.data
 
                 do {
-                let jsonResult:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                
+                    let jsonResult:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     self.delegate?.didreceiveResult(jsonResult)
                 }
                 catch
