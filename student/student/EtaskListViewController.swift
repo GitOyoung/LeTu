@@ -46,6 +46,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         }
     }
     
+    var page: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,11 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         setupTableView()
         setupScrollView()
         setupButton()
-        requestData(0)
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        requestData(page)
     }
     
     func setupButton()
@@ -207,6 +212,9 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         if isSuccess {
             var count = 0
             let data:[NSDictionary] = result["data"] as! [NSDictionary]
+            if page == 0 {
+                dataSource.removeAllObjects()
+            }
             for etask in data{
                 let currentEtask = EtaskModel(info: etask)
                 dataSource.addObject(currentEtask)
@@ -218,7 +226,9 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             endRefresh()
             tableView.reloadData()
         }else{
-            self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
+            if NSUserDefaultUtil.getUser() == nil {
+                self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
+            }
         }
 
     }
