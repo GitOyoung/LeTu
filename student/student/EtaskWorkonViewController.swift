@@ -118,7 +118,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 questionController = KouSuanViewController()
             case .TingLiXuanZe:
                 questionController = TingLiTiankongViewController()
-            case .YuYinGenDu:
+            case .LangDu:
                 questionController = ReadingViewController()
             default:
                 return UIViewController()
