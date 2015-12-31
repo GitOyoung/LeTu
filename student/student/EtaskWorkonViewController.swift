@@ -121,7 +121,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             case .LangDu:
                 questionController = ReadingViewController()
             default:
-                return UIViewController()
+                return TingLiXuanZeViewController()
         }
         questionController!.question = currentQuestion
         questionController!.view.frame = frame

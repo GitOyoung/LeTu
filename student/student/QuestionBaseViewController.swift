@@ -47,4 +47,11 @@ class QuestionBaseViewController: UIViewController {
         }
         return strArray.count
     }
+    
+    //MARK: html to format string
+    func htmlFormatString(htmlStr:String)->String{
+        let str = htmlStr.dataUsingEncoding(NSUTF8StringEncoding)
+        let attributedStr = try? NSAttributedString(data: str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+        return (attributedStr?.string)!
+    }
 }
