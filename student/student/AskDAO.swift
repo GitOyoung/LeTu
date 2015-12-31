@@ -102,21 +102,21 @@ class AskDAO {
     
     /// 获取英语信息
     func findYingyu() -> NSMutableArray {
-        var yingyuList = NSMutableArray()
+        let yingyuList = NSMutableArray()
         yingyuList.addObject(self.askListData[1])
         return yingyuList
     }
     
     /// 获取语文信息
     func findYuwen() -> NSMutableArray {
-        var yuwenList = NSMutableArray()
+        let yuwenList = NSMutableArray()
         yuwenList.addObject(self.askListData[0])
         return yuwenList
     }
     
     /// 获取数学信息
     func findShuxue() -> NSMutableArray {
-        var shuxueList = NSMutableArray()
+        let shuxueList = NSMutableArray()
         shuxueList.addObject(self.askListData[2])
         return shuxueList
     }

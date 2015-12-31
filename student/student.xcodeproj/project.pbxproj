@@ -39,6 +39,10 @@
 		8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */; };
 		8FEE5AC01C2B88E80027CC41 /* MBPHUDUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
+		E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B991C3365D200C8B3C5 /* AudioManager.swift */; };
+		E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */; };
+		E30A1B9E1C33A8AF00C8B3C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */; };
+		E30A1BA01C33A8BA00C8B3C5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30A1B9F1C33A8BA00C8B3C5 /* AudioToolbox.framework */; };
 		E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */; };
 		E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */; };
 		E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B581C0D29D9002DCCC6 /* LTConfig.swift */; };
@@ -47,13 +51,21 @@
 		E3365B5F1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3365B5D1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib */; };
 		E37F727F1C2A6E40002FF8BE /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F727D1C2A6E40002FF8BE /* ProgressBar.swift */; };
 		E37F72801C2A6E40002FF8BE /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F727E1C2A6E40002FF8BE /* ProgressView.swift */; };
-		E37F72821C2A9D0C002FF8BE /* UIPopMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F72811C2A9D0C002FF8BE /* UIPopMenuButton.swift */; };
 		E3B545F71C22C524001EE63C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B545F61C22C524001EE63C /* MainViewController.swift */; };
 		E3E9BEF31C2BCE1900DF28F9 /* ArrowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */; };
 		E3E9BEF41C2BCE1900DF28F9 /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */; };
 		E3E9BEF61C2BDB9800DF28F9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF51C2BDB9800DF28F9 /* StatusView.swift */; };
 		E3EBE6281C26A9580050F02E /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EBE6271C26A9580050F02E /* BubbleView.swift */; };
 		E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FB736A1C06A26C00E76E55 /* EtaskTableViewController.swift */; };
+		E3FC711D1C30D378002FFEE1 /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC711B1C30D378002FFEE1 /* ReadingViewController.swift */; };
+		E3FC711E1C30D378002FFEE1 /* ReadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3FC711C1C30D378002FFEE1 /* ReadingViewController.xib */; };
+		E3FC714A1C313DF5002FFEE1 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC71491C313DF5002FFEE1 /* UIImage+Gif.swift */; };
+		E3FC714F1C313E37002FFEE1 /* yuyin.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3FC714C1C313E37002FFEE1 /* yuyin.gif */; };
+		E3FC71501C313E37002FFEE1 /* yuyin@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3FC714D1C313E37002FFEE1 /* yuyin@2x.gif */; };
+		E3FC71511C313E37002FFEE1 /* yuyin@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3FC714E1C313E37002FFEE1 /* yuyin@3x.gif */; };
+		E3FC71551C313F99002FFEE1 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC71541C313F99002FFEE1 /* ImageButton.swift */; };
+		E3FC71571C314408002FFEE1 /* ViewControllerBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FC71561C314408002FFEE1 /* ViewControllerBackDelegate.swift */; };
+		E3FFE1F21C32679C004336DB /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FFE1F11C32679C004336DB /* AudioProgressView.swift */; };
 		E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */; };
 		E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98A91661BF4B4E9008DB1A9 /* Main.storyboard */; };
 		E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98A91691BF4B4E9008DB1A9 /* Assets.xcassets */; };
@@ -140,6 +152,10 @@
 		8F8DCC301C31235D007A2640 /* LianXianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LianXianView.swift; sourceTree = "<group>"; };
 		8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultUtil.swift; sourceTree = "<group>"; };
 		8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBPHUDUtil.swift; sourceTree = "<group>"; };
+		E30A1B991C3365D200C8B3C5 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPileView.swift; sourceTree = "<group>"; };
+		E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E30A1B9F1C33A8BA00C8B3C5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
 		E3365B581C0D29D9002DCCC6 /* LTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConfig.swift; sourceTree = "<group>"; };
@@ -148,13 +164,21 @@
 		E3365B5D1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EtaskTableViewCell.xib; sourceTree = "<group>"; };
 		E37F727D1C2A6E40002FF8BE /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		E37F727E1C2A6E40002FF8BE /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
-		E37F72811C2A9D0C002FF8BE /* UIPopMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPopMenuButton.swift; sourceTree = "<group>"; };
 		E3B545F61C22C524001EE63C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowMenu.swift; sourceTree = "<group>"; };
 		E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 		E3E9BEF51C2BDB9800DF28F9 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		E3EBE6271C26A9580050F02E /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		E3FB736A1C06A26C00E76E55 /* EtaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskTableViewController.swift; sourceTree = "<group>"; };
+		E3FC711B1C30D378002FFEE1 /* ReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
+		E3FC711C1C30D378002FFEE1 /* ReadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadingViewController.xib; sourceTree = "<group>"; };
+		E3FC71491C313DF5002FFEE1 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		E3FC714C1C313E37002FFEE1 /* yuyin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = yuyin.gif; path = Assets.xcassets/yuyin.imageset/yuyin.gif; sourceTree = "<group>"; };
+		E3FC714D1C313E37002FFEE1 /* yuyin@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "yuyin@2x.gif"; path = "Assets.xcassets/yuyin.imageset/yuyin@2x.gif"; sourceTree = "<group>"; };
+		E3FC714E1C313E37002FFEE1 /* yuyin@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "yuyin@3x.gif"; path = "Assets.xcassets/yuyin.imageset/yuyin@3x.gif"; sourceTree = "<group>"; };
+		E3FC71541C313F99002FFEE1 /* ImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		E3FC71561C314408002FFEE1 /* ViewControllerBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerBackDelegate.swift; sourceTree = "<group>"; };
+		E3FFE1F11C32679C004336DB /* AudioProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioProgressView.swift; sourceTree = "<group>"; };
 		E98A915F1BF4B4E9008DB1A9 /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98A91621BF4B4E9008DB1A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E98A91671BF4B4E9008DB1A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +228,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E30A1BA01C33A8BA00C8B3C5 /* AudioToolbox.framework in Frameworks */,
+				E30A1B9E1C33A8AF00C8B3C5 /* AVFoundation.framework in Frameworks */,
 				A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,11 +286,14 @@
 		166AF3201C20581E001028C3 /* QuestionType */ = {
 			isa = PBXGroup;
 			children = (
+				E3FC714B1C313E24002FFEE1 /* Gifs */,
+				E3FC71541C313F99002FFEE1 /* ImageButton.swift */,
+				E3FC71491C313DF5002FFEE1 /* UIImage+Gif.swift */,
 				E99F59121C2E981E008364C2 /* QuestionBaseViewController.swift */,
 				166AF3211C205A92001028C3 /* DanxuanViewController.swift */,
+				166AF3221C205A92001028C3 /* DanxuanViewController.xib */,
 				7B99386B1C2BB0C800AFCD12 /* PaiXuCViewController.swift */,
 				7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */,
-				166AF3221C205A92001028C3 /* DanxuanViewController.xib */,
 				166AF3251C205AE7001028C3 /* PanduanViewController.swift */,
 				166AF3261C205AE7001028C3 /* PanduanViewController.xib */,
 				166AF3291C206438001028C3 /* LianxianViewController.swift */,
@@ -275,6 +304,8 @@
 				E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */,
 				E9AB6E481C2F64C200AD1C80 /* TingLiTiankongViewController.swift */,
 				E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */,
+				E3FC711B1C30D378002FFEE1 /* ReadingViewController.swift */,
+				E3FC711C1C30D378002FFEE1 /* ReadingViewController.xib */,
 				8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */,
 				8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */,
 			);
@@ -284,6 +315,8 @@
 		1AC900323358021ACE2A7D42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E30A1B9F1C33A8BA00C8B3C5 /* AudioToolbox.framework */,
+				E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */,
 				F79F60162D9117FBADC31C41 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -319,6 +352,16 @@
 				166AF3151C1C17D1001028C3 /* HttpUtil.swift */,
 			);
 			name = http;
+			sourceTree = "<group>";
+		};
+		E3FC714B1C313E24002FFEE1 /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				E3FC714C1C313E37002FFEE1 /* yuyin.gif */,
+				E3FC714D1C313E37002FFEE1 /* yuyin@2x.gif */,
+				E3FC714E1C313E37002FFEE1 /* yuyin@3x.gif */,
+			);
+			name = Gifs;
 			sourceTree = "<group>";
 		};
 		E98A91561BF4B4E9008DB1A9 = {
@@ -414,11 +457,14 @@
 		E98A91921BF4B564008DB1A9 /* etask */ = {
 			isa = PBXGroup;
 			children = (
+				E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */,
 				E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */,
 				E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */,
+				E3EBE6271C26A9580050F02E /* BubbleView.swift */,
 				E37F727D1C2A6E40002FF8BE /* ProgressBar.swift */,
 				E37F727E1C2A6E40002FF8BE /* ProgressView.swift */,
 				E3E9BEF51C2BDB9800DF28F9 /* StatusView.swift */,
+				E3FFE1F11C32679C004336DB /* AudioProgressView.swift */,
 				E99F58D11C24ED23008364C2 /* uicomponents */,
 				166AF3201C20581E001028C3 /* QuestionType */,
 				166AF3121C1C0E41001028C3 /* DAO */,
@@ -434,8 +480,6 @@
 				E3365B5D1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib */,
 				166AF3171C1D64C1001028C3 /* NewEtaskListViewController.swift */,
 				166AF3181C1D64C1001028C3 /* NewEtaskListViewController.xib */,
-				E3EBE6271C26A9580050F02E /* BubbleView.swift */,
-				E37F72811C2A9D0C002FF8BE /* UIPopMenuButton.swift */,
 			);
 			name = etask;
 			sourceTree = "<group>";
@@ -443,12 +487,14 @@
 		E98A91A71BF4BF42008DB1A9 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				E30A1B991C3365D200C8B3C5 /* AudioManager.swift */,
 				E98A91A81BF4BF58008DB1A9 /* StudentBaseViewController.swift */,
 				160F480E1BF8E00900796A49 /* QKColor.swift */,
 				E3365B581C0D29D9002DCCC6 /* LTConfig.swift */,
 				E3365B5A1C0D2B11002DCCC6 /* Student.swift */,
 				8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */,
 				8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */,
+				E3FC71561C314408002FFEE1 /* ViewControllerBackDelegate.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -573,9 +619,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3FC71501C313E37002FFEE1 /* yuyin@2x.gif in Resources */,
 				166AF3301C2073E5001028C3 /* XuanzetiankongViewController.xib in Resources */,
 				E98A916D1BF4B4E9008DB1A9 /* LaunchScreen.storyboard in Resources */,
 				E3365B5F1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib in Resources */,
+				E3FC714F1C313E37002FFEE1 /* yuyin.gif in Resources */,
 				E98A91BF1BF4C2D1008DB1A9 /* AskNewView.xib in Resources */,
 				8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */,
 				166AF32C1C206438001028C3 /* LianxianViewController.xib in Resources */,
@@ -587,7 +635,9 @@
 				E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */,
 				E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */,
 				160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */,
+				E3FC711E1C30D378002FFEE1 /* ReadingViewController.xib in Resources */,
 				E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */,
+				E3FC71511C313E37002FFEE1 /* yuyin@3x.gif in Resources */,
 				E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */,
 				166AF3241C205A92001028C3 /* DanxuanViewController.xib in Resources */,
 				E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */,
@@ -681,13 +731,17 @@
 				E37F727F1C2A6E40002FF8BE /* ProgressBar.swift in Sources */,
 				E9AB6E4A1C2F64C200AD1C80 /* TingLiTiankongViewController.swift in Sources */,
 				E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */,
-				E37F72821C2A9D0C002FF8BE /* UIPopMenuButton.swift in Sources */,
 				E3E9BEF41C2BCE1900DF28F9 /* ArrowView.swift in Sources */,
+				E3FC711D1C30D378002FFEE1 /* ReadingViewController.swift in Sources */,
+				E3FC71571C314408002FFEE1 /* ViewControllerBackDelegate.swift in Sources */,
 				166AF3161C1C17D1001028C3 /* HttpUtil.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
+				E3FC71551C313F99002FFEE1 /* ImageButton.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
 				7B99386D1C2BB0C800AFCD12 /* PaiXuCViewController.swift in Sources */,
+				E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
+				E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */,
 				8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,
@@ -716,8 +770,10 @@
 				E99F59131C2E981E008364C2 /* QuestionBaseViewController.swift in Sources */,
 				160F48131BFCC9AB00796A49 /* AskTableViewController.swift in Sources */,
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
+				E3FFE1F21C32679C004336DB /* AudioProgressView.swift in Sources */,
 				E3EBE6281C26A9580050F02E /* BubbleView.swift in Sources */,
 				E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */,
+				E3FC714A1C313DF5002FFEE1 /* UIImage+Gif.swift in Sources */,
 				166AF3271C205AE7001028C3 /* PanduanViewController.swift in Sources */,
 				166AF3081C1BFD4C001028C3 /* AskCellModel.swift in Sources */,
 				E37F72801C2A6E40002FF8BE /* ProgressView.swift in Sources */,

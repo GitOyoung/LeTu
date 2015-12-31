@@ -14,7 +14,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
  
     @IBOutlet weak var tipsButton: UIButton!
     
-    @IBOutlet weak var sortButton: UIPopMenuButton!
+    @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
  
     
@@ -69,7 +69,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
  
     private var menu: ArrowMenu?
     @objc(sortButtonClick:)
-    func sortButtonTouchedUpInside(sender s: UIPopMenuButton)
+    func sortButtonTouchedUpInside(sender s: UIButton)
     {
         if menu == nil
         {
@@ -409,6 +409,8 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         
         touchedItem = item
         SortWithIndex(index: row)
+        let view = ReadingViewController()
+        self.presentViewController(view, animated: true, completion: nil)
     }
     
     //气泡菜单的委托方法
