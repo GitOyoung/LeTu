@@ -22,7 +22,14 @@ protocol AudioManagerDelegate
 }
 
 
-
+enum ManagerStatus
+{
+    case DoNothing
+    case Recording
+    case RecordPause
+    case Playing
+    case PlayPause
+}
 
 class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     var audioPlayer: AVAudioPlayer!
@@ -33,6 +40,8 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     var recordUrl: NSURL?
     var playUrl: NSURL?
     
+    
+    var status: ManagerStatus = .DoNothing
     
     var settings: [String: NSNumber]?
     var delegate: AudioManagerDelegate?
@@ -51,6 +60,22 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     override init() {
         super.init()
         setupSettings()
+    }
+    
+    func resetManager()
+    {
+        switch status
+        {
+        case .Recording, .RecordPause:
+            stopRecordingShouldSave(false)
+        case .Playing, .PlayPause:
+            stopPlay()
+        default:
+            break
+        }
+        
+        audioPlayer = nil
+        recorder = nil
     }
     
     //录音相关
@@ -102,8 +127,9 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             else {
                 recorder.recordForDuration(s)
             }
-            delegate?.audioManagerDidStartRecord(recorder)
+            status = .Recording
             timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: Selector("detectionVoice"), userInfo: nil, repeats: true)
+            delegate?.audioManagerDidStartRecord(recorder)
         }
         
     }
@@ -123,6 +149,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         if recorder.recording {
             recorder.pause()
             timer?.pause()
+            status = .RecordPause
         }
     }
     
@@ -131,6 +158,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         if !recorder.recording {
             recorder.record()
             timer?.resume()
+            status = .Recording
         }
     }
     
@@ -141,15 +169,18 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     func stopRecordingShouldSave(save: Bool = true)
     {
-        if !save {
-            recorder.deleteRecording()
-        }
-        recorder.stop()
-        timer?.invalidate()
-        timer = nil
-        if let d = delegate
-        {
-            d.audioManagerDidEndRecord(self.recorder, saved: save)
+        if recorder.recording {
+            if !save {
+                recorder.deleteRecording()
+            }
+            recorder.stop()
+            timer?.invalidate()
+            timer = nil
+            status = .DoNothing
+            if let d = delegate
+            {
+                d.audioManagerDidEndRecord(self.recorder, saved: save)
+            }
         }
     }
     
@@ -177,6 +208,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         do
         {
             try audioPlayer = AVAudioPlayer(data: data)
+            audioPlayer.delegate = self
             if audioPlayer.prepareToPlay()
             {
                 audioPlayer.play()
@@ -186,6 +218,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                 }
                 
                 timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: Selector("detectionTime"), userInfo: nil, repeats: true)
+                status = .Playing
             }
         }
         catch
@@ -209,9 +242,12 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     func stopPlay()
     {
-        audioPlayer.stop()
-        timer?.invalidate()
-        timer = nil
+        if audioPlayer.playing {
+            audioPlayer.stop()
+            timer?.invalidate()
+            timer = nil
+            status = .DoNothing
+        }
     }
     
     func pausePlay()
@@ -220,10 +256,12 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         {
             audioPlayer.pause()
             timer?.pause()
+            status = .PlayPause
             if let d = delegate
             {
                 d.audioManagerDidPause(audioPlayer)
             }
+            
         }
     }
     
@@ -233,6 +271,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         {
             audioPlayer.play()
             timer?.resume()
+            status = .Playing
             if let d = delegate
             {
                 d.audioManagerDidResume(audioPlayer)
@@ -248,10 +287,14 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         if flag
         {
+            status = .DoNothing
+            timer?.invalidate()
             if let d = delegate
             {
                 d.audioManagerDidEndPlay(audioPlayer)
             }
+            
+            
         }
     }
     
@@ -271,7 +314,7 @@ extension NSTimer
     
     func resume()
     {
-        if !valid
+        if valid
         {
             fireDate = NSDate()
         }

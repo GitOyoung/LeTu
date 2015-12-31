@@ -21,6 +21,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     
     @IBOutlet weak var progressContentView: UIPileView!
     @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var questionTitleView: QuestionTitleView!
     
     var audioManager: AudioManager!
     
@@ -37,6 +38,8 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         super.viewDidLoad()
         audioManager = AudioManager.shareManager()
         audioManager.delegate = self
+        audioManager.resetManager()
+        setQuestionTitle(questionTitleView)
         setupTextView()
         setupProgressView()
         setupVoiceRecording()
@@ -247,6 +250,8 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     func audioManagerDidStartRecord(recorder: AVAudioRecorder) {
         pView?.customView?.hidden = true
         recordButton?.tag = 1
+        currentTimeLabel.text = timeIntervalToString(0)
+        durationLabel.text = timeIntervalToString(0)
         recordButton?.startAnimating()
     }
     func audioManagerDidEndRecord(recorder: AVAudioRecorder, saved: Bool) {
@@ -280,6 +285,8 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     func audioManagerDidEndPlay(player: AVAudioPlayer) {
         isPlaying = false
         (pView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
+        pView?.updateProgress = 0.0
+        pView?.customView?.tag = 0
     }
     func audioManagerDidPause(player: AVAudioPlayer) {
         (pView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
@@ -308,7 +315,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     func timeIntervalToString(ti: NSTimeInterval) -> String
     {
         
-        return ti.toString()
+        return ti.toStringMMSS()
     }
     
     
@@ -335,7 +342,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
 
 extension NSTimeInterval
 {
-    func toString() -> String
+    func toStringMMSS() -> String
     {
         var second = Int(self)
         let minute = second / 60

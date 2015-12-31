@@ -10,6 +10,7 @@
                 <outlet property="currentTimeLabel" destination="6pA-ZA-TS4" id="im2-8L-8Up"/>
                 <outlet property="durationLabel" destination="9KP-2B-K9R" id="rjG-4B-v9w"/>
                 <outlet property="progressContentView" destination="ZGw-V3-avh" id="QF7-CC-fCl"/>
+                <outlet property="questionTitleView" destination="ehT-Xv-eKr" id="7Sr-Se-zaQ"/>
                 <outlet property="textView" destination="dfB-kG-QVb" id="hBE-RQ-1De"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="voiceRecordingView" destination="vqC-1a-VM0" id="iyt-yK-6YV"/>
@@ -20,24 +21,25 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehT-Xv-eKr" customClass="QuestionTitleView" customModule="student" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                    <color key="backgroundColor" red="0.033894042839999999" green="0.52809455540000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="V8n-Rr-RZG"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-gV-Be3" userLabel="Content View">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="48" width="375" height="619"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" editable="NO" text="这是需要朗读的文字" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dfB-kG-QVb">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="503"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSS-fl-XQE" userLabel="Burl View">
-                            <rect key="frame" x="0.0" y="428" width="375" height="75"/>
+                            <rect key="frame" x="0.0" y="380" width="375" height="75"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="f27-5f-PHv"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdj-lW-amx" userLabel="Answer View">
-                            <rect key="frame" x="0.0" y="503" width="375" height="40"/>
+                            <rect key="frame" x="0.0" y="455" width="375" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学生答案：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTn-m6-cHh">
                                     <rect key="frame" x="16" y="10" width="95" height="23"/>
@@ -54,7 +56,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UY2-Tk-z2w" userLabel="Time View">
-                            <rect key="frame" x="0.0" y="543" width="375" height="40"/>
+                            <rect key="frame" x="0.0" y="495" width="375" height="40"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pA-ZA-TS4">
                                     <rect key="frame" x="16" y="10" width="48" height="21"/>
@@ -95,7 +97,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqC-1a-VM0" userLabel="Record View">
-                            <rect key="frame" x="163" y="603" width="48" height="42"/>
+                            <rect key="frame" x="163" y="555" width="48" height="42"/>
                             <color key="backgroundColor" red="0.033894042839999999" green="0.52809455540000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="QXl-ej-FDT"/>
@@ -107,6 +109,12 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" editable="NO" text="这是需要朗读的文字" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dfB-kG-QVb">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -139,7 +147,10 @@
                 <constraint firstItem="oV6-gV-Be3" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="A0v-nj-HjX"/>
                 <constraint firstItem="oV6-gV-Be3" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="LUX-aT-3wt"/>
                 <constraint firstItem="oV6-gV-Be3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Lw0-FT-o6t"/>
-                <constraint firstItem="oV6-gV-Be3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dmI-bv-fxS"/>
+                <constraint firstItem="oV6-gV-Be3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="48" id="dmI-bv-fxS"/>
+                <constraint firstItem="ehT-Xv-eKr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hKn-Kg-zGE"/>
+                <constraint firstItem="ehT-Xv-eKr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i42-rs-cdS"/>
+                <constraint firstAttribute="trailing" secondItem="ehT-Xv-eKr" secondAttribute="trailing" id="sDf-pw-PRI"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="193.5" y="195.5"/>
