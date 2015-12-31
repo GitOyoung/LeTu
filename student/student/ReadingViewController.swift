@@ -65,7 +65,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         layer.startPoint = CGPoint(x: 0, y: 0)
         layer.endPoint = CGPoint(x: 0, y: 1)
         textView.contentInset = UIEdgeInsets(top: 0, left: 48, bottom: 0, right: 48)
-        textView.text = question?.questionBody ?? "没有内容"
+        textView.text = htmlFormatString(question?.questionBody ?? "<p>没有内容</p>")
         burlView.layer.addSublayer(layer)
     }
     
