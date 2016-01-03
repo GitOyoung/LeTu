@@ -32,8 +32,6 @@
 		7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
-		7BE3911F1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE3911D1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift */; };
-		7BE391201C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BE3911E1C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib */; };
 		8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0067FD1C322BF800406357 /* QuestionAudioView.swift */; };
 		8F3A05211C321D21008F41F6 /* KouSuanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */; };
 		8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */; };
@@ -148,8 +146,6 @@
 		7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaiXuCViewController.xib; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		7BE3911D1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TingLiXuanZeViewController.swift; sourceTree = "<group>"; };
-		7BE3911E1C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TingLiXuanZeViewController.xib; sourceTree = "<group>"; };
 		8F0067FD1C322BF800406357 /* QuestionAudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionAudioView.swift; sourceTree = "<group>"; };
 		8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanViewController.swift; sourceTree = "<group>"; };
 		8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanViewController.xib; sourceTree = "<group>"; };
@@ -307,8 +303,6 @@
 				E99F59181C2EBA22008364C2 /* XuanzetiankongOptionCell.swift */,
 				E99F59191C2EBA22008364C2 /* XuanzetiankongOptionCell.xib */,
 				E9AB6E481C2F64C200AD1C80 /* TingLiTiankongViewController.swift */,
-				7BE3911D1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift */,
-				7BE3911E1C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib */,
 				E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */,
 				E3FC711B1C30D378002FFEE1 /* ReadingViewController.swift */,
 				E3FC711C1C30D378002FFEE1 /* ReadingViewController.xib */,
@@ -645,7 +639,6 @@
 				E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */,
 				E3FC71511C313E37002FFEE1 /* yuyin@3x.gif in Resources */,
 				E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */,
-				7BE391201C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib in Resources */,
 				166AF3241C205A92001028C3 /* DanxuanViewController.xib in Resources */,
 				E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */,
 				166AF31A1C1D64C1001028C3 /* NewEtaskListViewController.xib in Resources */,
@@ -749,7 +742,6 @@
 				E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */,
-				7BE3911F1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift in Sources */,
 				8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
 				166AF3191C1D64C1001028C3 /* NewEtaskListViewController.swift in Sources */,

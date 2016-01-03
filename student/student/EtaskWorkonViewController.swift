@@ -121,7 +121,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             case .YuYinGenDu:
                 questionController = ReadingViewController()
             default:
-                return TingLiXuanZeViewController()
+                return UIViewController()
         }
         questionController!.question = currentQuestion
         questionController!.view.frame = frame
