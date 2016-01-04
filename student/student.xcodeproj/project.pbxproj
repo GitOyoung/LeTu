@@ -54,6 +54,8 @@
 		E37F727F1C2A6E40002FF8BE /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F727D1C2A6E40002FF8BE /* ProgressBar.swift */; };
 		E37F72801C2A6E40002FF8BE /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37F727E1C2A6E40002FF8BE /* ProgressView.swift */; };
 		E3B545F71C22C524001EE63C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B545F61C22C524001EE63C /* MainViewController.swift */; };
+		E3CE95D21C3A046900059069 /* FollowReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CE95D01C3A046900059069 /* FollowReadingViewController.swift */; };
+		E3CE95D31C3A046900059069 /* FollowReadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E3CE95D11C3A046900059069 /* FollowReadingViewController.xib */; };
 		E3E9BEF31C2BCE1900DF28F9 /* ArrowMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */; };
 		E3E9BEF41C2BCE1900DF28F9 /* ArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */; };
 		E3E9BEF61C2BDB9800DF28F9 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E9BEF51C2BDB9800DF28F9 /* StatusView.swift */; };
@@ -169,6 +171,8 @@
 		E37F727D1C2A6E40002FF8BE /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		E37F727E1C2A6E40002FF8BE /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		E3B545F61C22C524001EE63C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E3CE95D01C3A046900059069 /* FollowReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowReadingViewController.swift; sourceTree = "<group>"; };
+		E3CE95D11C3A046900059069 /* FollowReadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowReadingViewController.xib; sourceTree = "<group>"; };
 		E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowMenu.swift; sourceTree = "<group>"; };
 		E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowView.swift; sourceTree = "<group>"; };
 		E3E9BEF51C2BDB9800DF28F9 /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -312,6 +316,8 @@
 				E9AB6E491C2F64C200AD1C80 /* TingLiTiankongViewController.xib */,
 				E3FC711B1C30D378002FFEE1 /* ReadingViewController.swift */,
 				E3FC711C1C30D378002FFEE1 /* ReadingViewController.xib */,
+				E3CE95D01C3A046900059069 /* FollowReadingViewController.swift */,
+				E3CE95D11C3A046900059069 /* FollowReadingViewController.xib */,
 				8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */,
 				8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */,
 			);
@@ -647,6 +653,7 @@
 				E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */,
 				7BE391201C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib in Resources */,
 				166AF3241C205A92001028C3 /* DanxuanViewController.xib in Resources */,
+				E3CE95D31C3A046900059069 /* FollowReadingViewController.xib in Resources */,
 				E98A91C31BF4C2E4008DB1A9 /* AskReplyView.xib in Resources */,
 				166AF31A1C1D64C1001028C3 /* NewEtaskListViewController.xib in Resources */,
 				E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */,
@@ -749,6 +756,7 @@
 				E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */,
+				E3CE95D21C3A046900059069 /* FollowReadingViewController.swift in Sources */,
 				7BE3911F1C34F5FA00BF4D05 /* TingLiXuanZeViewController.swift in Sources */,
 				8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */,
 				8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */,
