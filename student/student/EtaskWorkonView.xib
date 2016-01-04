@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EtaskWorkonViewController" customModule="student" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="7aA-Du-0pS" id="thO-4n-KMA"/>
+                <outlet property="nextButton" destination="YRx-hd-Vem" id="y0H-MN-bns"/>
                 <outlet property="view" destination="iN0-l3-epB" id="U9D-Mo-Ldj"/>
             </connections>
         </placeholder>

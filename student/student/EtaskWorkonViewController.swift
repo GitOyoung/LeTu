@@ -10,6 +10,7 @@ import UIKit
 
 class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
+    @IBOutlet weak var nextButton: UIButton!
     // MARK: properties
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
@@ -63,6 +64,9 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     //下一题
     @IBAction func nextQuestion(sender: AnyObject) {
         let index = questions.indexOf(currentQuestion!)
+        if index!+1 == questions.count{
+            nextButton.setTitle("完成", forState: UIControlState.Normal)
+        }
         if index!+1 < questions.count{
             let nextQuestion = questions[index!+1]
             currentQuestion = nextQuestion
@@ -123,7 +127,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         case .YuYinGenDu:
             questionController = FollowReadingViewController()
             default:
-                return TingLiXuanZeViewController()
+                return UIViewController()
         }
         questionController!.question = currentQuestion
         questionController!.view.frame = frame
