@@ -113,7 +113,8 @@ class ImageButton: UIControl {
     }
     
     override func layoutSubviews() {
-       imageView.frame = bounds
+        imageView.center = center
+        imageView.frame.size = imageView.image?.size ?? bounds.size
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -106,24 +106,26 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         var questionController:QuestionBaseViewController?
         
         switch question.type {
-            case .DanXuan:
-                questionController = DanxuanViewController()
-            case .LianXian:
-                questionController = LianxianViewController()
-            case .PanDuan:
-                questionController = PanduanViewController()
-            case .PaiXu:
-                questionController = PaiXuCViewController()
-            case .XuanZeTianKong:
-                questionController = XuanzetiankongViewController()
-            case .TingLiTianKong:
-                questionController = TingLiTiankongViewController()
-            case .KouSuan:
-                questionController = KouSuanViewController()
-            case .TingLiXuanZe:
-                questionController = TingLiTiankongViewController()
-            case .YuYinGenDu:
-                questionController = ReadingViewController()
+        case .DanXuan:
+            questionController = DanxuanViewController()
+        case .LianXian:
+            questionController = LianxianViewController()
+        case .PanDuan:
+            questionController = PanduanViewController()
+        case .PaiXu:
+            questionController = PaiXuCViewController()
+        case .XuanZeTianKong:
+            questionController = XuanzetiankongViewController()
+        case .TingLiTianKong:
+            questionController = TingLiTiankongViewController()
+        case .KouSuan:
+            questionController = KouSuanViewController()
+        case .TingLiXuanZe:
+            questionController = TingLiTiankongViewController()
+        case .LangDu:
+            questionController = ReadingViewController()
+        case .YuYinGenDu:
+            questionController = FollowReadingViewController()
             default:
                 return UIViewController()
         }
