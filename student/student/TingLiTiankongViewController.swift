@@ -188,9 +188,11 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     {
         if button.tag == 0{
             button.tag = 1
-            let strData:NSData = NSData(contentsOfURL: NSURL(string:(question?.speechUrlHtmlData)!)!)!
-            audioManage.startPlay(strData)
-            
+            if let url = question?.speechUrlHtmlData {
+                if url != "" {
+                    audioManage.startPlayWithURL(NSURL(string: url)!) {self.audioManage.startPlay()}
+                }
+            }
         }
         else if button.tag == 1 {
             button.tag = 2
@@ -253,6 +255,10 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     func audioManager(player: AVAudioPlayer, currentTime: NSTimeInterval, duration: NSTimeInterval) {
         startLabel.text = timeIntervalToString(currentTime)
         progressView?.updateProgress = CGFloat(currentTime / duration)
+    }
+    
+    func audioManagerDidPrepare(player: AVAudioPlayer, prepared: Bool) {
+        
     }
 
     
