@@ -258,7 +258,9 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     func audioManagerDidPrepare(player: AVAudioPlayer, prepared: Bool) {
-        
+        if prepared {
+            endLabel.text = timeIntervalToString(player.duration)
+        }
     }
 
     

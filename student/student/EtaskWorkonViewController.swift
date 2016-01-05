@@ -53,6 +53,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     //上一题
     @IBAction func preQuestion(sender: AnyObject) {
         let index = questions.indexOf(currentQuestion!)
+        nextButton.setTitle("下一题", forState: UIControlState.Normal)
         if index! >= 1{
             let preQuestion = questions[index!-1]
             currentQuestion = preQuestion
