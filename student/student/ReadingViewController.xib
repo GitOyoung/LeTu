@@ -109,7 +109,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" editable="NO" text="这是需要朗读的文字" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dfB-kG-QVb">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" editable="NO" text="这是需要朗读的文字" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dfB-kG-QVb">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>

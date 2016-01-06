@@ -6,13 +6,13 @@ import UIKit
 import AudioToolbox
 import AVFoundation
 
-protocol AudioManagerDelegate
+protocol AudioManagerDelegate: class
 {
     func audioManagerDidStartRecord(recorder: AVAudioRecorder)
     func audioManagerDidEndRecord(recorder: AVAudioRecorder, saved: Bool)
     func audioManager(recorder: AVAudioRecorder, power: Float, currentTime: NSTimeInterval)
     
-    
+    func audioManagerDidPrepare(player: AVAudioPlayer, prepared: Bool)
     func audioManagerDidStartPlay(player: AVAudioPlayer)
     func audioManagerDidPause(player: AVAudioPlayer)
     func audioManagerDidResume(player: AVAudioPlayer)
@@ -29,6 +29,7 @@ enum ManagerStatus
     case RecordPause
     case Playing
     case PlayPause
+    case DoNothingButRecordDone
 }
 
 class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
@@ -38,13 +39,15 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     //url
     var recordUrl: NSURL?
-    var playUrl: NSURL?
+    var playUrls: [NSURL]?
     
     
     var status: ManagerStatus = .DoNothing
+    var recordSaved: Bool = false
     
     var settings: [String: NSNumber]?
     var delegate: AudioManagerDelegate?
+    
     
     static var manager: AudioManager? = nil
     class func shareManager() -> AudioManager
@@ -57,9 +60,23 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     }
     
     
-    override init() {
+    private override init() {
         super.init()
         setupSettings()
+        setupURLs()
+        resetManager()
+    }
+    
+    func setupURLs() {
+        playUrls = [NSURL]()
+    }
+    
+    func clearUrls() {
+        if var urls = playUrls {
+            urls.removeAll(keepCapacity: true)
+        } else {
+            playUrls = [NSURL]()
+        }
     }
     
     func resetManager()
@@ -73,9 +90,6 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         default:
             break
         }
-        
-        audioPlayer = nil
-        recorder = nil
     }
     
     //录音相关
@@ -93,10 +107,10 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     
     //文件名启动录音，默认aac格式， 如果要保存其他格式，请使用 startRecordWithURL方法，并修改自定义设置settings
-    func startRecordWithFileName(name: String)
+    func startRecordWithFileName(name: String, withExtension ex:String = "aac")
     {
         let strUrl = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last
-        let url = NSURL(fileURLWithPath: String(format: "%@/%@.aac", arguments: [strUrl!, name]))
+        let url = NSURL(fileURLWithPath: String(format: "%@/%@.%@", arguments: [strUrl!, name, ex]))
         startRecordWithURL(url)
     }
     //Url启动录音，如果不是aac格式，请再使用此方法之前修改设置参数settings
@@ -176,12 +190,28 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
             recorder.stop()
             timer?.invalidate()
             timer = nil
-            status = .DoNothing
+            recordSaved = save
+            status = save ? .DoNothingButRecordDone : .DoNothing
             if let d = delegate
             {
                 d.audioManagerDidEndRecord(self.recorder, saved: save)
             }
         }
+    }
+    
+    func fileExistAtURL(url: NSURL) ->Bool {
+        let s = url.absoluteString
+        let path = s.substringFromIndex(s.startIndex.advancedBy(7))
+        return fileExistAtPath(path)
+    }
+    func fileExistAtPath(path: String) ->Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(path)
+    }
+    
+    func fileExistAtName(name: String, withExtension ex: String = "aac") -> Bool {
+        let strUrl = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last
+        let url = NSURL(fileURLWithPath: String(format: "%@/%@.%@", arguments: [strUrl!, name, ex]))
+        return fileExistAtURL(url)
     }
     
     //播放器相关
@@ -192,33 +222,41 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         startPlayWithURL(url)
     }
     
-    func startPlayWithURL(url: NSURL)
+    func startPlayWithURL(url: NSURL, complete: (()->Void)? = nil)
     {
-        self.playUrl = url
-        dispatch_async(dispatch_get_global_queue(0, 0)) {
-            let data = NSData(contentsOfURL: url)
-            dispatch_async(dispatch_get_main_queue()) {
-                self.startPlay(data!)
+        
+        if (self.playUrls?.contains(url))! {
+            let localPath = url.fileURLToLocalPath()
+            let data = NSData(contentsOfFile: localPath)
+            startPlayWithData(data!, complete: complete)
+        } else {
+            
+            playUrls?.append(url)
+            dispatch_async(dispatch_get_global_queue(0, 0)) {
+                let data = NSData(contentsOfURL: url)
+                if !url.absoluteString.hasPrefix("file://") {
+                    data?.writeToFile(url.fileURLToLocalPath(), atomically: true)
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.startPlayWithData(data!, complete: complete)
+                }
             }
         }
     }
     
-    func startPlay(data: NSData)
+    func startPlayWithData(data: NSData, complete: (()->Void)? = nil)
     {
         do
         {
             try audioPlayer = AVAudioPlayer(data: data)
             audioPlayer.delegate = self
-            if audioPlayer.prepareToPlay()
-            {
-                audioPlayer.play()
-                if delegate != nil
-                {
-                    delegate?.audioManagerDidStartPlay(audioPlayer)
+            if audioPlayer.prepareToPlay() {
+                if let d = delegate {
+                    d.audioManagerDidPrepare(audioPlayer, prepared: true)
                 }
-                
-                timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: Selector("detectionTime"), userInfo: nil, repeats: true)
-                status = .Playing
+                if let c = complete {
+                    c()
+                }
             }
         }
         catch
@@ -238,15 +276,25 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         }
     }
     
-  
+    func startPlay() {
+        if audioPlayer.prepareToPlay()
+        {
+            audioPlayer.play()
+            if delegate != nil
+            {
+                delegate?.audioManagerDidStartPlay(audioPlayer)
+            }
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0, target: self, selector: Selector("detectionTime"), userInfo: nil, repeats: true)
+            status = .Playing
+        }
+    }
     
     func stopPlay()
     {
-        if audioPlayer.playing {
+        if audioPlayer.playing || audioPlayer != nil {
             audioPlayer.stop()
-            timer?.invalidate()
-            timer = nil
-            status = .DoNothing
+            playerDidFinishPlaying()
         }
     }
     
@@ -285,18 +333,23 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        if flag
-        {
-            status = .DoNothing
-            timer?.invalidate()
-            if let d = delegate
-            {
-                d.audioManagerDidEndPlay(audioPlayer)
-            }
-            
-            
+        if flag {
+            playerDidFinishPlaying()
         }
     }
+    
+    func playerDidFinishPlaying()
+    {
+        timer?.invalidate()
+        timer = nil
+        status = recordSaved ? .DoNothingButRecordDone : .DoNothing
+        if let d = delegate {
+            d.audioManagerDidEndPlay(audioPlayer)
+        }
+    }
+    
+    
+    
     
   
 }
@@ -320,4 +373,19 @@ extension NSTimer
         }
     }
 }
+
+extension NSURL
+{
+    func fileURLToLocalPath() -> String {
+        let local = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last
+        let name = fileName()
+        return local! + "/" + name!
+    }
+    
+    func fileName() ->String? {
+        return self.path?.componentsSeparatedByString("/").last
+    }
+}
+
+
 

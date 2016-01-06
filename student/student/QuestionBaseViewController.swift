@@ -12,10 +12,9 @@ class QuestionBaseViewController: UIViewController {
 
     var question:EtaskQuestion?
     
-    
     //MARK: set quesstion Title
     func setQuestionTitle(questionTitleView:QuestionTitleView) {
-        
+  
         questionTitleView.backgroundColor = QKColor.whiteColor()
         
         if let question = question {
@@ -35,17 +34,20 @@ class QuestionBaseViewController: UIViewController {
         let timeStr = NSString(format: "%02d:%02d", minutes,seconds) as String
         return timeStr
     }
-    //MARK: 有多少(),{%%}
+    //MARK: 有多少(),{%%},underline
     func matchStringSymbol(str:String) -> Int{
         var strArray = [String]()
-        if str.containsString("（") || str.containsString("("){
-            for chr in str.characters{
-                if chr == "（" || chr == "("{
-                    strArray.append(chr.debugDescription)
-                }
-            }
+        if str.containsString("（"){
+            strArray = str.componentsSeparatedByString("（")
+        }else if str.containsString("underline"){
+            strArray = str.componentsSeparatedByString("underline")
+        }else if str.containsString("("){
+            strArray = str.componentsSeparatedByString("(")
+        }else{
+            strArray = [""]
         }
-        return strArray.count
+        let optionCount = strArray.count - 1
+        return optionCount
     }
     
     //MARK: html to format string

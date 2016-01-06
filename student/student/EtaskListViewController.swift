@@ -419,7 +419,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         
         touchedItem = item
         SortWithIndex(index: row)
-        let view = ReadingViewController()
+        let view = FollowReadingViewController()
         self.presentViewController(view, animated: true, completion: nil)
     }
     
