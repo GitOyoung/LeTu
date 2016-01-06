@@ -76,12 +76,12 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
         showDialog(dialog)
     }
     
-    override func answer() -> EtaskAnswer? {
+    override func updateAnswer() {
+        super.updateAnswer()
         for str in answerAry {
             let dic = getListAnswerItem(str, answerType: 0, ordinal: answerAry.indexOf(str)!)
             questionAnswer!.listAnswer?.append(dic)
         }
-        return questionAnswer
     }
     
     func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{

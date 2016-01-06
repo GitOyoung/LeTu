@@ -106,11 +106,10 @@ class PanduanViewController: QuestionBaseViewController {
         if offsetHeight > contentHeight{
             scrollView.scrollEnabled = false
         }
-        
     }
     
-    override func answer() -> EtaskAnswer? {
+    override func updateAnswer() {
+        super.updateAnswer()
         questionAnswer?.answer = answerString
-        return questionAnswer
     }
 }

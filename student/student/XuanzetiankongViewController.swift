@@ -144,12 +144,12 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         }
     }
     
-    override func answer() -> EtaskAnswer? {
+    override func updateAnswer() {
+        super.updateAnswer()
         var answerString:String = ""
         for item in answerIndexes {
             answerString = answerString+"\(item),"
         }
         questionAnswer!.answer = String.clipLastString(answerString)
-        return questionAnswer
     }
 }

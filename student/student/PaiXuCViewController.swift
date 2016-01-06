@@ -161,13 +161,13 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
 
     }
     
-    override func answer() -> EtaskAnswer? {
+    override func updateAnswer() {
+        super.updateAnswer()
         var answerString:String = ""
         for option in etaskQuestionOptions {
             answerString = answerString+"\(option.optionIndex),"
         }
         questionAnswer!.answer = String.clipLastString(answerString)
-        return questionAnswer
     }
 }
 

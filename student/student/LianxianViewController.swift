@@ -29,13 +29,13 @@ class LianxianViewController: QuestionBaseViewController {
         }
     }
     
-    override func answer() -> EtaskAnswer? {
+    override func updateAnswer() {
+        super.updateAnswer()
         var answerString:String = ""
         for (key,value) in lianXianView.connections {
             answerString = answerString+"\(key)-\(value),"
         }
         questionAnswer!.answer = String.clipLastString(answerString)
-        return questionAnswer
     }
     
 }
