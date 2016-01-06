@@ -63,6 +63,10 @@ class MainViewController: UITabBarController
         setupTabBarItems()
     }
     
+    func setupTableFooterView() {
+        
+    }
+    
     func setupTabBarItems()
     {
         var frame = tabBar.bounds

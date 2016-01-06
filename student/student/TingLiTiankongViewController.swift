@@ -190,7 +190,9 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             button.tag = 1
             if let url = question?.speechUrlHtmlData {
                 if url != "" {
-                    audioManage.startPlayWithURL(NSURL(string: url)!) {self.audioManage.startPlay()}
+                    audioManage.startPlayWithURL(NSURL(string: url)!) {
+                        self.audioManage.startPlay()
+                    }
                 }
             }
         }
