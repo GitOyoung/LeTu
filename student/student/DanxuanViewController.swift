@@ -19,6 +19,7 @@ class DanxuanViewController: QuestionBaseViewController {
     @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
     var answerButtonsAry = [UIButton]()
     
+    var answerString:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +96,7 @@ class DanxuanViewController: QuestionBaseViewController {
         print("选项\(option!.option)")
         print("选项\(option!.optionIndex)")
         print("选项\(option!.answer)")
+        answerString = String(option!.optionIndex)
     }
     //计算scrollView和屏幕的高度
     
@@ -106,4 +108,20 @@ class DanxuanViewController: QuestionBaseViewController {
             scrollView.scrollEnabled = false
         }
     }
+    
+    override func answer() -> EtaskAnswer? {
+        questionAnswer!.answer = answerString
+        return questionAnswer
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

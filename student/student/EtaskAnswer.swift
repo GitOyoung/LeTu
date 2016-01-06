@@ -6,7 +6,7 @@
 //  Copyright © 2016年 singlu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class EtaskAnswer: NSObject {
 
@@ -18,7 +18,7 @@ class EtaskAnswer: NSObject {
     var costTime:Int = 0
     var finishTime:NSDictionary?
     var isRight:Bool = false
-    var listAnswer:[AnyObject]?//订正用，先传空数组
+    var listAnswer:[AnyObject]?
     var ordinal:Int = 0
     var questionId:String = ""
     var score:Int = 0
@@ -45,5 +45,5 @@ class EtaskAnswer: NSObject {
         answerDic["viewedTime"] = self.viewedTime
         return answerDic
     }
-    
 }
+

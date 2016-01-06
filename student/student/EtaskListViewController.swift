@@ -7,7 +7,9 @@
 //
 import UIKit
 
-class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate,UITableViewDelegate, UITableViewDataSource {
+
+
+class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate,UITableViewDelegate, UITableViewDataSource, LTRefreshViewDelegate {
 
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var mainSegment: UISegmentedControl!
@@ -47,6 +49,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     }
     
     var page: Int = 0
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +61,12 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         setupTableView()
         setupScrollView()
         setupButton()
+        setupFooter()
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        page = 0
         requestData(page)
     }
     
@@ -164,7 +169,8 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     @IBAction func mainSegmentIndexChanged(sender: UISegmentedControl)
     {
         //segmentIndexChangedTips(sender);
-        requestData(0)
+        page = 0
+        requestData(page)
     }
     
     private func setSearchBar()
@@ -222,9 +228,13 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
                     count += 1
                 }
             }
+            ++page
             newTaskCount = count
-            endRefresh()
-            tableView.reloadData()
+            endRefresh(refreshStyle: refreshStyle)
+            if case .PullUp = refreshStyle {
+                return
+            }
+            tableViewReloadData()
         }else{
             if NSUserDefaultUtil.getUser() == nil {
                 self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
@@ -292,6 +302,16 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         self.presentViewController(etaskWorkonViewController, animated: true, completion: nil)
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == dataSource.count - 1 {
+            updateFooterView()
+        }
+    }
+    
+    func updateFooterView() {
+        footerView?.frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.width, height: (footerView?.frame.height)!)
+    }
+    
     private var isDrag: Bool = false
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
@@ -305,6 +325,18 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             var offset = scrollView.contentOffset
             offset.y = max(offset.y, 0)
             scrollView.contentOffset = offset
+            if let view = footerView {
+                if view.refreshing && offset.y > 0 {
+                    tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.frame.height, right: 0)
+                } else if isDrag && scrollView.contentSize.height - (offset.y + scrollView.bounds.size.height - scrollView.contentInset.bottom) <= 0 {
+                    if scrollView.contentSize.height - (offset.y + scrollView.bounds.size.height - scrollView.contentInset.bottom) <= -view.bounds.height {
+                        view.willRefresh()
+                    } else {
+                        view.defaultState()
+                    }
+                }
+            }
+            
         }
         else if  scrollView.tag == 1 //scrollView
         {
@@ -328,8 +360,12 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
     {
         isDrag = false
-        if scrollView.tag == 1
-        {
+        if scrollView.tag == 0 {
+            let offset = scrollView.contentOffset
+            if !refreshing && scrollView.contentSize.height - (offset.y + scrollView.bounds.size.height - scrollView.contentInset.bottom) <= -(footerView?.bounds.height)! && offset.y > 0  {
+                startRefresh(refreshStyle: .PullUp)
+            }
+        } else if scrollView.tag == 1 {
             if scrollView.contentOffset.y < -79
             {
                 startRefresh()
@@ -337,31 +373,84 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         }
     }
     
+    var footerView: LTRefreshView?
+    private var refreshStyle: LTRefreshStyle = LTRefreshStyle.PullDown
     private var refreshing: Bool = false
-    func startRefresh() {
+    func startRefresh(refreshStyle style: LTRefreshStyle = LTRefreshStyle.PullDown) {
         refreshing = true
-        if !indicator.isAnimating()
+        refreshStyle = style
+        switch style
         {
-            indicator.startAnimating()
+        case .PullDown:
+            page = 0
+            if !indicator.isAnimating()
+            {
+                indicator.startAnimating()
+            }
+            refreshTip.text = "正在更新"
+            scrollView.contentInset = UIEdgeInsetsMake(80, 0, 0, 0)
+            requestData(page)
+        case .PullUp:
+            footerView?.startRefresh()
         }
-        refreshTip.text = "正在更新"
-        scrollView.contentInset = UIEdgeInsetsMake(80, 0, 0, 0)
-        requestData(0)
     }
     
-    func endRefresh() {
-        refreshing = false
-        indicator.stopAnimating()
-        self.refreshTip.text = "更新成功"
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
-            
-                self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            }, completion: { (done: Bool) -> Void in
-                
-            })
+    func endRefresh(refreshStyle style: LTRefreshStyle = LTRefreshStyle.PullDown) {
+        if refreshing {
+            refreshing = false
+            switch style
+            {
+            case .PullDown:
+                indicator.stopAnimating()
+                self.refreshTip.text = "更新成功"
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+                    }, completion: { (done: Bool) -> Void in
+                        
+                })
+            case .PullUp:
+                footerView?.endRefresh()
+            }
+        }
         
     }
     
+    func setupFooter() {
+        var frame = tableView.bounds
+        frame.size.height = 52
+        frame.origin.y = tableView.frame.size.height + 20
+        footerView = LTRefreshView(frame: frame)
+        footerView?.delegate = self
+        footerView?.contentScale = RefreshContentScale(sx: 1.0, sy: 1.0)
+        footerView?.backgroundColor = UIColor.cyanColor()
+        tableView.addSubview(footerView!)
+    }
+    
+    func refreshViewWillStartRefresh(view: LTRefreshView) {
+        requestMoreData()
+    }
+    
+    func refreshViewDidStartRefresh(view: LTRefreshView) {
+//        var inset = tableView.contentInset
+//        inset.bottom = tableView.contentSize.height - tableView.frame.height + 40
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: (footerView?.bounds.height)!, right: 0)
+        tableView.scrollEnabled = false
+    }
+    
+    func refreshViewDidEndRefresh(view: LTRefreshView) {
+        tableView.scrollEnabled = true
+        tableViewReloadData()
+    }
+    
+    func tableViewReloadData() {
+        tableView.reloadData()
+        updateFooterView()
+    }
+    
+    func requestMoreData() {
+        requestData(page)
+    }
     
     // MARK: 刷新数据
     func requestData(pageIndex: Int) {

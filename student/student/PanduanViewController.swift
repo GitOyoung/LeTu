@@ -19,6 +19,7 @@ class PanduanViewController: QuestionBaseViewController {
     @IBOutlet weak var questionOptionLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var answerString:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +95,7 @@ class PanduanViewController: QuestionBaseViewController {
         button.backgroundColor = UIColor.grayColor()
         print("选项：\(option!.option)")
         print("\(option!.optionIndex)")
+        answerString = String(option!.optionIndex)
     }
     
     //判断scrollView是否允许滚动
@@ -105,5 +107,10 @@ class PanduanViewController: QuestionBaseViewController {
             scrollView.scrollEnabled = false
         }
         
+    }
+    
+    override func answer() -> EtaskAnswer? {
+        questionAnswer?.answer = answerString
+        return questionAnswer
     }
 }

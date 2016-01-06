@@ -160,4 +160,18 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         }
 
     }
+    
+    override func answer() -> EtaskAnswer? {
+        var answerString:String = ""
+        for option in etaskQuestionOptions {
+            answerString = answerString+"\(option.optionIndex),"
+        }
+        questionAnswer!.answer = String.clipLastString(answerString)
+        return questionAnswer
+    }
 }
+
+
+
+
+

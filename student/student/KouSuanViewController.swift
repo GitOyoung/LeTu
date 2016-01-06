@@ -15,6 +15,8 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     
+    var answerAry:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(questionTitleView)
@@ -68,11 +70,31 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     
     //做题完毕返回的时候执行
     func passAnswerData(answers: [String], costTime: Double) {
-        print(answers)
-        print(costTime)
-        //TODO
+        answerAry = answers
+        
         let dialog = KouSuanResultViewController()
         showDialog(dialog)
+    }
+    
+    override func answer() -> EtaskAnswer? {
+        for str in answerAry {
+            let dic = getListAnswerItem(str, answerType: 0, ordinal: answerAry.indexOf(str)!)
+            questionAnswer!.listAnswer?.append(dic)
+        }
+        return questionAnswer
+    }
+    
+    func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{
+        var dic = Dictionary<String,AnyObject>()
+        dic["answer"] = str
+        dic["answerHistory"] = nil
+        dic["answerType"] = answerType
+        dic["isRight"] = 0
+        dic["listAnswer"] = []
+        dic["ordinal"] = ordinal
+        dic["score"] = 0
+        dic["type"] = 0
+        return dic
     }
     
 }

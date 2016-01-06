@@ -26,7 +26,6 @@ class KouSuanKeyboardViewController: BaseDialogViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startTime = NSDate().timeIntervalSince1970
-        print("start:\(startTime)")
         contentView.backgroundColor = QKColor.themeBackgroundColor_1()
         initData()
     }
@@ -54,13 +53,13 @@ class KouSuanKeyboardViewController: BaseDialogViewController {
         }else{
             dismissViewControllerAnimated(true, completion: nil)
             let endTime = NSDate().timeIntervalSince1970
-            print("start:\(endTime)")
             let costTime = endTime - startTime
             print(costTime)
             delegate?.passAnswerData(answers, costTime: costTime)
         }
     }
     
+    //点击1，2，3，4.。。等功能键
     @IBAction func oneKeyClicked(sender: UIButton) {
         let newText = answerLabel.text! + sender.currentTitle!
         answerLabel.text = newText

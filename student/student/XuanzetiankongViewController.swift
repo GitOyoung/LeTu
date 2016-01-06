@@ -27,6 +27,8 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     var buttonAry = [AnyObject]()
     let optionCellIdentifier = "optionCell"
     
+    var answerIndexes:[Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(questionTitleView)
@@ -57,6 +59,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         let viewWidth = UIScreen.mainScreen().bounds.width
         let offsetWidth = Int(viewWidth) - buttonNumber*48
         for index in 0..<buttonNumber{
+            answerIndexes.append(0)
             frame.origin.x = CGFloat((48 + offsetWidth/(buttonNumber+1))*index + offsetWidth/(buttonNumber+1))
             frame.origin.y = 48
             frame.size.height = 48
@@ -130,13 +133,23 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let option = question?.options![indexPath.row]
-        for arg in buttonAry{
-            let ary = arg as! NSArray
+        for index in 0..<buttonAry.count{
+            let ary = buttonAry[index] as! NSArray
             if ary.lastObject! as! Bool{
                 let button = ary.firstObject as! UIButton
                 button.setTitle(option?.option, forState: .Normal)
+                answerIndexes[index] = (option?.optionIndex)!
+                print(answerIndexes)
             }
         }
     }
-
+    
+    override func answer() -> EtaskAnswer? {
+        var answerString:String = ""
+        for item in answerIndexes {
+            answerString = answerString+"\(item),"
+        }
+        questionAnswer!.answer = String.clipLastString(answerString)
+        return questionAnswer
+    }
 }
