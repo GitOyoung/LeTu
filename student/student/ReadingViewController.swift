@@ -363,10 +363,6 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         currentTimeLabel.text = timeIntervalToString(ti)
     }
     
-    override func answer() -> EtaskAnswer? {
-        return questionAnswer!
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

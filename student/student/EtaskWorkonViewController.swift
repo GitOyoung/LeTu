@@ -15,7 +15,12 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
     var questions = [EtaskQuestion]()
+    var answers = [EtaskAnswer]()
     var currentQuestion:EtaskQuestion?
+    
+    var submitable: Bool = false
+    
+    weak var currentViewController: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +58,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     //上一题
     @IBAction func preQuestion(sender: AnyObject) {
         let index = questions.indexOf(currentQuestion!)
+        submitable = false
         nextButton.setTitle("下一题", forState: UIControlState.Normal)
         if index! >= 1{
             let preQuestion = questions[index!-1]
@@ -64,15 +70,23 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //下一题
     @IBAction func nextQuestion(sender: AnyObject) {
-        let index = questions.indexOf(currentQuestion!)
-        if index!+1 == questions.count{
-            nextButton.setTitle("完成", forState: UIControlState.Normal)
-        }
-        if index!+1 < questions.count{
-            let nextQuestion = questions[index!+1]
-            currentQuestion = nextQuestion
-            let nextQuestionController = jumpToQuestionController(nextQuestion)
-            addViewControllerInContentView(nextQuestionController)
+        saveAnswer()
+        if submitable {
+            submitAnswers()
+        } else {
+            
+            let index = questions.indexOf(currentQuestion!)! + 1
+            
+            if index < questions.count {
+                submitable = false
+                let nextQuestion = questions[index]
+                currentQuestion = nextQuestion
+                let nextQuestionController = jumpToQuestionController(nextQuestion)
+                addViewControllerInContentView(nextQuestionController)
+            } else {
+                submitable = true
+                nextButton.setTitle("完成", forState: UIControlState.Normal)
+            }
         }
     }
 
@@ -83,21 +97,24 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //题目集合
     func didreceiveResult(result: NSDictionary) {
-        let code:String = result["code"] as! String
-        if code == "20004"{
-            let meLoginViewController = MeLoginViewController()
-            self.presentViewController(meLoginViewController, animated: true, completion: nil)
-        }else{
-            let etask:NSDictionary = (result["data"] as? NSDictionary)!
-            let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
-            print("共有\(questionsData.count)个问题")
-            for currentQuestionData in questionsData {
-                let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
-                questions.append(currentQuestion)
+        let isSuccess = result["isSuccess"] as! Bool
+        if isSuccess {
+            let code:String = result["code"] as! String
+            if code == "20004"{
+                let meLoginViewController = MeLoginViewController()
+                self.presentViewController(meLoginViewController, animated: true, completion: nil)
+            }else{
+                let etask:NSDictionary = (result["data"] as? NSDictionary)!
+                let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
+                print("共有\(questionsData.count)个问题")
+                for currentQuestionData in questionsData {
+                    let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+                    questions.append(currentQuestion)
+                }
+                currentQuestion = questions.first!
+                let currentQuestionController = jumpToQuestionController(currentQuestion!)
+                addViewControllerInContentView(currentQuestionController)
             }
-            currentQuestion = questions.first!
-            let currentQuestionController = jumpToQuestionController(currentQuestion!)
-            addViewControllerInContentView(currentQuestionController)
         }
     }
     
@@ -128,9 +145,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         case .YuYinGenDu:
             questionController = FollowReadingViewController()
             default:
-                return UIViewController()
+                return QuestionBaseViewController()
         }
         questionController!.question = currentQuestion
+        let idx = (currentQuestion?.ordinal)!
+        questionController!.questionAnswer = idx < answers.count ? answers[idx] : nil
         questionController!.view.frame = frame
         return questionController!
     }
@@ -140,7 +159,51 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         for view in self.contentView.subviews{
             view.removeFromSuperview()
         }
+        currentViewController = viewController
         self.addChildViewController(viewController)
         self.contentView.addSubview(viewController.view)
+    }
+    //MARK: 提交作业
+    func submitAnswers() {
+        print("作业正在提交...请稍等")
+        let params = NSMutableDictionary()
+        let etaskAnswers = NSMutableArray()
+        let u = NSUserDefaultUtil.getUser()
+        let formater = NSDateFormatter()
+        formater.locale = NSLocale.autoupdatingCurrentLocale()
+        formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        for e in answers {
+            etaskAnswers.addObject(e.toDictionary())
+        }
+        params["etaskId"] = etask?.etaskID
+        params["userId"] = u?.userId
+        params["classesId"] = etask?.classesId
+        params["recordId"] = etask?.recordId
+        params["answerTime"] = formater.stringFromDate(NSDate())
+        params["accessToken"] = u?.token
+        params["etaskAnswerType"] = 1
+        params["etaskAnswers"] = etaskAnswers
+        params["behaviorAnalysis"] = NSArray()
+        
+        let url = ServiceApi.getEtasksubmitUrl()
+        
+        let http = HttpRequest()
+        http.delegate = self
+        http.postRequest(url, params: params)
+    }
+    func submitDidSucceed() {
+        print("作业提交成功！")
+        goBack(self)
+    }
+    
+    //MARK: 保存答案到答案列表
+    func saveAnswer() {
+        let idx = currentQuestion?.ordinal
+        let vc = currentViewController as! QuestionBaseViewController
+        if idx < answers.count {
+            answers[idx!] = vc.answer()
+        } else {
+            answers.append(vc.answer())
+        }
     }
 }
