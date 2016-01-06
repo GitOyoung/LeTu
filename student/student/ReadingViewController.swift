@@ -42,8 +42,9 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         setupTextView()
         setupProgressView()
         setupVoiceRecording()
-       
     }
+    
+  
     
     func setupAudioManager() {
         let name = generateName()
@@ -180,12 +181,16 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         else if s.tag == 1 //录音期间点击
         {
             //弹出提示是否提交或继续录音
-            alert("提示", message: "是否提交录音", ok: "提交", cancel: "继续录音"){ self.onAlertOK($0)}
+            alert("提示", message: "是否提交录音", ok: "提交", cancel: "继续录音"){
+                self.onAlertOK($0)
+            }
         }
         else if s.tag == 2 //录音结束后再次点击
         {
             //弹出提示是否覆盖
-            alert("重新录制语音", message: "确认重新录制语音吗", ok: "确认", cancel: "取消"){self.onAlertOK($0)}
+            alert("重新录制语音", message: "确认重新录制语音吗", ok: "确认", cancel: "取消"){
+                self.onAlertOK($0)
+            }
         }
        
     }
@@ -358,7 +363,9 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         currentTimeLabel.text = timeIntervalToString(ti)
     }
     
-  
+    override func answer() -> EtaskAnswer? {
+        return questionAnswer!
+    }
     
 
     override func didReceiveMemoryWarning() {

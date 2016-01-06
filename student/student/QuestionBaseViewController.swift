@@ -12,6 +12,12 @@ class QuestionBaseViewController: UIViewController {
 
     var question:EtaskQuestion?
     
+    var questionAnswer: EtaskAnswer?
+    
+    override func viewDidLoad() {
+        setupQuestionAnswer()
+    }
+    
     
     //MARK: set quesstion Title
     func setQuestionTitle(questionTitleView:QuestionTitleView) {
@@ -27,6 +33,41 @@ class QuestionBaseViewController: UIViewController {
         }
         
     }
+    
+    //MARK: setup QuestionAnswer
+    func setupQuestionAnswer() {
+        guard let _ = questionAnswer else {
+            questionAnswer = EtaskAnswer()
+            if let q = questionAnswer {
+                let date = NSDate()
+                let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+                let flags: NSCalendarUnit = [NSCalendarUnit.Year
+                    , NSCalendarUnit.Month
+                    , NSCalendarUnit.Day
+                    , NSCalendarUnit.Weekday
+                    , NSCalendarUnit.Hour
+                    , NSCalendarUnit.Minute
+                    , NSCalendarUnit.Second]
+                
+                let zone = NSTimeZone.systemTimeZone()
+                if let info = calendar?.components(flags, fromDate: date) {
+                    let st = NSMutableDictionary()
+                    st["year"] = info.year
+                    st["month"] = info.month
+                    st["day"] = info.day
+                    st["hours"] = info.hour
+                    st["minutes"] = info.minute
+                    st["seconds"] = info.second
+                    st["date"] = info.weekday
+                    st["time"] = date.timeIntervalSince1970
+                    st["timezoneOffset"] = zone.secondsFromGMT
+                    q.startTime = st
+                }
+            }
+            return
+        }
+    }
+    
     //MARK: time format
     func timeFormat(time:NSTimeInterval)->String{
         let currentTime = Int(time)
@@ -56,5 +97,9 @@ class QuestionBaseViewController: UIViewController {
         let str = htmlStr.dataUsingEncoding(NSUTF8StringEncoding)
         let attributedStr = try? NSAttributedString(data: str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
         return (attributedStr?.string)!
+    }
+    
+    func answer() -> EtaskAnswer? {
+        return questionAnswer!
     }
 }

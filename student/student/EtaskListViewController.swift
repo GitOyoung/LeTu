@@ -234,7 +234,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             if case .PullUp = refreshStyle {
                 return
             }
-            tableView.reloadData()
+            tableViewReloadData()
         }else{
             if NSUserDefaultUtil.getUser() == nil {
                 self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
@@ -440,7 +440,12 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     func refreshViewDidEndRefresh(view: LTRefreshView) {
         tableView.scrollEnabled = true
+        tableViewReloadData()
+    }
+    
+    func tableViewReloadData() {
         tableView.reloadData()
+        updateFooterView()
     }
     
     func requestMoreData() {
