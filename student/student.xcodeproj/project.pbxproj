@@ -37,9 +37,19 @@
 		8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0067FD1C322BF800406357 /* QuestionAudioView.swift */; };
 		8F3A05211C321D21008F41F6 /* KouSuanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */; };
 		8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */; };
+		8F4C04AF1C38EC94004002FA /* KouSuanAnswerSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C04AD1C38EC94004002FA /* KouSuanAnswerSetViewController.swift */; };
+		8F4C04B01C38EC94004002FA /* KouSuanAnswerSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4C04AE1C38EC94004002FA /* KouSuanAnswerSetViewController.xib */; };
+		8F4F780B1C390E92008791ED /* KouSuanKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F78091C390E92008791ED /* KouSuanKeyboardViewController.swift */; };
+		8F4F780C1C390E92008791ED /* KouSuanKeyboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4F780A1C390E92008791ED /* KouSuanKeyboardViewController.xib */; };
+		8F4F780F1C390EAE008791ED /* KouSuanSpeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F780D1C390EAE008791ED /* KouSuanSpeakViewController.swift */; };
+		8F4F78101C390EAE008791ED /* KouSuanSpeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4F780E1C390EAE008791ED /* KouSuanSpeakViewController.xib */; };
+		8F4F78121C3915D9008791ED /* BaseDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F78111C3915D9008791ED /* BaseDialogViewController.swift */; };
 		8F8DCC311C31235D007A2640 /* LianXianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8DCC301C31235D007A2640 /* LianXianView.swift */; };
 		8FEE5ABE1C2B882C0027CC41 /* NSUserDefaultUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */; };
 		8FEE5AC01C2B88E80027CC41 /* MBPHUDUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */; };
+		8FEE82521C3A55E80020CFBF /* passDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE82511C3A55E80020CFBF /* passDataDelegate.swift */; };
+		8FEE82551C3A98A60020CFBF /* KouSuanResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE82531C3A98A60020CFBF /* KouSuanResultViewController.swift */; };
+		8FEE82561C3A98A60020CFBF /* KouSuanResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE82541C3A98A60020CFBF /* KouSuanResultViewController.xib */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
 		E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B991C3365D200C8B3C5 /* AudioManager.swift */; };
 		E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */; };
@@ -153,9 +163,19 @@
 		8F0067FD1C322BF800406357 /* QuestionAudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionAudioView.swift; sourceTree = "<group>"; };
 		8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanViewController.swift; sourceTree = "<group>"; };
 		8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanViewController.xib; sourceTree = "<group>"; };
+		8F4C04AD1C38EC94004002FA /* KouSuanAnswerSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = KouSuanAnswerSetViewController.swift; sourceTree = "<group>"; };
+		8F4C04AE1C38EC94004002FA /* KouSuanAnswerSetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanAnswerSetViewController.xib; sourceTree = "<group>"; };
+		8F4F78091C390E92008791ED /* KouSuanKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanKeyboardViewController.swift; sourceTree = "<group>"; };
+		8F4F780A1C390E92008791ED /* KouSuanKeyboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanKeyboardViewController.xib; sourceTree = "<group>"; };
+		8F4F780D1C390EAE008791ED /* KouSuanSpeakViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanSpeakViewController.swift; sourceTree = "<group>"; };
+		8F4F780E1C390EAE008791ED /* KouSuanSpeakViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanSpeakViewController.xib; sourceTree = "<group>"; };
+		8F4F78111C3915D9008791ED /* BaseDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDialogViewController.swift; sourceTree = "<group>"; };
 		8F8DCC301C31235D007A2640 /* LianXianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LianXianView.swift; sourceTree = "<group>"; };
 		8FEE5ABD1C2B882C0027CC41 /* NSUserDefaultUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultUtil.swift; sourceTree = "<group>"; };
 		8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBPHUDUtil.swift; sourceTree = "<group>"; };
+		8FEE82511C3A55E80020CFBF /* passDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = passDataDelegate.swift; sourceTree = "<group>"; };
+		8FEE82531C3A98A60020CFBF /* KouSuanResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanResultViewController.swift; sourceTree = "<group>"; };
+		8FEE82541C3A98A60020CFBF /* KouSuanResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanResultViewController.xib; sourceTree = "<group>"; };
 		E30A1B991C3365D200C8B3C5 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPileView.swift; sourceTree = "<group>"; };
 		E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -290,6 +310,7 @@
 		166AF3201C20581E001028C3 /* QuestionType */ = {
 			isa = PBXGroup;
 			children = (
+				8F4C04AC1C38EC6C004002FA /* kouSuan */,
 				E3FC714B1C313E24002FFEE1 /* Gifs */,
 				E3FC71541C313F99002FFEE1 /* ImageButton.swift */,
 				E3FC71491C313DF5002FFEE1 /* UIImage+Gif.swift */,
@@ -348,6 +369,23 @@
 				E99F58CF1C24CD88008364C2 /* QuestionTypeEnum.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		8F4C04AC1C38EC6C004002FA /* kouSuan */ = {
+			isa = PBXGroup;
+			children = (
+				8F4F78111C3915D9008791ED /* BaseDialogViewController.swift */,
+				8F4C04AD1C38EC94004002FA /* KouSuanAnswerSetViewController.swift */,
+				8F4C04AE1C38EC94004002FA /* KouSuanAnswerSetViewController.xib */,
+				8F4F78091C390E92008791ED /* KouSuanKeyboardViewController.swift */,
+				8F4F780A1C390E92008791ED /* KouSuanKeyboardViewController.xib */,
+				8FEE82531C3A98A60020CFBF /* KouSuanResultViewController.swift */,
+				8FEE82541C3A98A60020CFBF /* KouSuanResultViewController.xib */,
+				8F4F780D1C390EAE008791ED /* KouSuanSpeakViewController.swift */,
+				8F4F780E1C390EAE008791ED /* KouSuanSpeakViewController.xib */,
+				8FEE82511C3A55E80020CFBF /* passDataDelegate.swift */,
+			);
+			name = kouSuan;
 			sourceTree = "<group>";
 		};
 		E3365B511C0C66A2002DCCC6 /* http */ = {
@@ -626,6 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3FC71501C313E37002FFEE1 /* yuyin@2x.gif in Resources */,
+				8F4F78101C390EAE008791ED /* KouSuanSpeakViewController.xib in Resources */,
 				166AF3301C2073E5001028C3 /* XuanzetiankongViewController.xib in Resources */,
 				E98A916D1BF4B4E9008DB1A9 /* LaunchScreen.storyboard in Resources */,
 				E3365B5F1C0D5BDF002DCCC6 /* EtaskTableViewCell.xib in Resources */,
@@ -639,10 +678,12 @@
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
 				E99F591B1C2EBA22008364C2 /* XuanzetiankongOptionCell.xib in Resources */,
 				E98A91B11BF4C20C008DB1A9 /* MeLoginView.xib in Resources */,
+				8F4C04B01C38EC94004002FA /* KouSuanAnswerSetViewController.xib in Resources */,
 				E98A91961BF4B7CB008DB1A9 /* EtaskListView.xib in Resources */,
 				160F48171BFCCF1400796A49 /* AskTableViewCell.xib in Resources */,
 				E3FC711E1C30D378002FFEE1 /* ReadingViewController.xib in Resources */,
 				E98A91A21BF4BCD9008DB1A9 /* AskListView.xib in Resources */,
+				8FEE82561C3A98A60020CFBF /* KouSuanResultViewController.xib in Resources */,
 				E3FC71511C313E37002FFEE1 /* yuyin@3x.gif in Resources */,
 				E98A916A1BF4B4E9008DB1A9 /* Assets.xcassets in Resources */,
 				7BE391201C34F5FA00BF4D05 /* TingLiXuanZeViewController.xib in Resources */,
@@ -652,6 +693,7 @@
 				E98A91681BF4B4E9008DB1A9 /* Main.storyboard in Resources */,
 				E98A91AF1BF4C103008DB1A9 /* EtaskWorkonView.xib in Resources */,
 				E9AB6E4B1C2F64C200AD1C80 /* TingLiTiankongViewController.xib in Resources */,
+				8F4F780C1C390E92008791ED /* KouSuanKeyboardViewController.xib in Resources */,
 				E98A91C11BF4C2D9008DB1A9 /* AskDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +767,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEE82521C3A55E80020CFBF /* passDataDelegate.swift in Sources */,
 				E99F58D31C24ED79008364C2 /* QuestionTitleView.swift in Sources */,
 				8F3A05211C321D21008F41F6 /* KouSuanViewController.swift in Sources */,
 				E98A91B51BF4C226008DB1A9 /* MeLoginViewController.swift in Sources */,
@@ -745,7 +788,10 @@
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				E3FC71551C313F99002FFEE1 /* ImageButton.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
+				8F4F780B1C390E92008791ED /* KouSuanKeyboardViewController.swift in Sources */,
+				8F4C04AF1C38EC94004002FA /* KouSuanAnswerSetViewController.swift in Sources */,
 				7B99386D1C2BB0C800AFCD12 /* PaiXuCViewController.swift in Sources */,
+				8FEE82551C3A98A60020CFBF /* KouSuanResultViewController.swift in Sources */,
 				E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */,
 				E99F58CE1C24CD5A008364C2 /* EtaskQuestion.swift in Sources */,
 				E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */,
@@ -766,6 +812,7 @@
 				E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */,
 				166AF30C1C1BFD99001028C3 /* AskBL.swift in Sources */,
 				8FEE5AC01C2B88E80027CC41 /* MBPHUDUtil.swift in Sources */,
+				8F4F78121C3915D9008791ED /* BaseDialogViewController.swift in Sources */,
 				E3FB736B1C06A26C00E76E55 /* EtaskTableViewController.swift in Sources */,
 				E99F58D71C24FB25008364C2 /* DanxuanAnswerControl.swift in Sources */,
 				E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */,
@@ -780,6 +827,7 @@
 				E98A91A91BF4BF58008DB1A9 /* StudentBaseViewController.swift in Sources */,
 				E3FFE1F21C32679C004336DB /* AudioProgressView.swift in Sources */,
 				E3EBE6281C26A9580050F02E /* BubbleView.swift in Sources */,
+				8F4F780F1C390EAE008791ED /* KouSuanSpeakViewController.swift in Sources */,
 				E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */,
 				E3FC714A1C313DF5002FFEE1 /* UIImage+Gif.swift in Sources */,
 				166AF3271C205AE7001028C3 /* PanduanViewController.swift in Sources */,
