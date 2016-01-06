@@ -423,7 +423,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         footerView = LTRefreshView(frame: frame)
         footerView?.delegate = self
         footerView?.contentScale = RefreshContentScale(sx: 1.0, sy: 1.0)
-        footerView?.backgroundColor = UIColor.cyanColor()
+        footerView?.backgroundColor = UIColor.clearColor()
         tableView.addSubview(footerView!)
     }
     

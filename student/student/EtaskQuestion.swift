@@ -46,7 +46,7 @@ class EtaskQuestion: NSObject {
 
         let ptype:Int = data["type"] as! Int
         let questionStatus = data["status"] as! Int
-        type = QuestionTypeEnum(rawValue: "\(ptype)" )!
+        type = QuestionTypeEnum(rawValue: ptype)!
         ordinal = data["ordinal"] as! Int
         questionBody = data["question"] as? String
         id = data["questionId"] as! String

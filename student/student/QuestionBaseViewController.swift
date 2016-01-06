@@ -13,6 +13,7 @@ class QuestionBaseViewController: UIViewController {
     var question:EtaskQuestion?
     
     var questionAnswer: EtaskAnswer?
+    var enterClock: clock_t = 0
     
     override func viewDidLoad() {
         setupQuestionAnswer()
@@ -33,39 +34,7 @@ class QuestionBaseViewController: UIViewController {
         
     }
     
-    //MARK: setup QuestionAnswer
-    func setupQuestionAnswer() {
-        guard let _ = questionAnswer else {
-            questionAnswer = EtaskAnswer()
-            if let q = questionAnswer {
-                let date = NSDate()
-                let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-                let flags: NSCalendarUnit = [NSCalendarUnit.Year
-                    , NSCalendarUnit.Month
-                    , NSCalendarUnit.Day
-                    , NSCalendarUnit.Weekday
-                    , NSCalendarUnit.Hour
-                    , NSCalendarUnit.Minute
-                    , NSCalendarUnit.Second]
-                
-                let zone = NSTimeZone.systemTimeZone()
-                if let info = calendar?.components(flags, fromDate: date) {
-                    let st = NSMutableDictionary()
-                    st["year"] = info.year
-                    st["month"] = info.month
-                    st["day"] = info.day
-                    st["hours"] = info.hour
-                    st["minutes"] = info.minute
-                    st["seconds"] = info.second
-                    st["date"] = info.weekday
-                    st["time"] = date.timeIntervalSince1970
-                    st["timezoneOffset"] = zone.secondsFromGMT
-                    q.startTime = st
-                }
-            }
-            return
-        }
-    }
+    
     
     //MARK: time format
     func timeFormat(time:NSTimeInterval)->String{
@@ -98,7 +67,66 @@ class QuestionBaseViewController: UIViewController {
         return (attributedStr?.string)!
     }
     
-    func answer() -> EtaskAnswer? {
+    //MARK: setup QuestionAnswer
+    func setupQuestionAnswer() {
+        enterClock = clock()
+        guard let _ = questionAnswer else {
+            questionAnswer = EtaskAnswer()
+            if let a = questionAnswer {
+                a.startTime = dateInfoNow()
+                a.costTime = 0
+                a.viewedTime = 0
+                if let q = question {
+                    a.ordinal = q.ordinal
+                    a.questionId = q.id
+                    a.type = q.type.rawValue
+                }
+            }
+            return
+        }
+        
+        
+    }
+    //MARK: get current Time Infomation
+    func dateInfoNow() -> NSDictionary? {
+        let date = NSDate()
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        let flags: NSCalendarUnit = [NSCalendarUnit.Year
+            , NSCalendarUnit.Month
+            , NSCalendarUnit.Day
+            , NSCalendarUnit.Weekday
+            , NSCalendarUnit.Hour
+            , NSCalendarUnit.Minute
+            , NSCalendarUnit.Second]
+        
+        let zone = NSTimeZone.systemTimeZone()
+        if let info = calendar?.components(flags, fromDate: date) {
+            let st = NSMutableDictionary()
+            st["year"] = info.year - 1900
+            st["month"] = info.month
+            st["day"] = info.day
+            st["hours"] = info.hour
+            st["minutes"] = info.minute
+            st["seconds"] = info.second
+            st["date"] = info.weekday
+            st["time"] = Int(date.timeIntervalSince1970)
+            st["timezoneOffset"] = zone.secondsFromGMT
+            return st
+        }
+        return nil
+    }
+    
+    func updateAnswer() {
+        let cost: clock_t = clock() - enterClock
+        if let q = questionAnswer {
+            q.costTime += Int(Double(cost) / Double(CLOCKS_PER_SEC) * 1000)
+            q.finishTime = dateInfoNow()
+            q.viewedTime++
+        }
+    }
+    
+    func answer() -> EtaskAnswer {
+        updateAnswer()
         return questionAnswer!
     }
 }
