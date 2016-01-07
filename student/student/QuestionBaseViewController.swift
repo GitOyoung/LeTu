@@ -16,7 +16,12 @@ class QuestionBaseViewController: UIViewController {
     var enterClock: clock_t = 0
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         setupQuestionAnswer()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         loadWithAnswer()
     }
     
