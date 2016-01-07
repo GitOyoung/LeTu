@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class FollowReadingViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate {
+class FollowReadingViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate, AiSpeechEngineDelegate {
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     //听力
@@ -35,6 +35,8 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     var audioManager: AudioManager!
     var recordSaved: Bool = false
     
+    var speechEngine: AiSpeechEngine?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(questionTitleView)
@@ -44,6 +46,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         setupQuestionBody()
         
     }
+    
     
     
     func setupListening() {
@@ -107,6 +110,13 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     
     func setupQuestionBody() {
         
+    }
+    
+    func setupSpeechEngine() {
+        let cfg = [NSObject: AnyObject]()
+        //config
+        speechEngine = AiSpeechEngine(cfg: cfg)
+        speechEngine?.delegate = self
     }
     
     
@@ -360,6 +370,19 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         answerProgressView?.updateProgress = CGFloat(min(power, Float(1.0)))
     }
     
+    /**
+    * 引擎运行完成
+    */
+    func aiSpeechEngineDidFinishRecording(engine: AiSpeechEngine!, stopType: AIENGINE_STOPTYPE) {
+        
+    }
+    
+    /**
+    * 引擎收到了json结果
+    */
+    func aiSpeechEngine(engine: AiSpeechEngine!, didReceive recordId: String!, responseJson jsonString: String!) {
+        
+    }
     
     //听力部分
     func startListening() {
