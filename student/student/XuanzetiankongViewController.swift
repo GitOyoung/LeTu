@@ -150,6 +150,6 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         for item in answerIndexes {
             answerString = answerString+"\(item),"
         }
-        questionAnswer!.answer = String.clipLastString(answerString)
+        questionAnswer!.answer = answerString.clipLastString()
     }
 }

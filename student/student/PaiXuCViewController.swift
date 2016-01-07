@@ -167,7 +167,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         for option in etaskQuestionOptions {
             answerString = answerString+"\(option.optionIndex),"
         }
-        questionAnswer!.answer = String.clipLastString(answerString)
+        questionAnswer!.answer = answerString.clipLastString()
     }
 }
 

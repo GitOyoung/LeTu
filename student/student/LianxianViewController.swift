@@ -35,17 +35,9 @@ class LianxianViewController: QuestionBaseViewController {
         for (key,value) in lianXianView.connections {
             answerString = answerString+"\(key)-\(value),"
         }
-        questionAnswer!.answer = String.clipLastString(answerString)
+        questionAnswer!.answer = answerString.clipLastString()
     }
     
-}
-
-extension String{
-    //去掉string最后一个字符
-    static func clipLastString(string:String) -> String{
-        let subIndex = string.startIndex.advancedBy(string.characters.count-1)
-        return string.substringToIndex(subIndex)
-    }
 }
 
 
