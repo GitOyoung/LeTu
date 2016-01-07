@@ -19,7 +19,6 @@ class LianxianViewController: QuestionBaseViewController {
         questionTitleView.setData(question)
         setQuestionBody(question)
         lianXianView.setQuestion(question)
-        loadWithAnswer()
     }
     
     func setQuestionBody(question:EtaskQuestion?){
@@ -41,6 +40,7 @@ class LianxianViewController: QuestionBaseViewController {
     }
     
     override func loadWithAnswer() {
+        print("loadWithAnswer\(questionAnswer?.answer)")
         if(questionAnswer == nil || questionAnswer?.answer == ""){
             return
         }
