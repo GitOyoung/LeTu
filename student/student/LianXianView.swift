@@ -21,7 +21,7 @@ class LianXianView: UIView {
     private var buttonsA:[UIButton] = []
     private var buttonsB:[UIButton] = []
     
-    private var connections = Dictionary<Int,Int>()
+    var connections = Dictionary<Int,Int>()
     
     func setQuestion(newQuestion:EtaskQuestion?){
         question = newQuestion

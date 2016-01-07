@@ -6,7 +6,7 @@
 //  Copyright © 2016年 singlu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class EtaskAnswer: NSObject {
 
@@ -45,5 +45,5 @@ class EtaskAnswer: NSObject {
         answerDic["viewedTime"] = self.viewedTime
         return answerDic
     }
-
 }
+

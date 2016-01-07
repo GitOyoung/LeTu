@@ -19,7 +19,6 @@ class QuestionBaseViewController: UIViewController {
         setupQuestionAnswer()
     }
     
-    
     //MARK: set quesstion Title
     func setQuestionTitle(questionTitleView:QuestionTitleView) {
   
