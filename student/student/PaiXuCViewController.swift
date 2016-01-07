@@ -153,8 +153,6 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     func setScrollEable(){
         let screenHeight = UIScreen.mainScreen().bounds.height
         let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPadView.frame.size.height
-        print(offsetHeight)
-        print(cellTotalHeight)
         if offsetHeight > cellTotalHeight{
             scrollView.scrollEnabled = false
         }
