@@ -34,7 +34,6 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         questionOptionTableView.setEditing(true, animated: true)
         questionOptionTableView.scrollEnabled = false
         setScrollEable()
-        loadWithAnswer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -162,7 +161,9 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     
     override func loadWithAnswer() {
         if questionAnswer != nil && questionAnswer?.answer != "" {
+            print("paixu")
             let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",")
+            print(optionIndexs)
             for option in etaskQuestionOptions{
                 for (index,number) in (optionIndexs?.enumerate())!{
                     if option.optionIndex == Int(number){
@@ -177,7 +178,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         super.updateAnswer()
         var answerString:String = ""
         for option in etaskQuestionOptions {
-            answerString = answerString+"\(option.optionIndex),"
+            answerString = answerString+"\(option.optionIndex!),"
         }
         questionAnswer!.answer = answerString.clipLastString()
     }
