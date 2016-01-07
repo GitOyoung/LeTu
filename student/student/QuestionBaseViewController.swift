@@ -17,6 +17,7 @@ class QuestionBaseViewController: UIViewController {
     
     override func viewDidLoad() {
         setupQuestionAnswer()
+        loadWithAnswer()
     }
     
     //MARK: set quesstion Title
@@ -99,21 +100,26 @@ class QuestionBaseViewController: UIViewController {
             , NSCalendarUnit.Minute
             , NSCalendarUnit.Second]
         
-        let zone = NSTimeZone.systemTimeZone()
+        let zone = NSTimeZone(name: "Asia/Shanghai")
+//        print(NSTimeZone.abbreviationDictionary())
         if let info = calendar?.components(flags, fromDate: date) {
             let st = NSMutableDictionary()
-            st["year"] = info.year - 1900
+            st["year"] = info.year
             st["month"] = info.month
-            st["day"] = info.day
+            st["day"] = info.weekday
             st["hours"] = info.hour
             st["minutes"] = info.minute
             st["seconds"] = info.second
-            st["date"] = info.weekday
-            st["time"] = Int(date.timeIntervalSince1970)
-            st["timezoneOffset"] = zone.secondsFromGMT
+            st["date"] = info.day
+            st["time"] = Int(date.timeIntervalSince1970 * 1000)
+            st["timezoneOffset"] = zone!.secondsFromGMT / 60
             return st
         }
         return nil
+    }
+    
+    func loadWithAnswer() {
+        
     }
     
     func updateAnswer() {
@@ -122,6 +128,7 @@ class QuestionBaseViewController: UIViewController {
             q.costTime += Int(Double(cost) / Double(CLOCKS_PER_SEC) * 1000)
             q.finishTime = dateInfoNow()
             q.viewedTime++
+            
         }
     }
     
