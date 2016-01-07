@@ -54,8 +54,9 @@ class LianxianViewController: QuestionBaseViewController {
         let strings:[String] = answerString.componentsSeparatedByString(",")
         var dic = Dictionary<Int,Int>()
         for str in strings {
-            let key = Int(str.substringToIndex(str.startIndex))
-            let value = Int(str.substringFromIndex(str.endIndex))
+            let v = str.componentsSeparatedByString("-")
+            let key = Int(v[0])
+            let value = Int(v[1])
             dic[key!] = value
         }
         print("getConnectionsFromAnswer:\(dic)")
