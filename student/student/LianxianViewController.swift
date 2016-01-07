@@ -18,6 +18,9 @@ class LianxianViewController: QuestionBaseViewController {
         super.viewDidLoad()
         questionTitleView.setData(question)
         setQuestionBody(question)
+        if(questionAnswer == nil || questionAnswer?.answer == ""){
+            lianXianView.connections = getConnectionsFromAnswer()
+        }
         lianXianView.setQuestion(question)
     }
     
@@ -38,8 +41,19 @@ class LianxianViewController: QuestionBaseViewController {
         questionAnswer!.answer = answerString.clipLastString()
     }
     
+    func getConnectionsFromAnswer() -> Dictionary<Int,Int>{
+        let answerString = questionAnswer!.answer
+        let strings:[String] = answerString.componentsSeparatedByString(",")
+        var dic = Dictionary<Int,Int>()
+        for str in strings {
+            let key = Int(str.substringToIndex(str.startIndex))
+            let value = Int(str.substringFromIndex(str.endIndex))
+            dic[key!] = value
+        }
+        return dic
+    }
+    
 }
-
 
 
 
