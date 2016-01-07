@@ -148,7 +148,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 return QuestionBaseViewController()
         }
         questionController!.question = currentQuestion
-        let idx = (currentQuestion?.ordinal)!
+        let idx = (currentQuestion?.ordinal)! - 1
         questionController!.questionAnswer = idx < answers.count ? answers[idx] : nil
         questionController!.view.frame = frame
         return questionController!
