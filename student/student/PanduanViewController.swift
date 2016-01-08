@@ -95,7 +95,7 @@ class PanduanViewController: QuestionBaseViewController {
         button.backgroundColor = UIColor.grayColor()
         print("选项：\(option!.option)")
         print("\(option!.optionIndex)")
-        answerString = String(option!.optionIndex)
+        answerString = String(option!.optionIndex!)
     }
     
     //判断scrollView是否允许滚动
@@ -112,4 +112,21 @@ class PanduanViewController: QuestionBaseViewController {
         super.updateAnswer()
         questionAnswer?.answer = answerString
     }
+    
+    override func loadWithAnswer() {
+        if(questionAnswer == nil || questionAnswer?.answer == ""){
+            return
+        }
+        let options = question?.options!
+        let str:String = questionAnswer!.answer
+        let index:Int = Int(str)!
+        for i in 0 ..< options!.count {
+            if(options![i].optionIndex == index){
+                print(i)
+                didClickOptionButton(answerButtonsAry[i])
+                break
+            }
+        }
+    }
+
 }

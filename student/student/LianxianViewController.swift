@@ -36,11 +36,9 @@ class LianxianViewController: QuestionBaseViewController {
             answerString = answerString+"\(key)-\(value),"
         }
         questionAnswer!.answer = answerString.clipLastString()
-        print("updateAnswer\(questionAnswer!.answer)")
     }
     
     override func loadWithAnswer() {
-        print("loadWithAnswer\(questionAnswer?.answer)")
         if(questionAnswer == nil || questionAnswer?.answer == ""){
             return
         }
@@ -50,7 +48,6 @@ class LianxianViewController: QuestionBaseViewController {
     
     func getConnectionsFromAnswer() -> Dictionary<Int,Int>{
         let answerString = questionAnswer!.answer
-        print("getConnectionsFromAnswer\(answerString)")
         let strings:[String] = answerString.componentsSeparatedByString(",")
         var dic = Dictionary<Int,Int>()
         for str in strings {
@@ -59,7 +56,6 @@ class LianxianViewController: QuestionBaseViewController {
             let value = Int(v[1])
             dic[key!] = value
         }
-        print("getConnectionsFromAnswer:\(dic)")
         return dic
     }
     

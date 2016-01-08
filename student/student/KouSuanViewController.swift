@@ -38,12 +38,33 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     }
     
     func initOptions(){
+        for subView in optionsView.subviews {
+            subView.removeFromSuperview()
+        }
         let options = question?.options
-        for option in options!{
+        for index in 0 ..< options!.count{
+            let option = options![index]
             let index:Int = (options?.indexOf(option))!
-            let label:UILabel = UILabel(frame: CGRect(x: 0, y: index*20, width: 100, height: 20))
+            let line:UIView = UIView(frame: CGRect(x: 0, y: index*20, width: 200, height: 25))
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+            if(answerAry.count > index){
+                let imageView = UIImageView(frame: CGRect(x: 180, y: 0, width: 20, height: 20))
+                if(answerAry[index] == option.answer!){
+                    var image = UIImage(named: "task_but_dui")
+                    image = image!.imageWithRenderingMode(.AlwaysTemplate)
+                    imageView.image = image
+                    imageView.tintColor = QKColor.themeBackgroundColor_1()
+                }else{
+                    var image = UIImage(named: "task_but_cuo")
+                    image = image!.imageWithRenderingMode(.AlwaysTemplate)
+                    imageView.image = image
+                    imageView.tintColor = UIColor.redColor()
+                }
+                line.addSubview(imageView)
+            }
+            line.addSubview(label)
             label.text = htmlFormatString(option.option!)
-            optionsView.addSubview(label)
+            optionsView.addSubview(line)
         }
     }
     
@@ -71,17 +92,32 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     //做题完毕返回的时候执行
     func passAnswerData(answers: [String], costTime: Double) {
         answerAry = answers
-        
+        initOptions()
         let dialog = KouSuanResultViewController()
         showDialog(dialog)
     }
     
     override func updateAnswer() {
         super.updateAnswer()
+        print("updateAnswer")
         for str in answerAry {
             let dic = getListAnswerItem(str, answerType: 0, ordinal: answerAry.indexOf(str)!)
-            questionAnswer!.listAnswer?.append(dic)
+            print(dic)
+            questionAnswer!.listAnswer.append(dic)
         }
+        print(questionAnswer?.listAnswer)
+    }
+    
+    override func loadWithAnswer() {
+        print("hehe\(questionAnswer?.listAnswer == nil)")
+        if(questionAnswer == nil || questionAnswer?.listAnswer == nil){
+            return
+        }
+        for anAnswer in (questionAnswer?.listAnswer)!{
+            var dic = anAnswer as! Dictionary<String,AnyObject>
+            answerAry.append(dic["answer"] as! String)
+        }
+        initOptions()
     }
     
     func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{

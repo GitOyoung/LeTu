@@ -165,7 +165,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         super.updateAnswer()
         var answerString:String = ""
         for option in etaskQuestionOptions {
-            answerString = answerString+"\(option.optionIndex),"
+            answerString = answerString+"\(option.optionIndex!),"
         }
         questionAnswer!.answer = answerString.clipLastString()
     }

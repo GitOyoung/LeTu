@@ -96,7 +96,7 @@ class DanxuanViewController: QuestionBaseViewController {
         print("选项\(option!.option)")
         print("选项\(option!.optionIndex)")
         print("选项\(option!.answer)")
-        answerString = String(option!.optionIndex)
+        answerString = String(option!.optionIndex!)
     }
     //计算scrollView和屏幕的高度
     
@@ -112,6 +112,22 @@ class DanxuanViewController: QuestionBaseViewController {
     override func updateAnswer() {
         super.updateAnswer()
         questionAnswer!.answer = answerString
+    }
+    
+    override func loadWithAnswer() {
+        if(questionAnswer == nil || questionAnswer?.answer == ""){
+            return
+        }
+        let options = question?.options!
+        let str:String = questionAnswer!.answer
+        let index:Int = Int(str)!
+        for i in 0 ..< options!.count {
+            if(options![i].optionIndex == index){
+                print(i)
+                didClickOptionButton(answerButtonsAry[i])
+                break
+            }
+        }
     }
 }
 

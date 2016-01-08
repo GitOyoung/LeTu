@@ -18,7 +18,7 @@ class EtaskAnswer: NSObject {
     var costTime:Int = 0
     var finishTime:NSDictionary?
     var isRight:Bool = false
-    var listAnswer:[AnyObject]?
+    var listAnswer:[AnyObject] = []
     var ordinal:Int = 0
     var questionId:String = ""
     var score:Int = 0
