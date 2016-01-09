@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class FollowReadingViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate, AiSpeechEngineDelegate {
+class FollowReadingViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate/*, AiSpeechEngineDelegate */{
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     //听力
@@ -35,7 +35,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     var audioManager: AudioManager!
     var recordSaved: Bool = false
     
-    var speechEngine: AiSpeechEngine?
+//    var speechEngine: AiSpeechEngine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,10 +113,10 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     }
     
     func setupSpeechEngine() {
-        let cfg = [NSObject: AnyObject]()
-        //config
-        speechEngine = AiSpeechEngine(cfg: cfg)
-        speechEngine?.delegate = self
+//        let cfg = [NSObject: AnyObject]()
+//        //config
+//        speechEngine = AiSpeechEngine(cfg: cfg)
+//        speechEngine?.delegate = self
     }
     
     

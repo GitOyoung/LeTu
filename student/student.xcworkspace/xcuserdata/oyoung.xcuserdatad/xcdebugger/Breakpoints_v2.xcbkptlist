@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "398"
             endingLineNumber = "398"
-            landmarkName = "startPlayAudio()"
+            landmarkName = "startListening()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "366"
             endingLineNumber = "366"
-            landmarkName = "startListening()"
+            landmarkName = "audioManagerDidEndRecord(_:saved:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "audioManagerDidEndPlay(_:)"
+            landmarkName = "audioManagerDidStartPlay(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,8 +95,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
-            landmarkName = "touchUpInside(_:withEvent:)"
-            landmarkType = "5">
+            landmarkName = "FollowReadingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -111,8 +111,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "375"
             endingLineNumber = "375"
-            landmarkName = "startListening()"
-            landmarkType = "5">
+            landmarkName = "FollowReadingViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
             endingLineNumber = "204"
-            landmarkName = "recordButtonTouchUpInside(_:)"
+            landmarkName = "touchUpInside(_:withEvent:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "319"
             endingLineNumber = "319"
-            landmarkName = "audioManagerDidPrepare(_:prepared:)"
+            landmarkName = "audioManager(_:currentTime:duration:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
