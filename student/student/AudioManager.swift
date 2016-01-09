@@ -238,12 +238,13 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                 startPlayWithData(data!, complete:  complete)
             } else {
                 dispatch_async(dispatch_get_global_queue(0, 0)) {
-                    let data = NSData(contentsOfURL: url)
-                    if !url.absoluteString.hasPrefix("file://") {
-                        data?.writeToFile(path, atomically: true)
-                    }
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.startPlayWithData(data!, complete: complete)
+                    if let data = NSData(contentsOfURL: url) {
+                        if !url.absoluteString.hasPrefix("file://") {
+                            data.writeToFile(path, atomically: true)
+                        }
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.startPlayWithData(data, complete: complete)
+                        }
                     }
                 }
             }
