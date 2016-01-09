@@ -26,8 +26,9 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     var buttonNumber = 0
     var buttonAry = [AnyObject]()
     let optionCellIdentifier = "optionCell"
+    var etaskQuestionOptions = [EtaskQuestionOption]()
     
-    var answerIndexes:[Int] = []
+    var answerIndexes:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         answerPadOptionsCollectionView.dataSource = self
         answerPadOptionsCollectionView.delegate = self
         answerPadOptionsCollectionView.registerNib(UINib(nibName: "XuanzetiankongOptionCell", bundle: nil), forCellWithReuseIdentifier:optionCellIdentifier )
+        etaskQuestionOptions = question!.options!
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,7 +61,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         let viewWidth = UIScreen.mainScreen().bounds.width
         let offsetWidth = Int(viewWidth) - buttonNumber*48
         for index in 0..<buttonNumber{
-            answerIndexes.append(0)
+            answerIndexes.append("0")
             frame.origin.x = CGFloat((48 + offsetWidth/(buttonNumber+1))*index + offsetWidth/(buttonNumber+1))
             frame.origin.y = 48
             frame.size.height = 48
@@ -111,9 +113,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let doHaveQuestion = question!
-        let doHaveptions = doHaveQuestion.options!
-        let option = doHaveptions[indexPath.row]
+        let option = etaskQuestionOptions[indexPath.row]
         let optionCell = collectionView.dequeueReusableCellWithReuseIdentifier(optionCellIdentifier, forIndexPath: indexPath) as! XuanzetiankongOptionCell
         optionCell.optionLabel.text = option.option
         optionCell.optionLabel.sizeToFit()
@@ -138,8 +138,22 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
             if ary.lastObject! as! Bool{
                 let button = ary.firstObject as! UIButton
                 button.setTitle(option?.option, forState: .Normal)
-                answerIndexes[index] = (option?.optionIndex)!
-                print(answerIndexes)
+                answerIndexes[index] = String((option?.optionIndex!)!)
+            }
+        }
+    }
+    
+    override func loadWithAnswer() {
+        if questionAnswer != nil && questionAnswer?.answer != "" {
+            let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",")
+            answerIndexes = optionIndexs!
+            for (index,number) in (optionIndexs?.enumerate())!{
+                for option in etaskQuestionOptions{
+                    if String(option.optionIndex!) == number{
+                        let button:UIButton = answerButtonsAry[index]
+                        button.setTitle(option.option!, forState: .Normal)
+                    }
+                }
             }
         }
     }

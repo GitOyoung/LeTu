@@ -9,6 +9,7 @@
 import UIKit
 
 class EtaskWorkonViewController: UIViewController, HttpProtocol {
+    @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var nextButton: UIButton!
     // MARK: properties
@@ -112,6 +113,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     questions.append(currentQuestion)
                 }
                 currentQuestion = questions.first!
+                titleLabel.text = "第\((currentQuestion?.ordinal)!)题"
                 let currentQuestionController = jumpToQuestionController(currentQuestion!)
                 addViewControllerInContentView(currentQuestionController)
             }

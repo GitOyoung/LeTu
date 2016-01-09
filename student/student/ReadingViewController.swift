@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, AudioProgressViewDelegate
 {
@@ -195,13 +196,19 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
        
     }
     
-    
+    var hAnswers: [String] = []
     
     func onAlertOK(action: UIAlertAction)
     {
         if action.title == "提交"
         {
             stopRecord(true)
+            uploadFile((audioManager.recordUrl)!.fileURLToLocalPath()){ info in
+                let array: [String] = info["data"] as! [String]
+                for e in array {
+                   self.hAnswers.append(e)
+                }
+            }
         }
         else if action.title == "确认"
         {
@@ -363,15 +370,57 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         currentTimeLabel.text = timeIntervalToString(ti)
     }
     
-
+    override func loadWithAnswer() {
+        super.loadWithAnswer()
+        if let h = questionAnswer?.answerHistory {
+            hAnswers = h
+        }
+    }
+    
+    override func updateAnswer() {
+        super.updateAnswer()
+        questionAnswer?.answerHistory = hAnswers
+        questionAnswer?.answer = hAnswers.count > 0 ? hAnswers.last! : ""
+    }
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-  
-
+    func uploadFile(path: String, success: (([String: AnyObject])->Void)? ) {
+        let url = ServiceApi.getUploadFileUrl()
+        if let user = NSUserDefaultUtil.getUser() {
+            
+            upload(.POST, url, multipartFormData: { formdata in
+                    formdata.appendBodyPart(data: "\((user.userId)!)".dataUsingEncoding(NSUTF8StringEncoding)!, name: "userId")
+                    formdata.appendBodyPart(data: (user.token)!.dataUsingEncoding(NSUTF8StringEncoding)!, name: "accessToken")
+                
+                    formdata.appendBodyPart(fileURL: NSURL(fileURLWithPath: path), name: "audio")
+                }, encodingCompletion: { result in
+                    switch result {
+                    case let .Success(upload,_,_):
+                        upload.responseJSON() { response in
+                            if let d = response.data {
+                                do {
+                                    let json = try NSJSONSerialization.JSONObjectWithData(d, options: NSJSONReadingOptions.MutableContainers) as! [String: AnyObject]
+                                    if let success = success{
+                                        success(json)
+                                    }
+                                } catch {
+                                    
+                                }
+                            }
+                        }
+                    case .Failure(_):break
+                    }
+            })
+        }
+        
+    }
 }
 
 extension NSTimeInterval

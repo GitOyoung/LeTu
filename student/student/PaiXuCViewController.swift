@@ -153,12 +153,25 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     func setScrollEable(){
         let screenHeight = UIScreen.mainScreen().bounds.height
         let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPadView.frame.size.height
-        print(offsetHeight)
-        print(cellTotalHeight)
         if offsetHeight > cellTotalHeight{
             scrollView.scrollEnabled = false
         }
 
+    }
+    
+    override func loadWithAnswer() {
+        if questionAnswer != nil && questionAnswer?.answer != "" {
+            print("paixu")
+            let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",")
+            print(optionIndexs)
+            for option in etaskQuestionOptions{
+                for (index,number) in (optionIndexs?.enumerate())!{
+                    if option.optionIndex == Int(number){
+                        etaskQuestionOptions[index] = option
+                    }
+                }
+            }
+        }
     }
     
     override func updateAnswer() {
