@@ -2,6 +2,6 @@
 
 import UIKit
 
-var str = "Hello, playground"
-var index = str.startIndex.advancedBy(str.characters.count-2)
-var sub = str.substringToIndex(index)
+var s="1234567890"
+s.endIndex
+s.removeRange(Range(start: s.startIndex.advancedBy(9),end: s.startIndex.advancedBy(10)))
