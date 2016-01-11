@@ -2,6 +2,7 @@
 
 import UIKit
 
-var s="1234567890"
-s.endIndex
-s.removeRange(Range(start: s.startIndex.advancedBy(9),end: s.startIndex.advancedBy(10)))
+var str = "Hello, playground"
+
+var i = 97
+print(3^i)
