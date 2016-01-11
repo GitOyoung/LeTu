@@ -395,7 +395,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         {
             if urlString != ""
             {
-                let url = NSURL(string: urlString)
+                let url = NSURL(string: urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!)
                 audioManager?.startPlayWithURL(url!) {
                     self.audioManager.startPlay()
                 }

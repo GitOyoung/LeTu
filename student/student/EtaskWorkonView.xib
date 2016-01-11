@@ -31,7 +31,7 @@
                                 <action selector="goBack:" destination="-1" eventType="touchUpInside" id="HAW-y7-TYw"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlK-fg-RGU">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第1题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlK-fg-RGU">
                             <rect key="frame" x="126" y="20" width="68" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="TAx-Kf-A2f"/>

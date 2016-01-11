@@ -113,7 +113,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                     questions.append(currentQuestion)
                 }
                 currentQuestion = questions.first!
-                titleLabel.text = "第\((currentQuestion?.ordinal)!)题"
+               
                 let currentQuestionController = jumpToQuestionController(currentQuestion!)
                 addViewControllerInContentView(currentQuestionController)
             }
@@ -162,6 +162,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             view.removeFromSuperview()
         }
         currentViewController = viewController
+        titleLabel.text = "第\((currentQuestion?.ordinal)!)题"
         self.addChildViewController(viewController)
         self.contentView.addSubview(viewController.view)
     }
