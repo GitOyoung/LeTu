@@ -47,16 +47,17 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func setQuestionBody(){
         if let question = question {
-            let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
-            let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-            buttonNumber = self.matchStringSymbol((question.questionBody)!)
-            questionBodyLabel.attributedText = attributedStr
+            let url = question.questionBody!
+            let attributedStr = htmlFormatString(url)
+            buttonNumber = self.matchStringSymbol(url)
+            questionBodyLabel.text = attributedStr
         }
     }
     
@@ -116,25 +117,70 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     //MARK:选择选项按钮
     func didClickOptionButton(button: UIButton){
-        let index = answerButtonsAry.indexOf(button)
-        let option = question?.options![index!]
         for button in answerButtonsAry{
             button.backgroundColor = UIColor.blueColor()
         }
         button.backgroundColor = UIColor.grayColor()
-        print("选择\(index)按钮")
-        print("选项\(option!.option)")
-        print("选项\(option!.optionIndex)")
-        print("选项\(option!.answer)")
     }
     
     func didClickOptionTextField(textField:UITextField){
-        let index = answerAry.indexOf(textField)
         for button in answerButtonsAry{
             button.backgroundColor = UIColor.blueColor()
         }
-        print("选择\(index)输入框")
     }
+    
+    override func loadWithAnswer() {
+            if let listAnswer = questionAnswer?.listAnswer {
+                if question?.type == QuestionTypeEnum.TingLiTianKong{
+                    for (index,answer) in listAnswer.enumerate(){
+                        let result = answer as! NSDictionary
+                        answerAry[index].text = result["answer"] as? String
+                    }
+                }else{
+                    for (index,answer) in listAnswer.enumerate(){
+                        let result = answer as! NSDictionary
+                        answerButtonsAry[index].setTitle(result["answer"] as? String, forState: UIControlState.Normal)
+                    }
+                }
+            }
+    }
+
+    
+    override func updateAnswer() {
+        var answerArray = [NSDictionary]()
+
+        if question?.type == QuestionTypeEnum.TingLiTianKong{
+            for (index,textField) in answerAry.enumerate(){
+                let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: index)
+                answerArray.append(dic)
+            }
+        }else{
+            for (index,_) in answerButtonsAry.enumerate(){
+                let option = question?.options![index]
+                let dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
+                answerArray.append(dic)
+            }
+        }
+        questionAnswer?.listAnswer = answerArray
+    }
+    
+    
+    //MARK:答案处理
+//    func answerFormat(answerArray:[AnyObject])-> NSArray{
+//        var answerArray = [NSDictionary]()
+//        var dic = NSDictionary()
+//        for (index,answer) in answerArray.enumerate(){
+//            if question?.type == QuestionTypeEnum.TingLiTianKong{
+//                let result = answer as! UITextField
+//                dic = getListAnswerItem(result.text!, answerType: 0, ordinal: index)
+//            }else{
+//                let option = question?.options![index]
+//                dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
+//            }
+//            answerArray.append(dic)
+//        }
+//        return answerArray
+//    }
 
     
     private var progressView: AudioProgressView?

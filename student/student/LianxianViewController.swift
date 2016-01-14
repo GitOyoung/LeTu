@@ -50,11 +50,13 @@ class LianxianViewController: QuestionBaseViewController {
         let answerString = questionAnswer!.answer
         let strings:[String] = answerString.componentsSeparatedByString(",")
         var dic = Dictionary<Int,Int>()
-        for str in strings {
-            let v = str.componentsSeparatedByString("-")
-            let key = Int(v[0])
-            let value = Int(v[1])
-            dic[key!] = value
+        if(strings.count > 0){
+            for str in strings {
+                let v = str.componentsSeparatedByString("-")
+                let key = Int(v[0])
+                let value = Int(v[1])
+                dic[key!] = value
+            }
         }
         return dic
     }

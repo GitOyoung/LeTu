@@ -126,28 +126,30 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         var questionController:QuestionBaseViewController?
         
         switch question.type {
-            case .DanXuan:
-                questionController = DanxuanViewController()
-            case .LianXian:
-                questionController = LianxianViewController()
-            case .PanDuan:
-                questionController = PanduanViewController()
-            case .PaiXu:
-                questionController = PaiXuCViewController()
-            case .XuanZeTianKong:
-                questionController = XuanzetiankongViewController()
-            case .TingLiTianKong:
-                questionController = TingLiTiankongViewController()
-            case .KouSuan:
-                questionController = KouSuanViewController()
-            case .TingLiXuanZe:
-                questionController = TingLiTiankongViewController()
-            case .LangDu:
-                questionController = ReadingViewController()
-            case .YuYinGenDu:
-                questionController = FollowReadingViewController()
-            case .JianDa:
-                questionController = JianDaViewController()
+        case .DanXuan:
+            questionController = DanxuanViewController()
+        case .LianXian:
+            questionController = LianxianViewController()
+        case .PanDuan:
+            questionController = PanduanViewController()
+        case .PaiXu:
+            questionController = PaiXuCViewController()
+        case .XuanZeTianKong:
+            questionController = XuanzetiankongViewController()
+        case .TingLiTianKong:
+            questionController = TingLiTiankongViewController()
+        case .KouSuan:
+            questionController = KouSuanViewController()
+        case .TingLiXuanZe:
+            questionController = TingLiTiankongViewController()
+        case .LangDu:
+            questionController = ReadingViewController()
+        case .YuYinGenDu:
+            questionController = FollowReadingViewController()
+        case .TianKong:
+            questionController = TianKongViewController()
+        case .JianDa:
+            questionController = JianDaViewController()
             default:
                 return QuestionBaseViewController()
         }

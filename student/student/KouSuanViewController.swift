@@ -99,9 +99,8 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     
     override func updateAnswer() {
         super.updateAnswer()
-        for str in answerAry {
-            let dic = getListAnswerItem(str, answerType: 0, ordinal: answerAry.indexOf(str)!)
-            print(dic)
+        for (index,str) in answerAry.enumerate() {
+            let dic = getListAnswerItem(str, answerType: 0, ordinal: index)
             questionAnswer!.listAnswer.append(dic)
         }
         print(questionAnswer?.listAnswer)
@@ -116,19 +115,6 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
             answerAry.append(dic["answer"] as! String)
         }
         initOptions()
-    }
-    
-    func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{
-        var dic = Dictionary<String,AnyObject>()
-        dic["answer"] = str
-        dic["answerHistory"] = nil
-        dic["answerType"] = answerType
-        dic["isRight"] = 0
-        dic["listAnswer"] = []
-        dic["ordinal"] = ordinal
-        dic["score"] = 0
-        dic["type"] = 0
-        return dic
     }
     
 }
