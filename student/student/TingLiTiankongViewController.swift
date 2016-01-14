@@ -47,6 +47,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -122,10 +123,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             button.backgroundColor = UIColor.blueColor()
         }
         button.backgroundColor = UIColor.grayColor()
-        print("选择\(index)按钮")
-        print("选项\(option!.option)")
-        print("选项\(option!.optionIndex)")
-        print("选项\(option!.answer)")
     }
     
     func didClickOptionTextField(textField:UITextField){
@@ -133,8 +130,60 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         for button in answerButtonsAry{
             button.backgroundColor = UIColor.blueColor()
         }
-        print("选择\(index)输入框")
     }
+    
+    override func loadWithAnswer() {
+            if let listAnswer = questionAnswer?.listAnswer {
+                if question?.type == QuestionTypeEnum.TingLiTianKong{
+                    for (index,answer) in listAnswer.enumerate(){
+                        let result = answer as! NSDictionary
+                        answerAry[index].text = result["answer"] as? String
+                    }
+                }else{
+                    for (index,answer) in listAnswer.enumerate(){
+                        let result = answer as! NSDictionary
+                        answerButtonsAry[index].setTitle(result["answer"] as? String, forState: UIControlState.Normal)
+                    }
+                }
+            }
+    }
+
+    
+    override func updateAnswer() {
+        var answerArray = [NSDictionary]()
+
+        if question?.type == QuestionTypeEnum.TingLiTianKong{
+            for (index,textField) in answerAry.enumerate(){
+                let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: index)
+                answerArray.append(dic)
+            }
+        }else{
+            for (index,_) in answerButtonsAry.enumerate(){
+                let option = question?.options![index]
+                let dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
+                answerArray.append(dic)
+            }
+        }
+        questionAnswer?.listAnswer = answerArray
+    }
+    
+    
+    //MARK:答案处理
+//    func answerFormat(answerArray:[AnyObject])-> NSArray{
+//        var answerArray = [NSDictionary]()
+//        var dic = NSDictionary()
+//        for (index,answer) in answerArray.enumerate(){
+//            if question?.type == QuestionTypeEnum.TingLiTianKong{
+//                let result = answer as! UITextField
+//                dic = getListAnswerItem(result.text!, answerType: 0, ordinal: index)
+//            }else{
+//                let option = question?.options![index]
+//                dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
+//            }
+//            answerArray.append(dic)
+//        }
+//        return answerArray
+//    }
 
     
     private var progressView: AudioProgressView?

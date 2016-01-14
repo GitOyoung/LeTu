@@ -146,6 +146,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             questionController = ReadingViewController()
         case .YuYinGenDu:
             questionController = FollowReadingViewController()
+        case .TianKong:
+            questionController = TianKongViewController()
             default:
                 return QuestionBaseViewController()
         }
