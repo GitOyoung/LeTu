@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum QuestionStatus: String{
-    case NotStart = "0"
-    case NotFinish = "1"
-    case NotCorrect = "2"
-    case NotRevise = "3"
-    case Finish = "4"
+enum QuestionStatus: Int{
+    case NotStart = 0
+    case NotFinish = 1
+    case NotCorrect = 2
+    case NotRevise = 3
+    case Finish = 4
 
     func getStatus() -> String{
         switch self {
@@ -50,7 +50,7 @@ class EtaskQuestion: NSObject {
         ordinal = data["ordinal"] as! Int
         questionBody = data["question"] as? String
         id = data["questionId"] as! String
-        status = QuestionStatus(rawValue: "\(questionStatus)")!.getStatus()
+        status = QuestionStatus(rawValue: questionStatus)!.getStatus()
         
         
         if let speechUrlRawData = data["speechUrl"] {
