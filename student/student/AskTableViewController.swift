@@ -64,7 +64,7 @@ class AskTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("AskTableCell", forIndexPath: indexPath) as! AskTableViewCell
         
-        var askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
+        let askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
         
         cell.initCell(askCellModel)
         
@@ -78,7 +78,7 @@ class AskTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var rowHeight = 111
-        var askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
+        let askCellModel:AskCellModel = dataSource[indexPath.section] as! AskCellModel
         switch askCellModel.pictures.count {
         case 1,2,3:
             rowHeight = 207

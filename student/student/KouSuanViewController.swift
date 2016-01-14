@@ -99,7 +99,6 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     
     override func updateAnswer() {
         super.updateAnswer()
-        print("updateAnswer")
         for str in answerAry {
             let dic = getListAnswerItem(str, answerType: 0, ordinal: answerAry.indexOf(str)!)
             print(dic)
@@ -109,7 +108,6 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     }
     
     override func loadWithAnswer() {
-        print("hehe\(questionAnswer?.listAnswer == nil)")
         if(questionAnswer == nil || questionAnswer?.listAnswer == nil){
             return
         }

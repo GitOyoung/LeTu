@@ -142,7 +142,6 @@ class LianXianView: UIView {
         CGContextSetRGBStrokeColor(context, 1, 0, 0, 1)
         CGContextSetLineWidth(context, 2)
         
-        print(connections)
         drawLines(connections)
         CGContextStrokePath(context)
     }
