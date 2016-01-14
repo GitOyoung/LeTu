@@ -32,6 +32,8 @@
 		7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */; };
 		7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABA1C1B053700B72241 /* EtaskModel.swift */; };
 		7BA51ABD1C1B05F100B72241 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA51ABC1C1B05F100B72241 /* UserModel.swift */; };
+		7BF6752B1C46398B00CC78D2 /* TianKongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF675291C46398B00CC78D2 /* TianKongViewController.swift */; };
+		7BF6752C1C46398B00CC78D2 /* TianKongViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BF6752A1C46398B00CC78D2 /* TianKongViewController.xib */; };
 		8F0067FE1C322BF800406357 /* QuestionAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0067FD1C322BF800406357 /* QuestionAudioView.swift */; };
 		8F3A05211C321D21008F41F6 /* KouSuanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */; };
 		8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */; };
@@ -163,6 +165,8 @@
 		7B99386C1C2BB0C800AFCD12 /* PaiXuCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaiXuCViewController.xib; sourceTree = "<group>"; };
 		7BA51ABA1C1B053700B72241 /* EtaskModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EtaskModel.swift; sourceTree = "<group>"; };
 		7BA51ABC1C1B05F100B72241 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		7BF675291C46398B00CC78D2 /* TianKongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TianKongViewController.swift; sourceTree = "<group>"; };
+		7BF6752A1C46398B00CC78D2 /* TianKongViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TianKongViewController.xib; sourceTree = "<group>"; };
 		8F0067FD1C322BF800406357 /* QuestionAudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionAudioView.swift; sourceTree = "<group>"; };
 		8F3A051F1C321D21008F41F6 /* KouSuanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KouSuanViewController.swift; sourceTree = "<group>"; };
 		8F3A05201C321D21008F41F6 /* KouSuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KouSuanViewController.xib; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 				166AF3251C205AE7001028C3 /* PanduanViewController.swift */,
 				166AF3261C205AE7001028C3 /* PanduanViewController.xib */,
 				166AF3291C206438001028C3 /* LianxianViewController.swift */,
+				7BF675291C46398B00CC78D2 /* TianKongViewController.swift */,
+				7BF6752A1C46398B00CC78D2 /* TianKongViewController.xib */,
 				166AF32A1C206438001028C3 /* LianxianViewController.xib */,
 				166AF32D1C2073E5001028C3 /* XuanzetiankongViewController.swift */,
 				166AF32E1C2073E5001028C3 /* XuanzetiankongViewController.xib */,
@@ -707,6 +713,7 @@
 				8F3A05221C321D21008F41F6 /* KouSuanViewController.xib in Resources */,
 				166AF32C1C206438001028C3 /* LianxianViewController.xib in Resources */,
 				E98A91B31BF4C216008DB1A9 /* MeAfterLoginView.xib in Resources */,
+				7BF6752C1C46398B00CC78D2 /* TianKongViewController.xib in Resources */,
 				7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */,
 				166AF3281C205AE7001028C3 /* PanduanViewController.xib in Resources */,
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
@@ -866,6 +873,7 @@
 				E3EBE6281C26A9580050F02E /* BubbleView.swift in Sources */,
 				8F4F780F1C390EAE008791ED /* KouSuanSpeakViewController.swift in Sources */,
 				E98A91BD1BF4C2BF008DB1A9 /* AskReplyViewController.swift in Sources */,
+				7BF6752B1C46398B00CC78D2 /* TianKongViewController.swift in Sources */,
 				E3FC714A1C313DF5002FFEE1 /* UIImage+Gif.swift in Sources */,
 				166AF3271C205AE7001028C3 /* PanduanViewController.swift in Sources */,
 				166AF3081C1BFD4C001028C3 /* AskCellModel.swift in Sources */,

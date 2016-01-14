@@ -70,7 +70,8 @@ class QuestionBaseViewController: UIViewController {
     func htmlFormatString(htmlStr:String)->String{
         let str = htmlStr.dataUsingEncoding(NSUTF8StringEncoding)
         let attributedStr = try? NSAttributedString(data: str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-        return (attributedStr?.string)!
+        let string = attributedStr?.string.stringByReplacingOccurrencesOfString("%", withString: " ")
+        return string!
     }
     
     //MARK: setup QuestionAnswer
@@ -141,4 +142,19 @@ class QuestionBaseViewController: UIViewController {
         updateAnswer()
         return questionAnswer!
     }
+    
+    //MARK:答案列表
+    func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{
+        var dic = Dictionary<String,AnyObject>()
+        dic["answer"] = str
+        dic["answerHistory"] = nil
+        dic["answerType"] = answerType
+        dic["isRight"] = 0
+        dic["listAnswer"] = []
+        dic["ordinal"] = ordinal
+        dic["score"] = 0
+        dic["type"] = 0
+        return dic
+    }
+
 }
