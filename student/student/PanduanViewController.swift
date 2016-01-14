@@ -114,17 +114,15 @@ class PanduanViewController: QuestionBaseViewController {
     }
     
     override func loadWithAnswer() {
-        if(questionAnswer == nil || questionAnswer?.answer == ""){
-            return
-        }
-        let options = question?.options!
-        let str:String = questionAnswer!.answer
-        let index:Int = Int(str)!
-        for i in 0 ..< options!.count {
-            if(options![i].optionIndex == index){
-                print(i)
-                didClickOptionButton(answerButtonsAry[i])
-                break
+        if(questionAnswer != nil && questionAnswer?.answer != ""){
+            let options = question?.options!
+            let str:String = questionAnswer!.answer
+            let index:Int = Int(str)!
+            for (i,option) in  (options?.enumerate())! {
+                if(option.optionIndex! == index){
+                    didClickOptionButton(answerButtonsAry[i])
+                    break
+                }
             }
         }
     }
