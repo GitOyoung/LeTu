@@ -48,10 +48,13 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     
     func setQuestionBody(question:EtaskQuestion?){
         if let question = question {
-            let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
-            let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-            buttonNumber = matchStringSymbol((attributedStr?.string)!)
-            questionBodyLabel.attributedText = attributedStr
+            let url = question.questionBody!
+            let attributedStr = htmlFormatString(url)
+            buttonNumber = matchStringSymbol(attributedStr)
+            if buttonNumber != question.options?.count{
+                buttonNumber = (question.options?.count)!
+            }
+            questionBodyLabel.text = attributedStr
         }
     }
     
@@ -127,7 +130,6 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         let myString: NSString = option.option! as NSString
         var size: CGSize = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(17.0)])
         size.height = 50
-        size.width = 50
         return size
     }
     

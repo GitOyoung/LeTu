@@ -54,10 +54,10 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     func setQuestionBody(){
         if let question = question {
-            let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
-            let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-            buttonNumber = self.matchStringSymbol((question.questionBody)!)
-            questionBodyLabel.attributedText = attributedStr
+            let url = question.questionBody!
+            let attributedStr = htmlFormatString(url)
+            buttonNumber = self.matchStringSymbol(url)
+            questionBodyLabel.text = attributedStr
         }
     }
     
@@ -117,8 +117,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     //MARK:选择选项按钮
     func didClickOptionButton(button: UIButton){
-        let index = answerButtonsAry.indexOf(button)
-        let option = question?.options![index!]
         for button in answerButtonsAry{
             button.backgroundColor = UIColor.blueColor()
         }
@@ -126,7 +124,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     func didClickOptionTextField(textField:UITextField){
-        let index = answerAry.indexOf(textField)
         for button in answerButtonsAry{
             button.backgroundColor = UIColor.blueColor()
         }

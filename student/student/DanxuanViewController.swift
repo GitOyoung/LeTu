@@ -51,9 +51,9 @@ class DanxuanViewController: QuestionBaseViewController {
         let ary = ["A.","B.","C.","D."]
         for (index,option) in (question?.options!.enumerate())!{
             
-            let html_str = option.option!.dataUsingEncoding(NSUTF8StringEncoding)!
-            let attributedString = try? NSAttributedString(data: html_str, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil)
-            str +=  ary[index] + (attributedString?.string)!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
+            let html_str = option.option!
+            let attributedString = htmlFormatString(html_str)
+            str +=  ary[index] + attributedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
             
         }
         optionsLabel.text = str
@@ -92,10 +92,6 @@ class DanxuanViewController: QuestionBaseViewController {
             button.backgroundColor = UIColor.blueColor()
         }
         button.backgroundColor = UIColor.grayColor()
-        print("选择\(index)按钮")
-        print("选项\(option!.option)")
-        print("选项\(option!.optionIndex)")
-        print("选项\(option!.answer)")
         answerString = String(option!.optionIndex)
     }
     //计算scrollView和屏幕的高度

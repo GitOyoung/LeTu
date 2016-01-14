@@ -83,7 +83,6 @@
                     </variation>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.80415494259999998" green="1" blue="0.34297735559999998" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="HK8-Cl-Rmx" secondAttribute="bottom" id="3WH-yu-HsV"/>
                 <constraint firstItem="HRZ-0I-xFZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3q1-Rf-wPF"/>
