@@ -88,11 +88,15 @@ class DanxuanViewController: QuestionBaseViewController {
     func didClickOptionButton(button: UIButton){
         let index = answerButtonsAry.indexOf(button)
         let option = question?.options![index!]
-        for button in answerButtonsAry{
-            button.backgroundColor = UIColor.blueColor()
+        if question?.type == QuestionTypeEnum.DanXuan{
+            for button in answerButtonsAry{
+                button.backgroundColor = UIColor.blueColor()
+            }
+            answerString = String(option!.optionIndex!)+","
+        }else{
+            answerString += String(option!.optionIndex!)+","
         }
         button.backgroundColor = UIColor.grayColor()
-        answerString = String(option!.optionIndex)
     }
     //计算scrollView和屏幕的高度
     
@@ -107,21 +111,22 @@ class DanxuanViewController: QuestionBaseViewController {
     
     override func updateAnswer() {
         super.updateAnswer()
-        questionAnswer!.answer = answerString
+        questionAnswer!.answer = answerString.clipLastString()
     }
     
     override func loadWithAnswer() {
-        if(questionAnswer == nil || questionAnswer?.answer == ""){
-            return
-        }
-        let options = question?.options!
-        let str:String = questionAnswer!.answer
-        let index:Int = Int(str)!
-        for i in 0 ..< options!.count {
-            if(options![i].optionIndex == index){
-                print(i)
-                didClickOptionButton(answerButtonsAry[i])
-                break
+        if questionAnswer != nil && questionAnswer?.answer != ""{
+            let options = question?.options
+            let strAry = questionAnswer!.answer.componentsSeparatedByString(",")
+            print(strAry)
+            for str in strAry{
+                for (index,option) in (options?.enumerate())!{
+                    if option.optionIndex! == Int(str){
+                        let button = answerButtonsAry[index]
+                        didClickOptionButton(button)
+                        break
+                    }
+                }
             }
         }
     }

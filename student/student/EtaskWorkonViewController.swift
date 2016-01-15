@@ -150,8 +150,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             questionController = TianKongViewController()
         case .JianDa:
             questionController = JianDaViewController()
-            default:
-                return QuestionBaseViewController()
+        case .DuoXuan:
+            questionController = DanxuanViewController()
         }
         questionController!.question = currentQuestion
         let idx = (currentQuestion?.ordinal)! - 1
