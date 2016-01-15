@@ -8,10 +8,16 @@
 
 import UIKit
 
+class ImageTapGestureRecognizer:UITapGestureRecognizer{
+    var imageView:UIImageView!
+}
+
 class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate {
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
+    
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var drawButton: UIButton!
@@ -20,8 +26,10 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     
     @IBOutlet weak var answersView: UIView!
     
+    @IBOutlet weak var contentHeight: NSLayoutConstraint!
+    
     var imagePicker:UIImagePickerController!
-    var images:[UIImage]?
+    var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,17 +72,63 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        createImageView(image!)
+        addImageView(image!)
     }
     
     func passImageData(image: UIImage) {
-        createImageView(image)
+        addImageView(image)
     }
     
-    func createImageView(image:UIImage){
-        let imageView = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-        imageView.image = image
-        imageView.contentMode = .ScaleAspectFill
-        answersView.addSubview(imageView)
+    func addImageView(image:UIImage){
+        let view = getAnswerView()
+        answersView.addSubview(view)
+        images.append(image)
+        loadImages()
+        contentHeight.constant = contentHeight.constant + 210
+    }
+    
+    func getAnswerView() -> UIView{
+        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * images.count), answersView.frame.size.width, 200))
+        resultView.addSubview(getImageView())
+        resultView.addSubview(getRemoveButton())
+        return resultView
+    }
+    
+    func getImageView() -> UIImageView{
+        let imageView = UIImageView(frame: CGRectMake(0, 30, answersView.frame.size.width, 200))
+        imageView.contentMode = .ScaleAspectFit
+        return imageView
+    }
+    
+    func getRemoveButton() -> UIButton{
+        let removeButton = UIButton(frame: CGRectMake(answersView.frame.size.width-50,0,50,30))
+        removeButton.setTitle("删除", forState: .Normal)
+        removeButton.setTitleColor(QKColor.blackColor(), forState: .Normal)
+        removeButton.addTarget(self, action: "removeClicked:", forControlEvents: .TouchUpInside)
+        return removeButton
+    }
+    
+    func removeClicked(sender:UIButton){
+        let imageViews = answersView.subviews
+        let index:Int = imageViews.indexOf(sender.superview!)!
+        images.removeAtIndex(index)
+        imageViews.last?.removeFromSuperview()
+        loadImages()
+    }
+    
+    func loadImages(){
+        let imageViews = answersView.subviews
+        for index in 0..<imageViews.count {
+            let imageView:UIImageView = (imageViews[index].subviews.first) as! UIImageView
+            imageView.image = images[index]
+        }
     }
 }
+
+
+
+
+
+
+
+
