@@ -50,12 +50,17 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     func setupAudioManager() {
         let name = generateName()
         audioManager = AudioManager.shareManager()
-        audioManager.delegate = self
         audioManager.resetManager()
+        audioManager.delegate = self        
         audioExist = audioManager.fileExistAtName(name)
         if audioExist {
             audioManager.recordUrl = generateFileURLWithName(name)
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        audioManager.resetManager()
     }
     
     func generateFileURLWithName(name: String, withExtension ex: String = "aac") ->NSURL {

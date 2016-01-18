@@ -81,6 +81,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     func resetManager()
     {
+        delegate = nil
         switch status
         {
         case .Recording, .RecordPause:
@@ -299,7 +300,7 @@ class AudioManager: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     func stopPlay()
     {
-        if audioPlayer.playing || audioPlayer != nil {
+        if audioPlayer != nil && audioPlayer.playing  {
             audioPlayer.stop()
             playerDidFinishPlaying()
         }

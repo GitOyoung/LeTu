@@ -58,6 +58,7 @@
 		8FFA339B1C44D07200411F52 /* CanvasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FFA33991C44D07200411F52 /* CanvasViewController.xib */; };
 		8FFA339D1C44D19C00411F52 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA339C1C44D19C00411F52 /* CanvasView.swift */; };
 		A0AF8496FABF9131CEB2A5C0 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F60162D9117FBADC31C41 /* Pods.framework */; };
+		E3090B381C4C8C7E00122DEF /* UIImageViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3090B371C4C8C7E00122DEF /* UIImageViewEx.swift */; };
 		E30A1B9A1C3365D200C8B3C5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B991C3365D200C8B3C5 /* AudioManager.swift */; };
 		E30A1B9C1C33A06A00C8B3C5 /* UIPileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */; };
 		E30A1B9E1C33A8AF00C8B3C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */; };
@@ -194,6 +195,7 @@
 		8FFA33981C44D07200411F52 /* CanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		8FFA33991C44D07200411F52 /* CanvasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanvasViewController.xib; sourceTree = "<group>"; };
 		8FFA339C1C44D19C00411F52 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		E3090B371C4C8C7E00122DEF /* UIImageViewEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewEx.swift; sourceTree = "<group>"; };
 		E30A1B991C3365D200C8B3C5 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPileView.swift; sourceTree = "<group>"; };
 		E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -599,6 +601,7 @@
 				8FEE5ABF1C2B88E80027CC41 /* MBPHUDUtil.swift */,
 				E3FC71561C314408002FFEE1 /* ViewControllerBackDelegate.swift */,
 				8FEE8FFF1C3DF6DE0016C248 /* ExtendedString.swift */,
+				E3090B371C4C8C7E00122DEF /* UIImageViewEx.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				E31797391C3B702D008DCAC7 /* LTRefreshView.swift in Sources */,
 				E98A91A01BF4BCC8008DB1A9 /* AskListViewController.swift in Sources */,
 				8FC01C411C3CC8A600E75619 /* EtaskAnswer.swift in Sources */,
+				E3090B381C4C8C7E00122DEF /* UIImageViewEx.swift in Sources */,
 				E3FC71551C313F99002FFEE1 /* ImageButton.swift in Sources */,
 				166AF30E1C1BFDAD001028C3 /* AskDAO.swift in Sources */,
 				8F4F780B1C390E92008791ED /* KouSuanKeyboardViewController.swift in Sources */,
