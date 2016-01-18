@@ -508,8 +508,8 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         
         touchedItem = item
         SortWithIndex(index: row)
-        let view = FollowReadingViewController()
-        self.presentViewController(view, animated: true, completion: nil)
+//        let view = FollowReadingViewController()
+//        self.presentViewController(view, animated: true, completion: nil)
     }
     
     //气泡菜单的委托方法

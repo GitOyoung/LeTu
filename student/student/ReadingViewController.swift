@@ -386,6 +386,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         super.updateAnswer()
         questionAnswer?.answerHistory = hAnswers
         questionAnswer?.answer = hAnswers.count > 0 ? hAnswers.last! : ""
+        audioManager.resetManager()
     }
     
     

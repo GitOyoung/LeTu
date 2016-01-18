@@ -151,6 +151,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
 
     
     override func updateAnswer() {
+        super.updateAnswer()
         var answerArray = [NSDictionary]()
 
         if question?.type == QuestionTypeEnum.TingLiTianKong{
@@ -166,6 +167,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             }
         }
         questionAnswer?.listAnswer = answerArray
+        audioManager.resetManager()
     }
     
     
