@@ -17,11 +17,12 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
     
+    @IBOutlet weak var answerTextField: UITextField!
+    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var drawButton: UIButton!
-    @IBOutlet weak var speakButton: UIButton!
     @IBOutlet weak var keyboardButton: UIButton!
     
     @IBOutlet weak var answersView: UIView!
@@ -41,7 +42,6 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     func initButtons(){
         initButton(cameraButton)
         initButton(drawButton)
-        initButton(speakButton)
         initButton(keyboardButton)
     }
     
@@ -68,27 +68,36 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         presentViewController(controller, animated: true, completion: nil)
     }
     
+    @IBAction func keyboardClicked(sender: UIButton) {
+        if(answerTextField.hidden){
+            answerTextField.hidden = false
+            answerTextField.becomeFirstResponder()
+        }else{
+            answerTextField.hidden = true
+            answerTextField.resignFirstResponder()
+        }
+    }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
-        addImageView(image!)
+        addImage(image!)
     }
     
     func passImageData(image: UIImage) {
-        addImageView(image)
+        addImage(image)
     }
     
-    func addImageView(image:UIImage){
+    func addImage(image:UIImage){
+        images.append(image)
         let view = getAnswerView()
         answersView.addSubview(view)
-        images.append(image)
         loadImages()
         contentHeight.constant = contentHeight.constant + 210
     }
     
     func getAnswerView() -> UIView{
-        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * images.count), answersView.frame.size.width, 200))
+        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (images.count-1)), answersView.frame.size.width, 200))
         resultView.addSubview(getImageView())
         resultView.addSubview(getRemoveButton())
         return resultView
@@ -113,6 +122,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         let index:Int = imageViews.indexOf(sender.superview!)!
         images.removeAtIndex(index)
         imageViews.last?.removeFromSuperview()
+        contentHeight.constant = contentHeight.constant - 210
         loadImages()
     }
     
@@ -122,6 +132,10 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
             let imageView:UIImageView = (imageViews[index].subviews.first) as! UIImageView
             imageView.image = images[index]
         }
+    }
+    
+    @IBAction func DidEndOnExit(sender: UITextField) {
+        sender.resignFirstResponder()
     }
 }
 
