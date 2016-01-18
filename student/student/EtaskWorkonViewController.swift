@@ -205,12 +205,14 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //MARK: 保存答案到答案列表
     func saveAnswer() {
-        let idx = currentQuestion?.ordinal
-        let vc = currentViewController as! QuestionBaseViewController
-        if idx < answers.count {
-            answers[idx!] = vc.answer()
-        } else {
-            answers.append(vc.answer())
+        if var idx = currentQuestion?.ordinal {
+            --idx
+            let vc = currentViewController as! QuestionBaseViewController
+            if idx < answers.count {
+                answers[idx] = vc.answer()
+            } else {
+                answers.append(vc.answer())
+            }
         }
     }
 }

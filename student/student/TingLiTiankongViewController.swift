@@ -22,7 +22,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
 
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var questionOptions: UILabel!
-    var audioManage:AudioManager!
+    var audioManager:AudioManager!
     var duration: NSTimeInterval = 0
     var answerButtonsAry = [UIButton]()
     var answerAry = [UITextField]()
@@ -36,9 +36,9 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManage = AudioManager.shareManager()
-        audioManage.delegate = self
-        audioManage.resetManager()
+        audioManager = AudioManager.shareManager()
+        audioManager.resetManager()
+        audioManager.delegate = self
         setQuestionTitle(questionTitleView)
         setQuestionBody()
         setQuestionOptions()
@@ -50,6 +50,10 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     func setQuestionBody(){
@@ -236,19 +240,19 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             button.tag = 1
             if let url = question?.speechUrlHtmlData {
                 if url != "" {
-                    audioManage.startPlayWithURL(NSURL(string: url)!) {
-                        self.audioManage.startPlay()
+                    audioManager.startPlayWithURL(NSURL(string: url)!) {
+                        self.audioManager.startPlay()
                     }
                 }
             }
         }
         else if button.tag == 1 {
             button.tag = 2
-            audioManage.pausePlay()
+            audioManager.pausePlay()
         }
         else{
             button.tag = 1
-            audioManage.resumePlay()
+            audioManager.resumePlay()
         }
     }
 
@@ -319,7 +323,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     func audioProgressView(progressView: AudioProgressView, progressDidChanged: CGFloat) {
         let timer = duration * Double(progressView.updateProgress)
-        audioManage.seekToTime(timer)
+        audioManager.seekToTime(timer)
         startLabel.text = timeIntervalToString(timer)
     }
     
