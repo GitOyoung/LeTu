@@ -13,6 +13,8 @@ class XuanzetiankongOptionCell: UICollectionViewCell {
     @IBOutlet weak var optionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        optionLabel.textAlignment = .Center
+        optionLabel.font = UIFont.systemFontOfSize(16)
     }
 
 }

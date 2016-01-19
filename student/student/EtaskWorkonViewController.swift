@@ -58,17 +58,20 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //上一题
     @IBAction func preQuestion(sender: AnyObject) {
-        let index = questions.indexOf(currentQuestion!)
+        let index = (currentQuestion?.ordinal)! - 1
         submitable = false
         nextButton.setTitle("下一题", forState: UIControlState.Normal)
-        if index! >= 1{
-            let preQuestion = questions[index!-1]
+        if index > 0 {
+            let preQuestion = questions[index - 1]
             currentQuestion = preQuestion
             let preQuestionController = jumpToQuestionController(preQuestion)
             addViewControllerInContentView(preQuestionController)
+        } else {
+            preButton = (sender as? UIButton)
+            preButton?.enabled = false
         }
     }
-    
+    weak var preButton: UIButton?
     //下一题
     @IBAction func nextQuestion(sender: AnyObject) {
         saveAnswer()
@@ -76,7 +79,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             submitAnswers()
         } else {
             
-            let index = questions.indexOf(currentQuestion!)! + 1
+            let index = (currentQuestion?.ordinal)!
             
             if index < questions.count {
                 submitable = false
@@ -89,6 +92,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 nextButton.setTitle("完成", forState: UIControlState.Normal)
             }
         }
+        preButton?.enabled = true
     }
 
     ///按钮 － 返回

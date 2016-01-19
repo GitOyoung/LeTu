@@ -55,8 +55,8 @@ class QuestionBaseViewController: UIViewController {
         var strArray = [String]()
         if str.containsString("（"){
             strArray = str.componentsSeparatedByString("（")
-        }else if str.containsString("underline"){
-            strArray = str.componentsSeparatedByString("underline")
+        }else if str.containsString("______"){
+            strArray = str.componentsSeparatedByString("______")
         }else if str.containsString("("){
             strArray = str.componentsSeparatedByString("(")
         }else{

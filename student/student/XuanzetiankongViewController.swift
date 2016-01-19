@@ -18,13 +18,14 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     @IBOutlet weak var questionBodyLabel: UILabel!
     //问题以及结果
     @IBOutlet weak var questionPointView: UIView!
+    @IBOutlet weak var answerArea: UIView!
     
     @IBOutlet weak var answerPad: UIView!
     //可以被选择的对象
     @IBOutlet weak var answerPadOptionsCollectionView: UICollectionView!
     var answerButtonsAry = [UIButton]()
+    var answerLabelArray = [UILabel]()
     var buttonNumber = 0
-    var buttonAry = [AnyObject]()
     let optionCellIdentifier = "optionCell"
     var etaskQuestionOptions = [EtaskQuestionOption]()
     
@@ -35,6 +36,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         setAnswerButtons()
+        setAnswerLabels()
         answerPadOptionsCollectionView.dataSource = self
         answerPadOptionsCollectionView.delegate = self
         answerPadOptionsCollectionView.registerNib(UINib(nibName: "XuanzetiankongOptionCell", bundle: nil), forCellWithReuseIdentifier:optionCellIdentifier )
@@ -51,27 +53,24 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
             let url = question.questionBody!
             let attributedStr = htmlFormatString(url)
             buttonNumber = matchStringSymbol(attributedStr)
-            if buttonNumber != question.options?.count{
-                buttonNumber = (question.options?.count)!
-            }
             questionBodyLabel.text = attributedStr
         }
     }
     
     //MARK:按钮生成
     func setAnswerButtons(){
-        var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
-        let viewWidth = UIScreen.mainScreen().bounds.width
-        let offsetWidth = Int(viewWidth) - buttonNumber*48
+        var frame = CGRect(x: 0, y: 0, width: 44, height: 38)
         for index in 0..<buttonNumber{
             answerIndexes.append("0")
-            frame.origin.x = CGFloat((48 + offsetWidth/(buttonNumber+1))*index + offsetWidth/(buttonNumber+1))
-            frame.origin.y = 48
-            frame.size.height = 48
-            
             let button = UIButton(frame: frame)
+            frame.origin.x += 54
+            button.tag = index
+            button.titleLabel?.font = UIFont.systemFontOfSize(14)
             button.setTitle("", forState: .Normal)
-            button.backgroundColor = UIColor.blueColor()
+            button.setTitleColor(UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1), forState: .Normal)
+            button.backgroundColor = UIColor(red: 240/255.0, green: 239/255.0, blue: 245/255.0, alpha: 1)
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1).CGColor
             button.layer.cornerRadius = 5
             button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
             
@@ -80,19 +79,33 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
         }
     }
     
+    func setAnswerLabels() {
+        
+        var frame = CGRect(x: 0, y: 0, width: 40, height: 30)
+        
+        for _ in 0..<buttonNumber {
+            let label = UILabel(frame: frame)
+            frame.origin.x += 46
+            label.font = UIFont.systemFontOfSize(18)
+            label.textColor = UIColor(red: 0, green: 0.588, blue: 0.98, alpha: 1) // 0,150,250
+            label.textAlignment = .Center
+            
+            answerLabelArray.append(label)
+            answerArea.addSubview(label)
+        }
+    }
+    var buttonIndex: Int = -1
+    
     //MARK:选中按钮
     func didClickOptionButton(button:UIButton){
-        buttonAry.removeAll(keepCapacity: true)
-        let buttonIndex = answerButtonsAry.indexOf(button)
-        for (index,button) in answerButtonsAry.enumerate(){
-            if buttonIndex == index{
-                button.backgroundColor = UIColor.grayColor()
-                buttonAry.append([button,true])
-            }else{
-                button.backgroundColor = UIColor.blueColor()
-                buttonAry.append([button,false])
-            }
+        if buttonIndex == -1 {
+            buttonIndex = button.tag
+            button.backgroundColor = UIColor(red: 0.471 , green: 0.51, blue: 0.6, alpha: 1)
+        } else if buttonIndex == button.tag {
+            buttonIndex = -1
+            button.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1)
         }
+        
     }
     
     //MARK UICollectionView相关的方法
@@ -118,30 +131,26 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let option = etaskQuestionOptions[indexPath.row]
         let optionCell = collectionView.dequeueReusableCellWithReuseIdentifier(optionCellIdentifier, forIndexPath: indexPath) as! XuanzetiankongOptionCell
-        optionCell.optionLabel.text = option.option
-        optionCell.optionLabel.sizeToFit()
+        optionCell.optionLabel.text = option.option?.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n"))
+        optionCell.layer.cornerRadius = 6
         return optionCell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let doHaveQuestion = question!
-        let doHaveptions = doHaveQuestion.options!
-        let option = doHaveptions[indexPath.row]
-        let myString: NSString = option.option! as NSString
-        var size: CGSize = myString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(17.0)])
-        size.height = 50
+        let content = NSString(string: (question?.options![indexPath.row].option?.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n")))!)
+        let width = max(content.boundingRectWithSize(CGSize(width: CGFloat.max,height: 40), options: [.UsesLineFragmentOrigin, .UsesFontLeading] , attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18)], context: nil).size.width, 36)
+        let size: CGSize = CGSize(width: width, height: 40)
         return size
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let option = question?.options![indexPath.row]
-        for index in 0..<buttonAry.count{
-            let ary = buttonAry[index] as! NSArray
-            if ary.lastObject! as! Bool{
-                let button = ary.firstObject as! UIButton
-                button.setTitle(option?.option, forState: .Normal)
-                answerIndexes[index] = String((option?.optionIndex!)!)
-            }
+        if buttonIndex >= 0 {
+            let option = question?.options![indexPath.row]
+            let button = answerButtonsAry[buttonIndex]
+            let string = option?.option?.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n"))
+            button.setTitle(string , forState: .Normal)
+            answerLabelArray[buttonIndex].text = string
+            answerIndexes[buttonIndex] = String((option?.optionIndex)!)
         }
     }
     
@@ -153,7 +162,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
                 for option in etaskQuestionOptions{
                     if String(option.optionIndex!) == number{
                         let button:UIButton = answerButtonsAry[index]
-                        button.setTitle(option.option!, forState: .Normal)
+                        button.setTitle(option.option!.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n")), forState: .Normal)
                     }
                 }
             }

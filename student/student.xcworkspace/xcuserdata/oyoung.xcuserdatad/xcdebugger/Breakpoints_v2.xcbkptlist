@@ -153,22 +153,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "student/AudioManager.swift"
-            timestampString = "474778393.003644"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "startPlayWithData(_:complete:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "student/TingLiTiankongViewController.swift"
             timestampString = "474859742.53169"
             startingColumnNumber = "9223372036854775807"
@@ -185,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "student/DanxuanViewController.swift"
-            timestampString = "474864752.591902"
+            filePath = "student/XuanzetiankongViewController.swift"
+            timestampString = "474884183.745873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "updateAnswer()"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "loadWithAnswer()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

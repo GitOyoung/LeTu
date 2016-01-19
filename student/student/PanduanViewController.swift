@@ -15,8 +15,9 @@ class PanduanViewController: QuestionBaseViewController {
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var answerPadView: UIView!
+    @IBOutlet weak var padWidth: NSLayoutConstraint!
     @IBOutlet weak var questionBodyLabel: UILabel!
-    @IBOutlet weak var questionOptionLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var answerString:String = ""
@@ -55,57 +56,57 @@ class PanduanViewController: QuestionBaseViewController {
             let attributedString = try? NSAttributedString(data: html_str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
             str += (attributedString?.string)!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
         }
-        questionOptionLabel.text = str
     }
     
     //设置对错按钮
     func setAnswerButton() {
-        let options = question?.options
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
-        let screenBounds:CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenBounds.size.width
-        let offsetWidth = Int(screenWidth) - options!.count*48
-        let offsetHeight = Int(answerPadView.frame.height)
-        var buttonImage = ""
-        for (index,_) in options!.enumerate() {
-            
-            frame.origin.x = CGFloat((48 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
-            frame.origin.y = CGFloat((offsetHeight-42)/2)
-            frame.size.height = CGFloat(offsetHeight/2)
-            
-            let button = UIButton(frame: frame)
-            buttonImage = index == 0 ? "rightAnswer" : "wrongAnswer"
-            button.setImage(UIImage(named: buttonImage), forState: .Normal)
-            button.backgroundColor = UIColor.blueColor()
-            button.layer.borderWidth = 0.5
-            button.layer.cornerRadius = 6
-            button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
-            answerButtonsAry.append(button)
-            answerPadView.addSubview(button)
+        if let options = question?.options {
+            let count = options.count
+            let width = CGFloat(count * 48 + (count - 1) * 10)
+            let offsetHeight = answerPadView.frame.height
+            padWidth.constant = width
+            frame.origin.y = (offsetHeight - 42) / 2
+            for (index,_) in options.enumerate() {
+                
+                
+                let button = UIButton(frame: frame)
+                frame.origin.x += 58
+                let buttonImage = index == 0 ? "rightAnswer" : "wrongAnswer"
+                button.setImage(UIImage(named: buttonImage), forState: .Normal)
+                button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
+                button.layer.cornerRadius = 6
+                button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
+                answerButtonsAry.append(button)
+                answerPadView.addSubview(button)
+            }
         }
     }
     
     //选择对错按钮事件
     func didClickOptionButton(button:UIButton){
+        let answers = ["对", "错"]
         let index = answerButtonsAry.indexOf(button)!
         let option = question?.options![index]
-        for button in answerButtonsAry{
-            button.backgroundColor = UIColor.blueColor()
+        for button in answerButtonsAry {
+            button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
         }
-        button.backgroundColor = UIColor.grayColor()
+        button.backgroundColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1)
         print("选项：\(option!.option)")
         print("\(option!.optionIndex)")
         answerString = String(option!.optionIndex!)
+        answerLabel.text = answers[index]
     }
     
     //判断scrollView是否允许滚动
     func setScrollEable(){
-        let screenHeight = UIScreen.mainScreen().bounds.height
-        let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPadView.frame.size.height
-        let contentHeight = questionBodyLabel.frame.size.height + questionOptionLabel.frame.size.height
-        if offsetHeight > contentHeight{
-            scrollView.scrollEnabled = false
+        let viewHeight = view.bounds.height
+        let minHeight = viewHeight - questionTitleView.bounds.height - answerPadView.bounds.height
+        let actualHeight = questionBodyLabel.bounds.height + 104
+        if actualHeight > minHeight {
+            scrollView.scrollEnabled = true
         }
+        
     }
     
     override func updateAnswer() {

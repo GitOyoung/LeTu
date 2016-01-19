@@ -15,6 +15,7 @@ class DanxuanViewController: QuestionBaseViewController {
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var optionsLabel: UILabel!
     @IBOutlet weak var answerPad: UIView!
+    @IBOutlet weak var padWidth: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
     
@@ -43,7 +44,7 @@ class DanxuanViewController: QuestionBaseViewController {
         if let question = question {
             let url = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
             let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-            questionBodyLabel.attributedText = attributedStr
+            questionBodyLabel.text = attributedStr?.string
         }
     }
 
@@ -61,46 +62,63 @@ class DanxuanViewController: QuestionBaseViewController {
         }
         optionsLabel.text = str
     }
-    let ary = ["A","B","C","D"]
+    let arys = ["A","B","C","D"]
     //选择题选项按钮
     func setAnswerButtons(){
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
-        
-        let screenBounds:CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenBounds.size.width
-        let options = question?.options!
-        let count = options!.count
-        let offsetHeight = answerPad.frame.height
-        frame.origin.y = (offsetHeight - 42) / 2
-        frame.origin.x = (screenWidth - CGFloat(count * 48 + (count - 1) * 10)) / 2
-        for (index,_) in (question?.options!.enumerate())!{
-           
+        if let options = question?.options {
             
-            let button = UIButton(frame: frame)
-            frame.origin.x += 58
-            button.setTitle(ary[index], forState: .Normal)
-            button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
-            button.layer.cornerRadius = 5
-            button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
-            answerButtonsAry.append(button)
-            answerPad.addSubview(button)
+            let count = options.count
+            let witdh = count * 48 + (count - 1) * 10
+            let height = answerPad.bounds.height
+            padWidth.constant = CGFloat(witdh)
+            frame.origin.y = (height - 42) / 2
+            for (index,_) in options.enumerate() {
+               
+                
+                let button = UIButton(frame: frame)
+                frame.origin.x += 58
+                button.tag = index
+                button.setTitle(arys[index], forState: .Normal)
+                button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
+                button.layer.cornerRadius = 5
+                button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
+                answerButtonsAry.append(button)
+                answerOptions.append(false)
+                answerPad.addSubview(button)
+            }
         }
     }
     
+    var answerOptions: [Bool] = [Bool]()
     //MARK:选择选项按钮
     func didClickOptionButton(button: UIButton){
-        let index = answerButtonsAry.indexOf(button)
-        let option = question?.options![index!]
-        if question?.type == QuestionTypeEnum.DanXuan{
-            for button in answerButtonsAry{
-                button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
+        let index = button.tag
+        if let q = question {
+            
+            switch q.type {
+            case .DanXuan:
+                for (i, _) in answerOptions.enumerate() {
+                    answerOptions[i] = false
+                }
+                answerOptions[index] = true
+            case .DuoXuan:
+                answerOptions[index] = !answerOptions[index]
+            default:
+                break
             }
-            answerString = String(option!.optionIndex!)+","
-        }else{
-            answerString += String(option!.optionIndex!)+","
+            answerLabel.text = ""
+            for(idx, _) in answerOptions.enumerate() {
+                if answerOptions[idx] == true {
+                    let option = q.options![idx]
+                    answerString += String(option.optionIndex!) + ","
+                    answerLabel.text! += arys[idx]
+                    answerButtonsAry[idx].backgroundColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1)
+                } else {
+                    answerButtonsAry[idx].backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
+                }
+            }
         }
-        answerLabel.text = ary[index!]
-        button.backgroundColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1)
     }
     //计算scrollView和屏幕的高度
     
