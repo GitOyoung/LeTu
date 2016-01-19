@@ -124,8 +124,8 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     func setupAudioManager() {
         let name = generateName()
         audioManager = AudioManager.shareManager()
-        audioManager.delegate = self
         audioManager.resetManager()
+        audioManager.delegate = self
         recordSaved = audioManager.fileExistAtName(name)
         if recordSaved {
             audioManager.recordUrl = generateURLWithName(name)

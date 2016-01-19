@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JianDaViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="answerConstraintHeight" destination="vJb-O8-e3L" id="jLJ-e8-6aq"/>
                 <outlet property="answerTextField" destination="WNr-4G-n3q" id="0dc-G4-czU"/>
                 <outlet property="answersView" destination="hnu-qJ-ydW" id="UnH-cT-s6d"/>
                 <outlet property="cameraButton" destination="Gxj-Yf-VQe" id="iec-Nd-yiL"/>
@@ -57,10 +58,10 @@
                                     </connections>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnu-qJ-ydW" userLabel="answerView">
-                                    <rect key="frame" x="8" y="102.5" width="304" height="500"/>
+                                    <rect key="frame" x="8" y="102.5" width="304" height="200"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="500" id="vJb-O8-e3L"/>
+                                        <constraint firstAttribute="height" constant="200" id="vJb-O8-e3L"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -84,7 +85,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ERu-26-Aff" secondAttribute="trailing" id="VpW-x3-NPO"/>
-                        <constraint firstAttribute="bottom" secondItem="ERu-26-Aff" secondAttribute="bottom" priority="1" constant="1" id="ZD8-Aw-ih0"/>
+                        <constraint firstAttribute="bottom" secondItem="ERu-26-Aff" secondAttribute="bottom" priority="1" id="ZD8-Aw-ih0"/>
                         <constraint firstItem="ERu-26-Aff" firstAttribute="top" secondItem="mFd-Ry-Lse" secondAttribute="top" id="mPJ-4J-kyL"/>
                         <constraint firstItem="ERu-26-Aff" firstAttribute="leading" secondItem="mFd-Ry-Lse" secondAttribute="leading" id="xqc-FM-Hny"/>
                     </constraints>

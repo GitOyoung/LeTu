@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DanxuanViewController" customModule="student" customModuleProvider="target">
             <connections>
+                <outlet property="answerLabel" destination="IAN-pg-Li3" id="6Wo-lB-jTk"/>
                 <outlet property="answerPad" destination="ORp-hR-gkH" id="qIb-oy-laG"/>
                 <outlet property="optionsLabel" destination="b5F-NT-Uay" id="rhl-2L-21D"/>
                 <outlet property="questionBodyLabel" destination="xTT-m9-ggA" id="APi-ch-bft"/>
@@ -40,28 +41,49 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ia-tN-pFI" userLabel="contentView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="364"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="questionBody" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTT-m9-ggA">
-                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTT-m9-ggA">
+                                    <rect key="frame" x="48" y="8" width="264" height="23"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选项" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5F-NT-Uay">
-                                    <rect key="frame" x="8" y="37" width="304" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <rect key="frame" x="48" y="39" width="264" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学生答案:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XB-OL-tqs">
+                                    <rect key="frame" x="48" y="93" width="61" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAN-pg-Li3">
+                                    <rect key="frame" x="48" y="126" width="22" height="21"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="eaD-98-C1N"/>
+                                        <constraint firstAttribute="width" constant="22" id="yNv-or-4Hk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <color key="textColor" red="0.0" green="0.58823529411764708" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="b5F-NT-Uay" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="8" id="1gq-XF-Fby"/>
+                                <constraint firstItem="b5F-NT-Uay" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="48" id="1gq-XF-Fby"/>
+                                <constraint firstItem="7XB-OL-tqs" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="48" id="6g1-66-g7O"/>
                                 <constraint firstItem="xTT-m9-ggA" firstAttribute="top" secondItem="1Ia-tN-pFI" secondAttribute="top" constant="8" id="998-jL-iBk"/>
+                                <constraint firstItem="IAN-pg-Li3" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="48" id="AF9-sg-qXW"/>
                                 <constraint firstItem="b5F-NT-Uay" firstAttribute="top" secondItem="xTT-m9-ggA" secondAttribute="bottom" constant="8" id="Cu2-pL-bjM"/>
-                                <constraint firstItem="xTT-m9-ggA" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="8" id="GAn-xN-FVH"/>
+                                <constraint firstItem="xTT-m9-ggA" firstAttribute="leading" secondItem="1Ia-tN-pFI" secondAttribute="leading" constant="48" id="GAn-xN-FVH"/>
+                                <constraint firstItem="7XB-OL-tqs" firstAttribute="top" secondItem="b5F-NT-Uay" secondAttribute="bottom" constant="32" id="Gdl-k3-4gE"/>
                                 <constraint firstAttribute="trailing" secondItem="b5F-NT-Uay" secondAttribute="trailing" constant="8" id="H8V-RU-6ch"/>
                                 <constraint firstAttribute="height" constant="364" id="RsR-wp-I8l"/>
                                 <constraint firstAttribute="trailing" secondItem="xTT-m9-ggA" secondAttribute="trailing" constant="8" id="hbA-wH-19s"/>
+                                <constraint firstItem="IAN-pg-Li3" firstAttribute="top" secondItem="7XB-OL-tqs" secondAttribute="bottom" constant="16" id="qc0-tt-zgs"/>
                             </constraints>
                         </view>
                     </subviews>

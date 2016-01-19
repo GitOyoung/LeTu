@@ -27,7 +27,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
     var audioManager: AudioManager!
     
     var recordButton: ImageButton?
-    
+    var http: HttpRequest = HttpRequest()
     
     var isPlaying: Bool = false {
         didSet {
@@ -58,10 +58,6 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        audioManager.resetManager()
-    }
     
     func generateFileURLWithName(name: String, withExtension ex: String = "aac") ->NSURL {
         let strUrl = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last
@@ -208,7 +204,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         if action.title == "提交"
         {
             stopRecord(true)
-            uploadFile((audioManager.recordUrl)!.fileURLToLocalPath()){ info in
+            http.uploadFile((audioManager.recordUrl)!.fileURLToLocalPath()){ info in
                 let array: [String] = info["data"] as! [String]
                 for e in array {
                    self.hAnswers.append(e)
@@ -386,6 +382,7 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         super.updateAnswer()
         questionAnswer?.answerHistory = hAnswers
         questionAnswer?.answer = hAnswers.count > 0 ? hAnswers.last! : ""
+        audioManager.resetManager()
     }
     
     
@@ -396,15 +393,19 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         // Dispose of any resources that can be recreated.
     }
     
+    
+}
+
+extension HttpRequest {
     func uploadFile(path: String, success: (([String: AnyObject])->Void)? ) {
         let url = ServiceApi.getUploadFileUrl()
         if let user = NSUserDefaultUtil.getUser() {
             
             upload(.POST, url, multipartFormData: { formdata in
-                    formdata.appendBodyPart(data: "\((user.userId)!)".dataUsingEncoding(NSUTF8StringEncoding)!, name: "userId")
-                    formdata.appendBodyPart(data: (user.token)!.dataUsingEncoding(NSUTF8StringEncoding)!, name: "accessToken")
+                formdata.appendBodyPart(data: "\((user.userId)!)".dataUsingEncoding(NSUTF8StringEncoding)!, name: "userId")
+                formdata.appendBodyPart(data: (user.token)!.dataUsingEncoding(NSUTF8StringEncoding)!, name: "accessToken")
                 
-                    formdata.appendBodyPart(fileURL: NSURL(fileURLWithPath: path), name: "audio")
+                formdata.appendBodyPart(fileURL: NSURL(fileURLWithPath: path), name: "audio")
                 }, encodingCompletion: { result in
                     switch result {
                     case let .Success(upload,_,_):

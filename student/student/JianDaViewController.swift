@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate,HttpProtocol {
+class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate {
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
@@ -25,8 +25,10 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     
     @IBOutlet weak var contentHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var answerConstraintHeight: NSLayoutConstraint!
+    
     var imagePicker:UIImagePickerController!
-    var images:[UIImage] = []
+    var imageUrls:[String] = []
     
     let http: HttpRequest = HttpRequest()
     
@@ -35,8 +37,6 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         initButtons()
-        
-        http.delegate = self
     }
     
     func initButtons(){
@@ -79,49 +79,46 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-//        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-//        addImage(image!)
-        
-        print(info)
-        let fileURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        http.uploadRequest(ServiceApi.getUploadFileUrl(), firlUrl: fileURL)
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        saveImage(image!)
     }
     
     func passImageData(image: UIImage) {
         saveImage(image)
-        addImage(image)
     }
     
     func saveImage(image:UIImage){
+        let imageData:NSData = UIImageJPEGRepresentation(image, 0.5)!
+        let tempPath:String = getTempPath()
+        imageData.writeToFile(tempPath as String, atomically: false)
+        
+        http.uploadFile(tempPath) { dic in
+            print(dic)
+            let urls:[String] = dic["data"] as! [String]
+            let url = urls[0]
+            self.addImage(url)
+        }
+    }
+    
+    func getTempPath() -> String{
         let date = NSDate()
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateFormat = "yyyMMddHHmmss"
         let strNowTime = timeFormatter.stringFromDate(date) as String
-        
-        let imageData:NSData = UIImageJPEGRepresentation(image, 0.5)!
-        let fullPath:String = NSHomeDirectory().stringByAppendingString("/Documents").stringByAppendingString("/temp\(strNowTime).png")
-        imageData.writeToFile(fullPath as String, atomically: false)
-        
-        let fileURL = NSURL(fileURLWithPath: fullPath)
-        print(fileURL.path!)
-        
-        http.uploadRequest(ServiceApi.getUploadFileUrl(), firlUrl: fileURL)
+        return NSHomeDirectory().stringByAppendingString("/Documents").stringByAppendingString("/temp\(strNowTime).png")
     }
     
-    func didreceiveResult(result: NSDictionary) {
-        print(result)
-    }
-    
-    func addImage(image:UIImage){
-        images.append(image)
+    func addImage(url:String){
+        imageUrls.append(url)
         let view = getAnswerView()
         answersView.addSubview(view)
         loadImages()
         contentHeight.constant = contentHeight.constant + 210
+        answerConstraintHeight.constant = answerConstraintHeight.constant + 210
     }
     
     func getAnswerView() -> UIView{
-        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (images.count-1)), answersView.frame.size.width, 200))
+        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (imageUrls.count-1)), answersView.frame.size.width, 200))
         resultView.addSubview(getImageView())
         resultView.addSubview(getRemoveButton())
         return resultView
@@ -144,9 +141,10 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     func removeClicked(sender:UIButton){
         let imageViews = answersView.subviews
         let index:Int = imageViews.indexOf(sender.superview!)!
-        images.removeAtIndex(index)
+        imageUrls.removeAtIndex(index)
         imageViews.last?.removeFromSuperview()
         contentHeight.constant = contentHeight.constant - 210
+        answerConstraintHeight.constant = answerConstraintHeight.constant - 210
         loadImages()
     }
     
@@ -154,13 +152,16 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         let imageViews = answersView.subviews
         for index in 0..<imageViews.count {
             let imageView:UIImageView = (imageViews[index].subviews.first) as! UIImageView
-            imageView.image = images[index]
+            let url:String = imageUrls[index]
+            let nsURL = NSURL(string: url)!
+            imageView.setImage(nsURL , placeholdImage: nil)
         }
     }
     
     @IBAction func DidEndOnExit(sender: UITextField) {
         sender.resignFirstResponder()
     }
+    
 }
 
 

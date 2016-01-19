@@ -52,10 +52,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     func setQuestionBody(){
         if let question = question {
             let url = question.questionBody!
@@ -151,6 +147,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
 
     
     override func updateAnswer() {
+        super.updateAnswer()
         var answerArray = [NSDictionary]()
 
         if question?.type == QuestionTypeEnum.TingLiTianKong{
@@ -166,6 +163,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             }
         }
         questionAnswer?.listAnswer = answerArray
+        audioManager.resetManager()
     }
     
     
@@ -236,12 +234,14 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     func audioCtrlClicked(button: UIButton)
     {
-        if button.tag == 0{
-            button.tag = 1
+        if button.tag == 0 {
+           
             if let url = question?.speechUrlHtmlData {
                 if url != "" {
                     audioManager.startPlayWithURL(NSURL(string: url)!) {
+                        button.tag = 1
                         self.audioManager.startPlay()
+                        
                     }
                 }
             }
@@ -250,7 +250,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
             button.tag = 2
             audioManager.pausePlay()
         }
-        else{
+        else {
             button.tag = 1
             audioManager.resumePlay()
         }

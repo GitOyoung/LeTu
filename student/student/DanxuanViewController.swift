@@ -17,6 +17,9 @@ class DanxuanViewController: QuestionBaseViewController {
     @IBOutlet weak var answerPad: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var answerLabel: UILabel!
+    
     var answerButtonsAry = [UIButton]()
     
     var answerString:String = ""
@@ -58,25 +61,25 @@ class DanxuanViewController: QuestionBaseViewController {
         }
         optionsLabel.text = str
     }
-    
+    let ary = ["A","B","C","D"]
     //选择题选项按钮
     func setAnswerButtons(){
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
-        let ary = ["A","B","C","D"]
+        
         let screenBounds:CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenBounds.size.width
         let options = question?.options!
-        let offsetWidth = Int(screenWidth) - (question?.options!.count)!*48
-        let offsetHeight = Int(answerPad.frame.height)
+        let count = options!.count
+        let offsetHeight = answerPad.frame.height
+        frame.origin.y = (offsetHeight - 42) / 2
+        frame.origin.x = (screenWidth - CGFloat(count * 48 + (count - 1) * 10)) / 2
         for (index,_) in (question?.options!.enumerate())!{
-            
-            frame.origin.x = CGFloat((48 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
-            frame.origin.y = CGFloat((offsetHeight-42)/2)
-            frame.size.height = CGFloat(offsetHeight/2)
+           
             
             let button = UIButton(frame: frame)
+            frame.origin.x += 58
             button.setTitle(ary[index], forState: .Normal)
-            button.backgroundColor = UIColor.blueColor()
+            button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
             button.layer.cornerRadius = 5
             button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
             answerButtonsAry.append(button)
@@ -90,13 +93,14 @@ class DanxuanViewController: QuestionBaseViewController {
         let option = question?.options![index!]
         if question?.type == QuestionTypeEnum.DanXuan{
             for button in answerButtonsAry{
-                button.backgroundColor = UIColor.blueColor()
+                button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
             }
             answerString = String(option!.optionIndex!)+","
         }else{
             answerString += String(option!.optionIndex!)+","
         }
-        button.backgroundColor = UIColor.grayColor()
+        answerLabel.text = ary[index!]
+        button.backgroundColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1)
     }
     //计算scrollView和屏幕的高度
     
