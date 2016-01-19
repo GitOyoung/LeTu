@@ -29,6 +29,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     
     var imagePicker:UIImagePickerController!
     var imageUrls:[String] = []
+    var appeared = false
     
     let http: HttpRequest = HttpRequest()
     
@@ -55,6 +56,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
             questionBodyLabel.text = htmlFormatString(question.questionBody!)
         }
     }
+    
     @IBAction func cameraClicked(sender: UIButton) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -77,6 +79,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
             answerTextField.resignFirstResponder()
         }
     }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -94,9 +97,12 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         
         http.uploadFile(tempPath) { dic in
             print(dic)
-            let urls:[String] = dic["data"] as! [String]
-            let url = urls[0]
-            self.addImage(url)
+            if((dic["code"] as! String) == "20000"){
+                let urls:[String] = dic["data"] as! [String]
+                let url = urls[0]
+                self.addImageView(url)
+                self.loadImages()
+            }
         }
     }
     
@@ -108,11 +114,10 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         return NSHomeDirectory().stringByAppendingString("/Documents").stringByAppendingString("/temp\(strNowTime).png")
     }
     
-    func addImage(url:String){
+    func addImageView(url:String){
         imageUrls.append(url)
         let view = getAnswerView()
         answersView.addSubview(view)
-        loadImages()
         contentHeight.constant = contentHeight.constant + 210
         answerConstraintHeight.constant = answerConstraintHeight.constant + 210
     }
@@ -161,6 +166,47 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBAction func DidEndOnExit(sender: UITextField) {
         sender.resignFirstResponder()
     }
+    
+    override func updateAnswer() {
+        super.updateAnswer()
+        var hasTextAnswer:Int = 1
+        questionAnswer!.listAnswer.removeAll()
+        if(!answerTextField.hidden){
+            if let text = answerTextField.text {
+                if(!text.isEmpty){
+                    let dic = getListAnswerItem(text, answerType: 1, ordinal: 1)
+                    hasTextAnswer++
+                    questionAnswer!.listAnswer.append(dic)
+                }
+            }
+        }
+        for (index,str) in imageUrls.enumerate() {
+            let dic = getListAnswerItem(str, answerType: 2, ordinal: index+hasTextAnswer)
+            questionAnswer!.listAnswer.append(dic)
+        }
+        print(questionAnswer?.listAnswer.count)
+    }
+    
+    override func loadWithAnswer() {
+        if(appeared){
+            return
+        }
+        if(questionAnswer == nil || questionAnswer?.listAnswer == nil){
+            return
+        }
+        for anAnswer in (questionAnswer?.listAnswer)!{
+            var dic = anAnswer as! Dictionary<String,AnyObject>
+            if((dic["answerType"] as! Int) == 1){
+                answerTextField.hidden = false
+                answerTextField.text = dic["answer"] as? String
+            } else if((dic["answerType"] as! Int) == 2){
+                addImageView(dic["answer"] as! String)
+            }
+        }
+        loadImages()
+        appeared = true
+    }
+
     
 }
 

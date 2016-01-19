@@ -99,6 +99,7 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     
     override func updateAnswer() {
         super.updateAnswer()
+        questionAnswer!.listAnswer.removeAll()
         for (index,str) in answerAry.enumerate() {
             let dic = getListAnswerItem(str, answerType: 0, ordinal: index)
             questionAnswer!.listAnswer.append(dic)
