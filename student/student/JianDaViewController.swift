@@ -8,11 +8,7 @@
 
 import UIKit
 
-class ImageTapGestureRecognizer:UITapGestureRecognizer{
-    var imageView:UIImageView!
-}
-
-class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate {
+class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate,HttpProtocol {
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
@@ -32,11 +28,15 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     var imagePicker:UIImagePickerController!
     var images:[UIImage] = []
     
+    let http: HttpRequest = HttpRequest()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setQuestionTitle(questionTitleView)
         setQuestionBody(question)
         initButtons()
+        
+        http.delegate = self
     }
     
     func initButtons(){
@@ -79,13 +79,37 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+//        addImage(image!)
         
-        addImage(image!)
+        print(info)
+        let fileURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        http.uploadRequest(ServiceApi.getUploadFileUrl(), firlUrl: fileURL)
     }
     
     func passImageData(image: UIImage) {
+        saveImage(image)
         addImage(image)
+    }
+    
+    func saveImage(image:UIImage){
+        let date = NSDate()
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "yyyMMddHHmmss"
+        let strNowTime = timeFormatter.stringFromDate(date) as String
+        
+        let imageData:NSData = UIImageJPEGRepresentation(image, 0.5)!
+        let fullPath:String = NSHomeDirectory().stringByAppendingString("/Documents").stringByAppendingString("/temp\(strNowTime).png")
+        imageData.writeToFile(fullPath as String, atomically: false)
+        
+        let fileURL = NSURL(fileURLWithPath: fullPath)
+        print(fileURL.path!)
+        
+        http.uploadRequest(ServiceApi.getUploadFileUrl(), firlUrl: fileURL)
+    }
+    
+    func didreceiveResult(result: NSDictionary) {
+        print(result)
     }
     
     func addImage(image:UIImage){
