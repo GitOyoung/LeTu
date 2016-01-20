@@ -58,8 +58,7 @@
                                     </connections>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnu-qJ-ydW" userLabel="answerView">
-                                    <rect key="frame" x="8" y="102.5" width="304" height="200"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <rect key="frame" x="8" y="102" width="304" height="200"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="vJb-O8-e3L"/>
                                     </constraints>
@@ -90,42 +89,42 @@
                         <constraint firstItem="ERu-26-Aff" firstAttribute="leading" secondItem="mFd-Ry-Lse" secondAttribute="leading" id="xqc-FM-Hny"/>
                     </constraints>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6V-xR-dHA">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6V-xR-dHA">
                     <rect key="frame" x="140" y="518" width="40" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Jxj-Ne-PjE"/>
                         <constraint firstAttribute="height" constant="40" id="ol8-Er-uus"/>
                     </constraints>
-                    <state key="normal" title="画">
+                    <state key="normal" image="task_but_write">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="drawClicked:" destination="-1" eventType="touchUpInside" id="xb4-do-RAS"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z32-3W-zJH">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z32-3W-zJH">
                     <rect key="frame" x="196" y="518" width="40" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="81T-N6-h0w"/>
                         <constraint firstAttribute="width" constant="40" id="aXt-xy-77X"/>
                     </constraints>
-                    <state key="normal" title="键">
+                    <state key="normal" image="task_but_key">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="keyboardClicked:" destination="-1" eventType="touchUpInside" id="A36-Y6-vn0"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-Yf-VQe">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-Yf-VQe">
                     <rect key="frame" x="84" y="518" width="40" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="N14-OC-mhv"/>
                         <constraint firstAttribute="width" constant="40" id="qMe-F3-klB"/>
                     </constraints>
-                    <state key="normal" title="拍">
+                    <state key="normal" image="task_but_takePhoto">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -153,4 +152,9 @@
             <point key="canvasLocation" x="170" y="194"/>
         </view>
     </objects>
+    <resources>
+        <image name="task_but_key" width="30" height="30"/>
+        <image name="task_but_takePhoto" width="30" height="30"/>
+        <image name="task_but_write" width="30" height="30"/>
+    </resources>
 </document>

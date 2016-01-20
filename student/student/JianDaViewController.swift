@@ -31,6 +31,8 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     var imageUrls:[String] = []
     var appeared = false
     
+    let screenWidth = UIScreen.mainScreen().bounds.width
+    
     let http: HttpRequest = HttpRequest()
     
     override func viewDidLoad() {
@@ -123,20 +125,21 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     }
     
     func getAnswerView() -> UIView{
-        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (imageUrls.count-1)), answersView.frame.size.width, 200))
+        print(answersView.frame.size.width)
+        let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (imageUrls.count-1)), screenWidth-16, 200))
         resultView.addSubview(getImageView())
         resultView.addSubview(getRemoveButton())
         return resultView
     }
     
     func getImageView() -> UIImageView{
-        let imageView = UIImageView(frame: CGRectMake(0, 30, answersView.frame.size.width, 200))
+        let imageView = UIImageView(frame: CGRectMake(0, 30, screenWidth-16, 200))
         imageView.contentMode = .ScaleAspectFit
         return imageView
     }
     
     func getRemoveButton() -> UIButton{
-        let removeButton = UIButton(frame: CGRectMake(answersView.frame.size.width-50,0,50,30))
+        let removeButton = UIButton(frame: CGRectMake(screenWidth-16-50,0,50,30))
         removeButton.setTitle("删除", forState: .Normal)
         removeButton.setTitleColor(QKColor.blackColor(), forState: .Normal)
         removeButton.addTarget(self, action: "removeClicked:", forControlEvents: .TouchUpInside)
