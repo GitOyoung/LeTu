@@ -25,7 +25,7 @@ class LianxianViewController: QuestionBaseViewController {
         if let question = question {
             let questionBody = question.questionBody?.dataUsingEncoding(NSUTF8StringEncoding)!
             let attributedStr = try? NSAttributedString(data: questionBody!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-            questionBodyLabel.attributedText = attributedStr
+            questionBodyLabel.text = attributedStr?.string
         }
     }
     

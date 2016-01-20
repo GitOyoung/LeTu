@@ -7,8 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DanxuanViewController" customModule="student" customModuleProvider="target">
             <connections>
                 <outlet property="answerLabel" destination="IAN-pg-Li3" id="6Wo-lB-jTk"/>
-                <outlet property="answerPad" destination="ORp-hR-gkH" id="qIb-oy-laG"/>
+                <outlet property="answerPad" destination="fNc-fT-Gid" id="1P1-yY-VXc"/>
                 <outlet property="optionsLabel" destination="b5F-NT-Uay" id="rhl-2L-21D"/>
+                <outlet property="padWidth" destination="1ru-gt-Rki" id="ycY-Yw-b6R"/>
                 <outlet property="questionBodyLabel" destination="xTT-m9-ggA" id="APi-ch-bft"/>
                 <outlet property="questionTitleView" destination="Cuj-Ag-qfD" id="62f-rN-1qR"/>
                 <outlet property="scrollContentHeight" destination="RsR-wp-I8l" id="6fv-Ib-Fq6"/>
@@ -28,11 +29,23 @@
                         <constraint firstAttribute="height" constant="48" id="CHU-jo-qr0"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-hR-gkH" userLabel="answerPad">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-hR-gkH" userLabel="Pad View">
                     <rect key="frame" x="0.0" y="412" width="320" height="68"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-fT-Gid">
+                            <rect key="frame" x="68" y="0.0" width="185" height="68"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="185" id="1ru-gt-Rki"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="1eb-st-RyJ"/>
+                        <constraint firstItem="fNc-fT-Gid" firstAttribute="top" secondItem="ORp-hR-gkH" secondAttribute="top" id="CFu-ES-liZ"/>
+                        <constraint firstAttribute="bottom" secondItem="fNc-fT-Gid" secondAttribute="bottom" id="aic-EN-rHN"/>
+                        <constraint firstItem="fNc-fT-Gid" firstAttribute="centerX" secondItem="ORp-hR-gkH" secondAttribute="centerX" id="fXA-se-Xh8"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gn1-e2-ZPA">
@@ -60,11 +73,11 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAN-pg-Li3">
-                                    <rect key="frame" x="48" y="126" width="22" height="21"/>
+                                    <rect key="frame" x="48" y="126" width="80" height="21"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="eaD-98-C1N"/>
-                                        <constraint firstAttribute="width" constant="22" id="yNv-or-4Hk"/>
+                                        <constraint firstAttribute="width" constant="80" id="yNv-or-4Hk"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" red="0.0" green="0.58823529411764708" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>

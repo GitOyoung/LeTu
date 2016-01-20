@@ -57,12 +57,14 @@ class LianXianView: UIView {
     
     func addButton(frame: CGRect, data:[String:AnyObject],index:Int){
         let newButton = UIButton(frame: frame)
-        newButton.backgroundColor = QKColor.makeColorWithHexString("0080f0", alpha: 1)
         
-        let text = data["option"] as! String
-        let textLabel = getTextLabel(text,frame: frame)
-        
-        newButton.addSubview(textLabel)
+        let data = data["option"] as! String
+        if(data.containsString("http://")
+            || data.containsString("https://")){
+            newButton.addSubview(getImageView(data,size: frame.size))
+        }else{
+            newButton.addSubview(getTextLabel(data,size: frame.size))
+        }
         
         newButton.addTarget(self, action: "buttonClicked:", forControlEvents: .TouchUpInside)
         newButton.tag = index
@@ -74,15 +76,37 @@ class LianXianView: UIView {
         }
     }
     
-    func getTextLabel(text:String,frame:CGRect) -> UILabel{
-        let textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        textLabel.font = UIFont.systemFontOfSize(8)
-        let decodedText = text.dataUsingEncoding(NSUTF8StringEncoding)!
-        let attributedStr = try? NSAttributedString(data: decodedText, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
-        textLabel.attributedText = attributedStr
+    func getTextLabel(text:String,size:CGSize) -> UILabel{
+        let textLabel = UILabel(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        textLabel.backgroundColor = QKColor.makeColorWithHexString("999999", alpha: 1)
+        textLabel.font = UIFont.systemFontOfSize(12)
+        textLabel.textColor = QKColor.whiteColor()
+        
+        textLabel.textAlignment = .Center;
+        //自动折行设置
+        textLabel.lineBreakMode = .ByWordWrapping;
+        textLabel.numberOfLines = 0;
+        
+        textLabel.text = htmlFormatString(text)
         return textLabel
     }
     
+    func getImageView(url:String,size:CGSize) -> UIImageView{
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        imageView.layer.borderColor = QKColor.themeBackgroundColor_2().CGColor
+        imageView.layer.borderWidth = 2
+        imageView.contentMode = .ScaleAspectFit
+        imageView.setImage(NSURL(string: url)!, placeholdImage: nil)
+        return imageView
+    }
+    
+    //MARK: html to format string
+    func htmlFormatString(htmlStr:String)->String{
+        let str = htmlStr.dataUsingEncoding(NSUTF8StringEncoding)
+        let attributedStr = try? NSAttributedString(data: str!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
+        let string = attributedStr?.string.stringByReplacingOccurrencesOfString("%", withString: " ")
+        return string!
+    }
     
     var curButton:UIButton! = nil
     func buttonClicked(button:UIButton){
@@ -130,7 +154,7 @@ class LianXianView: UIView {
     }
     
     func checkOnButton(button:UIButton){
-        button.layer.borderColor = UIColor.redColor().CGColor
+        button.layer.borderColor = QKColor.themeBackgroundColor_1().CGColor
         button.layer.borderWidth = 2
     }
     
@@ -139,7 +163,7 @@ class LianXianView: UIView {
         if(context == nil){
             context = UIGraphicsGetCurrentContext()
         }
-        CGContextSetRGBStrokeColor(context, 1, 0, 0, 1)
+        CGContextSetStrokeColorWithColor(context, QKColor.themeBackgroundColor_1().CGColor)
         CGContextSetLineWidth(context, 2)
         
         drawLines(connections)
