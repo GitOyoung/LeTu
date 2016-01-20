@@ -58,6 +58,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //上一题
     @IBAction func preQuestion(sender: AnyObject) {
+        saveAnswer()
         let index = (currentQuestion?.ordinal)! - 1
         submitable = false
         nextButton.setTitle("下一题", forState: UIControlState.Normal)

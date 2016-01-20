@@ -53,16 +53,21 @@ class QuestionBaseViewController: UIViewController {
     //MARK: 有多少(),{%%},underline
     func matchStringSymbol(str:String) -> Int{
         var strArray = [String]()
-        if str.containsString("（"){
+        var optionCount = 0
+        if (str.containsString("（）")
+            || str.containsString("（ ")){
             strArray = str.componentsSeparatedByString("（")
-        }else if str.containsString("______"){
-            strArray = str.componentsSeparatedByString("______")
-        }else if str.containsString("("){
-            strArray = str.componentsSeparatedByString("(")
-        }else{
-            strArray = [""]
+            optionCount += strArray.count - 1
         }
-        let optionCount = strArray.count - 1
+        if str.containsString("______"){
+            strArray = str.componentsSeparatedByString("______")
+            optionCount += strArray.count - 1
+        }
+        if (str.containsString("()")
+            || str.containsString("( ")){
+            strArray = str.componentsSeparatedByString("(")
+            optionCount += strArray.count - 1
+        }
         return optionCount
     }
     
@@ -144,8 +149,8 @@ class QuestionBaseViewController: UIViewController {
     }
     
     //MARK:答案列表
-    func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{
-        var dic = Dictionary<String,AnyObject>()
+    func getListAnswerItem(str:String, answerType: Int, ordinal:Int) -> [String: AnyObject]{
+        var dic = [String: AnyObject]()
         dic["answer"] = str
         dic["answerHistory"] = nil
         dic["answerType"] = answerType
