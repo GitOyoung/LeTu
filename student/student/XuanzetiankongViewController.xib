@@ -7,11 +7,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XuanzetiankongViewController" customModule="student" customModuleProvider="target">
             <connections>
                 <outlet property="answerArea" destination="pLO-dH-Heb" id="yxW-1l-3QU"/>
+                <outlet property="answerAreaHeight" destination="GjE-nq-lKI" id="T5L-St-U1k"/>
                 <outlet property="answerPad" destination="sUH-FI-1fF" id="iHC-X3-Tem"/>
                 <outlet property="answerPadOptionsCollectionView" destination="EU2-SO-8sB" id="ppV-ia-qRe"/>
                 <outlet property="contentView" destination="oER-ku-bUJ" id="ZZF-Ro-g6E"/>
                 <outlet property="questionBodyLabel" destination="5zF-Kv-FMh" id="65A-zA-6y1"/>
-                <outlet property="questionPointView" destination="XBy-hA-JCI" id="OD9-aK-MHG"/>
+                <outlet property="questionPointView" destination="PR6-mJ-AMN" id="PX5-uz-4Gm"/>
+                <outlet property="questionPointViewWidth" destination="zlE-Qc-h3w" id="8wx-VJ-1D6"/>
                 <outlet property="questionTitleView" destination="yuK-zN-dZw" id="4iu-7b-ZeY"/>
                 <outlet property="scrollView" destination="Nnm-UQ-0ap" id="0ja-d2-AwO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -108,9 +110,21 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBy-hA-JCI">
                     <rect key="frame" x="0.0" y="222" width="320" height="130"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PR6-mJ-AMN">
+                            <rect key="frame" x="40" y="0.0" width="240" height="130"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="zlE-Qc-h3w"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="130" id="12F-WI-Pbj"/>
+                        <constraint firstItem="PR6-mJ-AMN" firstAttribute="top" secondItem="XBy-hA-JCI" secondAttribute="top" id="Bcd-Bg-UuM"/>
+                        <constraint firstItem="PR6-mJ-AMN" firstAttribute="bottom" secondItem="XBy-hA-JCI" secondAttribute="bottom" id="TVG-26-xsB"/>
+                        <constraint firstItem="PR6-mJ-AMN" firstAttribute="centerX" secondItem="XBy-hA-JCI" secondAttribute="centerX" id="dDn-36-g6X"/>
                     </constraints>
                 </view>
             </subviews>

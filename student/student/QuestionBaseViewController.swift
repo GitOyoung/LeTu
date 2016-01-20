@@ -54,19 +54,21 @@ class QuestionBaseViewController: UIViewController {
     func matchStringSymbol(str:String) -> Int{
         var strArray = [String]()
         var optionCount = 0
-        if (str.containsString("（）")
-            || str.containsString("（ ")){
+        if (str.containsString("（）") || str.containsString("（ ")) {
             strArray = str.componentsSeparatedByString("（")
             optionCount += strArray.count - 1
         }
-        if str.containsString("______"){
+        if str.containsString("______") {
             strArray = str.componentsSeparatedByString("______")
             optionCount += strArray.count - 1
         }
-        if (str.containsString("()")
-            || str.containsString("( ")){
+        if (str.containsString("()") || str.containsString("( ") || str.containsString("(%")) {
             strArray = str.componentsSeparatedByString("(")
             optionCount += strArray.count - 1
+        }
+        if str.containsString("(%%)(") {
+            strArray = str.componentsSeparatedByString("(%%)(")
+            optionCount = strArray.count - 1
         }
         return optionCount
     }

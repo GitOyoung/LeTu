@@ -72,11 +72,12 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     
     //创建各单元显示内容(创建参数indexPath指定的单元）
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = UITableViewCell(style: UITableViewCellStyle.Value2, reuseIdentifier: "optionCell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "optionCell")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         let cellText = self.etaskQuestionOptions[indexPath.row].option!.dataUsingEncoding(NSUTF8StringEncoding)
         let attributedString = try? NSAttributedString(data: cellText!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
         cell.textLabel?.text = attributedString?.string
+        cell.textLabel?.sizeToFit()
         cellTotalHeight += (cell.textLabel?.frame.size.height)!
         return cell
     }

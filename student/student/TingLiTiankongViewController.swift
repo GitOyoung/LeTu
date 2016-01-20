@@ -254,12 +254,10 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
                     }
                 }
             }
-        }
-        else if button.tag == 1 {
+        } else if button.tag == 1 {
             button.tag = 2
             audioManager.pausePlay()
-        }
-        else {
+        } else {
             button.tag = 1
             audioManager.resumePlay()
         }

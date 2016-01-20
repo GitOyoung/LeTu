@@ -108,6 +108,7 @@ class DanxuanViewController: QuestionBaseViewController {
                 break
             }
             answerLabel.text = ""
+            answerString = ""
             for(idx, _) in answerOptions.enumerate() {
                 if answerOptions[idx] == true {
                     let option = q.options![idx]
