@@ -14,6 +14,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     //MARK:属性
     
     @IBOutlet weak var answerPad: UIView!
+    @IBOutlet weak var answerPadWidth: NSLayoutConstraint!
     @IBOutlet weak var pileView: UIPileView!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
@@ -66,51 +67,58 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         if question!.type == QuestionTypeEnum.TingLiXuanZe{
             var str = ""
             let ary = ["A.","B.","C.","D.","E."]
-            for (index,option) in (question?.options!.enumerate())!{
-                let attributedString = htmlFormatString(option.option!)
-                str +=  ary[index] + attributedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
-                
+            if let options = question?.options {
+                for (i, v) in options.enumerate() {
+                    let attributedString = htmlFormatString(v.option!)
+                    str +=  ary[i] + attributedString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) + "\n"
+                    
+                }
+                questionOptions.text = str
             }
-            questionOptions.text = str
-        }else{
+        } else {
             questionOptions.hidden = true
         }
         
     }
     
     //选择题选项按钮
-    func setAnswerButtons(){
+    func setAnswerButtons() {
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
-        let screenBounds:CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenBounds.size.width
-        let options = question?.options!
-        let offsetWidth = Int(screenWidth) - (question?.options!.count)!*48
-        let offsetHeight = Int(answerPad.frame.height)
-        frame.origin.y = CGFloat((offsetHeight-42)/2)
-        frame.size.height = CGFloat(offsetHeight/2)
-        if question?.type == QuestionTypeEnum.TingLiXuanZe{
-            let ary = ["A","B","C","D"]
-            for (index,_) in (question?.options!.enumerate())!{
-                frame.origin.x = CGFloat((48 + offsetWidth/(options!.count+1))*index + offsetWidth/(options!.count+1))
-                let button = UIButton(frame: frame)
-                button.setTitle(ary[index], forState: .Normal)
-                button.backgroundColor = UIColor.blueColor()
-                button.layer.cornerRadius = 5
-                button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
-                answerButtonsAry.append(button)
-                answerPad.addSubview(button)
-            }
-        }else{
-            let offsetWidth = Int(screenWidth) - buttonNumber*48
-            for index in 0..<buttonNumber{
-                frame.origin.x = CGFloat((48 + offsetWidth/(buttonNumber+1))*index + offsetWidth/(buttonNumber+1))
-                let textField = UITextField(frame: frame)
-                textField.delegate = self
-                textField.borderStyle = UITextBorderStyle.RoundedRect
-                textField.backgroundColor = UIColor.greenColor()
-                textField.addTarget(self, action: "didClickOptionTextField:", forControlEvents: UIControlEvents.EditingChanged)
-                answerAry.append(textField)
-                answerPad.addSubview(textField)
+        if let options = question?.options {
+       
+            if case QuestionTypeEnum.TingLiXuanZe = question!.type {
+                let ary = ["A","B","C","D"]
+                let count = options.count
+                let w = CGFloat(count * 48 + (count - 1) * 10)
+                answerPadWidth.constant = w
+                frame.origin.y = (answerPad.bounds.height - 42) / 2
+                for i in 0..<count {
+                    
+                    let button = UIButton(frame: frame)
+                    frame.origin.x += 58
+                    button.setTitle(ary[i], forState: .Normal)
+                    button.backgroundColor = UIColor.blueColor()
+                    button.layer.cornerRadius = 5
+                    button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
+                    answerButtonsAry.append(button)
+                    answerPad.addSubview(button)
+                }
+            } else {
+                let count = buttonNumber
+                let w = CGFloat(count * 48 + (count - 1) * 10)
+                answerPadWidth.constant = w
+                frame.origin.y = (answerPad.bounds.height - 42) / 2
+                for _ in 0..<count {
+                   
+                    let textField = UITextField(frame: frame)
+                    frame.origin.x += 58
+                    textField.delegate = self
+                    textField.borderStyle = UITextBorderStyle.RoundedRect
+                    textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+                    textField.addTarget(self, action: "didClickOptionTextField:", forControlEvents: UIControlEvents.EditingChanged)
+                    answerAry.append(textField)
+                    answerPad.addSubview(textField)
+                }
             }
         }
     }
@@ -149,20 +157,21 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     override func updateAnswer() {
         super.updateAnswer()
         var answerArray = [NSDictionary]()
-
-        if question?.type == QuestionTypeEnum.TingLiTianKong{
-            for (index,textField) in answerAry.enumerate(){
-                let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: index)
-                answerArray.append(dic)
+        if let q = question {
+            if case .TingLiTianKong = q.type {
+                for (i,textField) in answerAry.enumerate(){
+                    let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: i)
+                    answerArray.append(dic)
+                }
+            } else {
+                for i in 0..<answerButtonsAry.count {
+                    let option = question?.options![i]
+                    let dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: i + 1)
+                    answerArray.append(dic)
+                }
             }
-        }else{
-            for (index,_) in answerButtonsAry.enumerate(){
-                let option = question?.options![index]
-                let dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
-                answerArray.append(dic)
-            }
+            questionAnswer?.listAnswer = answerArray
         }
-        questionAnswer?.listAnswer = answerArray
         audioManager.resetManager()
     }
     
@@ -316,7 +325,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
 
     
-    func timeIntervalToString(timer: NSTimeInterval) -> String{
+    func timeIntervalToString(timer: NSTimeInterval) -> String {
         
         return timer.toStringMMSS()
     }
@@ -328,17 +337,17 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     //MARK:键盘弹出
-    func keyboardWillShow(notification:NSNotification){if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-        let width = self.view.frame.size.width;
-        let height = self.view.frame.size.height;
-        let rect = CGRectMake(0.0, -200,width,height);
-        self.view.frame = rect
+    func keyboardWillShow(notification:NSNotification) {
+        if let keyboard = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            let width = self.view.frame.size.width;
+            let height = self.view.frame.size.height;
+            let rect = CGRectMake(0.0, -keyboard.size.height, width, height);
+            self.view.frame = rect
         }
     }
     
     //MARK:键盘隐藏
-    func keyboardWillHide(notification:NSNotification){
-        self.view.addSubview(answerPad)
+    func keyboardWillHide(notification:NSNotification) {
         let width = self.view.frame.size.width;
         let height = self.view.frame.size.height;
         let rect = CGRectMake(0.0, 0,width,height);

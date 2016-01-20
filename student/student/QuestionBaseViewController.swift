@@ -144,8 +144,8 @@ class QuestionBaseViewController: UIViewController {
     }
     
     //MARK:答案列表
-    func getListAnswerItem(str:String,answerType:Int,ordinal:Int) -> Dictionary<String,AnyObject>{
-        var dic = Dictionary<String,AnyObject>()
+    func getListAnswerItem(str:String, answerType: Int, ordinal:Int) -> [String: AnyObject]{
+        var dic = [String: AnyObject]()
         dic["answer"] = str
         dic["answerHistory"] = nil
         dic["answerType"] = answerType
