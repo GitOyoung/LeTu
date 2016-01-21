@@ -44,7 +44,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 http.delegate = self
                 
                 http.postRequest(url, params: params)
-            }else{
+            } else {
                 let meLoginViewController = MeLoginViewController()
                 self.presentViewController(meLoginViewController, animated: true, completion: nil)
             }
@@ -77,7 +77,10 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     @IBAction func nextQuestion(sender: AnyObject) {
         saveAnswer()
         if submitable {
-            submitAnswers()
+            alert("上传确认", message: "确认是否提交", ok: "确定", cancel: "取消", onOk: { action in
+                self.submitAnswers()
+            })
+            
         } else {
             
             let index = (currentQuestion?.ordinal)!
@@ -167,7 +170,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //题目添加到contentView内
     func addViewControllerInContentView(viewController:UIViewController){
-        for view in self.contentView.subviews{
+        for view in self.contentView.subviews {
             view.removeFromSuperview()
         }
         currentViewController = viewController

@@ -57,6 +57,17 @@ public class LTRefreshView: UIView {
     }
     
     
+    var backColor: UIColor? {
+        didSet {
+            backgroundColor = backColor
+            if backColor == UIColor.clearColor() {
+                subViewHidden(true)
+            } else {
+                subViewHidden(false)
+            }
+        }
+    }
+    
     private func layoutContentView() {
         var frame = bounds
         frame.size.width *= contentScale.sx
@@ -81,7 +92,11 @@ public class LTRefreshView: UIView {
         setupContentView()
     }
     
-   
+    func subViewHidden(hidden: Bool) {
+        for v in subviews {
+            v.hidden = hidden
+        }
+    }
     
     private func setupContentView() {
         var frame = bounds

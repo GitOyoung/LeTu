@@ -62,7 +62,12 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         setupScrollView()
         setupButton()
         setupFooter()
+        addNotifObserver()
         
+    }
+    
+    func addNotifObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("menuHide:"), name: "SortMenuShouldHide", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -104,6 +109,16 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         }
         
         
+    }
+    
+    func menuHide(notif: NSNotification) {
+        setMenuHidden(true)
+    }
+    
+    func setMenuHidden(hidden: Bool) {
+        if let m = menu {
+            m.hidden = hidden
+        }
     }
     
     func setupScrollView() -> Void {
@@ -181,6 +196,10 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         searchBar.layer.masksToBounds = true
         searchBar.layer.borderWidth = 0.0
     }
+    
+ 
+    
+    
     
     private func setMainSegment() {
         // 设置segment
@@ -423,7 +442,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         footerView = LTRefreshView(frame: frame)
         footerView?.delegate = self
         footerView?.contentScale = RefreshContentScale(sx: 1.0, sy: 1.0)
-        footerView?.backgroundColor = UIColor.clearColor()
+        footerView?.backColor = UIColor.clearColor()
         tableView.addSubview(footerView!)
     }
     
