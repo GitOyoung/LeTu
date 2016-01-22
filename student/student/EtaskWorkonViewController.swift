@@ -8,9 +8,10 @@
 
 import UIKit
 
-class EtaskWorkonViewController: UIViewController, HttpProtocol {
+class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecognizerDelegate, QIndexViewControllerExitDelegate {
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     // MARK: properties
     @IBOutlet weak var contentView: UIView!
@@ -25,7 +26,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadQuestions()
+        setupTitleView()
+        loadQuestions()
     }
     
     //加载题目
@@ -50,6 +52,26 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             }
         }
        
+    }
+    
+    func setupTitleView() {
+        let tap = UITapGestureRecognizer(target: self, action: Selector("titleTouch:"))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        tap.delegate = self
+        titleView.addGestureRecognizer(tap)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if touch.view!.isKindOfClass(UIButton) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func titleTouch(r: UITapGestureRecognizer) {
+        showIndex(nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,8 +111,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 submitable = false
                 let nextQuestion = questions[index]
                 currentQuestion = nextQuestion
-                let nextQuestionController = jumpToQuestionController(nextQuestion)
-                addViewControllerInContentView(nextQuestionController)
+                jumpToNextViewController()
             } else {
                 submitable = true
                 nextButton.setTitle("完成", forState: UIControlState.Normal)
@@ -102,6 +123,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     ///按钮 － 返回
     @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func jumpToNextViewController() {
+        let currentQuestionController = jumpToQuestionController(currentQuestion!)
+        addViewControllerInContentView(currentQuestionController)
     }
     
     //题目集合
@@ -119,18 +145,17 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 for currentQuestionData in questionsData {
                     let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
                     questions.append(currentQuestion)
+                    hasDone.append(false)
                 }
                 currentQuestion = questions.first!
-               
-                let currentQuestionController = jumpToQuestionController(currentQuestion!)
-                addViewControllerInContentView(currentQuestionController)
+                jumpToNextViewController()
             }
         }
     }
     
     //判断应该跳往哪个题目页面
     func jumpToQuestionController(question:EtaskQuestion) -> UIViewController{
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 98)
+        let frame = contentView.bounds
         var questionController:QuestionBaseViewController?
         
         switch question.type {
@@ -162,9 +187,17 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             questionController = DanxuanViewController()
         }
         questionController!.question = currentQuestion
-        let idx = (currentQuestion?.ordinal)! - 1
-        questionController!.questionAnswer = idx < answers.count ? answers[idx] : nil
+        if let ordinal = currentQuestion?.ordinal {
+            if let idx = questionIndexs[ordinal] {
+                questionController!.questionAnswer = ordinal <= answers.count ? answers[idx] : nil
+            } else {
+                questionController!.questionAnswer = nil
+            }
+        } else {
+            questionController!.questionAnswer = nil
+        }
         questionController!.view.frame = frame
+        
         return questionController!
     }
     
@@ -213,14 +246,63 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //MARK: 保存答案到答案列表
     func saveAnswer() {
-        if var idx = currentQuestion?.ordinal {
-            --idx
+        if let ordinal = currentQuestion?.ordinal {
             let vc = currentViewController as! QuestionBaseViewController
-            if idx < answers.count {
-                answers[idx] = vc.answer()
+            var index: Int = 0
+            if let i = questionIndexs[ordinal] {
+                index = i
+                answers[index] = vc.answer()
             } else {
+                index = answers.count
                 answers.append(vc.answer())
+                questionIndexs[ordinal] = index
+            }
+            
+            if  answers[index].answer != "" {
+                hasDone[ordinal - 1] = true
             }
         }
     }
+    
+    var hasDone: [Bool] = [Bool]()
+    var questionIndexs: [Int: Int] = [Int: Int]()
+    
+    @IBAction func showIndex(sender: UIButton?) {
+        if let _ = currentQuestion {
+            let currentIndex = currentQuestion!.ordinal - 1
+            var styles: [IndexStyle] = []
+            if answers.count != questions.count {
+                for _ in 0..<questions.count {
+                    styles.append(IndexStyle.New)
+                }
+            }
+            for (i, done) in hasDone.enumerate() {
+                if done {
+                   styles[i] = IndexStyle.Done
+                } else {
+                     styles[i] = IndexStyle.New
+                }
+            }
+            let vc = QIndexViewController()
+            vc.delegate = self
+            vc.currentIndex = currentIndex
+            vc.selectedIndex = currentIndex
+            vc.collection = styles
+            presentViewController(vc, animated: false, completion: nil)
+        }
+    }
+    
+    func exit(viewController: QIndexViewController) {
+        let nextIndex = viewController.selectedIndex
+        let needChange: Bool = !(viewController.currentIndex == viewController.selectedIndex)
+        viewController.dismissViewControllerAnimated(true, completion: nil)
+        if needChange {
+            saveAnswer()
+            submitable = false
+            currentQuestion = questions[nextIndex]
+            
+            jumpToNextViewController()
+        }
+    }
+    
 }

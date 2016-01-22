@@ -64,9 +64,9 @@ class PanduanViewController: QuestionBaseViewController {
         if let options = question?.options {
             let count = options.count
             let width = CGFloat(count * 48 + (count - 1) * 10)
-            let offsetHeight = answerPadView.frame.height
+//            let offsetHeight = answerPadView.frame.height
             padWidth.constant = width
-            frame.origin.y = (offsetHeight - 42) / 2
+//            frame.origin.y = (offsetHeight - 42) / 2
             for (index,_) in options.enumerate() {
                 
                 

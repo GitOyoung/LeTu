@@ -64,6 +64,11 @@
 		E30A1B9E1C33A8AF00C8B3C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */; };
 		E30A1BA01C33A8BA00C8B3C5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30A1B9F1C33A8BA00C8B3C5 /* AudioToolbox.framework */; };
 		E31797391C3B702D008DCAC7 /* LTRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31797381C3B702D008DCAC7 /* LTRefreshView.swift */; };
+		E326B7C51C51C6A200F87E09 /* QIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326B7C31C51C6A200F87E09 /* QIndexViewController.swift */; };
+		E326B7C61C51C6A200F87E09 /* QIndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326B7C41C51C6A200F87E09 /* QIndexViewController.xib */; };
+		E326B7C91C51D24D00F87E09 /* QIndexCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326B7C71C51D24D00F87E09 /* QIndexCollectionViewCell.swift */; };
+		E326B7CA1C51D24D00F87E09 /* QIndexCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E326B7C81C51D24D00F87E09 /* QIndexCollectionViewCell.xib */; };
+		E326B7CC1C51F13100F87E09 /* UIHCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326B7CB1C51F13100F87E09 /* UIHCenterView.swift */; };
 		E3365B541C0C66BB002DCCC6 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */; };
 		E3365B551C0C66BB002DCCC6 /* ServiceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */; };
 		E3365B591C0D29D9002DCCC6 /* LTConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3365B581C0D29D9002DCCC6 /* LTConfig.swift */; };
@@ -201,6 +206,11 @@
 		E30A1B9D1C33A8AF00C8B3C5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E30A1B9F1C33A8BA00C8B3C5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E31797381C3B702D008DCAC7 /* LTRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTRefreshView.swift; sourceTree = "<group>"; };
+		E326B7C31C51C6A200F87E09 /* QIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIndexViewController.swift; sourceTree = "<group>"; };
+		E326B7C41C51C6A200F87E09 /* QIndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QIndexViewController.xib; sourceTree = "<group>"; };
+		E326B7C71C51D24D00F87E09 /* QIndexCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIndexCollectionViewCell.swift; sourceTree = "<group>"; };
+		E326B7C81C51D24D00F87E09 /* QIndexCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QIndexCollectionViewCell.xib; sourceTree = "<group>"; };
+		E326B7CB1C51F13100F87E09 /* UIHCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHCenterView.swift; sourceTree = "<group>"; };
 		E3365B521C0C66BB002DCCC6 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		E3365B531C0C66BB002DCCC6 /* ServiceApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceApi.swift; sourceTree = "<group>"; };
 		E3365B581C0D29D9002DCCC6 /* LTConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConfig.swift; sourceTree = "<group>"; };
@@ -561,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				E30A1B9B1C33A06A00C8B3C5 /* UIPileView.swift */,
+				E326B7CB1C51F13100F87E09 /* UIHCenterView.swift */,
 				E3E9BEF11C2BCE1900DF28F9 /* ArrowMenu.swift */,
 				E3E9BEF21C2BCE1900DF28F9 /* ArrowView.swift */,
 				E3EBE6271C26A9580050F02E /* BubbleView.swift */,
@@ -576,6 +587,10 @@
 				E98A91951BF4B7CB008DB1A9 /* EtaskListView.xib */,
 				E31797381C3B702D008DCAC7 /* LTRefreshView.swift */,
 				E33A3B551C3B9CFE003E8B01 /* arrow.png */,
+				E326B7C31C51C6A200F87E09 /* QIndexViewController.swift */,
+				E326B7C41C51C6A200F87E09 /* QIndexViewController.xib */,
+				E326B7C71C51D24D00F87E09 /* QIndexCollectionViewCell.swift */,
+				E326B7C81C51D24D00F87E09 /* QIndexCollectionViewCell.xib */,
 				E98A919B1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift */,
 				E98A91AE1BF4C103008DB1A9 /* EtaskWorkonView.xib */,
 				E98A919D1BF4BBA1008DB1A9 /* EtaskDetailViewController.swift */,
@@ -741,7 +756,9 @@
 				166AF32C1C206438001028C3 /* LianxianViewController.xib in Resources */,
 				E98A91B31BF4C216008DB1A9 /* MeAfterLoginView.xib in Resources */,
 				7BF6752C1C46398B00CC78D2 /* TianKongViewController.xib in Resources */,
+				E326B7CA1C51D24D00F87E09 /* QIndexCollectionViewCell.xib in Resources */,
 				7B99386E1C2BB0C800AFCD12 /* PaiXuCViewController.xib in Resources */,
+				E326B7C61C51C6A200F87E09 /* QIndexViewController.xib in Resources */,
 				166AF3281C205AE7001028C3 /* PanduanViewController.xib in Resources */,
 				E98A91AD1BF4C0B0008DB1A9 /* EtaskDetailView.xib in Resources */,
 				E99F591B1C2EBA22008364C2 /* XuanzetiankongOptionCell.xib in Resources */,
@@ -847,7 +864,9 @@
 				8FFA339A1C44D07200411F52 /* CanvasViewController.swift in Sources */,
 				E3365B5B1C0D2B11002DCCC6 /* Student.swift in Sources */,
 				166AF3111C1C0E19001028C3 /* EtaskBL.swift in Sources */,
+				E326B7C51C51C6A200F87E09 /* QIndexViewController.swift in Sources */,
 				166AF3141C1C0E4F001028C3 /* EtaskDAO.swift in Sources */,
+				E326B7C91C51D24D00F87E09 /* QIndexCollectionViewCell.swift in Sources */,
 				E98A91B71BF4C233008DB1A9 /* MeAfterLoginViewController.swift in Sources */,
 				E37F727F1C2A6E40002FF8BE /* ProgressBar.swift in Sources */,
 				E9AB6E4A1C2F64C200AD1C80 /* TingLiTiankongViewController.swift in Sources */,
@@ -880,6 +899,7 @@
 				E3365B5E1C0D5BDF002DCCC6 /* EtaskTableViewCell.swift in Sources */,
 				7BA51ABB1C1B053700B72241 /* EtaskModel.swift in Sources */,
 				8FFA339D1C44D19C00411F52 /* CanvasView.swift in Sources */,
+				E326B7CC1C51F13100F87E09 /* UIHCenterView.swift in Sources */,
 				E98A919C1BF4BB2E008DB1A9 /* EtaskWorkonViewController.swift in Sources */,
 				166AF3231C205A92001028C3 /* DanxuanViewController.swift in Sources */,
 				E98A91631BF4B4E9008DB1A9 /* AppDelegate.swift in Sources */,

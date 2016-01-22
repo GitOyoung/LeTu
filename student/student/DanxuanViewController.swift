@@ -82,17 +82,17 @@ class DanxuanViewController: QuestionBaseViewController {
         if let options = question?.options {
             
             let count = options.count
-            let witdh = count * 48 + (count - 1) * 10
-            let height = answerPad.bounds.height
-            padWidth.constant = CGFloat(witdh)
-            frame.origin.y = (height - 42) / 2
-            for (index,_) in options.enumerate() {
+            let width = count * 48 + (count - 1) * 10
+//            let height = answerPad.bounds.height
+            padWidth.constant = CGFloat(width)
+//            frame.origin.y = (height - 42) / 2
+            for (i, _) in options.enumerate() {
                
                 
                 let button = UIButton(frame: frame)
                 frame.origin.x += 58
-                button.tag = index
-                button.setTitle(arys[index], forState: .Normal)
+                button.tag = i
+                button.setTitle(arys[i], forState: .Normal)
                 button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
                 button.layer.cornerRadius = 5
                 button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -121,11 +121,9 @@ class DanxuanViewController: QuestionBaseViewController {
                 break
             }
             answerLabel.text = ""
-            answerString = ""
             for(idx, _) in answerOptions.enumerate() {
                 if answerOptions[idx] == true {
-                    let option = q.options![idx]
-                    answerString += String(option.optionIndex!) + ","
+                    
                     answerLabel.text! += arys[idx]
                     answerButtonsAry[idx].backgroundColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1)
                 } else {
@@ -153,24 +151,46 @@ class DanxuanViewController: QuestionBaseViewController {
     
     override func updateAnswer() {
         super.updateAnswer()
+        answerString = ""
+        if let _ = question?.options {
+            
+            for (i, _) in answerOptions.enumerate() {
+                if answerOptions[i] == true {
+                    let string = String(i + 1)
+                    answerString += string + ","
+                }
+            }
+        }
         questionAnswer!.answer = answerString.clipLastString()
+        
     }
     
     override func loadWithAnswer() {
         if questionAnswer != nil && questionAnswer?.answer != ""{
-            let options = question?.options
+            if let options = question?.options {
             let strAry = questionAnswer!.answer.componentsSeparatedByString(",")
             print(strAry)
             for str in strAry{
-                for (index,option) in (options?.enumerate())!{
-                    if option.optionIndex! == Int(str){
+                for (index, _) in options.enumerate(){
+                    if index + 1 == Int(str){
                         let button = answerButtonsAry[index]
                         didClickOptionButton(button)
                         break
                     }
                 }
             }
-            answerLabel.text = questionAnswer!.answer
+            
+            if let ans = questionAnswer?.answer.split(",") {
+                var answer: String = ""
+                if !ans.isEmpty {
+                    for s in ans {
+                        let i = Int(s)! - 1
+                        answer += arys[i]
+                    }
+                }
+                answerLabel.text = answer
+            }
+            }
             
         }
     }

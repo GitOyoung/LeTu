@@ -59,10 +59,10 @@
                                     </connections>
                                 </textField>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnu-qJ-ydW" userLabel="answerView">
-                                    <rect key="frame" x="8" y="110" width="304" height="200"/>
+                                    <rect key="frame" x="8" y="110" width="304" height="0.0"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="200" id="vJb-O8-e3L"/>
+                                        <constraint firstAttribute="height" id="vJb-O8-e3L"/>
                                     </constraints>
                                 </view>
                             </subviews>
