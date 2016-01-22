@@ -92,8 +92,26 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     //做题完毕返回的时候执行
     func passAnswerData(answers: [String], costTime: Double) {
         answerAry = answers
+        print(answers)
+        
+        var rightNum = 0
+        var wrongNum = 0
+        let totalNum = answerAry.count
+        for (index,answer) in answerAry.enumerate() {
+            if(answer == question?.options![index].answer){
+                rightNum++
+            }else{
+                wrongNum++
+            }
+        }
         initOptions()
+        
         let dialog = KouSuanResultViewController()
+        dialog.rightNum = rightNum
+        dialog.wrongNum = wrongNum
+        dialog.totalNum = totalNum
+        dialog.costTime = costTime
+        
         showDialog(dialog)
     }
     

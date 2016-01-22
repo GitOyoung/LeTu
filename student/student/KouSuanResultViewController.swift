@@ -13,9 +13,9 @@ class KouSuanResultViewController: BaseDialogViewController {
     @IBOutlet weak var upLineLabel: UILabel!
     @IBOutlet weak var downLineLabel: UILabel!
     
-    var totalNum = 20
-    var rightNum = 5
-    var wrongNum = 15
+    var totalNum = 0
+    var rightNum = 0
+    var wrongNum = 0
     
     var costTime = 10.00
     
@@ -32,7 +32,7 @@ class KouSuanResultViewController: BaseDialogViewController {
         let subString3 = getBlueString(String(rightNum))
         let subString4 = NSAttributedString(string: "题，错")
         let subString5 = getBlueString(String(wrongNum))
-        let subString6 = NSAttributedString(string: "错")
+        let subString6 = NSAttributedString(string: "题")
         
         let upString = NSMutableAttributedString()
         upString.appendAttributedString(subString)
@@ -47,10 +47,10 @@ class KouSuanResultViewController: BaseDialogViewController {
     
     func initDownLine(){
         let subString = NSMutableAttributedString(string: "答题完成，用时")
-        let subString1 = getBlueString(String(costTime))
+        let subString1 = getBlueString(String(format: "%.2f", costTime))
         let subString2 = NSMutableAttributedString(string: "秒")
         
-        
+
         let downString = NSMutableAttributedString()
         downString.appendAttributedString(subString)
         downString.appendAttributedString(subString1)
