@@ -166,10 +166,9 @@ class DanxuanViewController: QuestionBaseViewController {
     }
     
     override func loadWithAnswer() {
-        if questionAnswer != nil && questionAnswer?.answer != ""{
+        if questionAnswer != nil && questionAnswer?.answer != "" {
             if let options = question?.options {
-            let strAry = questionAnswer!.answer.componentsSeparatedByString(",")
-            print(strAry)
+            let strAry = questionAnswer!.answer.split(",")
             for str in strAry{
                 for (index, _) in options.enumerate(){
                     if index + 1 == Int(str){

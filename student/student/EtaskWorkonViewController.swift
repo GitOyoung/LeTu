@@ -17,7 +17,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
     var questions = [EtaskQuestion]()
-    var answers = [EtaskAnswer]()
+    var answers = [Int: EtaskAnswer]()
     var currentQuestion:EtaskQuestion?
     
     var submitable: Bool = false
@@ -188,28 +188,30 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         }
         questionController!.question = currentQuestion
         if let ordinal = currentQuestion?.ordinal {
-            if let idx = questionIndexs[ordinal] {
-                questionController!.questionAnswer = ordinal <= answers.count ? answers[idx] : nil
-            } else {
-                questionController!.questionAnswer = nil
-            }
+            questionController!.questionAnswer = answers[ordinal]
         } else {
             questionController!.questionAnswer = nil
         }
-        questionController!.view.frame = frame
+        
+        print(questionController!.questionAnswer)
+        questionController!.viewFrame = frame
         
         return questionController!
     }
     
     //题目添加到contentView内
     func addViewControllerInContentView(viewController:UIViewController){
-        for view in self.contentView.subviews {
+        
+        for view in contentView.subviews {
             view.removeFromSuperview()
+        }
+        for vc in childViewControllers {
+            vc.removeFromParentViewController()
         }
         currentViewController = viewController
         titleLabel.text = "第\((currentQuestion?.ordinal)!)题"
-        self.addChildViewController(viewController)
-        self.contentView.addSubview(viewController.view)
+        addChildViewController(viewController)
+        contentView.addSubview(viewController.view)
     }
     //MARK: 提交作业
     func submitAnswers() {
@@ -220,7 +222,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         let formater = NSDateFormatter()
         formater.locale = NSLocale.autoupdatingCurrentLocale()
         formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        for e in answers {
+        for (_, e) in answers {
             etaskAnswers.addObject(e.toDictionary())
         }
         params["etaskId"] = etask?.etaskID
@@ -248,24 +250,18 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     func saveAnswer() {
         if let ordinal = currentQuestion?.ordinal {
             let vc = currentViewController as! QuestionBaseViewController
-            var index: Int = 0
-            if let i = questionIndexs[ordinal] {
-                index = i
-                answers[index] = vc.answer()
+            answers[ordinal] = vc.answer()
+            if  answers[ordinal]!.answer == "" {
+                hasDone[ordinal - 1] = false
             } else {
-                index = answers.count
-                answers.append(vc.answer())
-                questionIndexs[ordinal] = index
-            }
-            
-            if  answers[index].answer != "" {
                 hasDone[ordinal - 1] = true
             }
+        
         }
     }
     
     var hasDone: [Bool] = [Bool]()
-    var questionIndexs: [Int: Int] = [Int: Int]()
+    var answerIndexForOrdinal: [Int: Int] = [Int: Int]()
     
     @IBAction func showIndex(sender: UIButton?) {
         if let _ = currentQuestion {
@@ -294,8 +290,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     
     func exit(viewController: QIndexViewController) {
         let nextIndex = viewController.selectedIndex
-        let needChange: Bool = !(viewController.currentIndex == viewController.selectedIndex)
-        viewController.dismissViewControllerAnimated(true, completion: nil)
+        let needChange: Bool = !(nextIndex == viewController.selectedIndex)
         if needChange {
             saveAnswer()
             submitable = false
@@ -303,6 +298,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
             
             jumpToNextViewController()
         }
+         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

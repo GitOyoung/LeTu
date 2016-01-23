@@ -232,10 +232,16 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     override func updateAnswer() {
         super.updateAnswer()
         var answerString:String = ""
+        var done: Bool = false
         for item in answers {
-            answerString = answerString+"\(item),"
+            if item > 0 {
+                answerString += "\(item),"
+                if !done {
+                    done = true
+                }
+            }
         }
-        questionAnswer!.answer = answerString == "0,0,0,0," ? "" : answerString.clipLastString()
+        questionAnswer!.answer = done ? answerString.clipLastString() : ""
     
     }
 }
