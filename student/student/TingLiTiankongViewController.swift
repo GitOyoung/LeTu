@@ -15,12 +15,17 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     @IBOutlet weak var answerPad: UIView!
     @IBOutlet weak var answerPadWidth: NSLayoutConstraint!
+    @IBOutlet weak var answerPadBottom: NSLayoutConstraint!
     @IBOutlet weak var pileView: UIPileView!
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var scrollContentHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var questionTitleView: QuestionTitleView!
 
+    @IBOutlet weak var answerAreaWidth: NSLayoutConstraint!
+    @IBOutlet weak var answerArea: UIView!
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var questionOptions: UILabel!
     var audioManager:AudioManager!
@@ -43,6 +48,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         setQuestionTitle(questionTitleView)
         setQuestionBody()
         setQuestionOptions()
+        setContentHeight()
         setAnswerButtons()
         setupProgressView()
     }
@@ -81,6 +87,11 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         
     }
     
+    func setContentHeight() {
+        let h =  answerArea.frame.origin.y + answerArea.bounds.height
+        scrollContentHeight.constant = h
+    }
+    
     //选择题选项按钮
     func setAnswerButtons() {
         var frame = CGRect(x: 0, y: 0, width: 48, height: 42)
@@ -97,8 +108,8 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
                     let button = UIButton(frame: frame)
                     frame.origin.x += 58
                     button.setTitle(ary[i], forState: .Normal)
-                    button.backgroundColor = UIColor.blueColor()
-                    button.layer.cornerRadius = 5
+                    button.backgroundColor = UIColor(red: 0, green: 0.545, blue: 0.94, alpha: 1)
+                    button.layer.cornerRadius = 6
                     button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
                     answerButtonsAry.append(button)
                     answerPad.addSubview(button)
@@ -108,18 +119,65 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
                 let w = CGFloat(count * 48 + (count - 1) * 10)
                 answerPadWidth.constant = w
                 frame.origin.y = (answerPad.bounds.height - 42) / 2
-                for _ in 0..<count {
+                for i in 0..<count {
                    
                     let textField = UITextField(frame: frame)
                     frame.origin.x += 58
+                    textField.tag = i
                     textField.delegate = self
                     textField.borderStyle = UITextBorderStyle.RoundedRect
+                    textField.layer.borderColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1).CGColor
+                    textField.layer.borderWidth = 2
+                    textField.layer.cornerRadius = 6
                     textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-                    textField.addTarget(self, action: "didClickOptionTextField:", forControlEvents: UIControlEvents.EditingChanged)
+                    textField.addTarget(self, action: "didClickOptionTextField:", forControlEvents: UIControlEvents.TouchDown)
                     answerAry.append(textField)
                     answerPad.addSubview(textField)
                 }
             }
+            
+            setAnswerLabels(buttonNumber)
+        }
+    }
+    
+    var answerLabelArray: [UILabel] = [UILabel]()
+    
+    func setAnswerLabels(count: Int) {
+        let frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        for _ in 0..<count {
+            let label = UILabel(frame: frame)
+            label.backgroundColor = UIColor.clearColor()
+            label.font = UIFont.systemFontOfSize(18)
+            label.textAlignment = .Left
+            label.textColor = UIColor(red: 0, green: 0.544, blue: 0.94, alpha: 1)
+            
+            answerLabelArray.append(label)
+            answerArea.addSubview(label)
+        }
+    }
+    func updateLabelLayout() {
+        var frame = CGRectZero
+        let w: CGFloat = answerLabelArray.reduce(0) { $0.0 + $0.1.bounds.width }
+//        for label in answerLabelArray {
+//            w += label.bounds.width
+//        }
+        
+        if w > answerArea.bounds.width { //多行
+            for label in answerLabelArray {
+                frame.size.width = label.bounds.width
+                frame.size.height = label.bounds.height
+                label.frame = frame
+                frame.origin.y += 30
+            }
+            answerAreaWidth.constant = CGFloat(answerLabelArray.count * 30)
+        } else {
+            for label in answerLabelArray {
+                frame.size.width = label.bounds.width
+                frame.size.height = label.bounds.height
+                label.frame = frame
+                frame.origin.x += label.bounds.width + 10
+            }
+            answerAreaWidth.constant = 30
         }
     }
     
@@ -132,10 +190,24 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     }
     
     func didClickOptionTextField(textField:UITextField){
-        for button in answerButtonsAry{
-            button.backgroundColor = UIColor.blueColor()
-        }
+        textField.becomeFirstResponder()
     }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        let textIndex = textField.tag
+        let label = answerLabelArray[textIndex]
+        label.text = textField.text
+        label.sizeToFit()
+        updateLabelLayout()
+        textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
     
     override func loadWithAnswer() {
             if let listAnswer = questionAnswer?.listAnswer {
@@ -144,12 +216,19 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
                         let result = answer as! NSDictionary
                         answerAry[index].text = result["answer"] as? String
                     }
-                }else{
+                } else {
                     for (index,answer) in listAnswer.enumerate(){
                         let result = answer as! NSDictionary
                         answerButtonsAry[index].setTitle(result["answer"] as? String, forState: UIControlState.Normal)
                     }
                 }
+                
+                for (i, v) in listAnswer.enumerate() {
+                    let r = v as! NSDictionary
+                    answerLabelArray[i].text = r["answer"] as? String
+                    answerLabelArray[i].sizeToFit()
+                }
+                updateLabelLayout()
             }
     }
 
@@ -160,7 +239,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         if let q = question {
             if case .TingLiTianKong = q.type {
                 for (i,textField) in answerAry.enumerate(){
-                    let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: i)
+                    let dic = getListAnswerItem(textField.text!, answerType: 0, ordinal: i + 1)
                     answerArray.append(dic)
                 }
             } else {
@@ -174,24 +253,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         }
         audioManager.resetManager()
     }
-    
-    
-    //MARK:答案处理
-//    func answerFormat(answerArray:[AnyObject])-> NSArray{
-//        var answerArray = [NSDictionary]()
-//        var dic = NSDictionary()
-//        for (index,answer) in answerArray.enumerate(){
-//            if question?.type == QuestionTypeEnum.TingLiTianKong{
-//                let result = answer as! UITextField
-//                dic = getListAnswerItem(result.text!, answerType: 0, ordinal: index)
-//            }else{
-//                let option = question?.options![index]
-//                dic = getListAnswerItem(String(option?.optionIndex!), answerType: 0, ordinal: index)
-//            }
-//            answerArray.append(dic)
-//        }
-//        return answerArray
-//    }
 
     
     private var progressView: AudioProgressView?
@@ -254,12 +315,10 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
                     }
                 }
             }
-        }
-        else if button.tag == 1 {
+        } else if button.tag == 1 {
             button.tag = 2
             audioManager.pausePlay()
-        }
-        else {
+        } else {
             button.tag = 1
             audioManager.resumePlay()
         }
@@ -269,10 +328,6 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         super.didReceiveMemoryWarning()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     
     func audioManager(player: AVAudioPlayer, power: Float) {
         
@@ -339,19 +394,15 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     //MARK:键盘弹出
     func keyboardWillShow(notification:NSNotification) {
         if let keyboard = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            let width = self.view.frame.size.width;
-            let height = self.view.frame.size.height;
-            let rect = CGRectMake(0.0, -keyboard.size.height, width, height);
-            self.view.frame = rect
+            answerPadBottom.constant = -keyboard.height + 50
         }
     }
     
     //MARK:键盘隐藏
     func keyboardWillHide(notification:NSNotification) {
-        let width = self.view.frame.size.width;
-        let height = self.view.frame.size.height;
-        let rect = CGRectMake(0.0, 0,width,height);
-        self.view.frame = rect
+        answerPadBottom.constant = 0
     }
+    
+    
     
 }

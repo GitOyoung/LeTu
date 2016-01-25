@@ -31,13 +31,16 @@ class DanxuanViewController: QuestionBaseViewController {
         setQuestionBody(question)
         setQuestionOptions()
         setAnswerButtons()
-        scrollContentHeight.constant = 600
-        scrollView.contentSize.height = 600
-        setScrollEable()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        setScrollView()
+        print(scrollView.contentSize)
     }
     
     func setQuestionBody(question:EtaskQuestion?){
@@ -46,6 +49,16 @@ class DanxuanViewController: QuestionBaseViewController {
             let attributedStr = try? NSAttributedString(data: url!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType , NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding], documentAttributes: nil)
             questionBodyLabel.text = attributedStr?.string
         }
+        
+    }
+    
+    func setScrollViewHeight() {
+        let h = answerLabel.frame.origin.y + answerLabel.bounds.height
+        var size = scrollView.contentSize
+        scrollContentHeight.constant = h
+        size.height = h
+        scrollView.contentSize = size
+        
     }
 
     
@@ -108,6 +121,7 @@ class DanxuanViewController: QuestionBaseViewController {
                 break
             }
             answerLabel.text = ""
+            answerString = ""
             for(idx, _) in answerOptions.enumerate() {
                 if answerOptions[idx] == true {
                     let option = q.options![idx]
@@ -123,12 +137,18 @@ class DanxuanViewController: QuestionBaseViewController {
     //计算scrollView和屏幕的高度
     
     func setScrollEable(){
-        let screenHeight = UIScreen.mainScreen().bounds.height
-        let offsetHeight = screenHeight - 98 - questionTitleView.frame.size.width - answerPad.frame.size.height
-        let contentHeight = questionBodyLabel.frame.size.height + optionsLabel.frame.size.height
-        if offsetHeight > contentHeight{
+        let minHeight = scrollView.bounds.height
+        let actualHeight = scrollContentHeight.constant
+        if actualHeight > minHeight {
+            scrollView.scrollEnabled = true
+        } else {
             scrollView.scrollEnabled = false
         }
+    }
+    
+    func setScrollView() {
+        setScrollViewHeight()
+        setScrollEable()
     }
     
     override func updateAnswer() {
@@ -150,6 +170,8 @@ class DanxuanViewController: QuestionBaseViewController {
                     }
                 }
             }
+            answerLabel.text = questionAnswer!.answer
+            
         }
     }
 }

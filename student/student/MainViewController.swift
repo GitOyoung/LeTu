@@ -53,7 +53,7 @@ class TabBarItem : UIControl
     }
 }
 
-class MainViewController: UITabBarController
+class MainViewController: UITabBarController, UIGestureRecognizerDelegate
 {
     
     var items: [TabBarItem] = []
@@ -61,6 +61,25 @@ class MainViewController: UITabBarController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarItems()
+        setupGestureRecogniner()
+    }
+    
+    func setupGestureRecogniner() {
+        let tap = UITapGestureRecognizer(target: self, action: Selector("viewTouch:"))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        NSNotificationCenter.defaultCenter().postNotificationName("SortMenuShouldHide", object: nil)
+        return false
+    }
+    
+    
+    func viewTouch(r: UIGestureRecognizer) {
+        
     }
     
     func setupTableFooterView() {

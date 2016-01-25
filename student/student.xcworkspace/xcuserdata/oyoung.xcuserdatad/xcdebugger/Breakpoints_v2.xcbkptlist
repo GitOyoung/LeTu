@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "student/TingLiTiankongViewController.swift"
-            timestampString = "474951838.987361"
+            timestampString = "475051021.026666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "audioManager(_:currentTime:duration:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "student/TingLiTiankongViewController.swift"
-            timestampString = "474951838.987361"
+            timestampString = "475051021.026666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "audioManagerDidStartPlay(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "student/TingLiTiankongViewController.swift"
-            timestampString = "474951838.987361"
+            timestampString = "475051021.026666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "audioCtrlClicked(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -169,13 +169,109 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "student/XuanzetiankongViewController.swift"
-            timestampString = "474884183.745873"
+            filePath = "student/TingLiTiankongViewController.swift"
+            timestampString = "475051021.026666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "updateLabelLayout()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/TingLiTiankongViewController.swift"
+            timestampString = "475051021.026666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "textFieldDidEndEditing(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/TingLiTiankongViewController.swift"
+            timestampString = "475051021.026666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "loadWithAnswer()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.TingLiTiankongViewController.loadWithAnswer (student.TingLiTiankongViewController)() -&gt; ()"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
+                  timestampString = "475058212.076096"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "3752">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.TingLiTiankongViewController.loadWithAnswer (student.TingLiTiankongViewController)() -&gt; ()"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
+                  timestampString = "475058212.078312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "3760">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/QuestionBaseViewController.swift"
+            timestampString = "475052730.016447"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "student/ReadingViewController.swift"
+            timestampString = "475054741.366416"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "setupTextView()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

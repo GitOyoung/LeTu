@@ -26,9 +26,9 @@ class KouSuanSpeakViewController: BaseDialogViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startTime = NSDate().timeIntervalSince1970
-        print("start:\(startTime)")
         contentView.backgroundColor = QKColor.themeBackgroundColor_1()
         micAnimView.layer.cornerRadius = 6
+        initData()
     }
     
     func initData(){

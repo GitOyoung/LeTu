@@ -16,6 +16,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBOutlet weak var answerTextField: UITextField!
     
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var drawButton: UIButton!
@@ -75,11 +76,21 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBAction func keyboardClicked(sender: UIButton) {
         if(answerTextField.hidden){
             answerTextField.hidden = false
-            answerTextField.becomeFirstResponder()
+            hideKeyboard()
         }else{
+            showKeyboard()
             answerTextField.hidden = true
-            answerTextField.resignFirstResponder()
         }
+    }
+    
+    func hideKeyboard(){
+        answerTextField.becomeFirstResponder()
+        let offset = answerTextField.frame.origin.y - 200
+        scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+    }
+    
+    func showKeyboard(){
+        answerTextField.resignFirstResponder()
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -124,7 +135,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         answerConstraintHeight.constant = answerConstraintHeight.constant + 210
     }
     
-    func getAnswerView() -> UIView{
+    func getAnswerView() -> UIView {
         print(answersView.frame.size.width)
         let resultView = UIView(frame: CGRectMake(0, CGFloat(230 * (imageUrls.count-1)), screenWidth-16, 200))
         resultView.addSubview(getImageView())
@@ -167,7 +178,7 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     }
     
     @IBAction func DidEndOnExit(sender: UITextField) {
-        sender.resignFirstResponder()
+        hideKeyboard()
     }
     
     override func updateAnswer() {
@@ -210,6 +221,31 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
         appeared = true
     }
 
+    func updateScrollView() {
+        updateScrollViewHeight()
+        updateScrollViewEnable()
+    }
+    func updateScrollViewHeight() {
+        let h = answersView.frame.origin.y + answersView.bounds.height
+        var size = scrollView.contentSize
+        contentHeight.constant = h
+        size.height = h
+        scrollView.contentSize = size
+    }
+    
+    func updateScrollViewEnable() {
+        if contentHeight.constant > scrollView.bounds.height {
+            scrollView.scrollEnabled = true
+        } else {
+            scrollView.scrollEnabled = false
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        updateScrollView()
+    }
+    
     
 }
 

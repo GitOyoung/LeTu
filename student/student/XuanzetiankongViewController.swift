@@ -18,7 +18,9 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     @IBOutlet weak var questionBodyLabel: UILabel!
     //问题以及结果
     @IBOutlet weak var questionPointView: UIView!
+    @IBOutlet weak var questionPointViewWidth: NSLayoutConstraint!
     @IBOutlet weak var answerArea: UIView!
+    @IBOutlet weak var answerAreaHeight: NSLayoutConstraint!
     
     @IBOutlet weak var answerPad: UIView!
     //可以被选择的对象
@@ -29,7 +31,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     let optionCellIdentifier = "optionCell"
     var etaskQuestionOptions = [EtaskQuestionOption]()
     
-    var answerIndexes:[String] = []
+    var answers:[Int] = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,17 +62,19 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     //MARK:按钮生成
     func setAnswerButtons(){
         var frame = CGRect(x: 0, y: 0, width: 44, height: 38)
+        let w = CGFloat(buttonNumber * 44 + (buttonNumber - 1) * 10)
+        questionPointViewWidth.constant = w
         for index in 0..<buttonNumber{
-            answerIndexes.append("0")
+            answers.append(0)
             let button = UIButton(frame: frame)
             frame.origin.x += 54
             button.tag = index
             button.titleLabel?.font = UIFont.systemFontOfSize(14)
             button.setTitle("", forState: .Normal)
             button.setTitleColor(UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1), forState: .Normal)
-            button.backgroundColor = UIColor(red: 240/255.0, green: 239/255.0, blue: 245/255.0, alpha: 1)
+            button.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1) //240, 239, 245
             button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor(red: 116/255.0, green: 126/255.0, blue: 136/255.0, alpha: 1).CGColor
+            button.layer.borderColor = UIColor(red:0.455, green: 0.494, blue: 0.533, alpha: 1).CGColor // 116, 126, 136
             button.layer.cornerRadius = 5
             button.addTarget(self, action: "didClickOptionButton:", forControlEvents: UIControlEvents.TouchUpInside)
             
@@ -98,12 +102,15 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     
     //MARK:选中按钮
     func didClickOptionButton(button:UIButton){
-        if buttonIndex == -1 {
-            buttonIndex = button.tag
-            button.backgroundColor = UIColor(red: 0.471 , green: 0.51, blue: 0.6, alpha: 1)
-        } else if buttonIndex == button.tag {
+        if buttonIndex == button.tag {
             buttonIndex = -1
             button.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1)
+        } else {
+            buttonIndex = button.tag
+            for bt in answerButtonsAry {
+                bt.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1)
+            }
+            button.backgroundColor = UIColor(red: 0.471 , green: 0.51, blue: 0.6, alpha: 1)
         }
         
     }
@@ -150,21 +157,64 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
             let string = option?.option?.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n"))
             button.setTitle(string , forState: .Normal)
             answerLabelArray[buttonIndex].text = string
-            answerIndexes[buttonIndex] = String((option?.optionIndex)!)
+            answerLabelArray[buttonIndex].sizeToFit()
+            updateAnswerLabelLayout()
+             
+            answers[buttonIndex] = (option?.optionIndex)!
+        }
+    }
+    func updateAnswerLabelLayout() {
+        var multiLine: Bool = false
+        var w: CGFloat = 0
+        for i in 0..<answerLabelArray.count {
+            w += answerLabelArray[i].bounds.width
+        }
+        if w > answerArea.bounds.width {
+            multiLine = true
+        }
+        var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        if multiLine { //一行放不下，用多行
+            for label in answerLabelArray {
+                frame.size.width = label.bounds.width
+                frame.size.height = label.bounds.height
+                label.frame = frame
+                frame.origin.y += 30
+            }
+            answerAreaHeight.constant = CGFloat(30 * answerLabelArray.count)
+        } else {
+            for label in answerLabelArray {
+                frame.size.width = label.bounds.width
+                frame.size.height = label.bounds.height
+                label.frame = frame
+                frame.origin.x += frame.width + 10
+            }
         }
     }
     
     override func loadWithAnswer() {
         if questionAnswer != nil && questionAnswer?.answer != "" {
-            let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",")
-            answerIndexes = optionIndexs!
-            for (index,number) in (optionIndexs?.enumerate())!{
-                for option in etaskQuestionOptions{
-                    if String(option.optionIndex!) == number{
-                        let button:UIButton = answerButtonsAry[index]
-                        button.setTitle(option.option!.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " \n")), forState: .Normal)
+            if let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",") {
+                for (i, v) in optionIndexs.enumerate() {
+                    answers[i] = Int(v)!
+                    for option in etaskQuestionOptions{
+                        if String(option.optionIndex!) == v {
+                            let button:UIButton = answerButtonsAry[i]
+                            button.setTitle(option.option!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), forState: .Normal)
+                        }
+                    }
+                   
+                }
+                if let options = question?.options {
+                    for (i, label) in answerLabelArray.enumerate() {
+                        var  d = answers[i]
+                        if d-- > 0 {
+                            label.text = options[d].option?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            label.sizeToFit()
+                        }
+                        
                     }
                 }
+                updateAnswerLabelLayout()
             }
         }
     }
@@ -172,9 +222,10 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     override func updateAnswer() {
         super.updateAnswer()
         var answerString:String = ""
-        for item in answerIndexes {
+        for item in answers {
             answerString = answerString+"\(item),"
         }
-        questionAnswer!.answer = answerString.clipLastString()
+        questionAnswer!.answer = answerString == "0,0,0,0," ? "" : answerString.clipLastString()
+    
     }
 }
