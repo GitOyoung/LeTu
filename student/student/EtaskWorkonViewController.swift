@@ -8,15 +8,16 @@
 
 import UIKit
 
-class EtaskWorkonViewController: UIViewController, HttpProtocol {
+class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecognizerDelegate, QIndexViewControllerExitDelegate {
     @IBOutlet weak var titleLabel: UILabel!
 
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var nextButton: UIButton!
     // MARK: properties
     @IBOutlet weak var contentView: UIView!
     var etask:EtaskModel?
     var questions = [EtaskQuestion]()
-    var answers = [EtaskAnswer]()
+    var answers = [Int: EtaskAnswer]()
     var currentQuestion:EtaskQuestion?
     
     var submitable: Bool = false
@@ -25,7 +26,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadQuestions()
+        setupTitleView()
+        loadQuestions()
     }
     
     //加载题目
@@ -50,6 +52,26 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             }
         }
        
+    }
+    
+    func setupTitleView() {
+        let tap = UITapGestureRecognizer(target: self, action: Selector("titleTouch:"))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        tap.delegate = self
+        titleView.addGestureRecognizer(tap)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if touch.view!.isKindOfClass(UIButton) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func titleTouch(r: UITapGestureRecognizer) {
+        showIndex(nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,8 +111,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 submitable = false
                 let nextQuestion = questions[index]
                 currentQuestion = nextQuestion
-                let nextQuestionController = jumpToQuestionController(nextQuestion)
-                addViewControllerInContentView(nextQuestionController)
+                jumpToNextViewController()
             } else {
                 submitable = true
                 nextButton.setTitle("完成", forState: UIControlState.Normal)
@@ -102,6 +123,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     ///按钮 － 返回
     @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func jumpToNextViewController() {
+        let currentQuestionController = jumpToQuestionController(currentQuestion!)
+        addViewControllerInContentView(currentQuestionController)
     }
     
     //题目集合
@@ -119,18 +145,17 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
                 for currentQuestionData in questionsData {
                     let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
                     questions.append(currentQuestion)
+                    hasDone.append(false)
                 }
                 currentQuestion = questions.first!
-               
-                let currentQuestionController = jumpToQuestionController(currentQuestion!)
-                addViewControllerInContentView(currentQuestionController)
+                jumpToNextViewController()
             }
         }
     }
     
     //判断应该跳往哪个题目页面
     func jumpToQuestionController(question:EtaskQuestion) -> UIViewController{
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height - 98)
+        let frame = contentView.bounds
         var questionController:QuestionBaseViewController?
         
         switch question.type {
@@ -153,7 +178,8 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         case .LangDu:
             questionController = ReadingViewController()
         case .YuYinGenDu:
-            questionController = FollowReadingViewController()
+//            questionController = FollowReadingViewController()
+            questionController = YuYinGenDuViewController()
         case .TianKong:
             questionController = TianKongViewController()
         case .JianDa:
@@ -162,21 +188,31 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
             questionController = DanxuanViewController()
         }
         questionController!.question = currentQuestion
-        let idx = (currentQuestion?.ordinal)! - 1
-        questionController!.questionAnswer = idx < answers.count ? answers[idx] : nil
-        questionController!.view.frame = frame
+        if let ordinal = currentQuestion?.ordinal {
+            questionController!.questionAnswer = answers[ordinal]
+        } else {
+            questionController!.questionAnswer = nil
+        }
+        
+        print(questionController!.questionAnswer)
+        questionController!.viewFrame = frame
+        
         return questionController!
     }
     
     //题目添加到contentView内
     func addViewControllerInContentView(viewController:UIViewController){
-        for view in self.contentView.subviews {
+        
+        for view in contentView.subviews {
             view.removeFromSuperview()
+        }
+        for vc in childViewControllers {
+            vc.removeFromParentViewController()
         }
         currentViewController = viewController
         titleLabel.text = "第\((currentQuestion?.ordinal)!)题"
-        self.addChildViewController(viewController)
-        self.contentView.addSubview(viewController.view)
+        addChildViewController(viewController)
+        contentView.addSubview(viewController.view)
     }
     //MARK: 提交作业
     func submitAnswers() {
@@ -187,7 +223,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
         let formater = NSDateFormatter()
         formater.locale = NSLocale.autoupdatingCurrentLocale()
         formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        for e in answers {
+        for (_, e) in answers {
             etaskAnswers.addObject(e.toDictionary())
         }
         params["etaskId"] = etask?.etaskID
@@ -213,14 +249,57 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol {
     
     //MARK: 保存答案到答案列表
     func saveAnswer() {
-        if var idx = currentQuestion?.ordinal {
-            --idx
+        if let ordinal = currentQuestion?.ordinal {
             let vc = currentViewController as! QuestionBaseViewController
-            if idx < answers.count {
-                answers[idx] = vc.answer()
+            answers[ordinal] = vc.answer()
+            if  answers[ordinal]!.answer == "" {
+                hasDone[ordinal - 1] = false
             } else {
-                answers.append(vc.answer())
+                hasDone[ordinal - 1] = true
             }
+        
         }
     }
+    
+    var hasDone: [Bool] = [Bool]()
+    var answerIndexForOrdinal: [Int: Int] = [Int: Int]()
+    
+    @IBAction func showIndex(sender: UIButton?) {
+        if let _ = currentQuestion {
+            let currentIndex = currentQuestion!.ordinal - 1
+            var styles: [IndexStyle] = []
+            if answers.count != questions.count {
+                for _ in 0..<questions.count {
+                    styles.append(IndexStyle.New)
+                }
+            }
+            for (i, done) in hasDone.enumerate() {
+                if done {
+                   styles[i] = IndexStyle.Done
+                } else {
+                     styles[i] = IndexStyle.New
+                }
+            }
+            let vc = QIndexViewController()
+            vc.delegate = self
+            vc.currentIndex = currentIndex
+            vc.selectedIndex = currentIndex
+            vc.collection = styles
+            presentViewController(vc, animated: false, completion: nil)
+        }
+    }
+    
+    func exit(viewController: QIndexViewController) {
+        let nextIndex = viewController.selectedIndex
+        let needChange: Bool = !(nextIndex == viewController.selectedIndex)
+        if needChange {
+            saveAnswer()
+            submitable = false
+            currentQuestion = questions[nextIndex]
+            
+            jumpToNextViewController()
+        }
+         viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

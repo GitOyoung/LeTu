@@ -9,33 +9,28 @@
 import UIKit
 import AVFoundation
 
-class FollowReadingViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate/*, AiSpeechEngineDelegate */{
-
-    @IBOutlet weak var questionTitleView: QuestionTitleView!
-    //听力
-    @IBOutlet weak var listenCurrentTimeLabel: UILabel!
-    @IBOutlet weak var listenProgressContentView: UIPileView!
-    @IBOutlet weak var listenDurationLabel: UILabel!
+class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate/*, AiSpeechEngineDelegate */{
     
+    @IBOutlet weak var questionTitleView: QuestionTitleView!
+    @IBOutlet weak var questionBodyLabel: UILabel!
+    //听力
+    @IBOutlet weak var listenButton: UIButton!
+    @IBOutlet weak var listenDurationLabel: UILabel!
     //录音
     @IBOutlet weak var answerCurrentTimeLabel: UILabel!
-    
     @IBOutlet weak var answerProgressContentView: UIPileView!
-    
     @IBOutlet weak var answerDurationLabel: UILabel!
-    
     @IBOutlet weak var answerRecordingView: UIView!
     
     
     weak var listenProgressView: AudioProgressView?
     weak var answerProgressView: AudioProgressView?
-    weak var listenProgressButton: UIButton?
     weak var answerProgressButton: UIButton?
     weak var recordButton: ImageButton?
     var audioManager: AudioManager!
     var recordSaved: Bool = false
     
-//    var speechEngine: AiSpeechEngine?
+    //    var speechEngine: AiSpeechEngine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,20 +43,10 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     }
     
     func setupListening() {
-        let progressView = AudioProgressView()
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 22, height: 22))
-        button.setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
-        button.tag = 0
-        progressView.tag = 0
-        progressView.delegate = self
-        progressView.updateProgress = 0.0
-        progressView.trackTintColor = UIColor.brownColor()
-        progressView.progressTintColor = UIColor.blueColor()
-        progressView.customView = button
-        setupTouchEvent(button)
-        listenProgressButton = button
-        listenProgressView = progressView
-        listenProgressContentView.addSubview(progressView)
+        listenButton.setImage(UIImage(named: "task_luyin1"), forState: UIControlState.Normal)
+        listenButton.tag = 0
+        listenButton.addTarget(self, action: Selector("touchDownInside:withEvent:"), forControlEvents: UIControlEvents.TouchDown)
+        listenButton.addTarget(self, action: Selector("touchUpInside:withEvent:"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     func setupAnswering() {
@@ -81,7 +66,6 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         answerProgressButton = button
         answerProgressView = progressView
         answerProgressContentView.addSubview(progressView)
-        
         
         setupRecordButton()
     }
@@ -107,14 +91,16 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     }
     
     func setupQuestionBody() {
-        
+        if let question = question {
+            questionBodyLabel.text = htmlFormatString(question.questionBody!)
+        }
     }
     
     func setupSpeechEngine() {
-//        let cfg = [NSObject: AnyObject]()
-//        //config
-//        speechEngine = AiSpeechEngine(cfg: cfg)
-//        speechEngine?.delegate = self
+        //        let cfg = [NSObject: AnyObject]()
+        //        //config
+        //        speechEngine = AiSpeechEngine(cfg: cfg)
+        //        speechEngine?.delegate = self
     }
     
     
@@ -155,6 +141,32 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         }
     }
     
+    func touchUpInside(sender: UIButton, withEvent ev: UIEvent) {
+        if sender.tag  == 0 { //听力进度条按钮点击
+            //需要做得事
+            switch listenStatus{
+            case .DoNothing, .DoNothingButRecordDone:
+                startListening()
+            case .Playing:
+                pauseListening()
+            case .PlayPause:
+                resumeListening()
+            default:break
+            }
+        } else {
+            //需要做的事
+            switch answerStatus{
+            case .DoNothing,.DoNothingButRecordDone:
+                startPlayAudio()
+            case .Playing:
+                pausePlayAudio()
+            case .PlayPause:
+                resumePlayAudio()
+            default:break
+            }
+            
+        }
+    }
     
     var listenStatus: ManagerStatus = .DoNothing {
         didSet {
@@ -179,35 +191,6 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         }
     }
     
-    func touchUpInside(sender: UIButton, withEvent ev: UIEvent) {
-        if sender.tag  == 0 { //听力进度条按钮点击
-            //需要做得事
-            switch listenStatus
-            {
-            case .DoNothing, .DoNothingButRecordDone:
-                startListening()
-            case .Playing:
-                pauseListening()
-            case .PlayPause:
-                resumeListening()
-            default:break
-            }
-        } else {
-            //需要做的事
-            switch answerStatus
-            {
-            case .DoNothing,.DoNothingButRecordDone:
-                startPlayAudio()
-            case .Playing:
-                pausePlayAudio()
-            case .PlayPause:
-                resumePlayAudio()
-            default:break
-            }
-            
-        }
-    }
-    
     func recordButtonTouchUpInside(sender: UIButton) {
         switch answerStatus
         {
@@ -221,28 +204,19 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
             alert("重新录制语音", message: "确认重新录制语音吗", ok: "确认", cancel: "取消"){self.onAlertOK($0)}
         default:break
         }
-        
-        
-        
-        
-        
     }
     
-    func onAlertOK(action: UIAlertAction)
-    {
-        if action.title == "提交"
-        {
+    func onAlertOK(action: UIAlertAction){
+        if action.title == "提交"{
             stopRecord()
         }
-        else if action.title == "确认"
-        {
+        else if action.title == "确认"{
             deleteRecordFile()
             startRecord()
         }
     }
     
-    func deleteRecordFile()
-    {
+    func deleteRecordFile(){
         let path = audioManager.recordUrl?.absoluteString
         do  {
             try NSFileManager.defaultManager().removeItemAtPath(path!)
@@ -250,7 +224,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
             
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -271,11 +245,11 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     func audioManagerDidStartPlay(player: AVAudioPlayer) {
         if playerTag == 1 { //听力
             listenStatus = ManagerStatus.Playing
-            listenProgressButton?.setImage(UIImage(named: "task_stop"), forState: UIControlState.Normal)
+            listenButton?.setImage(UIImage(named: "task_luyin2"), forState: UIControlState.Normal)
         } else if playerTag == 2 {
             answerStatus = ManagerStatus.Playing
             answerProgressButton?.setImage(UIImage(named: "task_stop"), forState: UIControlState.Normal)
-           
+            
         }
     }
     
@@ -283,8 +257,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         if playerTag == 1 { //听力
             listenStatus = ManagerStatus.DoNothing
             listenProgressView?.updateProgress = 0
-            listenCurrentTimeLabel.text = "00:00"
-            listenProgressButton?.setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
+            listenButton?.setImage(UIImage(named: "task_luyin1"), forState: UIControlState.Normal)
         } else if playerTag == 2 {
             answerStatus = recordSaved ? ManagerStatus.DoNothingButRecordDone : ManagerStatus.DoNothing
             answerProgressView?.updateProgress = 0
@@ -297,7 +270,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     func audioManagerDidPause(player: AVAudioPlayer) {
         if playerTag == 1 { //听力
             listenStatus = ManagerStatus.PlayPause
-            listenProgressButton?.setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
+            listenButton?.setImage(UIImage(named: "task_luyin1"), forState: UIControlState.Normal)
         } else if playerTag == 2 {
             answerStatus = ManagerStatus.PlayPause
             answerProgressButton?.setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
@@ -306,7 +279,7 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     func audioManagerDidResume(player: AVAudioPlayer) {
         if playerTag == 1 { //听力
             listenStatus = ManagerStatus.Playing
-            listenProgressButton?.setImage(UIImage(named: "task_stop"), forState: UIControlState.Normal)
+            listenButton?.setImage(UIImage(named: "task_luyin2"), forState: UIControlState.Normal)
             
         } else if playerTag == 2 {
             answerStatus = ManagerStatus.Playing
@@ -315,7 +288,6 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     }
     func audioManager(player: AVAudioPlayer, currentTime: NSTimeInterval, duration: NSTimeInterval) {
         if playerTag == 1 { //听力
-            listenCurrentTimeLabel.text = currentTime.toStringMMSS()
             listenProgressView?.updateProgress = CGFloat(min((currentTime / duration), 1.0))
         } else if playerTag == 2 {
             answerCurrentTimeLabel.text = currentTime.toStringMMSS()
@@ -328,23 +300,18 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
             if playerTag == 1 {
                 listenDuration = player.duration
                 listenDurationLabel.text = player.duration.toStringMMSS()
-                listenCurrentTimeLabel.text = "00:00"
-                
             } else if playerTag == 2 {
                 answerDuration = player.duration
                 answerDurationLabel.text = player.duration.toStringMMSS()
                 answerCurrentTimeLabel.text = "00:00"
-               
+                
             }
         }
     }
     
     func audioManager(player: AVAudioPlayer, power: Float) {
-       
+        
     }
-    
-    
-    
     
     func audioManagerDidStartRecord(recorder: AVAudioRecorder) {
         answerStatus = ManagerStatus.Recording
@@ -369,15 +336,15 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     }
     
     /**
-    * 引擎运行完成
-    */
+     * 引擎运行完成
+     */
     func aiSpeechEngineDidFinishRecording(engine: AiSpeechEngine!, stopType: AIENGINE_STOPTYPE) {
         
     }
     
     /**
-    * 引擎收到了json结果
-    */
+     * 引擎收到了json结果
+     */
     func aiSpeechEngine(engine: AiSpeechEngine!, didReceive recordId: String!, responseJson jsonString: String!) {
         
     }
@@ -396,7 +363,6 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
                 }
             }
         }
-        
     }
     
     func pauseListening() {
@@ -414,11 +380,10 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
     //录音部分
     func startPlayAudio() {
         if playerTag == 1 { //如果在播放听力，先停止播放听力
-            audioManager?.stopPlay()           
+            audioManager?.stopPlay()
         }
         playerTagNext = 2
-        if let url = audioManager.recordUrl
-        {
+        if let url = audioManager.recordUrl{
             audioManager.startPlayWithURL(url) {
                 self.audioManager.startPlay()
             }
@@ -448,5 +413,5 @@ class FollowReadingViewController: QuestionBaseViewController, AudioProgressView
         audioManager.stopRecordingShouldSave(save)
     }
     
-
+    
 }

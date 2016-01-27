@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate {
+class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,PassImageDataDelegate{
 
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
@@ -76,21 +76,11 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBAction func keyboardClicked(sender: UIButton) {
         if(answerTextField.hidden){
             answerTextField.hidden = false
-            hideKeyboard()
-        }else{
             showKeyboard()
+        }else{
+            hideKeyboard()
             answerTextField.hidden = true
         }
-    }
-    
-    func hideKeyboard(){
-        answerTextField.becomeFirstResponder()
-        let offset = answerTextField.frame.origin.y - 200
-        scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
-    }
-    
-    func showKeyboard(){
-        answerTextField.resignFirstResponder()
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -175,6 +165,16 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
             let nsURL = NSURL(string: url)!
             imageView.setImage(nsURL , placeholdImage: nil)
         }
+    }
+    
+    func showKeyboard(){
+        answerTextField.becomeFirstResponder()
+        let offset = answerTextField.frame.origin.y - 100
+        scrollView.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+    }
+    
+    func hideKeyboard(){
+        answerTextField.resignFirstResponder()
     }
     
     @IBAction func DidEndOnExit(sender: UITextField) {

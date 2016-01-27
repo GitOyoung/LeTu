@@ -30,7 +30,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gn1-e2-ZPA">
-                    <rect key="frame" x="0.0" y="48" width="320" height="382"/>
+                    <rect key="frame" x="0.0" y="48" width="320" height="370"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ia-tN-pFI" userLabel="contentView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="382"/>
@@ -89,10 +89,10 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-hR-gkH" userLabel="Pad View">
-                    <rect key="frame" x="0.0" y="430" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="418" width="320" height="62"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-fT-Gid">
-                            <rect key="frame" x="68" y="0.0" width="185" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNc-fT-Gid" customClass="UIHCenterView" customModule="student" customModuleProvider="target">
+                            <rect key="frame" x="68" y="0.0" width="185" height="62"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="185" id="1ru-gt-Rki"/>
@@ -101,7 +101,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="1eb-st-RyJ"/>
+                        <constraint firstAttribute="height" constant="62" id="1eb-st-RyJ"/>
                         <constraint firstItem="fNc-fT-Gid" firstAttribute="top" secondItem="ORp-hR-gkH" secondAttribute="top" id="CFu-ES-liZ"/>
                         <constraint firstAttribute="bottom" secondItem="fNc-fT-Gid" secondAttribute="bottom" id="aic-EN-rHN"/>
                         <constraint firstItem="fNc-fT-Gid" firstAttribute="centerX" secondItem="ORp-hR-gkH" secondAttribute="centerX" id="fXA-se-Xh8"/>

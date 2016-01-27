@@ -14,9 +14,11 @@ class QuestionBaseViewController: UIViewController {
     
     var questionAnswer: EtaskAnswer?
     var enterClock: clock_t = 0
+    var viewFrame: CGRect = CGRectZero
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.frame = viewFrame
         setupQuestionAnswer()
     }
     

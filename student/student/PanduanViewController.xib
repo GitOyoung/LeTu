@@ -28,7 +28,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ux-3H-fbq">
-                    <rect key="frame" x="0.0" y="48" width="320" height="363"/>
+                    <rect key="frame" x="0.0" y="48" width="320" height="369"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzV-Op-Kmn">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
@@ -77,10 +77,10 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObB-fd-exI">
-                    <rect key="frame" x="0.0" y="411" width="320" height="68"/>
+                    <rect key="frame" x="0.0" y="417" width="320" height="62"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5C-Jo-4F9">
-                            <rect key="frame" x="70" y="0.0" width="180" height="68"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5C-Jo-4F9" customClass="UIHCenterView" customModule="student" customModuleProvider="target">
+                            <rect key="frame" x="70" y="0.0" width="180" height="62"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="180" id="BDX-C9-eVz"/>
@@ -89,7 +89,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="68" id="bLZ-uj-1Cg"/>
+                        <constraint firstAttribute="height" constant="62" id="bLZ-uj-1Cg"/>
                         <constraint firstItem="V5C-Jo-4F9" firstAttribute="centerX" secondItem="ObB-fd-exI" secondAttribute="centerX" id="fIR-2j-v92"/>
                         <constraint firstItem="V5C-Jo-4F9" firstAttribute="top" secondItem="ObB-fd-exI" secondAttribute="top" id="nJr-N4-PWz"/>
                         <constraint firstAttribute="bottom" secondItem="V5C-Jo-4F9" secondAttribute="bottom" id="s9r-eR-mRa"/>

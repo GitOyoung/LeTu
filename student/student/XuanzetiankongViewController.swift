@@ -22,6 +22,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     @IBOutlet weak var answerArea: UIView!
     @IBOutlet weak var answerAreaHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var collectionHeight: NSLayoutConstraint!
     @IBOutlet weak var answerPad: UIView!
     //可以被选择的对象
     @IBOutlet weak var answerPadOptionsCollectionView: UICollectionView!
@@ -101,16 +102,23 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     var buttonIndex: Int = -1
     
     //MARK:选中按钮
-    func didClickOptionButton(button:UIButton){
+    func didClickOptionButton(button:UIButton) {
+        
         if buttonIndex == button.tag {
             buttonIndex = -1
+            
             button.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1)
+            UIView.animateWithDuration(0.5) { self.collectionHeight.constant = 0 }
         } else {
             buttonIndex = button.tag
             for bt in answerButtonsAry {
                 bt.backgroundColor = UIColor(red: 0.941, green: 0.937, blue: 0.961, alpha: 1)
             }
+            collectionHeight.constant = answerPadOptionsCollectionView.contentSize.height
             button.backgroundColor = UIColor(red: 0.471 , green: 0.51, blue: 0.6, alpha: 1)
+             UIView.animateWithDuration(0.5) {
+                self.collectionHeight.constant = self.answerPadOptionsCollectionView.contentSize.height
+            }
         }
         
     }
@@ -160,7 +168,7 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
             answerLabelArray[buttonIndex].sizeToFit()
             updateAnswerLabelLayout()
              
-            answers[buttonIndex] = (option?.optionIndex)!
+            answers[buttonIndex] = indexPath.row + 1
         }
     }
     func updateAnswerLabelLayout() {
@@ -193,25 +201,27 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     
     override func loadWithAnswer() {
         if questionAnswer != nil && questionAnswer?.answer != "" {
-            if let optionIndexs = questionAnswer?.answer.componentsSeparatedByString(",") {
+            if let optionIndexs = questionAnswer?.answer.split(",") {
                 for (i, v) in optionIndexs.enumerate() {
                     answers[i] = Int(v)!
-                    for option in etaskQuestionOptions{
-                        if String(option.optionIndex!) == v {
-                            let button:UIButton = answerButtonsAry[i]
-                            button.setTitle(option.option!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()), forState: .Normal)
-                        }
-                    }
                    
                 }
-                if let options = question?.options {
+                if let opts = question?.options {
                     for (i, label) in answerLabelArray.enumerate() {
                         var  d = answers[i]
                         if d-- > 0 {
-                            label.text = options[d].option?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            let string = opts[d].option!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            label.text = string
                             label.sizeToFit()
                         }
                         
+                    }
+                    for (j, button) in answerButtonsAry.enumerate() {
+                        var d = answers[j]
+                        if d-- > 0 {
+                            let string =  opts[d].option!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            button.setTitle(string, forState: .Normal)
+                        }
                     }
                 }
                 updateAnswerLabelLayout()
@@ -222,10 +232,16 @@ class XuanzetiankongViewController: QuestionBaseViewController, UICollectionView
     override func updateAnswer() {
         super.updateAnswer()
         var answerString:String = ""
+        var done: Bool = false
         for item in answers {
-            answerString = answerString+"\(item),"
+            if item > 0 {
+                answerString += "\(item),"
+                if !done {
+                    done = true
+                }
+            }
         }
-        questionAnswer!.answer = answerString == "0,0,0,0," ? "" : answerString.clipLastString()
+        questionAnswer!.answer = done ? answerString.clipLastString() : ""
     
     }
 }
