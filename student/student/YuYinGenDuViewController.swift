@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate/*, AiSpeechEngineDelegate */{
+class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDelegate, AudioManagerDelegate/* ,AiSpeechEngineDelegate */ {
     
     @IBOutlet weak var questionTitleView: QuestionTitleView!
     @IBOutlet weak var questionBodyLabel: UILabel!
@@ -30,7 +30,7 @@ class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDel
     var audioManager: AudioManager!
     var recordSaved: Bool = false
     
-    //    var speechEngine: AiSpeechEngine?
+//    var speechEngine: AiSpeechEngine?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,10 +97,10 @@ class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDel
     }
     
     func setupSpeechEngine() {
-        //        let cfg = [NSObject: AnyObject]()
-        //        //config
-        //        speechEngine = AiSpeechEngine(cfg: cfg)
-        //        speechEngine?.delegate = self
+//        let cfg = [NSObject: AnyObject]()
+//        //config
+//        speechEngine = AiSpeechEngine(cfg: cfg)
+//        speechEngine?.delegate = self
     }
     
     

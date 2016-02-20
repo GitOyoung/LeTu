@@ -568,6 +568,5 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
         
         return item!
     }
-    
 
 }
