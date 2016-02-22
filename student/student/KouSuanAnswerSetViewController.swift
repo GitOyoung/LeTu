@@ -20,7 +20,6 @@ class KouSuanAnswerSetViewController: BaseDialogViewController {
     @IBOutlet weak var keyboardButton: UIButton!
     @IBOutlet weak var speakButton: UIButton!
     
-    @IBOutlet weak var timersView: UIView!
     @IBOutlet weak var threeSecondButton: UIButton!
     @IBOutlet weak var fiveSecondButton: UIButton!
     @IBOutlet weak var sevenSecondButton: UIButton!
@@ -71,14 +70,12 @@ class KouSuanAnswerSetViewController: BaseDialogViewController {
         checkOnButton(keyboardButton)
         checkOffButton(speakButton)
         selWay = KouSuanAnswerWay.keyboard
-        timersView.hidden = true
     }
     
     @IBAction func speakButtonClicked(sender: UIButton) {
         checkOnButton(speakButton)
         checkOffButton(keyboardButton)
         selWay = KouSuanAnswerWay.speak
-        timersView.hidden = false
     }
     
     @IBAction func timerButtonClicked(sender: UIButton) {

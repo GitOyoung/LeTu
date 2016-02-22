@@ -25,7 +25,11 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
         startbutton.layer.cornerRadius = 6
     }
     
+    var startButtonClickable = true
     @IBAction func startButtonClicked(sender: UIButton) {
+        if(!startButtonClickable){
+            return
+        }
         let dialog = KouSuanAnswerSetViewController()
         dialog.delegate = self
         showDialog(dialog)
@@ -78,6 +82,7 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
         if(answerWay == KouSuanAnswerWay.keyboard){
             let dialog = KouSuanKeyboardViewController()
             dialog.options = self.question?.options
+            dialog.timer = answerTimer
             dialog.delegate = self
             showDialog(dialog)
         }else {
@@ -106,6 +111,8 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
         }
         initOptions()
         
+        setStartButtonUnClickable()
+        
         let dialog = KouSuanResultViewController()
         dialog.rightNum = rightNum
         dialog.wrongNum = wrongNum
@@ -113,6 +120,12 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
         dialog.costTime = costTime
         
         showDialog(dialog)
+    }
+    
+    func setStartButtonUnClickable() {
+        startbutton.setTitle("已回答", forState: .Normal)
+        startbutton.backgroundColor = QKColor.themeBackgroundColor_2()
+        startButtonClickable = false
     }
     
     override func updateAnswer() {
@@ -126,9 +139,11 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     }
     
     override func loadWithAnswer() {
-        if(questionAnswer == nil || questionAnswer?.listAnswer == nil){
+        if(questionAnswer == nil || questionAnswer?.listAnswer == nil
+            || questionAnswer?.listAnswer.count == 0){
             return
         }
+        setStartButtonUnClickable()
         for anAnswer in (questionAnswer?.listAnswer)!{
             var dic = anAnswer as! Dictionary<String,AnyObject>
             answerAry.append(dic["answer"] as! String)
