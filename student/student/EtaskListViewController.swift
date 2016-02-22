@@ -71,7 +71,12 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     }
     
     override func viewWillAppear(animated: Bool) {
+        requestFirstData()
+    }
+    
+    func requestFirstData() {
         page = 0
+        refreshStyle = LTRefreshStyle.PullDown
         requestData(page)
     }
     
@@ -184,8 +189,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     @IBAction func mainSegmentIndexChanged(sender: UISegmentedControl)
     {
         //segmentIndexChangedTips(sender);
-        page = 0
-        requestData(page)
+        requestFirstData()
     }
     
     private func setSearchBar()
