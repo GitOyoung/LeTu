@@ -114,14 +114,14 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         frame.origin.y = CGFloat((offsetHeight - 42)/2)
         let submitButton = UIButton(frame: frame)
         submitButton.setTitle("确定", forState: .Normal)
-        submitButton.backgroundColor = UIColor.blueColor()
+        submitButton.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
         submitButton.layer.cornerRadius = 5
         submitButton.addTarget(self, action: "didClickSubmitButton:", forControlEvents: UIControlEvents.TouchUpInside)
         frame.origin.x = CGFloat(offsetWidth/2 + 58)
         answerButtons.append(submitButton)
         let cancelButton = UIButton(frame: frame)
         cancelButton.setTitle("取消", forState: .Normal)
-        cancelButton.backgroundColor = UIColor.blueColor()
+        cancelButton.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
         cancelButton.layer.cornerRadius = 5
         cancelButton.addTarget(self, action: "didClickCancelButton:", forControlEvents: UIControlEvents.TouchUpInside)
         answerButtons.append(cancelButton)
@@ -133,20 +133,20 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     
     func didClickSubmitButton(button:UIButton){
         changeButtonBackground()
-        button.backgroundColor = UIColor.grayColor()
+        button.backgroundColor = UIColor.blueColor()
         print("确定")
     }
     
     func didClickCancelButton(button:UIButton){
         changeButtonBackground()
-        button.backgroundColor = UIColor.grayColor()
+        button.backgroundColor = UIColor.blueColor()
         print("取消")
     }
     
     //改变按钮颜色
     func changeButtonBackground(){
         for button in answerButtons{
-            button.backgroundColor = UIColor.blueColor()
+            button.backgroundColor = UIColor(red: 0, green: 150/255.0, blue: 250/255.0, alpha: 1)
         }
     }
     
