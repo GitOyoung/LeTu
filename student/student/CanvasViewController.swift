@@ -22,6 +22,7 @@ class CanvasViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalPresentationStyle = .Custom
         cancelButton.layer.cornerRadius = 6
         confirmButton.layer.cornerRadius = 6
     }

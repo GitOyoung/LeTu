@@ -37,6 +37,8 @@ class CanvasView:UIView{
         bezierPath.moveToPoint(startPoint)
         bezierPath.addQuadCurveToPoint(endPoint, controlPoint: fromPoint)
         bezierPath.lineWidth = 5
+        let strokeColor = QKColor.themeBackgroundColor_1()
+        strokeColor.setStroke()
         bezierPath.stroke()
     }
     

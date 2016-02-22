@@ -135,7 +135,7 @@ class QuestionBaseViewController: UIViewController {
     
     func loadWithAnswer() {
         
-    }
+    }	
     
     func updateAnswer() {
         let cost: clock_t = clock() - enterClock

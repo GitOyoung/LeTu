@@ -63,15 +63,21 @@ class JianDaViewController: QuestionBaseViewController,UIImagePickerControllerDe
     @IBAction func cameraClicked(sender: UIButton) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .PhotoLibrary
+        imagePicker.sourceType = .Camera
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction func drawClicked(sender: UIButton) {
         let controller = CanvasViewController()
         controller.delegate = self
-        presentViewController(controller, animated: true, completion: nil)
+        showDialog(controller)
     }
+    
+    func showDialog(dialog:UIViewController){
+        dialog.view.backgroundColor = QKColor.makeColorWithHexString("000000", alpha: 0.5)
+        presentViewController(dialog, animated: true, completion: nil)
+    }
+
     
     @IBAction func keyboardClicked(sender: UIButton) {
         if(answerTextField.hidden){
