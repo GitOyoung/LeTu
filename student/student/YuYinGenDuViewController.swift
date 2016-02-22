@@ -42,6 +42,15 @@ class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDel
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let urlString = question?.speechUrlHtmlData {
+            if urlString != "" {
+                audioManager?.startPlayWithURL(NSURL(string: urlString)!)
+            }
+        }
+    }
+    
     func setupListening() {
         listenButton.setImage(UIImage(named: "task_luyin1"), forState: UIControlState.Normal)
         listenButton.tag = 0
@@ -288,6 +297,7 @@ class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDel
     }
     func audioManager(player: AVAudioPlayer, currentTime: NSTimeInterval, duration: NSTimeInterval) {
         if playerTag == 1 { //听力
+            listenDurationLabel.text = currentTime.toStringMMSS()
             listenProgressView?.updateProgress = CGFloat(min((currentTime / duration), 1.0))
         } else if playerTag == 2 {
             answerCurrentTimeLabel.text = currentTime.toStringMMSS()
@@ -297,14 +307,14 @@ class YuYinGenDuViewController: QuestionBaseViewController, AudioProgressViewDel
     func audioManagerDidPrepare(player: AVAudioPlayer, prepared: Bool) {
         if prepared {
             playerTag = playerTagNext
-            if playerTag == 1 {
-                listenDuration = player.duration
-                listenDurationLabel.text = player.duration.toStringMMSS()
-            } else if playerTag == 2 {
+            if playerTag == 2 {
                 answerDuration = player.duration
                 answerDurationLabel.text = player.duration.toStringMMSS()
                 answerCurrentTimeLabel.text = "00:00"
                 
+            } else {
+                listenDuration = player.duration
+                listenDurationLabel.text = player.duration.toStringMMSS()
             }
         }
     }
