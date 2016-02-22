@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "student/ReadingViewController.swift"
-            timestampString = "474859229.967324"
+            timestampString = "477824242.193653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "onAlertOK(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,7 +122,7 @@
                   moduleName = "student"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/FollowReadingViewController.swift"
-                  timestampString = "477823291.540478"
+                  timestampString = "477824243.642798"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "394"
@@ -137,7 +137,7 @@
                   moduleName = "student"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/FollowReadingViewController.swift"
-                  timestampString = "477823291.540904"
+                  timestampString = "477824243.64317"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "395"
@@ -250,7 +250,7 @@
                   moduleName = "student"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
-                  timestampString = "477823291.556271"
+                  timestampString = "477824243.65059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -265,7 +265,7 @@
                   moduleName = "student"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
-                  timestampString = "477823291.556671"
+                  timestampString = "477824243.650875"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -273,22 +273,6 @@
                   offsetFromSymbolStart = "4682">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "student/ReadingViewController.swift"
-            timestampString = "475054741.366416"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "setupTextView()"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

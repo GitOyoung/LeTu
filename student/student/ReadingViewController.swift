@@ -55,6 +55,9 @@ class ReadingViewController: QuestionBaseViewController, AudioManagerDelegate, A
         audioExist = audioManager.fileExistAtName(name)
         if audioExist {
             audioManager.recordUrl = generateFileURLWithName(name)
+            if let url = audioManager.recordUrl {
+                audioManager.startPlayWithURL(url)
+            }
         }
     }
     
