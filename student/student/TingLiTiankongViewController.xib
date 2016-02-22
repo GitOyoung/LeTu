@@ -38,8 +38,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeT-iK-GJM" userLabel="Time View">
                     <rect key="frame" x="0.0" y="48" width="320" height="48"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vX-UQ-Z2u" userLabel="startLabel">
-                            <rect key="frame" x="16" y="13" width="45" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vX-UQ-Z2u" userLabel="startLabel">
+                            <rect key="frame" x="16" y="13" width="46" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="7Xk-rl-TXb"/>
                             </constraints>
@@ -48,14 +48,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Du-Fa-vEc" customClass="UIPileView" customModule="student" customModuleProvider="target">
-                            <rect key="frame" x="77" y="0.0" width="165" height="48"/>
+                            <rect key="frame" x="78" y="0.0" width="163" height="48"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="5as-lR-oJw"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ere-be-aON" userLabel="endLabel">
-                            <rect key="frame" x="258" y="13" width="46" height="21"/>
+                            <rect key="frame" x="257" y="13" width="47" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="ZXQ-fV-DLx"/>
                             </constraints>

@@ -361,6 +361,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         (progressView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
         progressView?.updateProgress = 0.0
         progressView?.customView?.tag = 0
+        startLabel.text = "00:00"
     }
     func audioManagerDidPause(player: AVAudioPlayer) {
         (progressView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
