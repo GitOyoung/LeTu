@@ -10,9 +10,14 @@ import UIKit
 
 class KouSuanKeyboardViewController: BaseDialogViewController {
     
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var indexLabel: UILabel!
     @IBOutlet weak var questionBodyLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
+    
+    var timer:Int!
+    var nsTimer:NSTimer?
+    var lastTime:Int = 0;
     
     var options:[EtaskQuestionOption]!
     var curIndex:Int = 1
@@ -30,7 +35,18 @@ class KouSuanKeyboardViewController: BaseDialogViewController {
         initData()
     }
     
+    func updateTime(){
+        if(self.lastTime == 0){
+            self.nextButtonClicked(UIButton())
+        }
+        self.lastTime--
+        self.timerLabel.text = "\(self.lastTime)\""
+    }
+    
     func initData(){
+        lastTime = timer + 1
+        nsTimer?.invalidate()
+        nsTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         indexLabel.text = "当前第\(curIndex)题"
         print(curIndex)
         questionBodyLabel.text = htmlFormatString(options[curIndex-1].option!)

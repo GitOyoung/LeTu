@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
@@ -13,7 +14,6 @@
                 <outlet property="sevenSecondButton" destination="M5Y-ky-YYA" id="cEn-hh-wW9"/>
                 <outlet property="speakButton" destination="Y7c-PP-myI" id="SMX-hn-0a2"/>
                 <outlet property="threeSecondButton" destination="hZV-4i-pRa" id="GAX-j0-e7C"/>
-                <outlet property="timersView" destination="24A-Bm-n2e" id="gOw-8W-grb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -85,7 +85,7 @@
                                 <action selector="cancelButtonClicked:" destination="-1" eventType="touchUpInside" id="kSG-MI-fpR"/>
                             </connections>
                         </button>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24A-Bm-n2e" userLabel="timersView">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24A-Bm-n2e" userLabel="timersView">
                             <rect key="frame" x="0.0" y="89" width="224" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZV-4i-pRa">

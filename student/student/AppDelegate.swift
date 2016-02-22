@@ -15,9 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let userInfo = NSUserDefaults.standardUserDefaults()
-        print("========================")
-        print(userInfo.stringForKey(""))
         // Override point for customization after application launch.
         return true
     }

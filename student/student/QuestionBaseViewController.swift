@@ -126,7 +126,7 @@ class QuestionBaseViewController: UIViewController {
             st["minutes"] = info.minute
             st["seconds"] = info.second
             st["date"] = info.day
-            st["time"] = Int(date.timeIntervalSince1970 * 1000)
+            st["time"] = Int64(date.timeIntervalSince1970 * 1000) as? AnyObject
             st["timezoneOffset"] = zone!.secondsFromGMT / 60
             return st
         }
