@@ -20,7 +20,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     var answers = [Int: EtaskAnswer]()
     var currentQuestion:EtaskQuestion?
     
-    var submitable: Bool = false
+    var submitable: Bool = false {
+        didSet {
+            nextButton.setTitle(submitable ? "完成" : "下一题", forState: UIControlState.Normal)
+        }
+    }
     
     weak var currentViewController: UIViewController?
 
@@ -83,7 +87,6 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         saveAnswer()
         let index = (currentQuestion?.ordinal)! - 1
         submitable = false
-        nextButton.setTitle("下一题", forState: UIControlState.Normal)
         if index > 0 {
             let preQuestion = questions[index - 1]
             currentQuestion = preQuestion
@@ -114,7 +117,6 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
                 jumpToNextViewController()
             } else {
                 submitable = true
-                nextButton.setTitle("完成", forState: UIControlState.Normal)
             }
         }
         preButton?.enabled = true
@@ -143,7 +145,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
                 let questionsData = etask["etask"]!["etaskQuestions"] as! Array<NSDictionary>
                 print("共有\(questionsData.count)个问题")
                 for currentQuestionData in questionsData {
-                    let currentQuestion = EtaskQuestion.init(data: currentQuestionData)
+                    let currentQuestion = EtaskQuestion(data: currentQuestionData)
                     questions.append(currentQuestion)
                     hasDone.append(false)
                 }
@@ -180,6 +182,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         case .YuYinGenDu:
 //            questionController = FollowReadingViewController()
             questionController = YuYinGenDuViewController()
+    
         case .TianKong:
             questionController = TianKongViewController()
         case .JianDa:
@@ -250,36 +253,31 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     //MARK: 保存答案到答案列表
     func saveAnswer() {
         if let ordinal = currentQuestion?.ordinal {
+            let index = ordinal - 1
             let vc = currentViewController as! QuestionBaseViewController
             answers[ordinal] = vc.answer()
             if  answers[ordinal]!.answer == "" {
-                hasDone[ordinal - 1] = false
+                hasDone[index] = false
             } else {
-                hasDone[ordinal - 1] = true
+                hasDone[index] = true
             }
         
         }
     }
     
     var hasDone: [Bool] = [Bool]()
-    var answerIndexForOrdinal: [Int: Int] = [Int: Int]()
     
     @IBAction func showIndex(sender: UIButton?) {
         if let _ = currentQuestion {
             let currentIndex = currentQuestion!.ordinal - 1
-            var styles: [IndexStyle] = []
-            if answers.count != questions.count {
-                for _ in 0..<questions.count {
-                    styles.append(IndexStyle.New)
-                }
+            var styles: [IndexStyle] = [IndexStyle]()
+            for _ in 0..<questions.count {
+                styles.append(.New)
             }
             for (i, done) in hasDone.enumerate() {
-                if done {
-                   styles[i] = IndexStyle.Done
-                } else {
-                     styles[i] = IndexStyle.New
-                }
+                styles[i] = done ? IndexStyle.Done : IndexStyle.New
             }
+            
             let vc = QIndexViewController()
             vc.delegate = self
             vc.currentIndex = currentIndex
@@ -291,7 +289,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
     
     func exit(viewController: QIndexViewController) {
         let nextIndex = viewController.selectedIndex
-        let needChange: Bool = !(nextIndex == viewController.selectedIndex)
+        let needChange: Bool = nextIndex != viewController.currentIndex
         if needChange {
             saveAnswer()
             submitable = false
