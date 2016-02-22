@@ -55,6 +55,8 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let url = question?.speechUrlHtmlData
+        audioManager.startPlayWithURL(NSURL(string: url!)!, complete: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
