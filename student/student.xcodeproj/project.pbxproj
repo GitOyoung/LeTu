@@ -710,7 +710,7 @@
 				TargetAttributes = {
 					E98A915E1BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = LC7V6BQT3X;
+						DevelopmentTeam = 8W263924Q3;
 					};
 					E98A91721BF4B4E9008DB1A9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -1091,7 +1091,7 @@
 					"$(PROJECT_DIR)/student",
 					"$(PROJECT_DIR)/student/Libs/mesdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "student/student-Bridging-Header.h";
@@ -1115,7 +1115,7 @@
 					"$(PROJECT_DIR)/student",
 					"$(PROJECT_DIR)/student/Libs/mesdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.singlu.lzxt.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "student/student-Bridging-Header.h";

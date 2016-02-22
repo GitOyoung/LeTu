@@ -47,7 +47,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
     func setQuestionBody(question:EtaskQuestion?){
         if let question = question{
             let headerView:UIView = UIView(frame: CGRectMake(0,0,questionOptionTableView!.frame.size.width,60))
-            let headerlabel:UILabel = UILabel(frame: headerView.bounds)
+            let headerlabel = UILabel(frame: CGRect(x: 48, y: 0, width: headerView.bounds.width, height: headerView.bounds.height))
             let headerlabeltext = question.questionBody!.dataUsingEncoding(NSUTF8StringEncoding)
             headerlabel.textColor = UIColor.blackColor()
             headerlabel.backgroundColor = UIColor.clearColor()
@@ -127,6 +127,7 @@ class PaiXuCViewController: QuestionBaseViewController,UITableViewDelegate,UITab
         answerButtons.append(cancelButton)
         answerPadView.addSubview(submitButton)
         answerPadView.addSubview(cancelButton)
+        answerPadView.hidden = true
 
 
     }

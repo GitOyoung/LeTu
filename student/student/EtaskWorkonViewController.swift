@@ -219,7 +219,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         print("作业正在提交...请稍等")
         let params = NSMutableDictionary()
         let etaskAnswers = NSMutableArray()
-        let u = NSUserDefaultUtil.getUser()
+        let user = NSUserDefaultUtil.getUser()
         let formater = NSDateFormatter()
         formater.locale = NSLocale.autoupdatingCurrentLocale()
         formater.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -227,11 +227,11 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
             etaskAnswers.addObject(e.toDictionary())
         }
         params["etaskId"] = etask?.etaskID
-        params["userId"] = u?.userId
+        params["userId"] = user!.userId
         params["classesId"] = etask?.classesId
         params["recordId"] = etask?.recordId
         params["answerTime"] = formater.stringFromDate(NSDate())
-        params["accessToken"] = u?.token
+        params["accessToken"] = user?.token
         params["etaskAnswerType"] = 1
         params["etaskAnswers"] = etaskAnswers
         params["behaviorAnalysis"] = NSArray()
@@ -240,7 +240,7 @@ class EtaskWorkonViewController: UIViewController, HttpProtocol, UIGestureRecogn
         
         let http = HttpRequest()
         http.delegate = self
-        http.postRequest(url, params: params)
+        http.postRequestJson(url, params: params)
     }
     func submitDidSucceed() {
         print("作业提交成功！")
