@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "366"
             endingLineNumber = "366"
-            landmarkName = "audioManagerDidEndRecord(_:saved:)"
+            landmarkName = "audioManager(_:power:currentTime:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "375"
             endingLineNumber = "375"
-            landmarkName = "FollowReadingViewController"
-            landmarkType = "3">
+            landmarkName = "aiSpeechEngineDidFinishRecording(_:stopType:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -113,38 +113,6 @@
             endingLineNumber = "394"
             landmarkName = "startListening()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "student.FollowReadingViewController.startListening (student.FollowReadingViewController)() -&gt; ()"
-                  moduleName = "student"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/FollowReadingViewController.swift"
-                  timestampString = "477826424.79728"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "394"
-                  endingLineNumber = "394"
-                  offsetFromSymbolStart = "807">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "student.FollowReadingViewController.(startListening (student.FollowReadingViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "student"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/FollowReadingViewController.swift"
-                  timestampString = "477826424.797663"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "395"
-                  endingLineNumber = "395"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -177,6 +145,38 @@
             endingLineNumber = "352"
             landmarkName = "audioManagerDidStartPlay(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "student.TingLiTiankongViewController.audioManagerDidStartPlay (student.TingLiTiankongViewController)(__ObjC.AVAudioPlayer) -&gt; ()"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
+                  timestampString = "477887179.971578"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "protocol witness for student.AudioManagerDelegate.audioManagerDidStartPlay &lt;A where A: student.AudioManagerDelegate&gt; (A)(__ObjC.AVAudioPlayer) -&gt; () in conformance student.TingLiTiankongViewController : student.AudioManagerDelegate in student"
+                  moduleName = "student"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
+                  timestampString = "477887179.97185"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "353"
+                  endingLineNumber = "353"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -225,38 +225,6 @@
             endingLineNumber = "230"
             landmarkName = "loadWithAnswer()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "student.TingLiTiankongViewController.loadWithAnswer (student.TingLiTiankongViewController)() -&gt; ()"
-                  moduleName = "student"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
-                  timestampString = "477826424.80571"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "4670">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "student.TingLiTiankongViewController.loadWithAnswer (student.TingLiTiankongViewController)() -&gt; ()"
-                  moduleName = "student"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/oyoung/Desktop/Work/lzxt_student_ios/student/student/TingLiTiankongViewController.swift"
-                  timestampString = "477826424.80605"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
-                  offsetFromSymbolStart = "4682">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -330,12 +298,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "student/EtaskListViewController.swift"
-            timestampString = "477822265.024956"
+            timestampString = "477891452.859243"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "didreceiveResult(_:)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "setMenuHidden(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

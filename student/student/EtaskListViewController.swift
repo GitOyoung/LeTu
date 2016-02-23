@@ -88,6 +88,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
  
     private var menu: ArrowMenu?
+    private var menuHidden: Bool = true
     @objc(sortButtonClick:)
     func sortButtonTouchedUpInside(sender s: UIButton)
     {
@@ -96,7 +97,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             var origin = s.convertPoint(s.frame.origin, toView: view)
             origin.y += s.frame.height - 6
             origin.x -= 6
-            menu = ArrowMenu(frame: CGRect(origin: origin, size: CGSize(width: 114, height: 154)), delegate: self)
+            menu = ArrowMenu(frame: CGRect(origin: origin, size: CGSize(width: 114, height: 80)), delegate: self)
             menu!.cornerRadius = 6
             menu!.arrowDirection = ArrowDirection.Up
             menu!.arrowOffset = 0
@@ -107,34 +108,74 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             menu?.hidden = true
             view.addSubview(menu!)
         }
-        let hidden = (menu?.hidden)!
         
-        UIView.animateWithDuration(0.2) { () -> Void in
-            self.menu?.hidden = !hidden
+        cancelTimeout()  //在超时时间到达以前响应了按钮事件，则点击的是按钮，需要取消超时操作
+        
+        menuHidden = !menuHidden
+        UIView.animateWithDuration(0.2) {
+            self.setMenuHidden(self.menuHidden)
         }
         
-        
+    }
+    
+    //MARK： 超时操作取消标识
+    var timeoutCancelled: Bool = false
+    //MARK: 设置超时操作
+    func setTimeout(wait: CGFloat, callBack: () -> Void) {
+        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(wait * 1000) * Int64(NSEC_PER_MSEC))
+        dispatch_after(when, dispatch_get_main_queue()) {
+            if !self.timeoutCancelled {
+                callBack()
+            }
+        }
+    }
+    //MARK: 取消超时操作
+    func cancelTimeout() {
+        timeoutCancelled = true
     }
     
     func menuHide(notif: NSNotification) {
-        setMenuHidden(true)
-    }
-    
-    func setMenuHidden(hidden: Bool) {
         if let m = menu {
-            m.hidden = hidden
+            m.hidden = true
+            timeoutCancelled = false
+            setTimeout(0.5) { self.menuHidden = true } //响应通知，如果超时时间到达时没有按钮响应事件，则点击的是按钮以外区域
         }
     }
+    
+    //MARK： 单击按钮设置菜单隐藏
+    func setMenuHidden(hidden: Bool) {
+        if let m = menu {
+            let newHidden = m.hidden && hidden
+            m.hidden = newHidden
+        }
+    }
+    
+    
     
     func setupScrollView() -> Void {
         scrollView.delegate = self
         scrollView.tag = 1
     }
     
-    
+    //MARK: 根据点击的菜单项索引排序
     func SortWithIndex(index n: Int)
     {
-        //排序的具体实现
+        switch n {
+        case 0:
+            sortByStartTime()
+        case 1:
+            sortByEndTime()
+        default:break
+        }
+    }
+    
+    //MARK: 按照开始时间排序
+    func sortByStartTime() {
+        //TODO:
+    }
+    //MARK: 按照结束时间排序
+    func sortByEndTime() {
+        //TODO
     }
  
     
@@ -506,7 +547,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             params["pageSize"] = 10
             params["accessToken"] = user!.token!
             http.postRequest(url, params: params)
-        }else{
+        } else {
             self.presentViewController(MeLoginViewController(), animated: true, completion: nil)
         }
     }
@@ -519,6 +560,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     
     func arrowMenu(menu: ArrowMenu, didSelectAtRow row: Int, colunm: Int) {
         menu.hidden = true
+        menuHidden = true
         let item = menu[row, colunm]!
         if touchedItem != nil
         {
@@ -542,7 +584,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     }
     
     func arrowMenu(menu: ArrowMenu, numnerOfRowInColunm: Int) -> Int {
-        return 4
+        return 2
     }
     
     
@@ -557,6 +599,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
     func arrowMenu(menu: ArrowMenu, insetForRow: Int, colunm: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     }
+    var menuTitle: [String] = ["按开始时间排序", "按结束时间排序"]
     
     func arrowMenu(menu: ArrowMenu, itemForRow row: Int, colunm: Int) -> MenuItem {
         var item = menu[row, colunm]
@@ -567,7 +610,7 @@ class EtaskListViewController: UIViewController, HttpProtocol, ArrowMenuDelegate
             item?.textAlignment = .Center
             item?.textColor = UIColor.whiteColor()
             item?.font = UIFont.systemFontOfSize(12)
-            item?.text = "按时间排序"
+            item?.text = menuTitle[row];
         }
         
         return item!
