@@ -97,7 +97,7 @@ class KouSuanViewController: QuestionBaseViewController, passAnswerSetDataDelega
     //做题完毕返回的时候执行
     func passAnswerData(answers: [String], costTime: Double) {
         answerAry = answers
-        print(answers)
+        print("answers:\(answers)")
         
         var rightNum = 0
         var wrongNum = 0

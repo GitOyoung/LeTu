@@ -70,7 +70,7 @@ class KouSuanKeyboardViewController: BaseDialogViewController {
             dismissViewControllerAnimated(true, completion: nil)
             let endTime = NSDate().timeIntervalSince1970
             let costTime = endTime - startTime
-            print(costTime)
+            nsTimer?.pause()
             delegate?.passAnswerData(answers, costTime: costTime)
         }
     }
