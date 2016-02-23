@@ -31,6 +31,42 @@ class HttpRequest:NSObject {
         }
     }
     
+    // post request json
+    func postRequestJson(url:String,params:NSDictionary){
+        print("开始提交JSON请求")
+        let url = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        Alamofire.request(.POST, url, parameters: params as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON { (response) -> Void in
+            debugPrint(response)
+            let data = response.data
+            
+            do {
+                let jsonResult:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                self.delegate?.didreceiveResult(jsonResult)
+            }
+            catch
+            {
+                let string:NSString = NSString(data: data!, encoding: 4)!
+                print(string)
+            }
+
+        }
+//        let url = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+//        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+//        request.HTTPMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
+//        print("---------post request-------------")
+//        print("url:\(url)")
+//        print("userId:\(params["userId"])")
+//        print("value:\(request.HTTPBody)")
+//        print("---------post request-------------")
+//        Alamofire.request(request)
+//            .responseJSON { response in
+//
+//            debugPrint(response)
+//        }
+    }
+    
     
     // respone json post request
     func postRequest(url:String,params:NSDictionary){
@@ -42,7 +78,7 @@ class HttpRequest:NSObject {
         
         Alamofire.request(.POST, url, parameters: params as? [String : AnyObject])
             .responseJSON { response -> Void in
-//                debugPrint(response)
+                debugPrint(response)
                 let data = response.data
 
                 do {

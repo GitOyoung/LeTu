@@ -55,6 +55,8 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let url = question?.speechUrlHtmlData
+        audioManager.startPlayWithURL(NSURL(string: url!)!, complete: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -359,6 +361,7 @@ class TingLiTiankongViewController: QuestionBaseViewController,AudioManagerDeleg
         (progressView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
         progressView?.updateProgress = 0.0
         progressView?.customView?.tag = 0
+        startLabel.text = "00:00"
     }
     func audioManagerDidPause(player: AVAudioPlayer) {
         (progressView?.customView as! UIButton).setImage(UIImage(named: "task_play"), forState: UIControlState.Normal)
